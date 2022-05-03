@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: task_webhook_example_slack.html 
+keywords: webhook, notification, Slack, integration 
+summary: 建立Webhook、針對Slack的效能或庫存臨界值發出警示 
+---
+= Slack的Webhook範例
+:allow-uri-read: 
+
+
+[role="lead"]
+Webhooks可讓使用者使用自訂的Webhooks通道、將警示通知傳送至各種應用程式。本頁提供設定Slack Webhooks的範例。
+
+
+NOTE: 本頁是指可能會變更的第三方指示。請參閱 link:https://slack.com/help/articles/115005265063-Incoming-webhooks-for-Slack["可寬延文件"] 以取得最新資訊。
+
+
+
+=== 寬限時間範例：
+
+* 前往 https://api.slack.com/apps[] 並建立新的應用程式命名有意義的名稱、然後選取Slack工作區。
++
+image:Webhooks_Slack_Create_Webhook.png["建立Slack Webhook"]
+
+* 移至傳入的Webhooks、按一下「啟動傳入的Webhooks_」、「Request to _Add New Webhook_」（要求新增Webhook_）、然後選取要張貼的通路。
+* 複製Webhook URL。您必須將此項目貼到Cloud Insights 「Webhook」組態中。
++
+image:Webhook_Slack_Config.jpg["寬限時間Webhook URL"]
+
+
+
+
+
+=== 建立Cloud Insights Webhook：
+
+. 在「還原」中、瀏覽至*管理>通知*、然後選取* Webhook*索引標籤。Cloud Insights按一下「*+ Webhing*」建立新的網路連結。
+. 為網路勾提供有意義的名稱、例如「Slack Webhook」。
+. 在_範本類型_下拉式清單中、選取*寬限*。
+. 將上方的URL貼到_url_欄位。
+
+
+image:Webhooks-Slack_example.png["可寬延的網頁連結範本"]
+
+
+
+=== 透過Webhook通知
+
+若要透過Webhook通知事件、請Cloud Insights 瀏覽至*警示>監控器*、然後按一下*+監控*以建立新的 link:task_create_monitor.html["監控"]。
+
+* 選取度量並定義監視器的條件。
+* 在「設定團隊通知」下、選擇* Webhook *交付方法。
+* 針對所需的事件（嚴重、警告、已解決）、選擇「Slack」（寬限）網路連結。
++
+image:Webhooks_Slack_Notifications.png["Webhook通知"]
+
+
+
+
+
+==== 更多資訊：
+
+* 若要修改訊息格式和配置、請參閱 https://api.slack.com/messaging/composing[]
+* 錯誤處理： https://api.slack.com/messaging/webhooks#handling_errors[]
+

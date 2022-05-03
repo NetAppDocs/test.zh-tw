@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: task_dc_na_astra_data_store.html 
+summary: 設定NetApp Astra資料儲存區 
+keywords: data collector, queries, create, astra, data, store, 
+---
+= NetApp Astra Data Store資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+此資料收集器會擷取單一Astra Data Store叢集的庫存和效能資料。除了資料收集器之外、監控操作員還會設定_Telegraf_以收集進階度量資料、以及設定_Fluent bit_以收集記錄。
+
+
+TIP: 您也可以在Astra Data Store文件中找到這些安裝說明和其他資訊：link:https://docs.netapp.com/us-en/astra-data-store/use/monitor-with-cloud-insights.html["利用功能表監控指標Cloud Insights"]
+link:https://docs.netapp.com/us-en/astra-data-store/get-started/quick-start.html["Astra Data Store快速入門"]
+
+
+
+== 術語
+
+從這個資料收集器取得庫存與效能資料。Cloud Insights對於所取得的每種資產類型、都會顯示該資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 適用的 | 內部Volume 
+
+
+| 適用的DSNodeInfo.STATUS.drives | 磁碟 
+
+
+| 適用的 | 儲存節點 
+
+
+| 適用的數據匯出原則 | 共用/共用啟動器 
+
+
+| 適用 | 儲存設備 
+|===
+
+
+== 需求
+
+* NetApp監控操作員必須安裝在Kubernetes叢集上、並使用Astra Data Store。如果在Astra Data Store安裝期間未安裝、請依照Astra Data Store安裝說明安裝監控操作員。
+* 必須安裝_kubecl-astrads_ kubecl外掛程式。如果未安裝、請依照Astra Data Store安裝說明安裝_kubecl-astrads_二進位檔。
+* 下列命令必須可用：_awk、curl、grep和jq_。
+
+
+
+
+== 安裝
+
+安裝指令碼會引導您完成Astra Data Store資料收集器的安裝。請依照畫面上的指示操作。完成安裝需要幾分鐘的時間。完成後、可能需要多花幾分鐘時間才能在Cloud Insights 畫面上顯示資料。
+
+指令碼會引導您完成下列步驟：
+
+. 選擇API存取權杖。
+. 從安裝對話方塊複製安裝程式指令碼、並將其另存為名為_cloudinsing-adsing-監 控.sh_的檔案。您可以按一下剪貼簿圖示、快速將指令碼複製到剪貼簿。
+. 開啟Bash視窗、將目錄變更為_cloudinsas-adsing-監 控.sh_指令碼的位置。
+. 從安裝對話方塊複製權限命令區塊。您可以按一下剪貼簿圖示、將命令快速複製到剪貼簿。
+. 將權限命令貼到Bash視窗中、然後按Enter鍵。
+. 從安裝對話方塊複製安裝命令。您可以按一下剪貼簿圖示、將命令快速複製到剪貼簿。
+. 將install命令貼到Bash視窗。
+. 將<Kubernetes _ip>取代為Kubernetes API伺服器的IP位址。
+. 將<Kubernetes toke>取代為Kubernetes API權杖。
+. 按Enter。
++
+安裝程式指令碼將：*確認監控操作員已安裝及設定。*設定Fluent位元。*設定Telegraf。*安裝擷取單元。*在擷取單元執行後、安裝Astra Data Store收集器。
+
+. 按一下「完成設定」。
+
+
+如果安裝程式指令碼因為錯誤而結束、您可以在錯誤解決後重新執行。如果您的環境未使用預設設定、安裝程式指令碼可支援其他參數、例如監控操作員命名空間和Kubernetes API伺服器連接埠。可用選項的完整清單如下所示。
+
+
+
+=== 安裝程式指令碼選項：
+
+請注意Cloud Insights 、下載時、將會在安裝程式指令碼中內嵌此域名和所選的API存取金鑰。
+
+....
+$ ./cloudinsights-ads-monitoring.sh -h
+USAGE: cloudinsights-ads-monitoring.sh [OPTIONS]
+Configure monitoring of Astra Data Store by Cloud Insights.
+OPTIONS:
+ -h                      Display this help message.
+ -d ci_domain_name       Cloud Insights tenant domain name.
+ -i kubernetes_ip        Kubernetes API server IP address.
+ -k ci_api_key           Cloud Insights API Access Key.
+ -n namespace            Namespace for monitoring components. (default: netapp-monitoring)
+ -p kubernetes_port      Kubernetes API server port. (default: 6443)
+ -r root_pv_dir          Create 3 Persistent Volumes in this directory for the Acquisition Unit.
+                         Only specify this option if there is no Storage Provisioner installed and the PVs do not already exist.
+ -s storage_class        Storage Class name for provisioning Acquisition Unit PVs. If not specified, the default storage class will be used.
+ -t kubernetes_token     Kubernetes API server token.
+....
+
+
+== 疑難排解
+
+如果您在使用此資料收集器時遇到問題、請嘗試下列事項：
+
+
+
+==== Astra Data Store資料收集器
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 您會看到「未獲授權」的訊息 | 檢查Kubernetes API Token是否有權在_astrads.netapp.io_ apiGroup中呼叫API 
+
+
+| 「未知主機：astrads-計量 單位-service.astrads-system.svc.cluster：不知道名稱或服務」 | 驗證收集器是否安裝在執行於ads Kubernetes叢集內的擷取裝置Pod中。驗證astrads指標服務是否執行astrads系統命名空間。 
+|===
+
+
+==== 安裝指令碼
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 監控運算子未在<namespace>命名空間中執行。 | 請依照Astra Data Store安裝說明進行安裝 
+
+
+| 300秒後、擷取單元Pod並未成功啟動。 | 取得併購單元pod的名稱：kubecl Get pod -命名空間netapp-Monitoring | grep "au-pode"檢查pod事件是否有錯誤：kubecl描述pod -命名空間netapp-監 控<po_name> 
+
+
+| 900秒後、擷取設備安裝尚未完成 | 取得併購單元pod的名稱：kubecl Get pod -命名空間netapp監控| grep "au-pode"檢查pod記錄是否有錯誤：kubecl記錄- 命名空間NetApp監控<po_daming>如果沒有錯誤、記錄檔會以「主要-擷取已啟動且正在執行！」訊息結尾、表示安裝成功、但時間過長。重新執行安裝指令碼。 
+
+
+| 無法從Cloud Insights 無法擷取擷取擷取裝置ID | 驗證影像Cloud Insights 接收單元是否出現在畫面上。前往「管理」>「資料收集器」、然後按一下「接收單位」索引標籤。驗證Cloud Insights 「驗證」功能表上的「驗證API金鑰是否具有「擷取裝置」 
+|===
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

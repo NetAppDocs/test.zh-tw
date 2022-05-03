@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: reporting_overview.html 
+summary: 利用NetApp預先定義及自訂資料報告Cloud Insights 功能。 
+keywords: reporting, cognos, data warehouse, dwh 
+---
+= 報告總覽Cloud Insights
+:allow-uri-read: 
+
+
+[role="lead"]
+利用此商業智慧工具、您可以檢視預先定義的報告或建立自訂報告。Cloud Insights
+
+
+NOTE: 「報告」功能可在Cloud Insights 《資訊時報」中找到 link:concept_subscribing_to_cloud_insights.html["Premium Edition"]。
+
+利用此功能、您可以執行下列工作：Cloud Insights
+
+* 執行預先定義的報告
+* 建立自訂報告
+* 自訂報告的格式和交付方法
+* 排程報告以自動執行
+* 電子郵件報告
+* 使用色彩來表示資料的臨界值
+
+
+支援範圍包括計費、消費分析和預測、並可針對下列問題、產生自訂報告：Cloud Insights
+
+* 我有什麼庫存？
+* 我的庫存在哪裡？
+* 誰在使用我們的資產？
+* 分配給業務單位的儲存設備的計費方式為何？
+* 需要多長時間才能取得額外的儲存容量？
+* 業務單位是否與適當的儲存層一致？
+* 儲存設備配置如何在一個月、一季或一年內改變？
+
+
+
+
+== 存取Cloud Insights 本報告
+
+您可以按一下功能表中的* Reports*連結來存取Cloud Insights 《S菜 色報告》。
+
+您將會進入報告介面。本報告引擎採用IBM Cognos分析技術。Cloud Insights使用您的報告認證登入。
+
+
+
+== 什麼是ETL？
+
+使用「報告」時、您會聽到「資料倉儲」和「ETL」等詞彙。ETL代表「擷取、轉換及載入」。ETL程序會擷取Cloud Insights 以EFlash收集的資料、並將資料轉換成用於「報告」的格式。「資料倉儲」是指可用於報告的收集資料。
+
+ETL程序包括下列個別程序：
+
+* *擷取*：從Cloud Insights 資料來源擷取資料。
+* * Transform*：將商業邏輯規則或功能套用至從Cloud Insights 效益擷取的資料。
+* *負載*：將轉換後的資料儲存至資料倉儲、以供報告使用。
+

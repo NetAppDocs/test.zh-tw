@@ -1,0 +1,149 @@
+---
+sidebar: sidebar 
+permalink: concept_cs_attack_simulator.html 
+keywords: ransomware, simulation, simulator, restrict, attack 
+summary: 您可以使用指令碼來模擬勒索軟體攻擊、以進行測試或展示Cloud Secure 
+---
+= 產品特色：模擬攻擊Cloud Secure
+:allow-uri-read: 
+
+
+[role="lead"]
+您可以使用本頁的說明、模擬攻擊、Cloud Secure 使用隨附Cloud Secure 的勒索軟體模擬指令碼來測試或展示VMware。
+
+
+
+== 開始之前要注意的事項
+
+* 勒索軟體模擬指令碼僅適用於Linux。
+* 指令碼會隨Cloud Secure 附於介紹代理程式安裝檔案。可在Cloud Secure 任何安裝了下列功能的機器上使用此功能：
+* 您可以在Cloud Secure 物件代理機器上執行指令碼、不需要再準備另一台Linux機器。不過、如果您偏好在其他系統上執行指令碼、只要複製指令碼並在該處執行即可。
+
+
+
+
+== 至少有1、000個範例檔案
+
+此指令碼應在SVM上執行、其中的資料夾含有要加密的檔案。建議在該資料夾和任何子資料夾中至少有1、000個檔案。檔案不可為空白。請勿使用相同的使用者建立檔案並加密。此為低風險活動、因此不會產生警示（亦即同一位使用者修改剛建立的檔案）Cloud Secure 。
+
+請參閱以下說明 link:#create-files-programmatically["以程式設計方式建立非空白檔案"]。
+
+
+
+== 準備系統
+
+首先、將目標Volume掛載到機器上。您可以掛載NFS掛載或CIFS匯出。
+
+若要在Linux中掛載NFS匯出：
+
+....
+mount -t nfs -o vers=4.0 10.193.177.158:/svmvol1 /mntpt
+mount -t nfs -o vers=4.0 Vserver data IP>:/nfsvol /destinationlinuxfolder
+....
+請勿掛載NFS 4.1版、Fpolicy不支援。
+
+若要在Linux中掛載CIFS：
+
+ mount -t cifs //10.193.77.91/sharedfolderincluster /root/destinationfolder/ -o username=raisa
+接下來、設定資料收集器：
+
+. 如果Cloud Secure 尚未設定、請設定該程式。
+. 如果尚未完成、請設定SVM資料收集器。
+
+
+
+
+== 執行勒索軟體模擬器指令碼
+
+. 登入（ssh）Cloud Secure 到資訊不限代理機器。
+. 瀏覽至：_/opt /NetApp/cloudsec/agent/install_
+. 呼叫不含參數的模擬器指令碼、查看使用狀況：
++
+....
+# pwd
+/opt/netapp/cloudsecure/agent/install
+# ./ransomware_simulator.sh
+Error: Invalid directory  provided.
+Usage: ./ransomware_simulator.sh [-e] [-d] [-i <input_directory>]
+       -e to encrypt files (default)
+       -d to restore files
+       -i <input_directory> - Files under the directory to be encrypted
+....
++
+....
+Encrypt command example: ./ransomware_simulator.sh -e -i /mnt/audit/reports/
+Decrypt command example: ./ransomware_simulator.sh -d -i /mnt/audit/reports/
+....
+
+
+
+
+== 加密測試檔案
+
+若要加密檔案、請執行下列命令：
+
+....
+# ./ransomware_simulator.sh -e -i /root/for/
+Encryption key is saved in /opt/netapp/cloudsecure/cloudsecure-agent-1.251.0/install/encryption-key,
+which can be used for restoring the files.
+Encrypted /root/for/File000.txt
+Encrypted /root/for/File001.txt
+Encrypted /root/for/File002.txt
+...
+....
+
+
+== 還原檔案
+
+若要解密、請執行下列命令：
+
+....
+[root@scspa2527575001 install]# ./ransomware_simulator.sh -d -i /root/for/
+File /root/for/File000.txt is restored.
+File /root/for/File001.txt is restored.
+File /root/for/File002.txt is restored.
+...
+....
+
+
+== 多次執行指令碼
+
+為使用者產生勒索軟體攻擊之後、請切換至其他使用者、以產生額外的攻擊。針對同一位使用者、在短時間內會得知使用者行為、不會針對反覆勒索軟體攻擊發出警示。Cloud Secure
+
+
+
+== 以程式設計方式建立檔案
+
+在建立檔案之前、您必須先停止資料收集器處理。將資料收集器新增至代理程式之前、請先執行下列步驟。如果您已新增資料收集器、只要編輯資料收集器、輸入無效密碼、然後儲存即可。這會暫時將資料收集器置於錯誤狀態。附註：請務必記下原始密碼！
+
+在執行模擬之前、您必須先新增要加密的檔案。您可以手動將要加密的檔案複製到目標資料夾、或使用指令碼（請參閱以下範例）以程式設計方式建立檔案。無論使用何種方法、請複製至少1、000個檔案。
+
+如果您選擇以程式設計方式建立檔案、請執行下列動作：
+
+. 登入值機員方塊。
+. 將NFS匯出從檔案管理器的SVM掛載到代理機器。CD至該資料夾。
+. 在該資料夾中建立一個名為createfiles.sh的檔案
+. 將下列行複製到該檔案。
++
+....
+for i in {000..1000}
+do
+   echo hello > "File${i}.txt"
+done
+echo 3 > /proc/sys/vm/drop_caches ; sync
+....
+. 儲存檔案。
+. 確保對檔案執行權限：
++
+ chmod 777 ./createfiles.sh
+. 執行指令碼：
++
+ ./createfiles.sh
++
+將在目前資料夾中建立1000個檔案。
+
+. 重新啟用資料收集器
++
+如果您在步驟1中停用資料收集器、請編輯資料收集器、輸入正確的密碼並儲存。請確定資料收集器已恢復執行狀態。
+
+

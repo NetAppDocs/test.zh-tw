@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: faq-config-support.html 
+keywords: FAQ, Frequently asked questions, questions, configuration, 
+summary:  
+---
+= 組態與支援的裝置
+:allow-uri-read: 
+
+
+[role="lead"]
+本常見問題集可解答Cloud Insights 有關支援的組態和裝置的常見問題。
+
+
+
+== 這個問題是否Cloud Insights 會改變我的環境？
+
+不可以NetApp是一種唯讀工具、可收集您環境的相關資訊。Cloud Insights從不變更您的資產或組態。Cloud Insights
+
+
+
+== 我的裝置需要哪些權限層級的存取Cloud Insights 權限？
+
+在大多數情況下、只讀存取是裝置所需的全部功能。有些解決方案不允許唯讀存取、因此需要適當的提高權限。
+
+
+
+== 此功能多久收集一次資訊？Cloud Insights
+
+通常每隔5分鐘收集一次效能資料、每隔0.5小時就會發現邏輯和實體架構。Cloud Insights根據建議的最佳實務做法和擴充性來設定預設輪詢時間間隔、但確實允許使用者完全控制這些時間間隔。Cloud Insights
+
+
+
+== Cloud Insights對我的環境有何影響？
+
+Cloud Insights的無代理程式、頻外和被動IP通訊、有助於將資料中心生態系統的設定、維護和影響降至最低。Cloud Insights的效能開發團隊會採取重大措施、將監控效能本身活動對資料中心效能的任何影響降至最低。在正常的作業環境中、影響可視為微不足道、而且在高使用率或效能不佳的技術平台中、也可予以緩和或加強。如Cloud Insights 需詳細資訊、請參閱《更新安裝指南》。
+
+
+
+== 我該如何列出Cloud Insights 所有的主機/虛擬機器在不完整版中？
+
+Cloud Insights的小工具和查詢清單功能、可用來提供資料中心資產的庫存樣式清單。可將虛擬機器清單放入磁碟中、並在其中建立許多架構、以便查詢、小工具、儀表板和資料倉儲報告、並可透過RESTful API存取。
+
+
+
+== 針對相關的非Hypervisor主機（例如實體伺服器）、支援的種類是否Cloud Insights 相同？
+
+VMware等Hypervisor提供ESXi主機及其虛擬機器（VM）的詳細資訊。對於實體伺Cloud Insights 服器、此功能會收集到主機HBA的數據。利用獨特的方法、利用專利申請中的技術探索實體伺服器。Cloud Insights一旦發現儲存設備和（或）交換器、實體伺服器的主機名稱就會包含在Fabric別名資訊中。選擇這些主機名稱、在DNS中與它們相符、並自動將主機帶入到位元組中。Cloud Insights Cloud Insights這項技術可大幅減少手動輸入更新和工具庫存維護的需求。
+
+
+
+== 在異質環境中、供應相同的裝置度量深度（同位元檢查）嗎Cloud Insights ？
+
+第三方平台和廠商技術之間的標準化、通用性和命名方式各有不同。將容量與效能資訊標準化為一致的架構。Cloud Insights部分容量和效能指標是從裝置的計數器原生提供、例如IOPs、延遲和原始容量。若未提供計數器、Cloud Insights 則可能會嘗試彙總值（例如、將IOPs或底層Volume的容量總計）、Cloud Insights 若兩者皆不可用、則會嘗試透過各種運算演算法來衍生度量值。支援通用SNMP整合功能、可整合目前尚未收集到的其他指標。Cloud Insights Cloud Insights
+
+
+
+== 此功能是否支援Fibre Channel交換器？Cloud Insights
+
+是的、Cloud Insights 除了從您的儲存資產收集資料外、還能從您環境中的Cisco、Brocade和QLogic交換器取得庫存和效能資料。
+
+==是否提供整個基礎架構的拓撲檢視？此功能是否顯示「端點對端點可見度」Cloud Insights ？
+
+是的Cloud Insights 、此功能可動態探索及對應邏輯和實體架構、提供運算、架構、虛擬化程式和後端儲存設備的互動式端點對端點拓撲檢視。拓撲圖示可快速導覽受影響的資源、並協助識別共享儲存環境中的工作負載和違規情形。

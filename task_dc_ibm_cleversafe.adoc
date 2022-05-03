@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: task_dc_ibm_cleversafe.html 
+keywords: data collector, IBM Cleversafe 
+summary: 設定IBM Cleverafe資料收集器。 
+---
+= IBM Cleverafe資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+此資料收集器可用來探索IBM Cleversafe儲存系統的庫存與效能資料。Cloud Insights
+
+
+
+== 術語
+
+從IBM Cleverafe資料收集器取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 儲存資源池 | 儲存資源池 
+
+
+| 容器 | 內部Volume 
+
+
+| 容器 | 檔案共用 
+
+
+| NFS共用 | 分享 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+* 叢集的外部資料服務IP位址
+* 系統管理員使用者名稱和密碼
+* 連接埠9440
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| Manager IP或主機名稱 | 管理節點的IP位址或主機名稱 
+
+
+| 使用者名稱 | 具有超級使用者或系統管理員角色的使用者帳戶使用者名稱 
+
+
+| 密碼 | 具有超級使用者或系統管理員角色的使用者帳戶密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。 
+
+
+| HTTP連線逾時（秒） | HTTP逾時（以秒為單位）。 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

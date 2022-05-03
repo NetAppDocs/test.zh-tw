@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_zookeeper.html 
+keywords: telegraf, installation, install, apache, zookeeper 
+summary: Apache Zookkeeper資料收集器組態 
+---
+= Zookkeeper Data Collector
+:allow-uri-read: 
+
+
+[role="lead"]
+此資料收集器可用來收集Apache Zookkeeper的數據。Cloud Insights
+
+
+
+== 安裝
+
+. 從*管理>資料收集器*、按一下*+資料收集器*。在*服務*下、選擇Apache Zookkeeper。
++
+選取安裝Telegraf代理程式的作業系統或平台。
+
+. 如果您尚未安裝代理程式以供收集、或想要為不同的作業系統或平台安裝代理程式、請按一下「_顯示指示_」以展開 link:task_config_telegraf_agent.html["代理程式安裝"] 說明。
+. 選取要搭配此資料收集器使用的代理程式存取金鑰。您可以按一下「*+代理程式存取金鑰*」按鈕來新增代理存取金鑰。最佳實務做法：只有當您想要將資料收集器分組時、才使用不同的代理程式存取金鑰、例如依作業系統/平台。
+. 請依照組態步驟設定資料收集器。這些指示會因您用來收集資料的作業系統或平台類型而有所不同。
+
+
+image:ZookeeperDCConfigLinux.png["Zookkeeper組態"]
+
+
+
+== 設定
+
+至少您需要允許Zookkeeper四個字母伺服器命令_Mntr_、_Srvr_和_stat_。您可以使用下列格式來啟用這些命令：_4lw.commands.whitelist=mntr、Srvr、stat_、位於_zu.cfc_檔案中。您的組態可能還需要其他四個字母命令。請參閱 link:https://zookeeper.apache.org/["Zookkeeper"] 如需詳細資訊、請參閱文件。
+
+
+
+== 物件與計數器
+
+收集下列物件及其計數器：
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 物件： | 識別碼： | 屬性： | 資料點： 
+
+
+| Zookkeeper | 命名空間伺服器 | 狀態節點IP節點名稱連接埠 | 大約資料大小平均延遲星曆計數最大檔案描述元計數最大延遲最小有效連線延遲數開啟檔案描述元計數未處理要求監控節點計數 
+|===
+
+
+== 疑難排解
+
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面。

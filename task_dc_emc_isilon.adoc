@@ -1,0 +1,103 @@
+---
+sidebar: sidebar 
+permalink: task_dc_emc_isilon.html 
+keywords: data collector, isilon, EMC, DELL, PowerScale 
+summary: 設定Dell EMC PowerScale（前身為Isilon）資料收集器。 
+---
+= Dell EMC PowerScale資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+VMware使用Dell EMC PowerScale（先前稱為Isilon）SSH資料收集器、從PowerScale橫向擴充NAS儲存設備取得庫存與效能資料。Cloud Insights
+
+
+
+== 術語
+
+從這個資料收集器取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 磁碟機 | 磁碟 
+
+
+| 叢集 | 儲存設備 
+
+
+| 節點 | 儲存節點 
+
+
+| 檔案系統 | 內部Volume 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+您需要下列資訊來設定此資料收集器：
+
+* PowerScale儲存設備的系統管理員權限
+* PowerScale叢集的IP位址
+* SSH存取連接埠22
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| IP 位址 | PowerScale叢集的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | PowerScale叢集的使用者名稱 
+
+
+| 密碼 | 用於PowerScale叢集的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為20。 
+
+
+| 效能意見調查時間間隔（秒） | 效能輪詢之間的時間間隔。預設值為300。 
+
+
+| SSH連接埠 | SSH服務連接埠。預設值為22。 
+|===
+
+
+== 疑難排解
+
+如果您在使用此資料收集器時遇到問題、請嘗試下列事項：
+
+
+
+==== 庫存
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 「無效的登入認證」、並顯示錯誤訊息「未啟用角色型管理的命令需要root使用者存取」 | *確認使用者有權限在裝置上執行下列命令：> ISI version osrelease > ISI STATUS -q > ISI STATUS -n > ISI DEVICE -d %s > ISI授權*驗證精靈中使用的認證資料是否符合裝置認證資料 
+
+
+| 出現錯誤訊息「Command <your command> run f失敗with permissions:<your current permission>（命令<您的命令>運行失敗並取得許可：<您目前的權限>）」的「InternalSudo命令執行權限問題」 | 確認使用者具有Sudo權限、可在裝置上執行下列命令 
+|===
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

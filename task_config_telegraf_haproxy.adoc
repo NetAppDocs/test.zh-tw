@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_haproxy.html 
+keywords: telegraf, installation, install, haproxy 
+summary: HAProxy資料收集器組態 
+---
+= HAProxy資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+使用此資料收集器從HAProxy收集指標。Cloud Insights
+
+
+
+== 安裝
+
+. 從*管理>資料收集器*、按一下*+資料收集器*。在「*服務*」下、選擇「HAProxy」。
++
+選取安裝Telegraf代理程式的作業系統或平台。
+
+. 如果您尚未安裝代理程式以供收集、或想要為不同的作業系統或平台安裝代理程式、請按一下「_顯示指示_」以展開 link:task_config_telegraf_agent.html["代理程式安裝"] 說明。
+. 選取要搭配此資料收集器使用的代理程式存取金鑰。您可以按一下「*+代理程式存取金鑰*」按鈕來新增代理存取金鑰。最佳實務做法：只有當您想要將資料收集器分組時、才使用不同的代理程式存取金鑰、例如依作業系統/平台。
+. 請依照組態步驟設定資料收集器。這些指示會因您用來收集資料的作業系統或平台類型而有所不同。
+
+
+image:HAProxyDCConfigLinux.png["HAProxy組態"]
+
+
+
+== 設定
+
+Telegraf的HAProxy外掛程式仰賴HAProxy統計資料功能。這是HAProxy內建的組態、但並未隨裝即用。啟用後、HAProxy會顯示HTML端點、以便在瀏覽器上檢視或擷取所有HAProxy組態的狀態。
+
+
+
+==== 相容性：
+
+組態是根據HAProxy 1.1.4版開發而成。
+
+
+
+==== 設定：
+
+若要啟用統計資料、請編輯HaProxy組態檔案、並使用您自己的使用者/密碼和/或HaProxy URL、在「資料錯誤」區段之後新增下列行：
+
+[listing]
+----
+stats enable
+stats auth myuser:mypassword
+stats uri  /haproxy?stats
+----
+以下是啟用統計資料的簡化範例組態檔：
+
+[listing]
+----
+global
+  daemon
+  maxconn 256
+
+defaults
+  mode http
+  stats enable
+  stats uri /haproxy?stats
+  stats auth myuser:mypassword
+  timeout connect 5000ms
+  timeout client 50000ms
+  timeout server 50000ms
+
+frontend http-in
+  bind *:80
+  default_backend servers
+
+frontend http-in9080
+  bind *:9080
+  default_backend servers_2
+
+backend servers
+  server server1 10.128.0.55:8080 check ssl verify none
+  server server2 10.128.0.56:8080 check ssl verify none
+
+backend servers_2
+  server server3 10.128.0.57:8080 check ssl verify none
+  server server4 10.128.0.58:8080 check ssl verify none
+----
+如需完整且最新的指示、請參閱 link:https://cbonte.github.io/haproxy-dconv/1.8/configuration.html#4-stats%20enable["HAProxy文件"]。
+
+
+
+== 物件與計數器
+
+收集下列物件及其計數器：
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 物件： | 識別碼： | 屬性： | 資料點： 
+
+
+| HAProxy前端 | 命名空間位址Proxy | 節點IP節點名稱Proxy ID模式處理序ID工作階段速率限制伺服器ID工作階段限制狀態 | 快取外出位元組快取命中快取查詢壓縮位元組跳過壓縮位元組輸出壓縮回應連線速率連線速率最大連線總數連線規則要求拒絕安全性考量拒絕的回應數拒絕的連線數上限規則要求錯誤回應數1xx 回應數2xx回應數3xx回應數4xx回應數5xx回應數其他要求攔截的工作階段數速度工作階段數最大要求數速率最大要求數最大要求數工作階段總數最大工作階段數要求重新寫入次數總計 
+
+
+| HAProxy伺服器 | 命名空間位址Proxy伺服器 | 節點IP節點名稱檢查完成時間檢查秋季組態檢查健全狀況值檢查上升組態檢查狀態Proxy ID上次變更時間上次工作階段時間模式處理序ID伺服器ID狀態權重 | 作用中伺服器備份伺服器位元組讀出檢查當機檢查失敗用戶端中止連線平均時間停機總拒絕回應連線錯誤回應錯誤回應1xx回應2xx回應3xx回應4xx回應5xx回應其他伺服器選取的佇列總數目前佇列每個佇列的最大平均時間工作階段數 每秒第二個工作階段最大連線重複使用回應時間平均工作階段最大伺服器傳輸中止工作階段總工作階段總時間平均要求重新分派要求重新寫入要求 
+
+
+| HAProxy後端 | 命名空間位址Proxy | 節點IP節點名稱Proxy ID上次變更時間上次工作階段時間模式處理ID伺服器ID工作階段限制狀態權重 | 作用中伺服器備份伺服器位元組數（以位元組為單位）快取命中快取查詢檢查當機用戶端中止壓縮位元組在壓縮位元組輸出壓縮回應中略過壓縮位元組連線平均時間停機安全性拒絕的總要求數安全性顧慮連線錯誤回應錯誤1xx回應 2xx回應3xx回應4xx回應5xx回應其他伺服器選取的回應其他伺服器目前佇列總計佇列最大佇列每秒工作階段平均時間最大要求數總計連線重複使用回應時間平均工作階段最大伺服器傳輸中止工作階段總工作階段總時間平均要求重新分派要求重試要求數 重新寫入 
+|===
+
+
+== 疑難排解
+
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面。

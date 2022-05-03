@@ -1,0 +1,119 @@
+---
+sidebar: sidebar 
+permalink: task_dc_openstack.html 
+keywords: data collector, openstack, OpenStack 
+summary: OpenStack資料收集器： 
+---
+= OpenStack資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+OpenStack（REST API / KVM）資料收集器會擷取所有OpenStack執行個體的庫存資料、以及VM效能資料（選用）。
+
+
+
+== 需求
+
+* OpenStack控制器的IP位址
+* OpenStack管理員角色認證和Sudo存取Linux KVM Hypervisor。如果您未使用admin帳戶或與管理員同等的權限、則需要使用試用版和錯誤來識別資料收集器使用者ID的預設原則。
+* OpenStack Ceilometer模組必須安裝並設定、才能收集效能。設定Ceilometer的方法是編輯每個Hypervisor的nova.conff檔案、然後在每個Hypervisor上重新啟動Nova運算服務。不同OpenStack版本的選項名稱會變更：
++
+** 冰屋
+** Juno
+** 公斤
+** 自由
+** Mitaka
+** Newton
+** 八田市
+
+
+* 對於CPU統計資料、運算節點上的/etc/nova/nova.conf必須開啟「compute_mones=ComputeDriverCPUMonitor」。
+* 連接埠需求：
++
+** http為5000、https為13000、Keystone服務為13000
+** 22適用於KVM SSH
+** 8774適用於Nova Compute Service
+** 8776適用於Cinder Block Service
+** 8777適用於Ceilometer Performance Service
+** 9292 for Glance Image Service *注意*連接埠會繫結至特定服務、而且該服務可能會在較大型環境的控制器或其他主機上執行。
+
+
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| OpenStack控制器IP位址 | OpenStack控制器的IP位址或完整網域名稱 
+
+
+| OpenStack管理員 | OpenStack管理的使用者名稱 
+
+
+| OpenStack密碼 | OpenStack管理所用的密碼 
+
+
+| OpenStack管理員租戶 | OpenStack管理員租戶名稱 
+
+
+| KVM Sudo使用者 | KVM Sudo使用者名稱 
+
+
+| 選擇「密碼」或「OpenSSH金鑰檔」以指定認證類型 | 用於透過SSH連線至裝置的認證類型 
+
+
+| 完整的庫存私密金鑰路徑 | 完整的庫存私密金鑰路徑 
+
+
+| KVM Sudo密碼 | KVM Sudo密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 透過SSH啟用Hypervisor庫存探索 | 核取此選項、即可透過SSH啟用Hypervisor庫存探索 
+
+
+| OpenStack管理URL連接埠 | OpenStack管理URL連接埠 
+
+
+| 使用HTTPS | 核取以使用安全HTTP 
+
+
+| SSH連接埠 | 用於SSH的連接埠 
+
+
+| SSH程序重試 | 嘗試進行庫存重試的次數 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為20分鐘。 
+|===
+
+
+== 疑難排解
+
+如果您在使用此資料收集器時遇到問題、請嘗試下列事項：
+
+
+
+==== 庫存
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 「組態錯誤」、錯誤訊息開頭為「原則不允許」或「您未獲授權」 | *檢查IP位址*檢查使用者名稱和密碼 
+|===
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

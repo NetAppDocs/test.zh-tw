@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: task_device_resolution_ip.html 
+keywords: Automatic, AR, AHR, Host, automatic device resolution, FC, Identify 
+summary:  
+---
+= IP裝置解析度
+:allow-uri-read: 
+
+
+[role="lead"]
+IP識別畫面會顯示所有已透過自動裝置解析或手動裝置解析識別的iSCSI和CIFS或NFS共用。也會顯示未識別的裝置。此畫面包含裝置的IP位址、名稱、狀態、iSCSI節點和共用名稱。也會顯示已成功識別的裝置百分比。
+
+image:Device_Resolution_IP.png["IP裝置解析度"]
+
+
+
+==== 手動新增IP裝置
+
+您可以Cloud Insights 使用IP識別畫面中的手動新增功能、將IP裝置手動新增至功能表。
+
+.程序
+. 登入Cloud Insights 到Webto UI。
+. 按一下「*管理>裝置解析度*」
+. 按一下「* IP位址識別*」索引標籤。
+. 按一下「*新增*」按鈕。
++
+隨即顯示Add Device（新增裝置）對話方塊
+
+. 輸入位址、IP位址和唯一的裝置名稱。
+
+
+您輸入的裝置會新增至「IP位址識別」索引標籤中的裝置清單。
+
+
+
+==== 從.CSV檔案匯入IP裝置識別
+
+您可以使用.CSV檔案中的裝置識別清單、將IP裝置識別碼手動匯入裝置解析功能。
+
+. 開始之前
+
+
+您必須擁有正確格式的.CSV檔案、才能將裝置識別碼直接匯入「裝置解析度」功能。IP裝置的.CSV檔案需要下列資訊：
+
+|===
+
+
+| 地址 | IP | 名稱 
+|===
+資料欄位必須以引號括住、如下例所示。
+
+....
+"Address","IP","Name"
+"ADDRESS6447","IP6447","NAME-6447"
+"ADDRESS3211","IP3211","NAME-3211"
+"ADDRESS593","IP593","NAME-593"
+....
+
+NOTE: 最佳實務做法是先將IP位址識別資訊匯出至.CSV檔案、在該檔案中進行所需的變更、然後將檔案匯入IP位址識別。如此可確保預期的欄位以適當的順序出現。
+
+
+
+==== 將IP裝置識別碼匯出至.CSV檔案
+
+您可以從Cloud Insights 「無法分辨」功能、將現有的IP裝置識別碼匯出至.CSV檔案。您可能想要匯出裝置識別碼、以便加以修改、然後將其匯入Cloud Insights 到用來識別與原先匯出識別碼類似的裝置的地方。
+
+。當裝置具有類似屬性、可在.CSV檔案中輕鬆編輯、然後匯入系統時、可能會使用此案例。
+
+當您將IP裝置識別碼匯出至.CSV檔案時、檔案會依照所示順序包含下列資訊：
+
+|===
+
+
+| 地址 | IP | 名稱 
+|===
+.程序
+. 登入Cloud Insights 到這個Web UI。
+. 按一下「*管理>裝置解析度*」
+. 選取「* IP位址識別*」索引標籤。
+. 選取您要匯出識別碼的IP裝置。
+. 按一下*匯出* image:ExportButton.png[""] 按鈕。
++
+選取是要開啟.CSV檔案或儲存檔案。
+
+
+
+相關：link:task_device_resolution_fibre_channel.html["Fibre Channel裝置解析度"]
+link:task_device_resolution_rules.html["建立裝置解決規則"]
+link:task_device_resolution_preferences.html["設定裝置解析度偏好設定"]

@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: task_dc_lenovo.html 
+keywords: data collector,Lenovo, HX Series 
+summary: 設定Lenovo資料收集器： 
+---
+= 聯想資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+使用Lenovo資料收集器來探索Lenovo HX儲存系統的庫存和效能資料。Cloud Insights
+
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+* Prism外部IP位址
+* 系統管理員使用者名稱和密碼
+* TCP連接埠需求：9440
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| Prism外部IP位址 | 叢集的外部資料服務IP位址 
+
+
+| 使用者名稱 | 管理帳戶的使用者名稱 
+
+
+| 密碼 | 管理帳戶的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| TCP連接埠 | 用於連接陣列的TCP連接埠。預設值為9440。 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為60分鐘。 
+
+
+| 效能意見調查時間間隔（秒） | 效能輪詢之間的時間間隔。預設值為300秒。 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

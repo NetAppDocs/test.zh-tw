@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: task_cs_add_collector_ontap.html 
+keywords: data collector, ONTAP, SVM 
+summary: 新增資料收集器 
+---
+= 設定NetApp ONTAP 解決方案資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+使用資料收集器從裝置收集檔案和使用者存取資料。Cloud Secure這些資料Cloud Secure 是提供給作分析之用的。
+
+您需要下列資訊來設定此資料收集器：
+
+* 代理程式必須設定為收集資料
+* SVM管理IP位址
+* 存取SVM的使用者名稱
+* 存取SVM的密碼
+
+
+.組態步驟
+. 以系統管理員或帳戶擁有者身分登入Cloud Secure 您的支援環境。
+. 按一下*管理>資料收集器>+資料收集器*
++
+系統會顯示可用的資料收集器。
+
+. 按一下NetApp ONTAP 資訊區塊中的*+監控*。
++
+系統會顯示「Add Data Collector：ONTAP SVM組態」頁面。
+
+. 輸入收集器的唯一名稱
+. 選取要收集資料的代理程式
+. 輸入SVM管理IP位址
+. 輸入使用者名稱以存取SVM
+. 輸入密碼以存取SVM
+. 按一下「*+新增收集器*」
+
+
+.完成後
+* 按一下*管理>資料收集器*以檢查您設定的收集器狀態。
++
+收集器狀態顯示之前通常會有延遲。
+
+

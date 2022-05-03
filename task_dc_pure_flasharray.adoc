@@ -1,0 +1,107 @@
+---
+sidebar: sidebar 
+permalink: task_dc_pure_flasharray.html 
+keywords: data collector, Pure Storage, pure 
+summary: 設定Pure Storage資料收集器。 
+---
+= Pure Storage FlashArray資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+使用Pure Storage FlashArray資料收集器來收集庫存和效能資料。Cloud Insights
+
+
+
+== 術語
+
+針對由Singfis取得的每種資產類型Cloud Insights 、會顯示該資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 磁碟機（SSD） | 磁碟 
+
+
+| 陣列 | 儲存設備 
+
+
+| 控制器 | 儲存節點 
+
+
+| Volume | Volume 
+
+
+| LUN對應 | Volume Map 
+
+
+| 啟動器、目標 | Volume遮罩 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+* 儲存系統IP位址
+* Pure儲存系統管理員帳戶的使用者名稱和密碼。
+* 連接埠需求：HTTP/HTTPS 80/443
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| FlashArray主機IP位址 | 儲存系統的IP位址 
+
+
+| 使用者名稱 | 具有管理權限的使用者名稱 
+
+
+| 管理員權限帳戶的密碼 | 密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 連線類型 | 選擇HTTP或HTTPS。也會顯示預設連接埠。 
+
+
+| 置換TCP連接埠 | 如果空白、請使用「連線類型」欄位中的預設連接埠、否則請輸入要使用的連線連接埠 
+
+
+| 庫存輪詢時間間隔（分鐘） | 預設值為60分鐘 
+
+
+| 效能意見調查時間間隔（秒） | 預設值為300 
+|===
+
+
+== 疑難排解
+
+如果您在使用此資料收集器時遇到問題、請嘗試下列事項：
+
+
+
+==== 庫存
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 「無效的登入認證資料」、並顯示錯誤訊息「Policy Not Allow（原則不允許）」或「you are not authorized（您未獲授權）」 | 透過Pure http介面驗證Pure使用者帳戶和密碼 
+|===
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: cs_automated_response_policies.html 
+keywords: alert, snapshot, ransomware, attack 
+summary: 您可以針對潛在攻擊（例如勒索軟體）和/或活動警告、設定自動回應原則 
+---
+= 自動化回應原則
+:allow-uri-read: 
+
+
+[role="lead"]
+回應原則會觸發動作、例如在發生攻擊或異常使用者行為時、拍攝快照或限制使用者存取。
+
+您可以在特定裝置或所有裝置上設定原則。若要設定回應原則、請選取*管理>自動回應原則*、然後按一下適當的*+原則+按鈕。您可以建立攻擊或警告的原則。
+
+image:AutomatedAttackPolicy.png["建立攻擊原則"]
+
+您必須以唯一名稱儲存原則。
+
+若要停用自動回應動作（例如「拍攝Snapshot」）、只要取消檢查動作並儲存原則即可。
+
+當針對指定的裝置（或所有裝置、如果已選取）觸發警示時、自動回應原則會擷取資料的快照。您可以在上看到快照狀態 link:cs_alert_data.html#the-alert-details-page["警示詳細資料頁面"]。
+
+請參閱 link:cs_restrict_user_access.html["限制使用者存取"] 頁面以取得限制IP使用者存取的詳細資訊。
+
+您可以在原則的下拉式功能表中選擇選項、以修改或暫停「自動回應原則」。
+
+根據Snapshot清除設定、系統每天會自動刪除快照一次。Cloud Secure
+
+image:CloudSecure_SnapshotPurgeSettings.png["Snapshot清除設定"]

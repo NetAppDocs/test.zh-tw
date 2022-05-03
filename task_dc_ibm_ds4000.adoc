@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: task_dc_ibm_ds4000.html 
+keywords: data collector, IBM, DS4000 
+summary: IBM TotalStorage DS4000資料收集器 
+---
+= IBM TotalStorage DS4000資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+此資料收集器會從IBM DS4000儲存系統取得庫存與效能資訊。有兩種可能的組態（韌體6.x和韌體7.x+）、兩者都有相同的值。
+
+
+
+== 術語
+
+Cloud Insightst向IBM DS4000資料收集器取得下列庫存資訊。對於所取得的每種資產類型、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 磁碟 | 磁碟 
+
+
+| Volume群組 | 磁碟群組 
+
+
+| 儲存陣列 | 儲存設備 
+
+
+| 控制器 | 儲存節點 
+
+
+| Volume群組 | 儲存資源池 
+
+
+| Volume | Volume 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+* 每個DS5或FAStT陣列的IP位址
+* Ping陣列上兩個控制器的IP位址、以進行存取驗證
+* 連接埠需求：2463
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 以逗號分隔的陣列SANtricity 資訊控制器IP清單 | 陣列控制器的IP位址和/或完整網域名稱 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 預設為30分鐘 
+
+
+| 效能意見調查間隔長達3、600秒 | 預設值為300秒 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

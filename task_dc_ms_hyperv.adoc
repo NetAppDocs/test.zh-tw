@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: task_dc_ms_hyperv.html 
+keywords: data collector, Microsoft, Hyper-V 
+summary: 設定Microsoft Hyper-V資料收集器。 
+---
+= Microsoft Hyper-V資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+Microsoft Hyper-V資料收集器會從虛擬化伺服器運算環境取得庫存與效能資料。
+
+
+
+== 術語
+
+從Microsoft Hyper-V（WMI）取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 虛擬硬碟 | 虛擬磁碟 
+
+
+| 主機 | 主機 
+
+
+| 虛擬機器 | 虛擬機器 
+
+
+| 叢集共用磁碟區（CSV）、分割磁碟區 | 資料儲存區 
+
+
+| 網際網路SCSI裝置、多重路徑SCSI LUN | LUN 
+
+
+| Fibre Channel連接埠 | 連接埠 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+設定此資料收集器需要下列項目：
+
+* Hyper-V需要開啟連接埠5985才能進行資料收集和遠端存取/管理。
+* 叢集群組節點的IP位址
+* Hypervisor上的本機管理員使用者與密碼
+* 系統管理層級的使用者帳戶
+* Windows Management Instrumentation（WMI）命令、這是Windows安裝的預設命令。
+* 連接埠需求：連接埠135透過Windows 2003與舊版的指派1024-65535與Windows 2008的指派49152-65535的WMI&動態TCP連接埠。
+* 即使資料收集器只指向IP位址、DNS解析也必須成功
+* 每個Hyper-V Hypervisor都必須為每個主機上的每個VM開啟「資源計量」。如此一來、每Cloud Insights 個Hypervisor都能在每個來賓作業系統上提供更多資料以供其使用。如果未設定、則會為每個來賓取得較少的效能指標。如需資源計量的詳細資訊、請參閱Microsoft文件：
++
+link:https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831661(v=ws.11)["Hyper-V資源計量概觀"]
+
++
+link:https://docs.microsoft.com/en-us/powershell/module/hyper-v/enable-vmresourcemetering?view=win10-ps["啟用VMResource記數"]
+
+
+
+
+NOTE: Hyper-V資料收集器需要Windows擷取單元。
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 實體主機IP位址 | 實體主機（Hypervisor）的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | Hypervisor的系統管理員使用者名稱 
+
+
+| 密碼 | Hypervisor密碼 
+
+
+| NT網域 | 叢集中節點使用的DNS名稱 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 預設值為20分鐘。 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

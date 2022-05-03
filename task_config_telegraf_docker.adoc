@@ -1,0 +1,117 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_docker.html 
+keywords: telegraf, installation, install, docker 
+summary: Docker資料收集器組態 
+---
+= Docker Data Collector
+:allow-uri-read: 
+
+
+[role="lead"]
+使用此資料收集器從Docker收集指標。Cloud Insights
+
+
+
+== 安裝
+
+. 從*管理>資料收集器*、按一下*+資料收集器*。在*服務*下、選擇Docker。
++
+如果您尚未設定收集的值機員、系統會提示您 link:task_config_telegraf_agent.html["安裝代理程式"] 在您的環境中。
+
++
+如果您已設定代理程式、請選取適當的作業系統或平台、然後按一下*繼續*。
+
+. 請依照Docker組態畫面中的指示來設定資料收集器。這些指示會因您用來收集資料的作業系統或平台類型而有所不同。
+
+
+image:DockerDCConfigLinux.png["Docker組態"]
+
+
+
+== 設定
+
+適用於Docker的Telegraf輸入外掛程式會透過指定的UNIX通訊端或TCP端點收集度量資料。
+
+
+
+==== 相容性
+
+組態是根據Docker 1.12.6版開發而成。
+
+
+
+==== 設定
+
+
+
+===== 透過UNIX套接字存取Docker
+
+如果Telegraf代理程式是在裸機上執行、請執行下列命令、將Telegraf Unix使用者新增至Docker Unix群組：
+
+ sudo usermod -aG docker telegraf
+如果Telegraf代理程式是在Kubernetes Pod內執行、請將套接字對應至Pod中的Volume、然後將該磁碟區安裝至/var/run / Docker。例如、將下列項目新增至Podcast規格：
+
+[listing]
+----
+volumes:
+...
+- name: docker-sock
+hostPath:
+path: /var/run/docker.sock
+type: File
+----
+然後、將下列項目新增至Container：
+
+[listing]
+----
+volumeMounts:
+...
+- name: docker-sock
+mountPath: /var/run/docker.sock
+----
+請注意Cloud Insights 、Kubernetes平台所提供的支援程序會自動處理此對應作業。
+
+
+
+===== 透過TCP端點存取Docker
+
+根據預設、Docker會使用連接埠2375進行未加密存取、而連接埠2376則用於加密存取。
+
+
+
+== 物件與計數器
+
+收集下列物件及其計數器：
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 物件： | 識別碼： | 屬性： | 資料點： 
+
+
+| Docker引擎 | 命名空間Docker引擎 | 節點名稱節點IP節點UUID節點OS Kubernetes叢集Docker版本單元 | 執行Container的記憶體容器已暫停容器已停止CPU執行常式映像接聽程式事件已使用檔案描述元資料可用的總資料已使用中繼資料可用的總中繼資料已使用的總中繼資料區大小 
+
+
+| Docker Container | 命名空間Container Name Docker Engine | Kubernetes Container Hash Kubernetes Container連接埠Kubernetes Container重新啟動計數Kubernetes Container終止訊息路徑Kubernetes Container終止訊息原則Kubernetes Pod終止寬限期Container影像Container狀態Container版本節點名稱Kubernetes Container記錄路徑Kubernetes Container名稱Kubernetes Docker Type Kubernetes Pod名稱Kubernetes Pod命名空間 Pod UID Kubernetes沙箱ID節點IP節點UUID Docker版本Kubernetes IO Config可見Kubernetes IO組態來源OpenShift IO SCC Kubernetes說明Kubernetes顯示名稱OpenShift標記Kompy Service Pod範本雜湊控制器修訂版雜湊Pod範本產生授權架構建置日期架構授權架構名稱架構URL 架構VCS URL架構廠商架構版本架構架構版本維護者客戶Pod Kubernetes StatefulSet Pod名稱租戶WebCONSOSE架構權威來源URL建置日期右側建置主機右側元件發佈範圍安裝版本執行摘要解除安裝VCS參考VCS類型廠商版本健全狀況狀態Container ID | 記憶體作用中匿名記憶體作用中檔案記憶體快取記憶體階層式限制記憶體非作用中匿名記憶體非作用中檔案記憶體限制記憶體對應檔案記憶體最大使用量記憶體頁面故障記憶體頁面主要故障記憶體分頁記憶體分頁記憶體分頁記憶體分頁記憶體分頁記憶體分頁記憶體分頁 匿名記憶體作用中檔案記憶體總計快取記憶體總計非作用中匿名記憶體總計非作用中檔案記憶體總計對應檔案記憶體總計頁面故障記憶體總計頁面主要故障記憶體總分頁記憶體總分頁記憶體總分頁記憶體總常駐集大小記憶體總常駐集大小龐大記憶體總計 Unevicable Memory Unevicable Memory使用量記憶體使用率結束程式碼OOM在失敗的連續資料時啟動PID終止 
+
+
+| Docker Container IO | 命名空間容器名稱裝置Docker引擎 | Kubernetes Container Hash Kubernetes Container連接埠Kubernetes Container重新啟動計數Kubernetes Container終止訊息路徑Kubernetes Container終止訊息原則Kubernetes Pod終止寬限期Container影像Container狀態Container版本節點名稱Kubernetes Container記錄路徑Kubernetes Container名稱Kubernetes Docker Type Kubernetes Pod名稱Kubernetes Pod命名空間 Pod UID Kubernetes沙箱ID節點IP節點UUID Docker版本Kubernetes組態可見Kubernetes組態來源OpenShift SCC Kubernetes說明Kubernetes顯示名稱OpenShift標籤架構架構版本Pod範本雜湊控制器修訂版雜湊Pod範本產生Kompay服務架構建置日期架構授權架構名稱架構廠商客戶 Pod Kubernetes StatefulSet Pod名稱Tenant WebCONSOLEE建置日期授權廠商架構驗證來源URL Rh建置主機Rh元件發佈範圍安裝維護者版本執行摘要解除安裝VCS參考VCS類型版本架構URL架構VCS URL架構版本Container ID | IO服務位元組循環非同步IO服務位元組循環讀取IO服務位元組循環同步IO服務位元組循環總計IO服務位元組循環寫入IO服務循環非同步IO服務循環讀取IO服務循環IO服務循環總計IO服務循環寫入 
+
+
+| Docker Container Network | 命名空間Container Name Network Docker Engine | Container Image Container狀態Container版本節點名稱節點IP節點UUID節點OS K8s叢集Docker版本Container ID | 接收捨棄的RX位元組數處理錯誤接收封包傳輸捨棄的傳輸字節數傳輸錯誤傳輸的傳輸封包數 
+
+
+| Docker Container CPU | 命名空間容器名稱CPU Docker Engine | Kubernetes Container Hash Kubernetes Container連接埠Kubernetes Container重新啟動計數Kubernetes Container終止訊息路徑Kubernetes Container終止訊息原則Kubernetes Pod終止寬限期Kubernetes Config查看Kubernetes Config來源OpenShift SCC Container Image Container Image Container Status Container版本Node Name Kubernetes Container Path Kubernetes Container Container Name Kubernetes Container Container Container Container Name Kubernetes Container Container Container Container Name Kubernetes Container Container Container Container Container Container Container Container 鍵入Kubernetes Pod名稱Kubernetes Pod命名空間Kubernetes Pod UID Kubernetes Sandbox ID Node IP Node UUID Node OS Kubernetes Cluster Docker Version Kubernetes說明Kubernetes顯示名稱OpenShift標記架構版本Pod範本雜湊控制器修訂版雜湊Pod範本世代服務架構建置日期架構授權架構名稱 架構廠商客戶Pod Kubernetes StatefulSet Pod名稱Tenant WebCONSOLEE建置日期授權廠商架構授權來源URL Rh建置主機Rh元件發佈範圍安裝維護者版本執行摘要解除安裝VCS參考VCS類型版本架構URL架構VCS URL架構版本Container ID | 節流期間節流節流期間節流節流核心模式使用中的節流時間使用量使用量使用量百分比系統使用量總計 
+|===
+
+
+== 疑難排解
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 依照組態頁面上的指示、我看不到Cloud Insights Docker指標。 | 檢查Telegraf代理程式記錄、查看是否報告下列錯誤：e! 外掛程式[inports.dDocker中發生錯誤：嘗試連線至Docker精靈套接字時、取得權限遭拒（若有）、請採取必要步驟、提供Telegraf代理程式存取上述Docker Unix套接字。 
+|===
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面。

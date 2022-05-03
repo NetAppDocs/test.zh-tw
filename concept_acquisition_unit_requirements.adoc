@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: concept_acquisition_unit_requirements.html 
+summary: 您作為擷取單位使用的伺服器或VM必須符合最低需求 
+keywords: AU, acquisition unit, RAU, requirements, sizing 
+---
+= 採購單位需求
+:allow-uri-read: 
+
+
+[role="lead"]
+您必須安裝擷取單元（AU）、才能從基礎架構資料收集器（儲存設備、VM、連接埠、EC2等）取得資訊。安裝擷取單元之前、您應確保環境符合作業系統、CPU、記憶體及磁碟空間需求。
+
+
+
+=== 需求
+
+|===
+
+
+| 元件 | Linux需求 | Windows需求 
+
+
+| 作業系統 | 執行下列其中一項授權版本的電腦：* CentOS（64位元）：7.2至7.9、8.1至8.4 * DEBIAN64（64位元）：9及10 * Oracle Enterprise Linux（64位元）：7.5至7.9、8.1至8.4 * Red Hat Enterprise Linux（64位元）： 7.2到7.9、8.1到8.4 * Ubuntu伺服器：18.04和20.04 LTS此電腦不應執行其他應用程式層級軟體。建議使用專屬伺服器。 | 執行下列其中一種授權版本的電腦：* Microsoft Windows 10 64位元* Microsoft Windows Server 2012 * Microsoft Windows Server 2012 R2 * Microsoft Windows Server 2016 * Microsoft Windows Server 2019這部電腦不應執行其他應用程式層級的軟體。建議使用專屬伺服器。 
+
+
+| CPU | 2個CPU核心 | 相同 
+
+
+| 記憶體 | 8 GB RAM | 相同 
+
+
+| 可用磁碟空間 | 對於Linux、應以下列方式分配磁碟空間：/opp/netapp 10 GB /var/log/netapp 40 GB | 50 GB 
+
+
+| 網路 | 100 Mbps / 1 Gbps乙太網路連線、靜態IP位址、所有FC裝置的IP連線、Cloud Insights 以及連接至該實例所需的連接埠（80或443）。 | 相同 
+
+
+| 權限 | 擷取單元伺服器上的Sudo權限。/tmp必須以執行功能掛載。 | 取得單位伺服器的系統管理員權限 
+
+
+| 掃毒 |  | 安裝期間、您必須完全停用所有的掃毒程式。安裝之後、擷取單元軟體所使用的路徑必須排除在掃毒範圍之外。 
+|===
+
+
+=== 其他建議
+
+* 為確保稽核與資料報告的準確性、強烈建議您使用*網路時間傳輸協定（NTP）*或*簡易網路時間傳輸協定（SNTP）*來同步擷取裝置機器上的時間。
+
+
+
+
+=== 關於規模調整
+
+您可以開始使用Cloud Insights 僅有8GB記憶體和50GB磁碟空間的支援中心、不過對於較大型的環境、您應該自問下列問題：
+
+您是否期望：
+
+* 在ONTAP 這個擷取單元上探索超過2500部虛擬機器或10部大型（> 2個節點）的VMware叢集、Symmetrix或HDS/HPE VSP/XP陣列？
+* 在此擷取單元上部署總共75個以上的資料收集器？
+
+
+對於上述每個「是」答案、建議您在AU中新增8 GB記憶體和50 GB磁碟空間。舉例來說、如果您對這兩個項目都回答「是」、就應該部署一個24GB記憶體系統、其中有150GB或更多的磁碟空間。在Linux上、要新增至記錄位置的磁碟空間。
+
+如需其他規模調整問題、請聯絡NetApp支援部門。

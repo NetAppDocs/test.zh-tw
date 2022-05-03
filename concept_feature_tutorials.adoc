@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: concept_feature_tutorials.html 
+summary: 包含教學課程、可讓您瞭解如何執行許多工作。Cloud Insights 
+keywords: onboarding, getting started, video, tutorial, resolution, dashboard, query, troubleshooting 
+---
+= 功能教學課程
+:allow-uri-read: 
+
+
+[role="lead"]
+包含許多實用功能、可讓您快速輕鬆地找到資料、疑難排解問題、並深入瞭解企業環境。Cloud Insights利用強大的查詢功能輕鬆尋找資料、在儀表板中視覺化資料、並針對您設定的資料臨界值傳送電子郵件警示。
+
+包含許多影片教學課程、可協助您瞭解這些功能、並更有效地實作您的企業洞察策略。Cloud Insights每位能夠存取Cloud Insights 您的支援環境的使用者都能善用這些教學課程。
+
+
+
+== 簡介
+
+觀看簡短的教學課程、說明Cloud Insights 如何使用功能。
+
+video::howTo.mp4[]
+
+
+== 檢查清單與影片教學課程
+
+您所在的網站上顯示的*啟動檢查清單* Cloud Insights 包含數項實用的工作與概念清單。在檢查清單中選取項目、即可前往Cloud Insights 該概念的適當資訊頁面。例如、按一下「建立儀表板」項目會開啟Cloud Insights 「參考*儀表板*」頁面。
+
+image:OnboardingChecklist.png["教學課程檢查清單進度"]
+
+頁面頂端是影片教學課程的連結、說明如何建立儀表板。您可以視需要多次觀看影片、直到按一下「_迄今」為止！不要再顯示該影片的「此」連結。影片會在您每次前往儀表板頁面時播放、直到您關閉為止。
+
+image:Startup-DashboardWatchVideo.png["觀看Video Link"]
+
+看完影片至少一次之後、檢查清單中的「建立儀表板」項目會勾選、表示您已完成教學課程。接著、您可以繼續下一個教學課程。
+
+
+NOTE: 您可以任意順序檢視教學課程、次數不限、直到解僱為止。
+
+
+
+=== 取消檢查清單
+
+啟動檢查清單會顯示在您的站台上、直到您按一下檢查清單底部的「不要再顯示此清單」連結為止。即使在取消檢查清單之後、每Cloud Insights 個適當的版本資訊頁仍會提供教學課程、直到您從訊息標頭列中關閉每個學習單元為止。
+
+
+
+== 檢視教學課程
+
+
+
+=== 查詢資料
+
+video::Queries.mp4[]
+
+
+=== 建立儀表板
+
+video::Dashboards.mp4[]
+
+
+=== 疑難排解
+
+video::Troubleshooting.mp4[]
+
+
+=== 解決裝置問題
+
+video::AHR_small.mp4[]

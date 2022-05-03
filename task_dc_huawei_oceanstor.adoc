@@ -1,0 +1,103 @@
+---
+sidebar: sidebar 
+permalink: task_dc_huawei_oceanstor.html 
+keywords: data collector, Huawei, OceanStor, Dorado 
+summary: 設定Huawei OceanStor（REST / HTTPS）資料收集器。 
+---
+= Huawei海洋儲存資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+本產品使用Huawei OceanStor（REST / HTTPS）資料收集器來探索Huawei OceanStor和OceanStor DORado儲存設備的庫存與效能。Cloud Insights
+
+
+
+== 術語
+
+他向Huawei OceanStor取得下列庫存與效能資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 儲存資源池 | 儲存資源池 
+
+
+| 檔案系統 | 內部Volume 
+
+
+| 控制器 | 儲存節點 
+
+
+| FC連接埠（對應） | Volume Map 
+
+
+| 主機FC啟動器（已對應） | Volume遮罩 
+
+
+| NFS/CIFS共用 | 分享 
+
+
+| iSCSI連結目標 | iSCSI目標節點 
+
+
+| iSCSI連結啟動器 | iSCSI啟動器節點 
+
+
+| 磁碟 | 磁碟 
+
+
+| LUN | Volume 
+|===
+
+
+== 需求
+
+設定此資料收集器需要下列需求：
+
+* 裝置IP位址
+* 存取海洋儲存設備管理程式的認證資料
+* 連接埠8088必須可用
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 海洋儲存主機IP位址 | 海洋儲存裝置管理員的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | 用於登入海洋儲存裝置管理員的名稱 
+
+
+| 密碼 | 用於登入海洋儲存裝置管理員的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| TCP連接埠 | TCP連接埠用於連線至海洋儲存裝置管理員。預設值為8088。 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為60分鐘。 
+
+
+| 效能意見調查時間間隔（秒）。 | 預設值為300秒。 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

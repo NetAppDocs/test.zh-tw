@@ -1,0 +1,255 @@
+---
+sidebar: sidebar 
+permalink: task_dc_hds_commandsuite.html 
+keywords: data collector, Hitachi Vantara Command Suite, Hitachi 
+summary: 設定HDS Command Suite Device Manager資料收集器。 
+---
+= Hitachi Vantara Command Suite資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+Hitachi Vantara Command Suite資料收集器可支援該公司的HiCommand Device Manager伺服器。使用標準的HiCommand API與HiCommand Device Manager伺服器通訊。Cloud Insights
+
+
+
+== 術語
+
+從Hitachi Vantara Command Suite資料收集器取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| PDEV | 磁碟 
+
+
+| 日誌集區 | 磁碟群組 
+
+
+| 儲存陣列 | 儲存設備 
+
+
+| 連接埠控制器 | 儲存節點 
+
+
+| Array Group、HDS Pool | 儲存資源池 
+
+
+| 邏輯單元、LDEV | Volume 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+=== 儲存設備
+
+下列詞彙適用於HDS儲存資產登陸頁面上可能找到的物件或參考資料。其中許多術語也適用於其他資料收集器。
+
+* 名稱–直接來自HDS HiCommand Device Manager的GetStorageArray XML API呼叫「名稱」屬性
+* 模型：直接來自HDS HiCommand Device Manager透過GetStorageArray XML API呼叫提供的「arrayType」屬性
+* 廠商–HDS
+* 系列-直接來自HDS HiCommand Device Manager透過GetStorageArray XML API呼叫提供的「arrayFamily」屬性
+* IP–這是陣列的管理IP位址、並非陣列上所有IP位址的詳盡清單
+* 原始容量：代表此系統中所有磁碟總容量之和的BASE2值、無論磁碟角色為何。
+
+
+
+
+=== 儲存資源池
+
+下列詞彙適用於HDS儲存資源池資產登陸頁面上可能找到的物件或參考資料。其中許多術語也適用於其他資料收集器。
+
+* 類型：此處的值為：
++
+** 保留–如果此資源池專供資料磁碟區以外的用途使用、例如、日誌記錄、快照
+** 精簡配置：如果這是HDP資源池
+** RAID群組–您可能不會因為下列幾個原因而看到這些項目：
++
+不需要重複計算容量、不需付出任何代價。Cloud Insights在HDS上、通常需要從磁碟建立RAID群組、在這些RAID群組上建立集區磁碟區、以及從這些集區磁碟區建構集區（通常是HDP、但可能是特殊用途）。如果Cloud Insights 不報告基礎RAID群組及集區、則原始容量總和將會大幅超過磁碟總和。
+
++
+相反地Cloud Insights 、由於資源池磁碟區的容量、所以由其所組成的支援中心HDS Command Suite資料收集器會任意縮減RAID群組的大小。這可能導致Cloud Insights 無法回報RAID群組。此外、任何產生的RAID群組都會以旗標標示、使Cloud Insights 其無法在SHUWebUI中看到、但它們確實會流入Cloud Insights 到流程資料倉儲（DWH）中。這些決策的目的是為了避免大部分使用者不關心的問題、因為如果您的HDS陣列有可用容量為50MB的RAID群組、您可能無法將可用空間用於任何有意義的結果。
+
+
+
+* 節點-不適用、因為HDS集區不會繫結至任何一個特定節點
+* 備援：集區的RAID層級。可能是由多種RAID類型所組成的HDP集區有多個值
+* 容量%：集區用於資料使用量的百分比、以及已使用的GB和集區的總邏輯GB大小
+* 過度委派容量：一種衍生值、表示「此資源池的邏輯容量因邏輯磁碟區總和超過此百分比之資源池邏輯容量而超額訂閱」
+* Snapshot：顯示此資源池中保留用於快照使用的容量
+
+
+
+
+=== 儲存節點
+
+下列術語適用於HDS儲存節點資產登陸頁面上可能找到的物件或參考資料。其中許多術語也適用於其他資料收集器。
+
+* 名稱：單片陣列上的前端導向器（FED）或通道介面卡名稱、或模組化陣列上的控制器名稱。給定的HDS陣列將有2個以上的儲存節點
+* Volume（磁碟區）–Volume（磁碟區）表格會顯示任何對應至此儲存節點所擁有之任何連接埠的磁碟區
+
+
+
+
+== 庫存需求
+
+您必須具備下列條件才能收集庫存資料：
+
+* Hndvice Manager伺服器的IP位址
+* 適用於HiCommand Device Manager軟體和對等權限的唯讀使用者名稱和密碼
+* 連接埠需求：2001（http）或2443（https）
+* 使用使用者名稱和密碼登入HiCommand Device Manager軟體
+* 驗證存取「HiCommand Device Manager」 http://<HiCommand_Device_Manager_IP>:2001/service/StorageManager[]
+
+
+
+
+== 效能要求
+
+若要收集效能資料、必須符合下列要求：
+
+* HDS USP、USP V和VSP效能
++
+** 效能監視器必須獲得授權。
+** 必須啟用監控交換器。
+** 匯出工具（export/exe）必須複製到Cloud Insights 該區。
+** 匯出工具版本必須符合目標陣列的微碼版本。
+
+
+* AMS效能：
++
+** NetApp強烈建議在AMS陣列上建立專屬的服務帳戶Cloud Insights 、以便用來擷取效能資料。儲存導覽器僅允許使用者帳戶同時登入陣列一次。使用與管理指令碼相同的使用者帳戶、或使用1TB、可能會導致由於單一並行使用者帳戶登入限制、導致無法與陣列通訊、進而導致無法與之通訊Cloud Insights Cloud Insights
+** 效能監視器必須獲得授權。
+** 儲存導覽器模組2（SNM2）CLI公用程式需要安裝在Cloud Insights SAU上。
+
+
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 和服務器 | Hndvice Manager伺服器的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | 使用者名稱。 
+
+
+| 密碼 | 用於HiCommand Device Manager伺服器的密碼。 
+
+
+| 裝置- VSP G1000（R800）、VSP（R700）、Hus VM（HM700）和USP儲存設備 | VSP G1000（R800）、VSP（R700）、Hus VM（HM700）和USP儲存設備清單。每個儲存設備都需要：* Array的IP：儲存設備的IP位址*使用者名稱：儲存設備的使用者名稱*密碼：儲存設備的密碼*包含匯出公用程式的資料夾 
+
+
+| SNM2Device - WMS/SMS/AMS儲存 | WMS/SMS/AMS儲存設備清單。每個儲存設備都需要：* Array的IP：儲存設備的IP位址* Storage Navigator CLI路徑：SNM2 CLI路徑*帳戶驗證有效：選取以選擇有效的帳戶驗證*使用者名稱：儲存設備的使用者名稱*密碼：儲存設備的密碼 
+
+
+| 選擇「效能調校管理程式」 | 取代其他效能選項 
+
+
+| 調校管理程式主機 | 調整管理程式的IP位址或完整網域名稱 
+
+
+| 置換調校管理器連接埠 | 如果空白、請使用「Choose調校管理器的效能」欄位中的預設連接埠、否則請輸入要使用的連接埠 
+
+
+| 調校管理程式使用者名稱 | 調整管理程式的使用者名稱 
+
+
+| 調校管理員密碼 | 調整管理程式的密碼 
+|===
+附註：在HDS USP、USP V和VSP中、任何磁碟都可以屬於多個陣列群組。
+
+
+
+== 進階組態
+
+|===
+
+
+| 欄位 | 說明 
+
+
+| 連線類型 | HTTPS或HTTP也會顯示預設連接埠 
+
+
+| Hndl伺服器連接埠 | 用於「HiCommand Device Manager」的連接埠 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為40。 
+
+
+| 選擇「排除」或「包含」以指定清單 | 指定在收集資料時是否要納入或排除下列陣列清單。 
+
+
+| 篩選裝置清單 | 要包含或排除的裝置序號以逗號分隔的清單 
+
+
+| 效能意見調查時間間隔（秒） | 效能輪詢之間的時間間隔。預設值為300。 
+
+
+| 匯出逾時（以秒為單位） | 匯出公用程式逾時。預設值為300。 
+|===
+
+
+== 疑難排解
+
+如果您在使用此資料收集器時遇到問題、請嘗試下列事項：
+
+
+
+==== 庫存
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 錯誤：使用者沒有足夠的權限 | 使用具有更多權限的不同使用者帳戶、或是增加在資料收集器中設定的使用者帳戶權限 
+
+
+| 錯誤：儲存清單空白。裝置尚未設定、或使用者沒有足夠的權限 | *使用裝置管理員檢查裝置是否已設定。*使用具有更多權限的不同使用者帳戶、或是增加使用者帳戶的權限 
+
+
+| 錯誤：HDS儲存陣列有幾天未重新整理 | 請調查為什麼HDS HiCommand中未重新整理此陣列。 
+|===
+
+
+==== 效能
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 錯誤：*執行匯出公用程式時發生錯誤*執行外部命令時發生錯誤 | *確認匯出公用程式已安裝在Cloud Insights RUS採購 單元*確認資料收集器組態中的匯出公用程式位置正確*確認USP/R600陣列的IP在資料收集器組態中正確*確認使用者名稱 而且在資料收集器組態中密碼正確*確認匯出公用程式版本與Cloud Insights 來自「更新擷取單元」的儲存陣列微碼版本*相容、開啟CMD提示字元並執行下列動作： -將目錄變更為已設定的安裝目錄-請執行批次檔runWin.bat、嘗試與已設定的儲存陣列建立連線 
+
+
+| 錯誤：目標IP的匯出工具登入失敗 | *確認使用者名稱/密碼正確*主要為此HDS資料收集器建立使用者ID *確認未設定其他資料收集器來取得此陣列 
+
+
+| 錯誤：匯出工具記錄為「無法取得監控時間範圍」。 | *確認陣列已啟用效能監控。*嘗試在Cloud Insights 不屬於VMware的地方叫用匯出工具、以確認問題不在Cloud Insights VMware解決方案範圍內。 
+
+
+| 錯誤：*組態錯誤：匯出公用程式不支援儲存陣列*組態錯誤：儲存設備導覽器模組化CLI不支援儲存陣列 | *僅設定支援的儲存陣列。*使用「篩選裝置清單」排除不受支援的儲存陣列。 
+
+
+| 錯誤：*執行外部命令時發生錯誤*組態錯誤：未由庫存報告儲存陣列*組態錯誤：匯出資料夾不含Jar檔案 | *檢查匯出公用程式位置。*檢查相關的儲存陣列是否設定為採用1TB伺服器*、將效能輪詢時間間隔設為60秒的倍數。 
+
+
+| 錯誤：*錯誤儲存瀏覽器CLI *執行自動執行命令時發生錯誤*執行外部命令時發生錯誤 | *確認Cloud Insights 儲存導覽器模組化CLI已安裝在Sors採集 單元*確認資料收集器組態中的儲存導覽器模組化CLI位置正確*確認WMS/SMS/SMS陣列的IP在資料收集器組態中正確*確認 該儲存導覽器模組化CLI版本相容Cloud Insights 於資料收集器*中所設定的儲存陣列微碼版本、可從該資料收集器*開啟CMD提示字元、然後執行下列動作： -將目錄變更為已設定的安裝目錄-請執行下列命令「auunitref.exe」、嘗試與已設定的儲存陣列建立連線。 
+
+
+| 錯誤：組態錯誤：庫存未報告儲存陣列 | 檢查是否已在1TB伺服器中設定有問題的儲存陣列 
+
+
+| 錯誤：*未在Storage Navigator模組化2 CLI中登錄陣列*未在Storage Navigator模組化2 CLI中登錄組態錯誤：Storage Array未在StorageNavigator模組化CLI中登錄 | *開啟命令提示字元並將目錄變更為設定的路徑*執行命令「set=STONAVM_home=」。 *執行命令「auunitref"*確認命令輸出包含IP陣列的詳細資料*如果輸出未包含陣列詳細資料、請使用Storage Navigator CLI登錄陣列： -開啟命令提示字元並將目錄變更為已設定的路徑-執行命令「set=STONAVM_home=」。 -執行命令「auunitaddauto -ip ${IP}」。以實際IP取代$｛IP｝ 
+|===
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

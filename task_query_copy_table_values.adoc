@@ -1,0 +1,22 @@
+---
+sidebar: sidebar 
+permalink: task_query_copy_table_values.html 
+summary: 您可以將值從表格複製到剪貼簿、以便用於其他應用程式。 
+keywords: query, queries, copy, values, clipboard 
+---
+= 複製表格值
+:allow-uri-read: 
+
+
+[role="lead"]
+您可以將表格中的值複製到剪貼簿、以便用於搜尋方塊或其他應用程式。
+
+您可以使用兩種方法、將資料表或查詢結果的值複製到剪貼簿。
+
+.步驟
+. 方法1：使用滑鼠反白所需的文字、複製並貼到搜尋欄位或其他應用程式中。
+. 方法2：針對單值欄位、將游標移到欄位上、然後按一下剪貼簿圖示 image:ClipboardIcon.png["剪貼簿"] 就會出現。此值會複製到剪貼簿、以便用於搜尋欄位或其他應用程式。
++
+請注意、只有連結至資產的值可以使用此方法複製。只有包含單一值（例如非清單）的欄位才會顯示複本圖示。
+
+

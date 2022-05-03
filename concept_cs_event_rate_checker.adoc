@@ -1,0 +1,169 @@
+---
+sidebar: sidebar 
+permalink: concept_cs_event_rate_checker.html 
+summary: 在安裝ONTAP SVM DSC之前、可以執行此指令碼來檢查SVM中的事件率 
+keywords: event, checker, rate, sizing 
+---
+= SVM事件率檢查器
+:allow-uri-read: 
+
+
+[role="lead"]
+「事件率檢查器」用於檢查SVM中的NFS/SMB組合事件率、然後再安裝ONTAP 一套SVM資料收集器、以查看一部代理機器能夠監控的SVM數量。
+
+所學專業：電子
+
+* 叢集IP
+* 叢集管理使用者名稱和密碼
+
+
+
+NOTE: 執行此指令碼時ONTAP 、不應針對正在判斷事件率的SVM執行任何SVM Data Collector。
+
+步驟：
+
+. 依照CloudSecure中的指示安裝代理程式。
+. 安裝代理程式後、以Sudo使用者身分執行_server_data_rate_checker.sh_指令碼：
++
+ /opt/netapp/cloudsecure/agent/install/svm_event_rate_checker.sh
+. 此指令碼需要在Linux機器上安裝_sshpass_。安裝方法有兩種：
++
+.. 執行fillowing命令：
++
+ linux_prompt> yum install sshpass
+.. 如果這不管用、請從網路下載_sshpass_到Linux機器、然後執行下列命令：
++
+ linux_prompt> rpm -i sshpass
+
+
+. 出現提示時、請提供正確的值。請參閱以下範例。
+. 執行指令碼大約需要5分鐘。
+. 執行完成後、指令碼會從SVM列印事件速率。您可以在主控台輸出中檢查每個SVM的事件率：
++
+ “Svm svm_rate is generating 100 events/sec”.
+
+
+. 每ONTAP 個SVM資料收集器都可與單一SVM建立關聯、這表示每個資料收集器都能接收單一SVM產生的事件數。
+
+
+請謹記下列事項：
+
+a）單一值機員機器可處理下列項目：
+
+|===
+
+
+| 代理機器組態 | SVM資料收集器數量 | 代理機器可處理的最大事件速率 
+
+
+| 4核心、16GB | 10個資料收集器 | 20K個事件/秒 
+
+
+| 4核心、32GB | 20個資料收集器 | 20K個事件/秒 
+|===
+b）若要計算事件總數、請新增為該代理程式的所有SVM所產生的事件。
+
+c）如果指令碼未在尖峰時間執行、或尖峰流量難以預測、則事件速率緩衝區應保持30%。
+
+B + C應小於A、否則值機員機器將無法監控。
+
+換句話說、可新增至單一代理機器的資料收集器數量應符合下列公式：
+
+ Sum of all Event rate of all Data Source Collectors + Buffer Event rate of 30% < 20000 events/second
+
+
+=== 範例
+
+假設我們有三種SVMS、每秒產生100、200和300個事件的事件率。
+
+我們採用以下公式：
+
+....
+ (100+200+300) + [(100+200+300)*30%] = 600+180 = 780events/sec
+780 events/second is < 20000 events/second, so the 3 SVMs can be monitored via one agent box.
+....
+在代理機器中、主控台輸出位於目前工作目錄的檔案名稱為_fpolicy_stat_<SVM Name>.log__。
+
+指令碼可能會在下列情況下產生錯誤結果：
+
+* 提供的認證資料、IP或SVM名稱不正確。
+* 已存在且名稱、順序編號等相同的fpolicy將會產生錯誤。
+* 指令碼在執行時突然停止。
+
+
+執行指令碼的範例如下所示：
+
+ [root@ci-cs-data agent]# /opt/netapp/cloudsecure/agent/install/svm_event_rate_checker.sh
+....
+Enter the cluster ip: 10.192.139.166
+Enter the username to SSH: admin
+Enter the password:
+Getting event rate for NFS and SMB events.
+Available SVMs in the Cluster
+-----------------------------
+QA_SVM
+Stage_SVM
+Qa-fas8020
+Qa-fas8020-01
+Qa-fas8020-02
+audit_svm
+svm_rate
+vs_new
+vs_new2
+....
+....
+-----------------------------
+Enter [1/5] SVM name to check (press enter to skip): svm_rate
+Enter [2/5] SVM name to check (press enter to skip): audit_svm
+Enter [3/5] SVM name to check (press enter to skip):
+Enter [4/5] SVM name to check (press enter to skip):
+Enter [5/5] SVM name to check (press enter to skip):
+Running check for svm svm_rate...
+Running check for svm audit_svm...
+Waiting 5 minutes for stat collection
+Stopping sample svm_rate_sample
+Stopping sample audit_svm_sample
+fpolicy stats of svm svm_rate is saved in fpolicy_stat_svm_rate.log
+Svm svm_rate is generating 100 SMB events/sec and 100 NFS events/sec
+Overall svm svm_rate is generating 200 events/sec
+fpolicy stats of svm audit_svm is saved in fpolicy_stat_audit_svm.log
+Svm audit_svm is generating 200 SMB events/sec and 100 NFS events/sec
+Overall svm audit_svm is generating 300 events/sec
+....
+ [root@ci-cs-data agent]#
+
+
+== 疑難排解
+
+|===
+
+
+| 問：如果我在已設定Cloud Secure 為使用效益的SVM上執行此指令碼、它是否只使用SVM上現有的fpolicy組態、或是設定暫用的組態並執行此程序？ 
+
+
+| 答：事件率檢查器即使已設定Cloud Secure 為供使用的SVM、也能正常運作。應該沒有影響。 
+
+
+| 問：我可以增加執行指令碼的SVM數量嗎？ 
+
+
+| 答：可以。只要編輯指令碼、並將SVM的最大數量從5變更為任何所需的數量即可。 
+
+
+| 問：如果增加SVM數量、是否會增加指令碼的執行時間？ 
+
+
+| 答：不可以指令碼最多可執行5分鐘、即使SVM數量增加也沒問題。 
+
+
+| 問：我可以增加執行指令碼的SVM數量嗎？ 
+
+
+| 答：可以。您需要編輯指令碼、並將SVM的最大數量從5變更為任何所需的數量。 
+
+
+| 問：如果增加SVM數量、是否會增加指令碼的執行時間？ 
+
+
+| 答：不可以指令碼最多可執行5分鐘、即使SVM數量增加也沒問題。 
+|===

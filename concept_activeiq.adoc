@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: concept_activeiq.html 
+keywords: Active IQ, risks, svm 
+summary: 本產品可從NetApp收集風險資料Cloud Insights Active IQ 
+---
+= Active IQ
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp link:https://www.netapp.com/us/products/data-infrastructure-management/active-iq.aspx["Active IQ"] 為NetApp客戶的硬體/軟體系統提供一系列視覺化、分析及其他支援相關服務。由NetApp回報的資料Active IQ 可加強系統問題的疑難排解、並提供與您的裝置相關的最佳化與預測分析。
+
+針對任何由NetApp監控和回報的NetApp叢集式不知所面臨的*風險*。Cloud Insights Data ONTAP Active IQ針對儲存系統所回報的風險、Cloud Insights 會由效益管理系統自動收集、作為從這些裝置收集資料的一部分。您必須將適當的資料收集器新增Cloud Insights 至功能不實、才能收集Active IQ 功能不實的風險資訊。
+
+不顯示不受監控且未經由效益分析報告的不適用的系統風險資料。Cloud Insights ONTAP Active IQ
+
+報告的風險顯示Cloud Insights 於「風險」表的「_storage」和「_storage nod節點_」資產登陸頁上。下表顯示風險詳細資料、風險類別及風險的潛在影響、並提供Active IQ 指向「介紹儲存節點所有風險的資訊」頁面的連結（需要NetApp支援帳戶登入）。
+
+image:AIQ_Risks_Table_Example.png["風險表Active IQ"]
+
+登陸頁的「摘要」小工具中也會顯示已報告風險的計數、並會顯示連結至適當Active IQ 的「功能表」頁面。在_storage登陸頁面上、此計數是所有基礎儲存節點的風險總和。
+
+image:AIQ_Summary_Example.png["儲存頁面摘要"]
+
+
+
+=== 開啟Active IQ 「介紹」頁面
+
+按一下Active IQ 指向某個資訊頁的連結時、如果您目前尚未登入Active IQ 您的資訊區帳戶、則必須執行下列步驟、才能檢視Active IQ 儲存節點的資訊區頁面。
+
+. 在「更新摘要」小工具或風險表中、按一下「恢復」連結。Cloud Insights Active IQ
+. 登入您的NetApp支援帳戶。您將直接進入Active IQ 資訊區的儲存節點頁面。
+
+
+
+
+=== 查詢風險
+
+在本功能中、您可以將*物件風險*欄新增至儲存或儲存節點查詢。Cloud Insights如果傳回的結果包含Active IQ監控的儲存系統、「物件風險」欄會顯示儲存系統或節點的風險數量。
+
+
+
+=== 儀表板
+
+您可以建立小工具（例如圓形圖、表格小工具、長條圖、直條圖、散佈圖、 以及單一價值小工具）、以視覺化方式呈現Data ONTAP 由NetApp監控之NetApp叢集式視覺化系統的儲存和儲存節點物件風險Active IQ 。在這些小工具中、「物件風險」可選取為欄或度量、其中「儲存或儲存節點」是焦點物件。
+
+image:ObjectRiskWidgets.png["小工具中的物件風險"]

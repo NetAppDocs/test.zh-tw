@@ -1,0 +1,112 @@
+---
+sidebar: sidebar 
+permalink: task_dc_na_solidfire.html 
+summary: 設定NetApp SolidFire 資料收集器 
+keywords: data collector, queries, create 
+---
+= NetApp SolidFire 《全快閃陣列資料收集器》（All Flash Array Data Collector）
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp SolidFire 推出的「全快閃全快閃陣列資料收集器」可同時支援從iSCSI SolidFire 和Fibre Channel之間收集庫存與效能。
+
+此資料收集器採用了REST API。SolidFire SolidFire資料收集器所在的擷取單元、必須能夠啟動HTTPS連線至SolidFire 叢集管理IP位址上的TCP連接埠443。資料收集器需要認證資料、以便在SolidFire 支援REST的API上查詢整個叢集。
+
+
+
+== 術語
+
+從NetApp《All Flash Array》資料收集器取得下列庫存資訊。Cloud Insights SolidFire對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 磁碟機 | 磁碟 
+
+
+| 叢集 | 儲存設備 
+
+
+| 節點 | 儲存節點 
+
+
+| Volume | Volume 
+
+
+| 光纖通道連接埠 | 連接埠 
+
+
+| Volume存取群組、LUN指派 | Volume Map 
+
+
+| iSCSI工作階段 | Volume遮罩 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+以下是設定此資料收集器的需求：
+
+* 管理虛擬IP位址
+* 唯讀使用者名稱和認證
+* 連接埠443
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 管理虛擬IP位址（MVIP） | 管理VMware叢集的虛擬IP位址SolidFire 
+
+
+| 使用者名稱 | 用來登入SolidFire 到Isname叢集的名稱 
+
+
+| 密碼 | 用於登入SolidFire 到故障叢集的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 連線類型 | 選擇連線類型 
+
+
+| 通訊連接埠 | 用於NetApp API的連接埠 
+
+
+| 庫存輪詢時間間隔（分鐘） | 預設為20分鐘 
+
+
+| 效能意見調查時間間隔（秒） | 預設值為300秒 
+|===
+
+
+== 疑難排解
+
+當系統不報告錯誤時SolidFire 、會以Cloud Insights 下列方式顯示在功能表中：
+
+_ SolidFire 在嘗試擷取資料時、收到來自於某個不檢設備的錯誤訊息。此呼叫是<method>（<參數 字串>）。裝置的錯誤訊息為（請參閱裝置手冊）：_
+
+其中：
+
+* 方法是HTTP方法、例如GET或PUT。
+* 參數字串>是以逗號分隔的參數清單、包含在REST呼叫中。
+* 此為傳回的錯誤訊息。
+
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

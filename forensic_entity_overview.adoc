@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: forensic_entity_detail.html 
+keywords: Forensic, entity, entity overview, entity behavior, entities 
+summary: 「鑑識實體」頁面 
+---
+= 「鑑識實體」頁面
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+「鑑識實體」頁面提供您環境中實體活動的詳細資訊。
+
+
+
+== 檢查實體資訊
+
+按一下「*鑑識」>「活動鑑識」*、然後按一下「_實體_」索引標籤以存取「實體」頁面。
+
+本頁概述您環境中的實體活動、重點說明下列資訊： *每分鐘存取的_獨特實體_圖表*存取的_實體類型_*公用路徑的明細表_*總共50個實體中的_前50個實體_清單
+
+image:CS-Entities-Page.png["實體頁面"]
+
+按一下清單中的實體、會開啟該實體的總覽頁面、顯示實體的設定檔、其中包含名稱、類型、裝置名稱、最常存取的位置IP和路徑、以及實體行為、例如使用者、IP、 以及上次存取實體的時間。
+
+image:CS-entity-detail-page.png["實體總覽頁面"]

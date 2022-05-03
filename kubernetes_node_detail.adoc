@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: kubernetes_node_detail.html 
+keywords: kubernetes, pods, clusters, nodes. troubleshooting, planning 
+summary: Kubernetes節點詳細資料頁面可深入瞭解後端PV和Pod儲存設備。 
+---
+= Kubernetes節點詳細資料頁面
+:allow-uri-read: 
+
+
+[role="lead"]
+在Kubernetes Explorer中、您可以按一下「節點」圖示、開啟該節點的詳細資訊頁面。在此頁面上、您可以檢視節點的相關資訊、以及瀏覽VM、Pod和Container資訊。
+
+image:KubernetesNodeFiltering.png["Kubernetes節點詳細資料頁面顯示篩選"]
+
+
+
+==== 探索節點的Pod和持續磁碟區
+
+支援VMware View、可讓您清楚掌握Kubernetes環境的後端儲存設備、深入瞭解Kubernetes Pod和持續磁碟區（PV）Cloud Insights 。您可以追蹤PV計數器、例如IOPS、延遲和處理量、從單一Pod的使用量、透過PV計數器、直到PV、再到後端儲存設備。
+
+在PV層級、Cloud Insights 由NetApp收集後端（內部磁碟區或磁碟區、視PV類型而定）容量資訊（總計、使用量、使用百分比）、以及內部磁碟區快照數。從Pod到儲存層級、它會收集後端容量和內部Volume Snapshot數。
+
+在Volume或內部Volume登陸頁面上、會顯示兩個表格：
+
+image:Kubernetes_PV_Table.png["Kubernetes PV表"]
+image:Kubernetes_Pod_Table.png["Kubernetes Pod表格"]
+
+
+NOTE: 如果您已自訂Volume或內部Volume登陸頁面、則可能不會自動看到PV和Pod表格。若要查看這些表格、您必須將頁面回復為預設、此時您會看到PV和Pod表格。接著您可以視需要重新自訂頁面。
+
+請注意、為了善用這些新表格、建議您先解除安裝目前的Kubernetes代理程式、然後重新安裝。您也必須安裝Kube-State-Metrics版本2.1.0或更新版本。
+
+
+
+==== Kubernetes節點到VM連結
+
+在Kubernetes Node頁面上、您可以按一下以開啟Node的VM頁面。VM頁面也包含指向Node本身的連結。
+
+image:Kubernetes_Node_Page_with_VM_Link.png["Kubernetes Node頁面顯示VM連結"]
+image:Kubernetes_VM_Page_with_Node_Link.png["Kubernetes VM頁面顯示Node連結"]

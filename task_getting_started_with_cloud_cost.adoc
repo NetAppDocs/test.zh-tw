@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_with_cloud_cost.html 
+summary: 雲端成本入門： 
+keywords: analysis, cost, analyzer 
+---
+= 雲端成本入門
+:allow-uri-read: 
+
+
+[role="lead"]
+雲端成本提供過去、現在及預估支出的詳細成本分析、可清楚掌握環境中的雲端使用狀況。雲端成本儀表板可清楚檢視貴組織的雲端支出、並深入瞭解個別工作負載、帳戶和服務。
+
+雲端成本有助於解決下列重大挑戰：
+
+* 追蹤及監控雲端支出
+* 找出浪費與潛在最佳化領域
+* 交付可執行的行動項目
+
+
+您必須擁有Cloud Insights 「不支援管理員」或「帳戶擁有者」權限、才能設定或檢視雲端成本。設定好之後、Cloud Insights 任何具備上述權限的用戶都能存取Cloud Cost。
+
+將雲端成本連結至您的_AWS組織_帳戶、即可設定雲端成本。這有時稱為 link:https://docs.spot.io/cloud-analyzer/getting-started/connect-your-aws-master-payer-account-existing-customer["管理_"] 帳戶。
+
+
+NOTE: 雲端成本Cloud Insights 僅適用於美國地區的整個環境、而且只能針對單一AWS組織帳戶進行設定。雲端成本必須與Cloud Insights 任何AWS收集器分開設定、才能在功能上實現。
+
+
+
+==== 設定雲端成本
+
+當您第一次登入Cloud Insights 時按一下「*雲端成本*」功能表項目、系統會顯示歡迎畫面、並提示您開始設定雲端成本。
+
+image:Cloud_Cost_Welcome.png["雲端成本"]
+
+* 按一下*「Add AWS Credentials to Start*（將AWS認證新增至Start*）」按鈕開始您會看到AWS Connection畫面。請依照此畫面上的指示、將您的* AWS組織帳戶*連結至雲端成本。
++
+image:Cloud_Cost_Setup_1.png["AWS Connect"]
+
+* 完成帳戶設定後、Cloud Cost會顯示「歡迎」訊息。
++
+image:Cloud_Cost_Welcome_Wait.png["歡迎使用雲端成本！"]
+
++
+
+NOTE: 完全設定雲端成本最多需要24小時。組態完成後、您將會收到電子郵件通知。如果您有任何困難、可以按一下「聊天」圖示或造訪、聯絡NetApp支援部門 link:https://spot.io/support["NetApp Spot支援"]。
+
+* 完成設定後、按一下「*雲端成本*」功能表項目、就會顯示成本分析儀表板、類似於下列範例。
++
+image:Cloud_Cost_Example_Dashboard.png["雲端成本範例儀表板"]
+
+
+
+
+
+=== 深入瞭解雲端成本
+
+雲端成本可將Cloud Insights 您的不同步環境與Cloud Analyzer 的功能相連 link:https://docs.spot.io/cloud-analyzer/["NetApp專為您服務"]、提供Cloud Insights 最相關的雲端成本資料檢視功能。按一下雲端成本儀表板右上角的「Get Full Analysis_（取得完整分析_）」連結、Cloud Analyzer 即可現場開啟完整的「整套」功能表。完整的分析可能會提供額外的資料和探查、讓您更深入瞭解雲端支出。
+
+
+
+=== 疑難排解
+
+如果遇到問題、請嘗試以下方法：
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 我從現場收到一封電子郵件、確認我的設定、但這些連結似乎與Cloud Insights 資訊不相關 | 現場電子郵件中的連結與Cloud Insights 《不合理的雲端成本》無關。忽略電子郵件中的「即點即用」連結。 
+
+
+| 雲端成本讓我看到即時登入提示。 | 您的雲端成本工作階段可能已過期。瀏覽Cloud Insights 至「解決方案」主畫面、然後返回「雲端成本」以重新啟動「雲端成本」工作階段。 
+
+
+| 我收到「偵測到雲端成本工作階段衝突」訊息。 | 同一個瀏覽器不支援以多個帳戶開啟的雲端成本工作階段。登出Cloud Insights 功能表並重新登入、查看您帳戶的雲端成本資訊。 
+
+
+| 我嘗試登入時看到錯誤：「未獲授權。無效的認證資料。" | 請確認您使用正確的認證登入。如果問題持續發生、請聯絡NetApp Spot Support。 
+|===

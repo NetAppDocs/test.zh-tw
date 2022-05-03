@@ -1,0 +1,162 @@
+---
+sidebar: sidebar 
+permalink: cs_alert_data.html 
+keywords: alert, attack, ransomware, activity, security, abnormal 
+summary: 當使用者活動異常或可能遭受攻擊時、可建立警示。Cloud Secure「警示」頁面會列出這些活動、以便快速輕鬆地進行調查。 
+---
+= 警示
+:allow-uri-read: 
+
+
+[role="lead"]
+「更新警示」頁面會顯示最近攻擊和/或警告的時間表、並可讓您檢視每個問題的詳細資料。Cloud Secure
+
+image:CloudSecureAlertsListPage.png["警示清單"]
+
+
+
+== 警示
+
+警示清單會顯示圖表、顯示在所選時間範圍內提出的潛在攻擊和/或警告總數、然後顯示該時間範圍內發生的攻擊和/或警告清單。您可以調整圖表中的開始時間和結束時間滑桿、以變更時間範圍。
+
+每個警示都會顯示下列項目：
+
+*潛在攻擊：*
+
+* _Potential攻擊_類型（例如勒索軟體或破壞）
+* 可能遭受攻擊的日期和時間_偵測_
+* 警示的_Status：
++
+** 新增（這是新警示的預設值）
+** 進行中
+** 已解決
+** 已遭解僱
++
+系統管理員可以變更警示狀態、並新增附註以協助調查。
+
++
+image:CloudSecureChangeAlertStatus.png["變更警示狀態"]
+
+
+
+* 行為觸發警示的_User_
+* _證據_攻擊（例如、大量檔案已加密）
+* 採取的動作_（例如、已建立快照）
+
+
+*警告：*
+
+* 觸發警告的_異常行為_
+* 偵測到行為的日期和時間_
+* 警示的_Status：
++
+** 新增（這是新警示的預設值）
+** 進行中
+** 已解決
+** 已遭解僱
++
+系統管理員可以變更警示狀態、並新增附註以協助調查。
+
+
+
+* 行為觸發警示的_User_
+* _Chang__的說明（例如檔案存取異常增加）
+* 採取的行動_
+
+
+
+
+== 篩選選項
+
+您可以依下列項目篩選警示：
+
+* 警示的_Status
+* 註釋_中的特定文字
+* _攻擊/警告_的類型
+* 動作觸發警示/警告的_User_
+
+
+
+
+== 「警示詳細資料」頁面
+
+您可以按一下警示清單頁面上的警示連結、開啟警示的詳細資料頁面。警示詳細資料可能會因攻擊類型或警示而異。例如、勒索軟體攻擊詳細資料頁面可能會顯示下列資訊：
+
+
+
+=== 摘要區段：
+
+* 攻擊類型（勒索軟體、破壞）和警示ID（Cloud Secure 由VMware指派）
+* 偵測到攻擊的日期和時間
+* 已採取的行動（例如、已執行自動快照。快照時間會立即顯示在摘要區段下方）
+* 狀態（新增、進行中等）
+
+
+
+
+=== 攻擊結果區段：
+
+* 受影響的磁碟區和檔案計數
+* 偵測的隨附摘要
+* 顯示攻擊期間檔案活動的圖表
+
+
+
+
+=== 相關使用者區段：
+
+本節將詳細說明可能遭受攻擊的使用者、包括使用者的熱門活動圖表。
+
+警示頁面（此範例顯示潛在的勒索軟體攻擊）：image:RansomwareAlertExample.png["勒索軟體警示範例"]
+
+詳細資料頁面（此範例顯示潛在的勒索軟體攻擊）：image:RansomwareDetailPageExample.png["勒索軟體詳細資料頁面範例"]
+
+
+
+== 執行Snapshot動作
+
+當偵測到惡意活動時、利用自動擷取快照功能來保護資料、確保資料安全備份。Cloud Secure
+
+您可以定義 link:cs_automated_response_policies.html["自動化回應原則"] 當偵測到勒索軟體攻擊或其他異常使用者活動時、就會擷取快照。您也可以從警示頁面手動擷取快照。
+
+自動拍攝的快照：image:AlertActionsAutomaticExample.png["警示行動畫面、1000"]
+
+手動快照：image:AlertActionsExample.png["警示行動畫面、1000"]
+
+
+
+== 警示通知
+
+警示的電子郵件通知會針對警示上的每個動作傳送至警示收件者清單。若要設定警示收件者、請按一下*管理>通知*、然後輸入每個收件者的電子郵件地址。
+
+
+
+== 保留政策
+
+警示與警告會保留13個月。超過13個月的警示和警告將會刪除。如果刪除了此功能、則與環境相關的所有資料也會一併刪除。Cloud Secure
+
+
+
+== 疑難排解
+
+|===
+| 問題： | 試用： 
+
+
+| 對於由Snapshot（Cloud Secure CS）所拍攝的快照、CS快照是否有清除/歸檔期間？ | 不可以CS快照並未設定任何清除/歸檔期間。使用者需要定義CS快照的清除原則。請參閱 link:https://library.netapp.com/ecmdocs/ECMP1196819/html/GUID-27D0E37F-5AF1-4AF9-BDEB-9A4B7AF3B4A9.html["本文檔 ONTAP"] 如何設定原則。 
+
+
+| 在這種情況ONTAP 下、每小時執行一次快照。此功能是否Cloud Secure 會受影響？CS快照是否會在每小時快照的地方執行？預設的每小時快照是否會停止？ | 不影響每小時快照。Cloud SecureCS快照不會佔用每小時的快照空間、而且應該像以前一樣繼續。預設的每小時快照不會停止。 
+
+
+| 如果在不確定的情況下達到最大快照數、會發生什麼情況ONTAP ？ | 如果快照數量達到上限、後續的Snapshot拍攝將會失敗、Cloud Secure 而且會顯示錯誤訊息、指出Snapshot已滿。使用者需要定義Snapshot原則來刪除最舊的快照、否則將無法擷取快照。在不含更新版本的版本中、Volume最多可包含255個Snapshot複本。ONTAP在NetApp 9.4及更新版本中、Volume最多可包含1023個Snapshot複本。ONTAP如ONTAP 需相關資訊、請參閱《VMware產品資料》 link:https://docs.netapp.com/ontap-9/index.jsp?topic=%2Fcom.netapp.doc.dot-cm-cmpr-960%2Fvolume__snapshot__autodelete__modify.html["設定Snapshot刪除原則"]。 
+
+
+| 無法擷取快照。Cloud Secure | 請確定用於建立快照的角色具有連結：https://docs.netapp.com/us-en/cloudinsights/task_add_collector_svm.html#a-note-about-permissions[proper權限已指派]。請確定已建立具有適當存取權限的_csrole_、以供拍攝快照：安全登入角色create -vserver <vservername>-role csrole -cmd dirname "volume snapshot"-access all 
+
+
+| 快照失敗、因為SVM上的舊警示已從Cloud Secure 無法執行、隨後又重新新增。對於再次新增SVM之後發生的新警示、會擷取快照。 | 這是罕見的情況。如果您遇到這種情況、請登入ONTAP 到「介紹」、然後手動擷取舊警示的快照。 
+
+
+| 在_警示詳細資料_頁面中、「上次嘗試失敗」錯誤訊息會顯示在_「拍攝Snapshot」按鈕下方。將游標停留在錯誤上會顯示「Invoke API command has timed out for the data collector with id」。 | 如果Cloud Secure SVM的LIF處於_disabled_狀態ONTAP 、則透過SVM管理IP將資料收集器新增至SVM時、就可能發生這種情況。啟用ONTAP 支援功能中的特定LIF、並從Cloud Secure 功能表中觸發_手動拍攝Snapshot _。然後Snapshot行動就會成功。 
+|===

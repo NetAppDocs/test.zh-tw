@@ -1,0 +1,14 @@
+---
+sidebar: sidebar 
+permalink: concept_data_collector_reference.html 
+summary: 廠商專屬的資料收集器參考資訊。 
+keywords: data collector, vendor, AWS, BROADCOM, Cisco, Dell, EMC, Hitachi, IBM, NetApp, OceanStor, OpenStack, Oracle, Pure Storage, Red Hat, redhat, VMWare 
+---
+= 廠商專屬參考資料
+:allow-uri-read: 
+
+
+[role="lead"]
+本節主題提供廠商專屬的參考資訊。在大多數情況下、設定資料收集器很簡單。在某些情況下、您可能需要其他資訊或命令來正確設定資料收集器。
+
+按一下左側功能表中的*廠商*、即可查看其資料收集器的相關資訊。

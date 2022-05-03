@@ -1,0 +1,295 @@
+---
+sidebar: sidebar 
+permalink: data_collector_list.html 
+summary: 支援的資料收集器清單。 
+keywords: data collector, vendor, infrastructure, integration, service 
+---
+= 資料收集器清單Cloud Insights
+:allow-uri-read: 
+
+
+[role="lead"]
+支援許多廠商與服務的各種資料收集器。Cloud Insights
+
+資料收集器可依下列類型分類：
+
+* 基礎架構：從儲存陣列、交換器、Hypervisor或備份裝置等廠商裝置取得。
+* 服務：從Kubernetes或Docker等服務中取得。也稱為_Integrity_。
+
+
+以字母順序排列Cloud Insights 支援的資料收集器清單：
+
+[cols="<,<"]
+|===
+| 資料收集器 | 類型 
+
+
+| link:task_config_telegraf_activemq.html["ActiveMQ"] | 服務 
+
+
+| link:task_dc_amazon_ec2.html["Amazon EC2和EBS"] | 基礎架構 
+
+
+| link:task_dc_na_amazon_fsx.html["Amazon FSX for NetApp ONTAP 產品"] | 基礎架構 
+
+
+| link:task_config_telegraf_apache.html["Apache"] | 服務 
+
+
+| link:task_dc_ms_anf.html["Azure NetApp Files"] | 基礎架構 
+
+
+| link:task_dc_ms_azure.html["Azure VM與VHD"] | 基礎架構 
+
+
+| link:task_dc_brocade_bna.html["Brocade網路顧問（BNA）"] | 基礎架構 
+
+
+| link:task_dc_brocade_fc_switch.html["Brocade光纖通道交換器"] | 基礎架構 
+
+
+| link:task_dc_cisco_fc_switch.html["Cisco MDS Fabric交換器"] | 基礎架構 
+
+
+| link:task_config_telegraf_consul.html["駐港總領事"] | 服務 
+
+
+| link:task_config_telegraf_couchbase.html["Couchbase"] | 服務 
+
+
+| link:task_config_telegraf_couchdb.html["CouchDB"] | 服務 
+
+
+| link:task_dc_emc_datadomain.html["Dell EMC Data Domain"] | 基礎架構 
+
+
+| link:task_dc_emc_ecs.html["Dell EMC ECS"] | 基礎架構 
+
+
+| link:task_dc_emc_isilon.html["Dell EMC PowerScale（先前為Isilon）"] | 基礎架構 
+
+
+| link:task_dc_emc_powerstore.html["Dell EMC PowerStore"] | 基礎架構 
+
+
+| link:task_dc_emc_recoverpoint.html["Dell EMC RecoverPoint"] | 基礎架構 
+
+
+| link:task_dc_emc_scaleio.html["Dell EMC ScaleIO"] | 基礎架構 
+
+
+| link:task_dc_emc_unity.html["Dell EMC Unity"] | 基礎架構 
+
+
+| link:task_dc_emc_vmax_powermax.html["Dell EMC VMAX-PowerMax系列裝置"] | 基礎架構 
+
+
+| link:task_dc_emc_vnx_block.html["Dell EMC VNX區塊儲存設備"] | 基礎架構 
+
+
+| link:task_dc_emc_vnx_file.html["Dell EMC VNX檔案"] | 基礎架構 
+
+
+| link:task_dc_emc_vnx_unified.html["Dell EMC VNX Unified"] | 基礎架構 
+
+
+| link:task_dc_emc_vplex.html["Dell EMC VPLEX"] | 基礎架構 
+
+
+| link:task_dc_emc_xio.html["Dell EMC XtremIO"] | 基礎架構 
+
+
+| link:task_dc_dell_xc_series.html["Dell XC系列"] | 基礎架構 
+
+
+| link:task_config_telegraf_docker.html["Docker"] | 服務 
+
+
+| link:task_config_telegraf_elasticsearch.html["彈性搜尋"] | 服務 
+
+
+| link:task_config_telegraf_flink.html["Flink"] | 服務 
+
+
+| link:task_dc_fujitsu_eternus.html["Fujitsu ETERNUS DX"] | 基礎架構 
+
+
+| link:task_dc_google_cloud.html["Google運算與儲存設備"] | 基礎架構 
+
+
+| link:task_config_telegraf_hadoop.html["Hadoop"] | 服務 
+
+
+| link:task_config_telegraf_haproxy.html["HAProxy"] | 服務 
+
+
+| link:task_dc_hds_hcp.html["Hitachi內容平台（HCP）"] | 基礎架構 
+
+
+| link:task_dc_hds_commandsuite.html["Hitachi Vantara Command Suite"] | 基礎架構 
+
+
+| link:task_dc_hds_nas.html["Hitachi Vantara NAS平台"] | 基礎架構 
+
+
+| link:task_dc_hds_ops_center.html["Hitachi Ops Center"] | 基礎架構 
+
+
+| link:task_dc_hpe_nimble.html["HP Enterprise Alletra 6000（先前稱為Nimble）儲存設備"] | 基礎架構 
+
+
+| link:task_dc_hp_3par.html["HP Enterprise Alletra 9000 / Primera（先前為3PAR）儲存設備"] | 基礎架構 
+
+
+| link:task_dc_hpe_commandview.html["HP Enterprise Command View"] | 基礎架構 
+
+
+| link:task_dc_huawei_oceanstor.html["Huawei OceanStor與DORado裝置"] | 基礎架構 
+
+
+| link:task_dc_ibm_cleversafe.html["IBM Cleverafe"] | 基礎架構 
+
+
+| link:task_dc_ibm_cs.html["IBM CS系列"] | 基礎架構 
+
+
+| link:task_dc_ibm_powervm.html["IBM PowerVM"] | 基礎架構 
+
+
+| link:task_dc_ibm_svc.html["IBM SAN Volume控制器（SVC）"] | 基礎架構 
+
+
+| link:task_dc_ibm_ds.html["IBM System Storage DS8000系列"] | 基礎架構 
+
+
+| link:task_dc_ibm_xiv.html["IBM XIV與A9000儲存"] | 基礎架構 
+
+
+| link:task_dc_infinidat_infinibox.html["Infinidat InfinidBox"] | 基礎架構 
+
+
+| link:task_config_telegraf_jvm.html["Java"] | 服務 
+
+
+| link:task_config_telegraf_kafka.html["卡夫卡"] | 服務 
+
+
+| link:task_config_telegraf_kapacitor.html["Kapacitor"] | 服務 
+
+
+| link:task_config_telegraf_kibana.html["Kibana"] | 服務 
+
+
+| link:https:task_config_telegraf_agent.html#kubernetes["Kubernetes"] | 服務 
+
+
+| link:task_dc_lenovo.html["Lenovo HX系列"] | 基礎架構 
+
+
+| link:task_config_telegraf_agent.html#macos["MacOS"] | 服務 
+
+
+| link:task_config_telegraf_memcached.html["memcached"] | 服務 
+
+
+| link:task_dc_ms_anf.html["Microsoft Azure NetApp Files"] | 基礎架構 
+
+
+| link:task_dc_ms_hyperv.html["Microsoft Hyper-V"] | 基礎架構 
+
+
+| link:task_config_telegraf_mongodb.html["MongoDB"] | 服務 
+
+
+| link:task_config_telegraf_mysql.html["MySQL"] | 服務 
+
+
+| link:task_dc_na_astra_data_store.html["NetApp Astra資料儲存區"] | 基礎架構 
+
+
+| link:task_dc_na_cloud_volumes_ontap.html["NetApp Cloud Volumes ONTAP"] | 基礎架構 
+
+
+| link:task_dc_na_cloud_volumes.html["適用於AWS的NetApp Cloud Volumes服務"] | 基礎架構 
+
+
+| link:task_dc_na_cloud_connection.html["NetApp Cloud Connection ONTAP for NetApp 9.9以上版本"] | 基礎架構 
+
+
+| link:task_dc_na_7mode.html["NetApp Data ONTAP 產品技術7-Mode"] | 基礎架構 
+
+
+| link:task_dc_na_eseries.html["NetApp E系列"] | 基礎架構 
+
+
+| link:task_dc_na_fsx-netapp.html["FSx-NetApp"] | 基礎架構 
+
+
+| link:task_dc_na_hci.html["虛擬中心NetApp HCI"] | 基礎架構 
+
+
+| link:task_dc_na_cdot.html["NetApp ONTAP 資料管理軟體"] | 基礎架構 
+
+
+| link:task_dc_na_cdot.html["NetApp ONTAP Select"] | 基礎架構 
+
+
+| link:task_dc_na_solidfire.html["NetApp SolidFire ®全快閃陣列"] | 基礎架構 
+
+
+| link:task_dc_na_storagegrid.html["NetApp StorageGRID"] | 基礎架構 
+
+
+| link:task_config_telegraf_netstat.html["Netstat"] | 服務 
+
+
+| link:task_config_telegraf_nginx.html["恩靈思"] | 服務 
+
+
+| link:task_config_telegraf_node.html["節點"] | 服務 
+
+
+| link:task_dc_nutanix.html["Nutanix NX系列"] | 基礎架構 
+
+
+| link:task_dc_openstack.html["OpenStack"] | 基礎架構 
+
+
+| link:task_config_telegraf_openzfs.html["OpenZFS"] | 服務 
+
+
+| link:task_dc_oracle_zfs.html["Oracle ZFS儲存設備"] | 基礎架構 
+
+
+| link:task_config_telegraf_postgresql.html["PostgreSQL"] | 服務 
+
+
+| link:task_config_telegraf_puppetagent.html["Puppet代理程式"] | 服務 
+
+
+| link:task_dc_pure_flasharray.html["Pure Storage FlashArray"] | 基礎架構 
+
+
+| link:task_dc_redhat_virtualization.html["Red Hat虛擬化"] | 基礎架構 
+
+
+| link:task_config_telegraf_redis.html["紅皮"] | 服務 
+
+
+| link:task_config_telegraf_rethinkdb.html["RethinkDB"] | 服務 
+
+
+| link:task_config_telegraf_agent.html#rhel-and-centos["RHEL & CentOS"] | 服務 
+
+
+| link:task_config_telegraf_agent.html#ubuntu-and-debian["Ubuntu & DEBIAN"] | 服務 
+
+
+| link:task_dc_vmware.html["VMware vSphere"] | 基礎架構 
+
+
+| link:task_config_telegraf_agent.html#windows["Windows"] | 服務 
+
+
+| link:task_config_telegraf_zookeeper.html["Zookkeeper"] | 服務 
+|===

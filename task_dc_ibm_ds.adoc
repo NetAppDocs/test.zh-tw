@@ -1,0 +1,122 @@
+---
+sidebar: sidebar 
+permalink: task_dc_ibm_ds.html 
+keywords: data collector, IBM DS6xxx, IBM DS6xxx, IBM, IBM DS 
+summary: 設定系統儲存設備DS8000系列資料收集器。 
+---
+= IBM System Storage DS8000系列資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+IBM DS（CLI）資料收集器支援DS6xxx和DS8xxx裝置的庫存和效能資料擷取。
+
+支援DS3xxx、DS4xxx和DS5xxx裝置 link:task_dc_na_eseries.html["NetApp E系列資料收集器"]。如需支援的機型和韌體版本、請參閱Cloud Insights 《支援參考表》。
+
+
+
+== 術語
+
+從IBM DS資料收集器取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 磁碟機模組 | 磁碟 
+
+
+| 儲存映像 | 儲存設備 
+
+
+| 範圍集區 | 儲存節點 
+
+
+| 固定區塊Volume | Volume 
+
+
+| 主機FC啟動器（已對應） | Volume遮罩 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料整理的每個案例。
+
+
+
+== 需求
+
+您需要下列項目來設定此資料收集器：
+
+* 每個DS陣列的IP位址
+* 每個DS陣列上的唯讀使用者名稱和密碼
+* 安裝在Cloud Insights SUREAU上的第三方軟體：IBM _dscli
+* 存取驗證：使用使用者名稱和密碼執行_dscl__命令
+* 連接埠需求：80、443和750
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| DS儲存設備 | DS裝置的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | DS CLI的使用者名稱 
+
+
+| 密碼 | DS CLI的密碼 
+
+
+| _dscli執行檔路徑 | _dscli執行檔的完整路徑 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔（分鐘）。預設值為40。 
+
+
+| 儲存設備顯示名稱 | IBM DS儲存陣列名稱 
+
+
+| 庫存排除裝置 | 要從庫存集合中排除的裝置序號清單、以逗號分隔 
+
+
+| 效能意見調查時間間隔（秒） | 預設值為300。 
+
+
+| 效能篩選器類型 | 包括：僅從清單上的裝置收集資料。排除：不會從這些裝置收集資料 
+
+
+| 效能篩選器裝置清單 | 要納入或排除在效能集合之外的裝置ID清單、以逗號分隔 
+|===
+
+
+== 疑難排解
+
+如果您在使用此資料收集器時遇到問題、請嘗試下列事項：
+
+
+
+==== 庫存
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 錯誤包含：CMUC00192E、CMUC00191E或CMUC00190E | *驗證輸入的認證資料和IP位址。*嘗試透過網路管理主控台與陣列通訊 https://${ip}:8452/DS8000/Console[]。使用已設定的資料收集器IP來取代$｛IP｝。 
+
+
+| 錯誤：*無法執行程式*執行命令時發生錯誤 | * Cloud Insights 從「收購單元」中、在CLI的主目錄/Lib中開啟CMD * Open CLI/CFX檔案、然後檢查屬性Java_install、編輯值以符合您的環境*顯示此機器上安裝的Java版本、輸入： 「Java -version」* Ping發出CLI命令中指定的IBM Storage裝置IP位址。*如果以上皆正常運作、請手動執行CLI命令 
+|===
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

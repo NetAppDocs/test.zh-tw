@@ -1,0 +1,102 @@
+---
+sidebar: sidebar 
+permalink: task_dc_emc_powerstore.html 
+keywords: data collector, PowerStore, EMC, DELL 
+summary: 設定Dell EMC PowerStore資料收集器。 
+---
+= Dell EMC PowerStore資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+EMC PowerStore資料收集器會從EMC PowerStore儲存設備收集庫存資訊。對於組態、資料收集器需要儲存處理器的IP位址、以及唯讀使用者名稱和密碼。
+
+EMC PowerStore資料收集器會收集PowerStore在其他儲存陣列之間協調的磁碟區對磁碟區複寫關係。顯示每個PowerStore叢集的儲存陣列、並針對該叢集上的節點和儲存連接埠收集庫存資料。Cloud Insights不會收集儲存資源池或Volume資料。
+
+
+
+== 術語
+
+從這個資料收集器取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 主機 | 主機 
+
+
+| 主機磁碟區對應 | 主機磁碟區對應 
+
+
+| 硬體（在「Extra _details」（額外詳細資料）物件下有磁碟機）：磁碟機 | 磁碟 
+
+
+| 應用裝置 | StoragePool 
+
+
+| 叢集 | 儲存陣列 
+
+
+| 節點 | StorageNode 
+
+
+| FC_port | 連接埠 
+
+
+| Volume | Volume 
+
+
+| 內部Volume | 檔案系統 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+設定此資料收集器需要下列資訊：
+
+* 儲存處理器的IP位址或完整網域名稱
+* 唯讀使用者名稱和密碼
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| PowerStore閘道 | PowerStore儲存設備的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | PowerStore的使用者名稱 
+
+
+| 密碼 | PowerStore使用的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| HTTPS連接埠 | 預設值為443 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為60分鐘。 
+|===
+Cloud Insight的PowerStore效能集合運用了PowerStore的5分鐘精細資料來源。因此Cloud Insights 、每五分鐘就會對該資料進行一次驗證、這是無法設定的。
+
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

@@ -1,0 +1,77 @@
+---
+sidebar: sidebar 
+permalink: kubernetes_landing_page.html 
+keywords: telegraf, installation, install, kubernetes, pods, clusters, filters, filtering, k8s 
+summary: Kubernetes登陸頁面說明 
+---
+= Kubernetes叢集概觀
+:allow-uri-read: 
+
+
+[role="lead"]
+功能強大的《支援資源管理程式》Cloud Insights 工具可顯示Kubernetes叢集的整體健全狀況和使用狀況、讓您輕鬆深入調查領域。
+
+按一下*儀表板> Kubernetes Explorer*即可開啟Kubernetes叢集概觀頁面。本總覽頁面包含各式各樣的一覽資訊。
+
+
+NOTE: 本頁及後續Kubernetes Explorer頁面各區段中以藍色顯示的數字（例如節點/ pod狀態、命名空間計數等）、是顯示這些數字背後詳細資料的相關查詢頁面連結。
+
+image:Kubernetes_Cluster_Overview_Page.png["Kubernetes總覽"]
+
+
+
+=== 叢集使用量總覽
+
+image:Kubernetes_Cluster_List.png["叢集清單總覽"]
+
+叢集清單會顯示環境中每個叢集的下列使用資訊：
+
+* CPU：使用中的CPU總容量百分比
+* 記憶體：使用的總記憶體百分比
+* 儲存設備：使用中儲存設備總數的百分比
+
+
+您可以依下列任一因素來排序叢集清單：
+
+* 節點與Pod警示層級（預設）
+* 叢集名稱
+* 節點數
+* 運算使用率最高
+* 運算使用率最低
+* 儲存設備使用率最高
+* 儲存設備使用率最低
+
+
+按一下「叢集名稱」將會開啟 link:kubernetes_cluster_detail.html["*詳細資料頁*"] 適用於該叢集
+
+
+
+=== 節點和Pod狀態
+
+image:Kubernetes_Node_Pod_Status.png["節點和Pod狀態"]
+
+
+
+=== 命名空間
+
+畫面右側列出每個叢集使用的前三個命名空間。按一下「*全部*」連結以查看叢集的所有命名空間。
+
+按一下命名空間將會開啟「命名空間詳細資料」頁面。
+
+image:Kubernetes_Namespaces.png["命名空間"]
+
+
+
+=== 精簡篩選條件
+
+當您開始篩選時、您會看到根據目前文字建立*萬用字元篩選器*的選項。選取此選項會傳回符合萬用字元運算式的所有結果。您也可以使用Not或and建立* Expressions *、或是選取「無」選項來篩選欄位中的null值。
+
+image:Filter_Kubernetes_Explorer.png["在K8S檔案總管中使用萬用字元進行篩選"]
+
+根據萬用字元或運算式（例如 不、和、「無」等）會在篩選欄位中以深藍色顯示。您直接從清單中選取的項目會以淺藍色顯示。
+
+image:Filter_Kubernetes_Explorer_2.png["顯示萬用字元和所選項目的篩選器"]
+
+Kubernetes篩選器是關聯式的、也就是說、如果您在特定節點頁面上、pod_name篩選器只會列出與該節點相關的Pod。此外、如果您套用特定命名空間的篩選器、則pod_name篩選器只會在該節點_and中列出該命名空間中的Pod。
+
+請注意、萬用字元與運算式篩選功能可搭配文字或清單使用、但不能搭配數值、日期或布爾值使用。

@@ -1,0 +1,112 @@
+---
+sidebar: sidebar 
+permalink: task_dc_ibm_xiv.html 
+keywords: IBM, XIV, SAN, A9000 
+summary: 設定IBM XIV/A9000資料收集器。 
+---
+= 設定IBM XIV/A9000資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+IBM XIV和A9000（CLI）資料收集器會使用XIV命令列介面來收集庫存資料、同時透過撥打XIV/A9000陣列的SMI-S呼叫來收集效能、該陣列在連接埠7778上執行SMI-S供應商。
+
+
+
+== 術語
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 磁碟 | 磁碟 
+
+
+| 儲存系統 | 儲存設備 
+
+
+| 儲存資源池 | 儲存資源池 
+
+
+| Volume | Volume 
+|===
+
+
+== 需求
+
+若要設定及使用此資料收集器、必須符合下列需求：
+
+* 連接埠需求：TCP連接埠7778
+* 唯讀使用者名稱和密碼
+* XIV CLI必須安裝在AU上
+
+
+
+
+== 效能要求
+
+以下是收集效能的需求：
+
+* SMI-S Agent 1.4或更新版本
+* 在陣列上執行SMI-S相容的CIMService。大多數XIV陣列預設都安裝了CIMDServer。
+* 必須為CIMDServer提供使用者登入資訊。登入必須具有陣列組態和內容的完整讀取權限。
+* SMI-S命名空間。預設為root/IBM。這可在CIMServer中設定。
+* 連接埠需求：HTTP為5988、HTTPS為5989。
+* 請參閱下列連結、瞭解如何建立SMI-S效能集合的帳戶： http://publib.boulder.ibm.com/infocenter/tivihelp/v4r1/index.jsp?topic=%2Fcom.ibm.tpc_V41.doc%2Ffqz0_t_adding_cim_agent.html[]
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| XIV IP位址 | XIV儲存設備的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | XIV儲存設備的使用者名稱 
+
+
+| 密碼 | XIV儲存設備的密碼 
+
+
+| XIV CLI目錄的完整路徑 | 包含XIV CLI的資料夾完整路徑 
+
+
+| SMI-S主機IP位址 | SMI-S主機的IP位址 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為40分鐘。 
+
+
+| SMI-S傳輸協定 | 用於連線至SMI-S供應商的傳輸協定。也會顯示預設連接埠。 
+
+
+| 置換SMI-S連接埠 | 如果空白、請使用「連線類型」欄位中的預設連接埠、否則請輸入要使用的連線連接埠 
+
+
+| 使用者名稱 | SMI-S Provider主機的使用者名稱 
+
+
+| 密碼 | SMI-S Provider主機的密碼 
+
+
+| 效能意見調查時間間隔（秒） | 效能輪詢之間的時間間隔。預設值為300秒。 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

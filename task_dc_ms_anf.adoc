@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: task_dc_ms_anf.html 
+keywords: data collector, azure, Netapp files, anf 
+summary: 設定Azure NetApp Files 資料收集器。 
+---
+= 設定Azure NetApp Files 資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+使用VMware資料收集器取得庫存和效能資料。Cloud Insights Azure NetApp Files
+
+
+
+== 需求
+
+您需要下列資訊來設定此資料收集器。
+
+* 連接埠需求：443 HTTPS
+* Azure管理REST IP（management.azure.com）
+* Azure服務主要用戶端ID（使用者帳戶）
+* Azure服務主要驗證金鑰（使用者密碼）
+* 您必須設定Azure帳戶Cloud Insights 才能進行不必要的探索。
++
+一旦帳戶設定正確、並在Azure中註冊應用程式、您就會擁有必要的認證資料、以便使用Cloud Insights 下列功能探索Azure執行個體。下列連結說明如何設定帳戶以進行探索：
+
+
+
+https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal[]
+
+
+
+== 組態
+
+根據下表、將資料輸入資料收集器欄位：
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| Azure服務主要用戶端ID | Azure的登入ID 
+
+
+| Azure租戶ID | Azure租戶ID 
+
+
+| Azure服務主要驗證金鑰 | 登入驗證金鑰 
+
+
+| 我瞭解Microsoft向我索取API要求 | 請勾選此選項、確認您瞭解Microsoft會針對Insight Polling所提出的API要求向您提出帳單。 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 預設值為60 
+|===
+
+
+== 疑難排解
+
+* 您的ANF資料收集器所使用的認證資料、不得存取任何包含ANF Volume的Azure訂閱。
+* 如果讀取器存取導致效能集合失敗、請嘗試在資源群組層級授予參與者存取權。
+
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

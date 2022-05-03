@@ -1,0 +1,22 @@
+---
+sidebar: sidebar 
+permalink: concept_telegraf_display_options.html 
+keywords: telegraf, data, display, 
+summary: Telegraf資料顯示選項 
+---
+= 轉型指標
+:allow-uri-read: 
+
+
+[role="lead"]
+針對小工具中的某些指標提供不同的*轉換*選項（特別是稱為「自訂」或「整合指標」的指標、例如Kubernetes、《進階資料》、「電話介面」外掛程式等）、讓您以多種方式顯示資料。Cloud Insights ONTAP將可轉型的度量新增至小工具時、系統會顯示下拉式清單、提供下列轉換選項：
+
+無:: 資料會顯示為「現用」、不會有任何操作。
+費率:: 目前值除以上次觀察後的時間範圍。
+累計:: 先前值和目前值總和的累積。
+差異:: 先前觀察值與目前值之間的差異。
+差異率:: 差異值除以上次觀察後的時間範圍。
+累計率:: 累計值除以上次觀察後的時間範圍。
+
+
+請注意、轉換指標並不會變更基礎資料本身、只會變更資料的顯示方式。

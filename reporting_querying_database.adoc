@@ -1,0 +1,127 @@
+---
+sidebar: sidebar 
+permalink: reporting_querying_database.html 
+summary: 使用REST API直接查詢報告資料庫。Cloud Insights 
+keywords: reporting, cognos, data warehouse, dwh, API 
+---
+= 透過API存取報告資料庫
+:allow-uri-read: 
+
+
+[role="lead"]
+利用功能強大的API、使用者無需經過Cognos報告環境、即可直接查詢功能強大的功能。Cloud Insights Cloud Insights
+
+
+NOTE: 本文件是指Cloud Insights 《不收集資料》功能、可在中取得 link:/concept_subscribing_to_cloud_insights.html#editions["Premium Edition"]。
+
+
+
+== OData
+
+以下是《需求報告API Cloud Insights link:https://www.odata.org/["OData v4"] （開放式資料傳輸協定）標準、用於查詢報告資料庫。如需詳細資訊或深入瞭解、請參閱 link:https://www.odata.org/getting-started/basic-tutorial/["本教學課程"] 在OData上。
+
+所有申請都會從URL _https://<Cloud Insights URL>/REST / v1/dwh-management / OData_開始
+
+
+
+== 產生APIKey
+
+深入瞭解 link:API_Overview.html["資訊API Cloud Insights"]。
+
+若要產生API金鑰、請執行下列動作：
+
+* 登入Cloud Insights 您的不完整環境、然後選取*管理> API存取*。
+* 按一下「+ API存取權杖」。
+* 輸入名稱與說明。
+* 針對類型、選擇_Data倉儲。
+* 將權限設為讀取/寫入。
+* 設定期望到期日。
+* 按一下「Save（儲存）」、然後*複製金鑰並將其儲存*到安全的地方。您稍後將無法存取完整金鑰。
+
+
+APIkeys適用於_Sync_或_AsynSync_。
+
+
+
+== 直接查詢資料表
+
+有了API金鑰、現在就能直接查詢報告資料庫。長URL可簡化為\https://.../odata/以供顯示、而非完整的\https://<Cloud Insights url>/rest / v1/dwh管理/OData/
+
+請嘗試類似的簡單查詢
+
+* https://<Cloud Insights URL>>/ REST / v1/dwh-management / OData/dwh_custom
+* https://<Cloud Insights URL>>/ REST / v1/dwh-management / OData/dwh_inventory
+* https://<Cloud Insights URL>>/ REST / v1/dwh管理/ OData/dwh庫存/儲存設備
+* https://<Cloud Insights URL>>/ REST / v1/dwh管理/OData/dwh目錄/磁碟
+* \https://.../odata/dwh_custom/custom_queries
+
+
+
+
+== REST API範例
+
+所有通話的URL都是：_\https://<Cloud Insights url>/rest / v1/dwh-management / OData_。
+
+* Get /｛schema｝/*-從報告資料庫擷取資料、至少需要_Guest角色。
+
+
+格式：_\https://<Cloud Insights url>/rest / v1/dwh管理/OData/<schema_name>//<query>_
+
+範例：
+
+ https://<domain>/rest/v1/dwh-management/odata/dwh_inventory/fabric?$count=true&$orderby=name
+結果：
+
+....
+{
+   "@odata.context": "$metadata#fabric",
+   "@odata.count": 2,
+   "value": [
+       {
+           "id": 851,
+           "identifier": "10:00:50:EB:1A:40:3B:44",
+           "wwn": "10:00:50:EB:1A:40:3B:44",
+           "name": "10:00:50:EB:1A:40:3B:44",
+           "vsanEnabled": "0",
+           "vsanId": null,
+           "zoningEnabled": "0",
+           "url": "https://<domain>/web/#/assets/fabrics/941716"
+       },
+       {
+           "id": 852,
+           "identifier": "10:00:50:EB:1A:40:44:0C",
+           "wwn": "10:00:50:EB:1A:40:44:0C",
+           "name": "10:00:50:EB:1A:40:44:0C",
+           "vsanEnabled": "0",
+           "vsanId": null,
+           "zoningEnabled": "0",
+           "url": "https://<domain>/web/#/assets/fabrics/941836"
+        }
+    ]
+}
+....
+
+
+== 實用秘訣
+
+使用報告API查詢時、請謹記下列事項。
+
+* 查詢有效負載必須是有效的Json字串
+* 查詢有效負載必須包含在單一行中
+* 雙引號必須轉義、例如：「
+* 索引標籤支援為\t
+* 避免留言
+* 支援大小寫較低的表格名稱
+
+
+此外：
+
+* 需要2個標頭：
++
+** 名稱「X-CloudInsights - ApikKey」
+** 屬性值「<apikey>」
+
+
+
+
+您的API金鑰將專屬於Cloud Insights 您的整個環境。

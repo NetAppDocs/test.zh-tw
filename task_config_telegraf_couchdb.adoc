@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_couchdb.html 
+keywords: telegraf, installation, install, couchdb 
+summary: CouchDB資料收集器組態 
+---
+= CouchDB資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+使用此資料收集器從CouchDB收集數據。Cloud Insights
+
+
+
+== 安裝
+
+. 從*管理>資料收集器*、按一下*+資料收集器*。在*服務*下、選擇CouchDB。
++
+選取安裝Telegraf代理程式的作業系統或平台。
+
+. 如果您尚未安裝代理程式以供收集、或想要為不同的作業系統或平台安裝代理程式、請按一下「_顯示指示_」以展開 link:task_config_telegraf_agent.html["代理程式安裝"] 說明。
+. 選取要搭配此資料收集器使用的代理程式存取金鑰。您可以按一下「*+代理程式存取金鑰*」按鈕來新增代理存取金鑰。最佳實務做法：只有當您想要將資料收集器分組時、才使用不同的代理程式存取金鑰、例如依作業系統/平台。
+. 請依照組態步驟設定資料收集器。這些指示會因您用來收集資料的作業系統或平台類型而有所不同。
+
+
+image:CouchDBDCConfigLinux.png["CouchDB組態"]
+
+
+
+== 設定
+
+如需相關資訊、請參閱 link:http://docs.couchdb.org/en/stable/["CouchDB文件"]。
+
+
+
+== 物件與計數器
+
+收集下列物件及其計數器：
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 物件： | 識別碼： | 屬性： | 資料點： 
+
+
+| CouchDB | 命名空間伺服器 | 節點名稱節點IP | 驗證快取命中驗證快取遺失資料庫讀取資料庫寫入資料庫開啟OS檔案最長要求時間最短要求時間http要求方法複製http要求方法刪除http要求方法取得http要求方法標題http要求方法張貼http要求方法放置狀態代碼200狀態代碼 201狀態代碼202狀態代碼301狀態代碼304狀態代碼400狀態代碼401狀態代碼4040狀態代碼4040狀態代碼4040狀態代碼4040狀態代碼409狀態代碼412狀態代碼500 
+|===
+
+
+== 疑難排解
+
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面。

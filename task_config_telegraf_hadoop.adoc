@@ -1,0 +1,162 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_hadoop.html 
+keywords: telegraf, installation, install, Hadoop 
+summary: Hadoop資料收集器組態 
+---
+= Hadoop Data Collector
+:allow-uri-read: 
+
+
+[role="lead"]
+使用此資料收集器從Hadoop收集指標。Cloud Insights
+
+
+
+== 安裝
+
+. 從*管理>資料收集器*、按一下*+資料收集器*。在*服務*下、選擇Hadoop。
++
+選取安裝Telegraf代理程式的作業系統或平台。
+
+. 如果您尚未安裝代理程式以供收集、或想要為不同的作業系統或平台安裝代理程式、請按一下「_顯示指示_」以展開 link:task_config_telegraf_agent.html["代理程式安裝"] 說明。
+. 選取要搭配此資料收集器使用的代理程式存取金鑰。您可以按一下「*+代理程式存取金鑰*」按鈕來新增代理存取金鑰。最佳實務做法：只有當您想要將資料收集器分組時、才使用不同的代理程式存取金鑰、例如依作業系統/平台。
+. 請依照組態步驟設定資料收集器。這些指示會因您用來收集資料的作業系統或平台類型而有所不同。
+
+
+image:HadoopDCConfigLinux-1.png["Hadoop組態"]
+image:HadoopDCConfigLinux-2.png["Hadoop組態"]
+
+
+
+== 設定
+
+完整的Hadoop部署包含下列元件：
+
+* NameNode：Hadoop分散式檔案系統（HDFS）主要系統。協調一系列DataNode。
+* 次要NameNode：主NameNode的暖容錯移轉。在Hadoop中、不會自動升級至NameNode。次要NameNode會從NameNode收集資訊、以便在需要時隨時升級。
+* DataNode：資料的實際擁有者。
+* 資源管理器：運算主系統（Yarn）。協調一系列的NodeManager。
+* NodeManager：運算資源。執行應用程式的實際位置。
+* JobhistoryServer：負責服務所有工作歷程記錄相關要求。
+
+
+Hadoop外掛程式是以Telewraf的Jolokia外掛程式為基礎。例如、需要從所有Hadoop元件收集資訊、需要在所有元件上透過Jolokia設定和公開的JMX。
+
+
+
+==== 相容性
+
+組態是根據Hadoop 2.2.9版開發而成。
+
+
+
+==== 設定
+
+
+
+===== Jolokia代理程式Jar
+
+對於所有個別元件、必須下載Jolokia代理程式Jar檔案的版本。測試版本為 link:https://jolokia.org/download.html["約洛基亞代理商1.6.0"]。
+
+以下說明假設下載的Jar檔案（jolokia -jvm-1.6.0-agent.jar）位於「/op/Hadoop /lib/」位置。
+
+
+
+===== NameNode
+
+若要設定NameNode以公開Jolokia API、您可以在<Hadoop主頁>/etc/Hadoop / Hadoop -env.sh中設定下列項目：
+
+[listing]
+----
+export HADOOP_NAMENODE_OPTS="$HADOOP_NAMENODE_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7800,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8000 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8000 above) and Jolokia (7800). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== 次要NameNode
+
+若要將次要NameNode設定為公開Jolokia API、您可以在<Hadoop主目錄>/etc/Hadoop / Hadoop -env.sh中設定下列項目：
+
+[listing]
+----
+export HADOOP_SECONDARYNAMENODE_OPTS="$HADOOP_SECONDARYNAMENODE_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7802,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8002 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8002 above) and Jolokia (7802). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== DataNode
+
+若要將DataNode設定為公開Jolokia API、您可以在<Hadoop主頁>/etc/Hadoop / Hadoop -env.sh中設定下列項目：
+
+[listing]
+----
+export HADOOP_DATANODE_OPTS="$HADOOP_DATANODE_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7801,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8001 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8001 above) and Jolokia (7801). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== 資源管理程式
+
+若要設定資源管理程式以公開Jolokia API、您可以在<Hadoop主頁>/etc/Hadoop / Hadoop -env.sh中設定下列項目：
+
+[listing]
+----
+export YARN_RESOURCEMANAGER_OPTS="$YARN_RESOURCEMANAGER_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7803,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8003 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8003 above) and Jolokia (7803). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== NodeManager
+
+若要設定NodeManager以公開Jolokia API、您可以在<Hadoop主頁>/etc/Hadoop / Hadoop -env.sh中設定下列項目：
+
+[listing]
+----
+export YARN_NODEMANAGER_OPTS="$YARN_NODEMANAGER_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7804,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8004 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8004 above) and Jolokia (7804). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+===== 作業歷史伺服器
+
+若要將JobHistoryServer設定為公開Jolokia API、您可以在<Hadoop主頁>/etc/Hadoop / Hadoop -env.sh中設定下列項目：
+
+[listing]
+----
+export HADOOP_JOB_HISTORYSERVER_OPTS="$HADOOP_JOB_HISTORYSERVER_OPTS -javaagent:/opt/hadoop/lib/jolokia-jvm-1.6.0-agent.jar=port=7805,host=0.0.0.0 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8005 -Dcom.sun.management.jmxremote.password.file=$HADOOP_HOME/conf/jmxremote.password"
+You can choose a different port for JMX (8005 above) and Jolokia (7805). If you have an internal IP to lock Jolokia onto you can replace the "catch all" 0.0.0.0 by your own IP. Notice this IP needs to be accessible from the telegraf plugin. You can use the option '-Dcom.sun.management.jmxremote.authenticate=false' if you don't want to authenticate. Use at your own risk.
+----
+
+
+== 物件與計數器
+
+收集下列物件及其計數器：
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 物件： | 識別碼： | 屬性： | 資料點： 
+
+
+| Hadoop次要NameNode | 叢集命名空間伺服器 | 節點名稱節點IP編譯資訊版本 | GC計數GC複本數GC標記掃出精簡型計數GC號碼資訊臨界值超過GC號碼警告臨界值超過GC時間GC複製時間GC標記掃出精簡型時間GC額外睡眠時間總計記錄錯誤計數記錄致命計數記錄資訊計數記錄警告已提交記憶體堆積 記憶體堆積最大記憶體堆積已用記憶體最大記憶體非堆積已認可記憶體非堆積最大記憶體非堆積已用執行緒封鎖執行緒新執行緒可執行緒終止執行緒定時等待執行緒 
+
+
+| Hadoop NodeManager | 叢集命名空間伺服器 | 節點名稱節點IP | 容器已配置記憶體分配記憶體已配置的連接埠化虛擬核心已配置的連接埠化虛擬核心已配置記憶體可用的虛擬核心可用目錄錯誤的本機目錄錯誤的記錄快取大小未配置乾淨容器啟動期間平均時間容器啟動持續時間作業容器已完成的容器數失敗容器正在插入容器已終止容器已啟動 容件重新輸入容器在故障時回溯執行磁碟使用率的容器良好本機目錄磁碟使用率良好記錄目錄位元組刪除私有位元組刪除執行投機位元組刪除的公有Container總數隨機播放連線隨機播放輸出位元組隨機播放輸出失敗隨機播放輸出OK GC Count GC複本數GC標記掃出 壓縮計數GC號碼資訊臨界值超過GC號碼警告臨界值超過GC時間GC複製時間GC標記掃出精簡時間GC額外睡眠時間總計記錄錯誤計數記錄致命計數記錄資訊計數記錄警告計數記憶體堆積已認可記憶體堆最大記憶體已使用記憶體最大值 記憶體非堆積已認可記憶體非堆積最大記憶體非堆積已用執行緒已封鎖執行緒新執行緒可執行緒已終止執行緒已定時等待執行緒 
+
+
+| Hadoop資源管理程式 | 叢集命名空間伺服器 | 節點名稱節點IP | ApplicationMaster啟動延遲平均ApplicationMaster啟動延遲數ApplicationMaster登錄延遲平均ApplicationMaster登錄延遲數NodeManager Active Number NodeManager解排數NodeManager解排數NodeManager遺失數NodeManager重新開機數NodeManager關機數NodeManager健全數NodeManager記憶體限制NodeManager虛擬核心限制已使用的容量Active應用程式使用者 Aggregate Container分配的Aggregate Container預先清空Aggregate Container釋出Aggregate記憶體秒數預先清空Aggregate節點本機Container已分配的Aggregate交換器Container已分配的Aggregate Ack本機Container已分配的Aggregate虛擬核心數秒數預先清空容器已分配的記憶體已分配的虛 第一個容器配置延遲應用程式完成數應用程式失敗應用程式終止應用程式擱置中應用程式執行應用程式提交的應用程式記憶體可用的虛擬核心可用的容器擱置中虛擬核心擱置中容器保留的記憶體保留的虛擬核心保留的記憶體應用程式主控核心使用的虛擬核心應用程式主控用容量已用的GC計數複本數 GC標記掃出精巧型計數GC號碼資訊臨界值超過GC號碼警告臨界值超過GC時間GC複製時間GC標記掃出精簡型時間GC額外睡眠時間總計記錄錯誤計數記錄致命計數記錄資訊計數記錄警告計數記憶體堆積已認可記憶體堆積最大記憶體堆積 已用記憶體最大記憶體非堆積已認可記憶體非堆積最大記憶體非堆積已用執行緒封鎖執行緒新執行緒可執行緒終止執行緒定時等待執行緒 
+
+
+| Hadoop DataNode | 叢集命名空間伺服器 | 節點名稱節點IP叢集ID版本 | 收發器計數傳輸進行中快取容量快取已用容量已使用的DFs已預估容量遺失上次Volume故障率區塊數快取區塊數失敗快取區塊數無法取消快取磁碟區數失敗容量剩餘GC計數GC複本數GC標記掃出精簡型數GC數 資訊臨界值超過GC數警告臨界值超過GC時間GC複製時間GC標記掃出精簡時間GC額外睡眠時間總計記錄錯誤計數記錄致命計數記錄資訊計數記錄警告計數記憶體堆積已認可記憶體最大記憶體堆已使用記憶體最大記憶體未認可的記憶體 記憶體非堆積最大記憶體非堆積使用中執行緒封鎖執行緒新執行緒可執行執行緒終止執行緒定時等待執行緒 
+
+
+| Hadoop NameNode | 叢集命名空間伺服器 | 節點名稱節點IP交易ID上次載入後的寫入時間HA狀態檔案系統狀態區塊集區ID叢集ID編譯資訊不同版本計數版本 | 區塊容量區塊總容量已用容量已用容量已用非DFS區塊損毀預估容量遺失總區塊數超出活動訊號檔案總數檔案系統鎖定佇列長度區塊遺失區塊使用係數1用戶端的複寫活動資料節點不使用資料節點解除停用資料節點解除停用Live 資料節點取消配置加密分區編號資料節點在建構資料節點下輸入維護檔案在維護中失效資料節點在維護中即時資料節點即時儲存過時複寫擱置逾時資料節點訊息擱置的區塊擱置刪除區塊擱置的複寫區塊延遲區塊排程的複寫快照快照表格目錄 資料節點過時檔案自上次檢查點交易以來的總負載同步計數總負載自上次記錄捲動區塊複寫磁碟區失敗以來的交易總數同步時間總計物件數上限作業區塊新增作業允許快照作業區塊批次作業區塊佇列作業區塊已接收及刪除作業報告平均時間 作業區塊報告編號快取報告平均時間快取報告編號作業建立檔案作業建立快照作業建立symlink作業刪除檔案作業刪除快照作業不允許快照作業檔案進出附加檔案建立檔案刪除檔案清單檔案重新命名檔案遭截取檔案系統載入時間作業產生 EDEK平均時間營運產生EDEK營運取得額外的資料節點區塊取得位置取得編輯平均時間取得編輯編號取得影像平均時間取得影像編號營運取得連結目標營運取得上市作業清單Snapshottable目錄複寫未排程編號放置影像平均時間放置影像編號 作業重新命名快照資源檢查時間平均資源檢查時間編號安全模式時間作業Snapshot比較報告作業儲存區塊報告複寫成功同步平均時間作業同步處理次數複寫逾時作業總計交易平均時間同步交易次數EDEK Warmup時間平均EDEK Warmup 已用空間快取容量快取已用容量可用區塊集區已用剩餘百分比已用執行緒GC計數GC複本數GC標記掃出小型數GC號碼資訊臨界值超出GC號碼警告臨界值超過GC時間GC複製時間GC標記掃出精簡時間 GC額外睡眠時間總計記錄錯誤計數記錄致命計數記錄資訊計數記錄警告計數記憶體堆積已認可記憶體堆積最大記憶體堆已使用記憶體最大記憶體非堆積已認可記憶體非堆積最大記憶體非堆積已使用執行緒已封鎖執行緒新執行緒可執行緒已終止執行緒已計時 等待中的執行緒 
+
+
+| Hadoop作業歷史伺服器 | 叢集命名空間伺服器 | 節點名稱節點IP | GC計數GC複本數GC標記掃出精簡型計數GC號碼資訊臨界值超過GC號碼警告臨界值超過GC時間GC複製時間GC標記掃出精簡型時間GC額外睡眠時間總計記錄錯誤計數記錄致命計數記錄資訊計數記錄警告已提交記憶體堆積 記憶體堆積最大記憶體堆積已用記憶體最大記憶體非堆積已認可記憶體非堆積最大記憶體非堆積已用執行緒封鎖執行緒新執行緒可執行緒終止執行緒定時等待執行緒 
+|===
+
+
+== 疑難排解
+
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面。

@@ -1,0 +1,48 @@
+---
+sidebar: sidebar 
+permalink: reporting_create_example.html 
+summary: 請使用此程序、使用預先定義Cloud Insights 的功能表建立報告。 
+keywords: reporting, cognos, data warehouse, dwh, create, report 
+---
+= 建立報告（範例）
+:allow-uri-read: 
+
+
+[role="lead"]
+請使用本範例中的步驟、針對多個資料中心的儲存設備和儲存資源池實體容量、產生簡單的報告。
+
+.步驟
+. 在工具列中、按一下*[+]*
+. 按一下*報告*
+. 按一下*範本>空白*
+. 按一下*主題> Cool Blue > OK*
++
+隨即顯示來源和資料索引標籤
+
+. 按一下*來源>[+]*
+. 在*開啟檔案*對話方塊中、按一下*團隊內容>套件*
++
+此時會顯示可用套件的清單。
+
+. 按一下*儲存與儲存資源池容量> Open*
+. 按一下*[+]*
++
+隨即顯示報告的可用樣式。
+
+. 按一下*清單*
++
+新增適當的清單和查詢名稱
+
+. 按一下「*確定*」
+. 展開_Physical Capacity
+. 擴充至_Data Center_的最低層級
+. 將_Data Center_拖曳至「報告」上標。
+. 展開_Capacity（MB）_
+. 將_Capacity（MB）_拖曳至「報告」上標。
+. 將_使用容量（MB）_拖曳至報告上標。
+. 按一下以執行報告 image:Reporting-RunButton.png["執行"] 並選擇輸出類型。
+
+
+系統會建立類似下列內容的報告：
+
+image:Reporting-Example1.png["報告範例"]

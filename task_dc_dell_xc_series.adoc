@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: task_dc_dell_xc_series.html 
+keywords: data collector, Dell, EMC, xc 
+summary: 設定Dell EMC XC系列資料收集器。 
+---
+= Dell EMC XC系列資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+此資料收集器可用來探索Dell EMC XC系列儲存陣列的庫存與效能資訊。Cloud Insights
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| Prism外部IP位址 | XC伺服器的IP位址 
+
+
+| 使用者名稱 | XC伺服器的使用者名稱 
+
+
+| 密碼 | 用於XC伺服器的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| TCP連接埠 | 用於與XC伺服器進行TCP通訊的連接埠 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為60分鐘。 
+
+
+| 效能意見調查時間間隔（分鐘） | 效能輪詢之間的時間間隔。預設值為300秒。 
+|===
+
+
+== 疑難排解
+
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

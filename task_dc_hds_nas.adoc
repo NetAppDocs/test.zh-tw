@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: task_dc_hds_nas.html 
+keywords: data collector, HDS HNAS, HDS NAS 
+summary: 設定HDS NAS（HNAS）資料收集器。 
+---
+= 設定Hitachi Vantara NAS資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+Hitachi Vantara NAS資料收集器是一種庫存與組態資料收集器、可支援探索HDS NAS叢集。支援探索NFS和CIFS共用、檔案系統（內部磁碟區）和跨區（儲存資源池）Cloud Insights 。
+
+
+
+== 術語
+
+從HNAS資料收集器取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 層級 | 磁碟群組 
+
+
+| 叢集 | 儲存設備 
+
+
+| 節點 | 儲存節點 
+
+
+| 跨距 | 儲存資源池 
+
+
+| 系統磁碟機 | 後端Lun 
+
+
+| 檔案系統 | 內部Volume 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+* 裝置IP位址
+* 連接埠22、SSH傳輸協定
+* 使用者名稱與密碼-權限層級：supervisor
+* 附註：此資料收集器以SSH為基礎、因此主機必須能夠在HNAS本身或叢集所連接的系統管理單元（SMU）上、對TCP 22啟動SSH工作階段。
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| HNAS主機 | HNAS管理主機的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | HNAS CLI的使用者名稱 
+
+
+| 密碼 | HNAS CLI使用的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為30分鐘。 
+|===
+
+
+== 疑難排解
+
+如果您在使用此資料收集器時遇到問題、請嘗試下列事項：
+
+
+
+==== 庫存
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 「錯誤連線」並顯示錯誤訊息「錯誤設定Shell通道：」或「開啟Shell通道時發生錯誤」 | 可能是網路連線問題所造成、或SSH設定錯誤。確認與替代SSH用戶端的連線 
+
+
+| 出現錯誤訊息「Command: xxx as timed out（命令：xxx已逾時）」或「Error rieving data（擷取資料時發生錯誤）」。 | *使用替代SSH用戶端*提高逾時時間來嘗試命令 
+
+
+| 連線時發生「錯誤」或「登入認證無效」、並顯示錯誤訊息「無法與裝置通訊：」 | *檢查IP位址*檢查使用者名稱和密碼*確認與替代SSH用戶端的連線 
+|===
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

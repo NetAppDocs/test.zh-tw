@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: task_dc_emc_xio.html 
+keywords: data collector, XtremeIO, EMC 
+summary: 設定XtremeIO資料收集器。 
+---
+= Dell EMC XtremeIO資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+EMC XtremIO資料收集器會從EMC XtremIO儲存系統取得庫存和效能資料。
+
+
+
+== 需求
+
+若要設定EMC XtremIO（HTTP）資料收集器、您必須具備：
+
+* XtremIO管理伺服器（XMS）主機位址
+* 具有系統管理員權限的帳戶
+* 存取連接埠443（HTTPS）
+
+
+
+
+== 術語
+
+從EMC XtremIO資料收集器取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料來源時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 磁碟（SSD） | 磁碟 
+
+
+| 叢集 | 儲存設備 
+
+
+| 控制器 | 儲存節點 
+
+
+| Volume | Volume 
+
+
+| LUN對應 | Volume Map 
+
+
+| 目標FC啟動器 | Volume遮罩 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料來源的每個案例。
+
+
+
+== 需求
+
+* XtremIO管理伺服器（XMS）主機IP位址
+* XtremIO的系統管理員使用者名稱和密碼
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| XMS主機 | XtremIO管理伺服器的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | XtremIO管理伺服器的使用者名稱 
+
+
+| 密碼 | XtremIO管理伺服器的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| TCP連接埠 | TCP連接埠用於連線至XTremIO管理伺服器。預設值為443。 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為60分鐘。 
+
+
+| 效能意見調查時間間隔（秒） | 效能輪詢之間的時間間隔。預設值為300秒。 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

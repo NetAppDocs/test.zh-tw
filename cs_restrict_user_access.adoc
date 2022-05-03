@@ -1,0 +1,172 @@
+---
+sidebar: sidebar 
+permalink: cs_restrict_user_access.html 
+keywords: alert, snapshot,  attack 
+summary: 有了這個功能、您就能在疑似遭破壞的情況下限制使用者存取權限Cloud Secure 
+---
+= 限制使用者存取
+:allow-uri-read: 
+
+
+[role="lead"]
+一旦偵測到攻擊、Cloud Secure 透過限制使用者存取檔案系統、即可停止攻擊。您可以使用自動回應原則、或從警示或使用者詳細資料頁面手動限制存取。
+
+限制使用者存取時、您應該定義存取限制類型（區塊或唯讀）和時間段。在所選期間結束後、使用者存取權會自動還原。
+
+SMB和NFS傳輸協定均支援存取限制。
+
+限制是透過主機機器的IP位址進行、這表示使用者已從其中存取儲存設備的機器。這些機器IP位址將會被封鎖、無法存取Cloud Secure 由VMware監控的任何儲存虛擬機器（SVM）。
+
+舉例Cloud Secure 來說、我們可以說、此功能可管理10個SVM、而自動回應原則則是針對其中四個SVM進行設定。如果攻擊源自四個SVM之一、則使用者的存取權限將會在所有10個SVM中受到限制。仍會在原始SVM上執行Snapshot。
+
+如果有四個SVM、其中一個SVM設定為CIFS、一個設定為NFS、其餘兩個設定為NFS和CIFS、則如果攻擊源自四個SVM中的任一VM、則所有SVM都會遭到封鎖。
+
+
+
+=== 使用者存取限制的先決條件
+
+客戶必須設定SMB和NFS的匯出原則、才能使用此功能。如果在Data來源收集器中設定NFS和SMB、請遵循下列步驟。
+
+對於NFS、預設會設定匯出原則。根據預設、在SVM中建立NFS服務時、會建立匯出原則。
+
+對於SMB、必須設定匯出原則。
+
+如果您不是使用叢集/ SVM認證、而是使用CsUser、請先依照下列步驟操作、以便Cloud Secure 讓Sfa建立自訂匯出原則規則。
+
+對於具有叢集認證的CsUser、請從ONTAP 下列功能執行：
+
+ security login role create -role csrole -cmddirname "vserver export-policy rule" -access all
+若為具有SVM認證的CsUser、請從ONTAP 下列功能執行：從指令行插入正確的<vservername>：
+
+ security login role create -vserver <vservername> -role csrole -cmddirname "vserver export-policy rule" -access all
+以下是設定預設匯出原則的命令。將命令複製到文字編輯器、並以Vserver的名稱取代<vserver>名稱。然後一次複製每一行、並在ONTAP 整個過程中執行。請注意、您必須先切換至進階模式、才能執行命令。
+
+
+TIP: 這對執行PoC特別有幫助。在您要測試的機器中、SMB可設定如下所示。在PoC期間、在資料來源收集器中、僅啟用SMB/CIFS傳輸協定並停用NFS傳輸協定。
+
+ set -privilege advanced
+ cifs options modify -is-exportpolicy-enabled true -vserver <vserver>
+ export-policy rule create -vserver <vserver> -policyname default -protocol cifs -clientmatch 0.0.0.0/0 -rorule any -rwrule any
+
+NOTE: 用戶端比對是特定位址或子網路（例如10.0.3.212或192.168.5.0/24）、主機名稱或網路群組、例如@netgroup。如果您想要將匯出原則套用至所有可能的IP4位址、請將clientmMATCH設為0.00.0.0/0。
+
+若要檢查_exportpolicy_and _exportpolicy規則_是否已正確設定、請在執行上述命令後執行下列命令。
+
+ cifs options show  -fields is-exportpolicy-enabled -vserver <vserver>
+ export-policy show -vserver <vserver>
+ export-policy rule show -policyname default -vserver <vserver>
+
+
+=== 如何啟用此功能？
+
+* 在「支援」中Cloud Secure 、瀏覽至*管理>自動回應原則>回應原則設定>存取限制*。
+* 將「啟用限制使用者存取」設為_enabled。
+
+
+
+
+=== 如何設定自動使用者存取限制？
+
+* 建立新的攻擊原則或編輯現有的攻擊原則。
+* 選取應監控攻擊原則的SVM。
+* 按一下「限制使用者IP檔案存取」核取方塊。此功能會在選取時啟用。
+* 在「限制使用者存取」下、選取應套用的限制模式。
+* 在「Time Period」（時間期間）下、選取應套用限制的時間。
+* 若要測試自動限制、您可以透過模擬攻擊 link:concept_cs_attack_simulator.html["模擬指令碼"]。
+
+
+
+
+=== 如何知道系統中是否有受限的使用者？
+
+* 在警示清單頁面中、如果任何使用者受到限制、畫面頂端會顯示橫幅。
+* 按一下橫幅即可前往「使用者」頁面。在這種情況下、您可以看到受限使用者的清單。
+* 在「Users」（使用者）頁面中、有一欄名為「IP Access」（IP存取）。在該欄中、會顯示目前的使用者限制狀態。
+
+
+
+
+=== 手動限制及管理使用者存取
+
+* 您可以前往警示詳細資料或使用者詳細資料畫面、然後手動限制或取消限制使用者進入這些畫面。
+
+
+
+
+=== 使用者限制存取歷程記錄
+
+在警示詳細資料與使用者詳細資料頁面的使用者面板中、您可以檢視使用者的限制存取限制歷程記錄：時間、動作（區塊、唯讀、還原）、持續時間、 由、手動/自動及受影響的IP所採取的行動。
+
+
+
+=== 如何停用此功能？
+
+您可以隨時停用此功能。如果系統中有受限的使用者、您必須先還原他們的存取權限。
+
+* 在「支援」中Cloud Secure 、瀏覽至*管理>自動回應原則>回應原則設定>存取限制*
+* 取消選取「啟用限制使用者存取」以停用。
+
+
+所有頁面都會隱藏此功能。
+
+
+
+=== 手動還原IP
+
+如果您的VMware試用版過期、或代理程式/收集器當機、請使用下列步驟手動還原ONTAP 任何來自VMware的IP Cloud Secure 。
+
+. 列出SVM上的所有匯出原則。
++
+....
+contrail-qa-fas8020::> export-policy rule show -vserver <svm name>
+             Policy          Rule    Access   Client                RO
+Vserver      Name            Index   Protocol Match                 Rule
+------------ --------------- ------  -------- --------------------- ---------
+svm_s_____a default         1       nfs3,    cloudsecure_rule,     never
+                                     nfs4,    10.19.12.216
+                                     cifs
+svm_s_____a default         4       cifs,    0.0.0.0/0             any
+                                     nfs
+svm_s_____a test            1       nfs3,    cloudsecure_rule,     never
+                                     nfs4,    10.19.12.216
+                                     cifs
+svm_s_____a test            3       cifs,    0.0.0.0/0             any
+                                     nfs,
+                                     flexcache
+4 entries were displayed.
+....
+. 在SVM上所有以「cloudsecure_rRule」做為用戶端比對的原則中、透過指定其各自的規則索引來刪除所有規則。CloudSecure規則通常為1。
++
+ contrail-qa-fas8020::*> export-policy rule delete -vserver <svm name> -policyname * -ruleindex 1
+. 確保雲端安全規則已刪除（可選的確認步驟）
++
+....
+contrail-qa-fas8020::*> export-policy rule show -vserver <svm name>
+             Policy          Rule    Access   Client                RO
+Vserver      Name            Index   Protocol Match                 Rule
+------------ --------------- ------  -------- --------------------- ---------
+svm_suchitra default         4       cifs,    0.0.0.0/0             any
+                                     nfs
+svm_suchitra test            3       cifs,    0.0.0.0/0             any
+                                     nfs,
+                                     flexcache
+2 entries were displayed.
+....
+
+
+
+
+== 疑難排解
+
+|===
+| 問題 | 試試看 
+
+
+| 有些使用者並未受到限制、但仍有攻擊。 | 1.確定SVM的資料收集器和代理程式處於_Running狀態。如果停止資料收集器和代理程式、則無法傳送命令。Cloud Secure2、這是因為使用者可能使用之前未使用過的新IP、從機器存取儲存設備。使用者透過其存取儲存設備的主機IP位址進行限制。請查看UI（警示詳細資料>此使用者的存取限制歷程記錄>受影響的IP）、以取得受限的IP位址清單。如果使用者從IP與受限IP不同的主機存取儲存設備、則使用者仍可透過不受限IP存取儲存設備。如果使用者嘗試從IP受限的主機存取、則儲存設備將無法存取。 
+
+
+| 手動按一下「限制存取」會顯示「此使用者的IP位址已受到限制」。 | 要限制的IP已受到其他使用者的限制。 
+
+
+| 限制存取失敗、並顯示「已停用SVM的SMB傳輸協定匯出原則使用量」警告。允許使用匯出原則來限制使用者存取功能」 | 如「必要條件」所述、請確定Vserver的-is-exportpolice-enable-option為真。 
+|===

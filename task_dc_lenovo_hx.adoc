@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: task_dc_lenovo_hx.html 
+keywords: data collector, Lenovo, HX 
+summary: 設定Lenovo HX資料收集器。 
+---
+= Lenovo HX資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+Lenovo HX資料收集器會從Lenovo HX儲存系統取得庫存和效能資訊。
+
+
+
+== 需求
+
+設定此資料收集器需要下列資訊：
+
+* 資料收集器的唯一名稱
+* 與資料收集器相關的擷取單位
+* TCP連接埠需求9440
+
+
+
+
+== 術語
+
+從Lenovo HX資料收集器取得下列庫存與效能資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 儲存資源池 | 儲存資源池 
+
+
+| 容器 | 內部Volume 
+
+
+| 節點 | 控制器 
+
+
+| 分享 | 檔案共用 
+
+
+| Nutanix分散式檔案系統（NDF） | 分享 
+
+
+| Volume群組 | 後端LUN 
+|===
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| Prism外部IP位址 | 用於連線至儲存系統的IP位址 
+
+
+| 使用者名稱 | 使用者不想登入儲存系統。預設值為admin。 
+
+
+| 密碼 | Lenovo HX儲存系統的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| TCP連接埠 | TCP連接埠用於連線至Lenovo HX。預設值為9440。 
+
+
+| 庫存輪詢時間間隔 | 庫存輪詢之間的時間間隔。預設值為60分鐘。 
+|===

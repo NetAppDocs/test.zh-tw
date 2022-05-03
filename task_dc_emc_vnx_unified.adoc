@@ -1,0 +1,103 @@
+---
+sidebar: sidebar 
+permalink: task_dc_emc_vnx_unified.html 
+keywords: data collector, VNX, EMC, Dell 
+summary: 設定VNX資料收集器。 
+---
+= 設定Dell EMC VNX Unified Data Collector
+:allow-uri-read: 
+
+
+[role="lead"]
+對於組態設定、Dell EMC VNX Unified（SSH）資料收集器需要控制站的IP位址和唯讀使用者名稱和密碼。
+
+
+
+== 術語
+
+從這個資料收集器取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 磁碟 | 磁碟 
+
+
+| 磁碟資料夾 | 磁碟群組 
+
+
+| 檔案系統 | 內部Volume 
+
+
+| 儲存設備 | 儲存設備 
+
+
+| 儲存處理器 | 儲存節點 
+
+
+| 儲存資源池、RAID群組 | 儲存資源池 
+
+
+| LUN | Volume 
+
+
+| 資料移轉 | 控制器 
+
+
+| 掛載於資料移動工具上的檔案系統 | 檔案共用 
+
+
+| CIFS與NFS匯出 | 分享 
+
+
+| 磁碟區 | 後端LUN 
+|===
+
+
+== 需求
+
+您需要下列項目來設定VNX（SSH）資料收集器：
+
+* 將VNX IP位址和認證資料移至Celerra Control Station。
+* 唯讀使用者名稱和密碼。
+* 資料收集器能夠利用DART OS NAS標頭、針對後端陣列執行NaviCLI/NaviSecCLI命令
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| VNX IP位址 | VNX Control Station的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | VNX Control Station的使用者名稱 
+
+
+| 密碼 | VNX Control Station的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為40分鐘。 
+
+
+| 效能意見調查時間間隔（秒）。 | 效能輪詢之間的時間間隔。預設值為300秒。 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

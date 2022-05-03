@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: task_display_widget_legends.html 
+summary: 在儀表板小工具上顯示圖例。 
+keywords: dashboard, widget, legends 
+---
+= 顯示Widget圖例
+:toc: macro
+:hardbreaks:
+:toclevels: 2
+:allow-uri-read: 
+:toc: 
+:toclevels: 2
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+儀表板上的小工具可以顯示、也可以不顯示圖例。
+
+顯示儀表板時、您可以按一下小工具上的*選項*按鈕、然後在功能表中選取*顯示圖例*、來開啟或關閉小工具中的圖例。
+
+當Widget中顯示的資料變更時、該Widget的圖例會動態更新。
+
+顯示圖例時、如果可以瀏覽圖例所示資產的登陸頁面、則圖例會顯示為該資產頁面的連結。

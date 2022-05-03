@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: task_troubleshooting_windows_acquisition_unit_problems.html 
+summary: Windows上擷取設備問題的疑難排解秘訣。 
+keywords: AU, acquisition unit, trioubleshooting 
+---
+= 疑難排解Windows上的擷取設備問題
+:allow-uri-read: 
+
+
+[role="lead"]
+您可以在這裡找到Windows伺服器上的擷取單元疑難排解建議。
+
+|===
+
+
+| *問題：* | *試用：* 
+
+
+| AU狀態顯示在「*擷取單位*」標籤的「*管理>資料收集器*」頁面上、「憑證過期」或「憑證撤銷」。 | 按一下AU右側的功能表、然後選取*還原連線*。請依照指示還原您的擷取設備：1.停止擷取單元（AU）服務。您可以按一下「_複製停止命令_」按鈕、將命令快速複製到剪貼簿、然後將此命令貼到擷取單元機器上的命令提示字元中。2.在AU的_c：\Program Files\Cloud Insights \收購 單位\conf\_資料夾中建立名為「token」的檔案。3.按一下「複製權杖」按鈕、然後將此權杖貼到您建立的檔案中。4.重新啟動AU服務。按一下「_複製重新啟動命令_」按鈕、然後將命令貼到AU的命令提示字元中。 
+
+
+| 伺服器需求未達到 | 確保您的採購單位伺服器或VM符合要求 link:concept_acquisition_unit_requirements.html["需求"] 
+
+
+| 未符合網路需求 | 確保您的採購單位伺服器/VM可Cloud Insights 透過連接埠443透過SSL連線存取您的支援環境（<環境名稱>.c01.cloudinsights.netapp.com）。請嘗試下列命令：_ping <ENRONE-name>.c01.cloudinsights.netapp.com__traceroute <ENNEA-name>.c01.cloudinsights.netapp.com__curl \https://<environment-name>.c01.cloudinsights.netapp.com__wGet \https://<environment-name>.c01.cloudinsights.netapp.com_ 
+
+
+| Proxy伺服器設定不正確 | 驗證您的Proxy設定、並視需要解除安裝/重新安裝接收裝置軟體、以輸入正確的Proxy設定。1.嘗試「捲曲」。請參閱「man curl」代理伺服器相關資訊/文件：--preproxy,--proxy-*（這是萬用字元「*」、因為cURL支援許多代理伺服器設定）。2.嘗試「wGet」。請參閱文件以取得Proxy選項。 
+
+
+| 擷取單元安裝失敗Cloud Insights 、在啟動擷取服務時出現認證錯誤（可在acq.log中看到）。 | 這可能是因為在Proxy認證中加入特殊字元所致。解除安裝AU（_Sudo cloudinsose-uninstall.sh_）、然後重新安裝、不需使用特殊字元。 
+
+
+| 權限問題 | 請確定您以具有系統管理員權限的使用者身分登入 
+
+
+| 擷取未執行 | 您可以在acq.log的_<install directory>\Cloud Insights \購買單位\log_資料夾中找到相關資訊。透過Windows服務重新開始擷取 
+
+
+| 資料收集問題 | 按一下「傳送錯誤報告」按鈕、從資料收集器登陸頁傳送錯誤報告 
+
+
+| 狀態：活動訊號失敗 | 擷取單元（AU）Cloud Insights 每60秒會傳送一次活動訊號至更新租約。如果因網路問題或Cloud Insights 不回應的故障而導致活動訊號呼叫失敗、則不會更新AU的租用時間。當AU的租用時間到期時Cloud Insights 、功能表會顯示「活動訊號故障」狀態。疑難排解步驟：*檢查擷取單元伺服器與CloudInsights之間的網路連線。*檢查擷取單元服務是否正在執行。如果服務未執行、請啟動服務。*檢查擷取單元記錄（<Install dir>:\Program Files\Cloud Insights \擷 取單元\log\acq.log）、查看是否有任何錯誤。 
+
+
+| 我看到「活動訊號錯誤：訊息 | 如果網路中斷導致擷取裝置與Cloud Insights 該環境之間的通訊中斷超過一分鐘、就可能發生此錯誤。驗證AU與Cloud Insights 恆速鏈之間的連線是否穩定且有效。 
+|===
+
+
+=== 有關代理和防火牆的考量
+
+如果您的組織需要使用Proxy才能存取網際網路、您可能需要瞭解組織的Proxy行為、並尋求Cloud Insights 某些例外情況、才能讓無法運作。請謹記下列事項：
+
+* 首先、貴組織是否預設會封鎖存取、而且只允許例外存取特定網站/網域？如果是、您需要將下列網域新增至例外清單：
++
+ *.cloudinsights.netapp.com
++
+您的購併部、以及您在包含此功能的網頁瀏覽器中互動的內容、都會移至具有該網域名稱的主機。Cloud Insights Cloud Insights
+
+* 第二、有些Proxy會利用Cloud Insights 非NetApp產生的數位憑證來模擬執行TLS/SSL檢查。此解決方案Cloud Insights 的安全模式與這些技術根本不相容。您也需要上述網域名稱（此功能除外）、Cloud Insights 才能讓畫面擷取單元成功登入Cloud Insights 到畫面、並協助探索資料。
+
+
+
+
+==== 檢視Proxy端點
+
+您可以在就職期間選擇資料收集器時、按一下* Proxy設定*連結來檢視Proxy端點、或按一下*說明>支援*頁面上「_Proxy設定_」下的連結。隨即顯示如下表格。如果Cloud Secure 您的環境中有任何不實之處、則已設定的端點URL也會顯示在此清單中。
+
+image:ProxyEndpoints_NewTable.png["Proxy端點表格"]
+
+
+
+=== 資源
+
+如需其他疑難排解秘訣、請參閱 link:https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Cloud_Insights["NetApp知識庫"] （需要支援登入）。
+
+如需其他支援資訊、請參閱Cloud Insights 《支援資訊 link:concept_requesting_support.html["支援"] 頁面。

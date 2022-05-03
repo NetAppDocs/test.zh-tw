@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_kafka.html 
+keywords: telegraf, installation, install, kafka 
+summary: Kafka資料收集器組態 
+---
+= Kafka資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+此資料收集器可用來收集卡夫卡的數據。Cloud Insights
+
+
+
+== 安裝
+
+. 從*管理>資料收集器*、按一下*+資料收集器*。在「*服務*」下、選擇「Kafka」。
++
+選取安裝Telegraf代理程式的作業系統或平台。
+
+. 如果您尚未安裝代理程式以供收集、或想要為不同的作業系統或平台安裝代理程式、請按一下「_顯示指示_」以展開 link:task_config_telegraf_agent.html["代理程式安裝"] 說明。
+. 選取要搭配此資料收集器使用的代理程式存取金鑰。您可以按一下「*+代理程式存取金鑰*」按鈕來新增代理存取金鑰。最佳實務做法：只有當您想要將資料收集器分組時、才使用不同的代理程式存取金鑰、例如依作業系統/平台。
+. 請依照組態步驟設定資料收集器。這些指示會因您用來收集資料的作業系統或平台類型而有所不同。
+
+
+image:KafkaDCConfigWindows.png["Kafka組態"]
+
+
+
+== 設定
+
+Kafka外掛程式是以Telewraf的Jolokia外掛程式為基礎。例如、需要從所有的Kafka代理商收集資訊、需要透過Jolkia設定和公開所有元件的JMX。
+
+
+
+==== 相容性
+
+組態是針對Kafka 0.11.0.2版所開發。
+
+
+
+==== 設定
+
+以下所有指示均假設您的Kafka安裝位置為「/opt/Kafka」。您可以調整下列指示、以反映您的安裝位置。
+
+
+
+==== Jolokia代理程式Jar
+
+Jokia代理程式Jar檔案的版本必須是 link:https://jolokia.org/download.html["已下載"]。測試的版本是Joslokia代理1.6.0.
+
+以下說明假設下載的Jar檔案（jolokia -jvm-1.6.0-agent.jar）位於「/opt / Kafka/libs/」的位置。
+
+
+
+==== 卡夫卡經紀人
+
+若要設定Kafka代理商以公開Jolokia API、您可以在「Kafka-rer-class.sh」通話之前、在<Kafka_hom>/bin/Kafka-server-start.sh中新增下列項目：
+
+[listing]
+----
+export JMX_PORT=9999
+export RMI_HOSTNAME=`hostname -I`
+export KAFKA_JMX_OPTS="-javaagent:/opt/kafka/libs/jolokia-jvm-1.6.0-agent.jar=port=8778,host=0.0.0.0  -Dcom.sun.management.jmxremote.password.file=/opt/kafka/config/jmxremote.password -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=$RMI_HOSTNAME -Dcom.sun.management.jmxremote.rmi.port=$JMX_PORT"
+----
+請注意、上述範例使用「主機名稱-I」來設定「RMI_HOSTNAME」環境變數。在多個IP機器中、需要調整此設定、才能收集您所關心的RMI連線IP。
+
+您可以為JMx（上方9999）和Joslokia（8778）選擇不同的連接埠。如果您有內部IP來鎖定Jolokia、您可以用自己的IP來取代「全部抓出」0．0．0。請注意、此IP必須從遠端工作人員外掛程式存取。如果您不想驗證、可以使用「-Dcom.sun.management.jmxremote.authenticate=false'」選項。使用風險由您自行承擔。
+
+
+
+== 物件與計數器
+
+收集下列物件及其計數器：
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+| 物件： | 識別碼： | 屬性： | 資料點： 
+
+
+| 卡夫卡代理人 | 叢集命名空間代理 | 節點名稱節點IP | 複本管理程式Fetcher最大延遲Zookkeeper用戶端連線Zookkeeper用戶端連線（15分鐘速率）Zookkeeper用戶端連線（5分鐘速率）Zookkeeper用戶端連線（平均速率）Zookkeeper用戶端連線（1公尺速率） 複本管理器分割區計數執行緒計數精靈執行緒計數尖峰執行緒計數目前執行緒計數已開始的離線分割區總數產生要求總時間（第50個百分位）產生要求總時間（第75個百分位）產生要求總時間（第95個百分位）產生要求總時間（第98個百分位）產生要求總時間（第99個百分位） 產生要求總時間（99個百分位數）產生要求總時間產生要求總時間最大產生要求總時間最大產生要求總時間平均產生要求總時間最小產生要求總時間stdDev複本管理器ISR縮減複本管理器ISR損耗（15分鐘率）複本管理器ISR損耗（5公尺率）複本管理器ISR損耗 （平均速率）複本管理器ISR縮減（1公尺速率）要求處理常式平均閒置要求處理常式平均閒置（15公尺速率）要求處理常式平均閒置（5公尺速率）要求處理常式平均閒置（平均速率）要求處理常式平均閒置（1公尺速率） 垃圾回收G1舊一代數垃圾回收G1舊一代時間垃圾回收G1年輕一代數垃圾回收G1年輕一代時間Zookkeeper唯讀連結Zookkeeper唯讀連結（15分鐘率）Zookkeeper唯讀連結（5分鐘率）Zookkeeper唯讀連接（平均速率）Zookkeeper唯讀連接 （100萬次）網路處理器平均閒置要求擷取後數總計時間（50百分位）要求擷取後數總計時間（75百分位）要求擷取後數總計時間（95百分位）要求擷取後數總計時間（98百分位）要求擷取後數總計時間（99百分位）要求擷取後數總計時間（99百分位數） 要求擷取追蹤總時間要求擷取追蹤總時間最大要求數擷取追蹤總時間平均要求數擷取追蹤總時間最小要求擷取追蹤總時間在生產需求中等待的stdDev要求擷取消費者網路要求擷取消費者（5分鐘速率）網路要求擷取消費者（15分鐘速率） 網路要求擷取消費者（平均速率）網路要求擷取消費者（1公尺速率）不潔的領袖選舉不潔的領袖選舉（15公尺速率）不潔的領袖選舉（5公尺速率）不潔的領袖選舉（平均速率）不潔的領袖選舉（1公尺速率） 作用中控制器堆積記憶體已認可堆積記憶體初始化堆積記憶體最大堆記憶體已使用Zookkeeper工作階段過期（15分鐘速率）Zookkeeper工作階段過期（5分鐘速率）Zookkeeper工作階段過期（平均速率）Zookkeeper工作階段過期（1公尺速率）Zookkeeper驗證失敗Zookkeeper驗證失敗（15公尺速率）Zookkeeper驗證失敗（5公尺速率） Zookkeeper驗證失敗（平均率）Zookkeeper驗證失敗（1公尺率）領導者選擇時間（50百分位）領導者選擇時間（75百分位）領導者選擇時間（95百分位數）領導者選擇時間（98百分位數）領導者選擇時間（99百分位數）領導者選擇時間（99百分位數）領導者選擇時間（15公尺） 主管選擇時間（5分鐘率）主管選擇時間上限主管選擇時間平均主管選擇時間（平均率）主管選擇時間分鐘主管選擇時間（1分鐘率）主管選擇時間（stdDev）網路要求擷取後續網路要求擷取後續網路要求擷取（15分鐘率）網路要求擷取後續（5分鐘率） 網路要求擷取追蹤者（平均速率）網路要求擷取追蹤者（1公尺速率）代理主題訊息代理主題訊息（15公尺速率）代理主題訊息（5公尺速率）代理主題訊息（平均速率）代理主題訊息（1公尺速率）代理主題位元組（15公尺速率）代理主題位元組（以中為單位） （5公尺速率）代理主題位元組（平均速率）代理主題位元組（1公尺速率）Zookkeeper Disconnects Count Zookkeeper Disconnes（15公尺速率）Zookkeeper Disconnes（5公尺速率）Zookkeeper Disconnes（平均速率）Zookkeeper Disconnes（1公尺速率）網路要求擷取使用者總時間（50百分位）網路要求擷取使用者總時間（75百分位元） 網路要求擷取使用者總時間（95百分位數）網路要求擷取使用者總時間（98百分位數）網路要求擷取使用者總時間（99百分位數）網路要求擷取使用者總時間（99百分位數） 網路要求擷取使用者總時間網路要求擷取使用者總時間網路要求上限網路要求擷取使用者總時間平均網路要求擷取使用者總時間最短網路要求擷取使用者總時間stddevLeaderCount要求等待擷取使用者主題位元組退出代理主題位元組（15分鐘速率） Broker主題Bytes Out（5公尺速率）Broker主題Bytes Out（平均速率）Broker主題Bytes Out（1公尺速率）Zookkeeper驗證Zookkeeper驗證（15公尺速率）Zookkeeper驗證（5公尺速率）Zookkeeper驗證（1公尺速率）要求會產生計數要求（15公尺速率）要求 （平均速率）要求產生（1公尺速率）複本管理器ISR擴充複本管理器ISR擴充（15公尺速率）複本管理器ISR擴充（5公尺速率）複本管理器ISR擴充（平均速率）複本管理器ISR擴充（1公尺速率）複本管理器、位於複寫磁碟區下 
+|===
+
+
+== 疑難排解
+
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面。

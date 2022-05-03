@@ -1,0 +1,155 @@
+---
+sidebar: sidebar 
+permalink: task_dc_na_hci.html 
+keywords: data collector, VMware, hci 
+summary: 設定NetApp HCI 功能：功能： 
+---
+= 設定NetApp HCI 功能不整的伺服器資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+《物件管理伺服器資料收集器》NetApp HCI 會收集NetApp HCI 「物件主機資訊」、並要求管理伺服器內所有物件的唯讀權限。
+
+此資料收集器僅從* NetApp HCI 《僅適用於*》管理伺服器取得*。若要從儲存系統收集資料、您也必須設定 link:task_dc_na_solidfire.html["NetApp SolidFire"] 資料收集器：
+
+
+
+== 術語
+
+從這個資料收集器取得下列庫存資訊。Cloud Insights對於所取得的每種資產類型、都會顯示該資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 虛擬磁碟 | 磁碟 
+
+
+| 主機 | 主機 
+
+
+| 虛擬機器 | 虛擬機器 
+
+
+| 資料儲存區 | 資料儲存區 
+
+
+| LUN | Volume 
+
+
+| 光纖通道連接埠 | 連接埠 
+|===
+這些只是通用的術語對應、可能不代表此資料收集器的每個案例。
+
+
+
+== 需求
+
+設定此資料收集器需要下列資訊：
+
+* 解決方案管理伺服器的IP位址NetApp HCI
+* 僅讀取NetApp HCI 的使用者名稱和密碼
+* 對物件的唯讀權限NetApp HCI 。
+* 在功能完善的基礎架構上存取SDK NetApp HCI 、通常已經設定好。
+* 連接埠需求：https-80 https-443
+* 驗證存取：
++
+** 使用上述使用者名稱和密碼登入NetApp HCI 到《解決方案》伺服器
+** 確認SDK已啟用：Telnet <VC_IP> 443
+
+
+
+
+
+
+== 設定與連線
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 名稱 | 資料收集器的唯一名稱 
+
+
+| 擷取單元 | 擷取單位名稱 
+|===
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 儲存叢集MVIP NetApp HCI | 管理虛擬IP位址 
+
+
+| 資料管理節點（mNode）SolidFire | 管理節點IP位址 
+
+
+| 使用者名稱 | 用來存取NetApp HCI 「Isname管理」伺服器的使用者名稱 
+
+
+| 密碼 | 用來存取NetApp HCI 「資訊管理」伺服器的密碼 
+
+
+| vCenter使用者名稱 | vCenter的使用者名稱 
+
+
+| vCenter密碼 | vCenter密碼 
+|===
+
+
+== 進階組態
+
+在進階組態畫面中、勾選「* VM效能*」方塊以收集效能資料。庫存收集預設為啟用。您可以設定下列欄位：
+
+[cols="2*"]
+|===
+
+
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | deafult是20 
+
+
+| 依篩選VM | 選取叢集、資料中心或ESX主機 
+
+
+| 選擇「排除」或「包含」以指定清單 | 指定是否要包含或排除VM 
+
+
+| 篩選裝置清單 | 要篩選的虛擬機器清單（以英文分隔、如果值中使用以英文分隔、則以分號分隔）、僅供ESX主機、叢集和資料中心篩選 
+
+
+| 效能意見調查時間間隔（秒） | 預設值為300 
+|===
+
+
+== 疑難排解
+
+如果您在使用此資料收集器時遇到問題、請嘗試下列事項：
+
+
+
+==== 庫存
+
+[cols="2*"]
+|===
+| 問題： | 試用： 
+
+
+| 錯誤：包含篩選VM的清單不可為空白 | 如果選取「包含清單」、請列出有效的資料中心、叢集或主機名稱以篩選VM 
+
+
+| 錯誤：無法在IP上建立與VirtualCenter的連線 | 可能的解決方案：*驗證輸入的認證資料和IP位址。*嘗試使用基礎架構用戶端與Virtual Center通訊。*嘗試使用受管理的物件瀏覽器（例如MOB）與Virtual Center通訊。 
+
+
+| 錯誤：IP上的VirtualCenter具有不符合JVM要求的憑證 | 可能的解決方案：*建議：使用更強大的功能（例如 1024位元）RSA金鑰。*不建議：修改JVM java.security組態、以利用限制JDK.certpath.disabledAlgorith數 來允許512位元RSA金鑰。請參閱位於的《JDK 7 update 40 Release Notes（英文） "http://www.oracle.com/technetwork/java/javase/7u40-relnotes-2004172.html"[] 
+|===
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

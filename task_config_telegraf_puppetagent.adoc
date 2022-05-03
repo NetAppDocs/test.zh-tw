@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: task_config_telegraf_puppetagent.html 
+keywords: telegraf, installation, install, Puppet 
+summary: Puppet資料收集器組態 
+---
+= Puppet Agent資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+使用此資料收集器從Puppet Agent收集數據。Cloud Insights
+
+
+
+== 安裝
+
+. 從*管理>資料收集器*、按一下*+資料收集器*。在*服務*下、選擇Puppet。
++
+選取安裝Telegraf代理程式的作業系統或平台。
+
+. 如果您尚未安裝代理程式以供收集、或想要為不同的作業系統或平台安裝代理程式、請按一下「_顯示指示_」以展開 link:task_config_telegraf_agent.html["代理程式安裝"] 說明。
+. 選取要搭配此資料收集器使用的代理程式存取金鑰。您可以按一下「*+代理程式存取金鑰*」按鈕來新增代理存取金鑰。最佳實務做法：只有當您想要將資料收集器分組時、才使用不同的代理程式存取金鑰、例如依作業系統/平台。
+. 請依照組態步驟設定資料收集器。這些指示會因您用來收集資料的作業系統或平台類型而有所不同。
+
+
+image:PuppetDCConfigWindows.png["Puppet組態"]
+
+
+
+== 設定
+
+如需相關資訊、請參閱 https://puppet.com/docs["Puppet文件"]
+
+
+
+== 物件與計數器
+
+收集下列物件及其計數器：
+
+[cols="<.<,<.<,<.<,<.<"]
+|===
+
+
+| 物件： | 識別碼： | 屬性： | 資料點： 
+
+
+| Puppet代理程式 | 命名空間節點UUID | 節點名稱位置節點IP版本組態字串版本Puppet | 變更事件總數失敗事件成功事件總計資源變更資源失敗資源重新啟動資源結束同步資源重新啟動資源已排程資源跳過資源總計時間固定時間配置擷取時間實時執行時間檔案時間檔案儲存區時間暫停時間套件時間排程時間服務時間沙努索密鑰時間總計 時間使用者 
+|===
+
+
+== 疑難排解
+
+如需其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面。

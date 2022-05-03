@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: task_dc_na_cloud_volumes_ontap.html 
+summary: 設定NetApp Cloud Volumes ONTAP 資料收集器 
+keywords: data collector, NetApp, Cloud, ONTAP 
+---
+= NetApp Cloud Volumes ONTAP 資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+此資料收集器可支援Cloud Volumes ONTAP 從各種零散組態收集庫存。
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| NetApp管理IP位址 | Cloud Volumen的IP位址ONTAP 
+
+
+| 使用者名稱 | 使用者名稱Cloud Volumes ONTAP 
+
+
+| 密碼 | 上述使用者的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 連線類型 | 建議使用HTTPS。也會顯示預設連接埠。 
+
+
+| 置換通訊連接埠 | 如果不是預設、則使用連接埠。 
+
+
+| 庫存輪詢時間間隔（分鐘） | 預設為60分鐘。 
+
+
+| 庫存並行執行緒計數 | 並行執行緒數。 
+
+
+| 針對HTTPS強制TLS | 透過HTTPS強制TLS 
+
+
+| 自動查詢網路群組 | 自動查詢網路群組 
+
+
+| 網路群組擴充 | 選取「Shell」或「File」 
+
+
+| HTTP讀取逾時秒數 | 預設值為30秒 
+
+
+| 強制回應為utf-8 | 強制回應為utf-8 
+
+
+| 效能意見調查時間間隔（分鐘） | 預設值為900秒。 
+
+
+| 效能並行執行緒計數 | 並行執行緒數。 
+
+
+| 進階計數器資料收集 | 請勾選此選項Cloud Insights 、以便從下列清單中收集進階指標。 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

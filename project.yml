@@ -1,0 +1,439 @@
+---
+settings:
+  name: Cloud Insights
+  rss_page: concept_whats_new.html
+  noindex: true
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: false
+    harmony_enabled: false
+  langs: zh-tw,us-en,ja-jp,zh-cn,ko-kr
+sidebar:
+  entries:
+  - title: 本文檔 Cloud Insights
+    url: "/index.html"
+  - title: 新增功能
+    url: "/concept_whats_new.html"
+  - title: 註冊Cloud Insights 以供使用
+    url: "/task_cloud_insights_onboarding_1.html"
+  - title: 安全性
+    entries:
+    - title: 安全實務做法
+      url: "/security_overview.html"
+    - title: 我們儲存的內容和地點
+      url: "/security_information_and_region.html"
+  - title: 快速入門
+    entries:
+    - title: 功能教學課程
+      url: "/concept_feature_tutorials.html"
+    - title: 收集資料
+      entries:
+      - title: 總覽
+        url: "/task_getting_started_with_cloud_insights.html"
+      - title: 採購單位需求
+        url: "/concept_acquisition_unit_requirements.html"
+      - title: 設定擷取單位
+        url: "/task_configure_acquisition_unit.html"
+      - title: 設定代理程式
+        url: "/task_config_telegraf_agent.html"
+      - title: 設定資料收集器
+        url: "/task_configure_data_collectors.html"
+      - title: 判斷資料收集器擷取狀態
+        url: "/concept_determining_data_collector_acq_status.html"
+      - title: 管理已設定的資料收集器
+        url: "/task_view_configured_data_collectors.html"
+      - title: 研究資料收集器錯誤
+        url: "/task_research_failed_collector.html"
+    - title: 匯入建議的儀表板
+      url: "/concept_import_from_dashboard_gallery.html"
+    - title: 使用者帳戶與角色
+      url: "/concept_user_roles.html"
+    - title: 切換至其他Cloud Central產品
+      url: "/concept_other_cloud_products.html"
+  - title: 資料收集器清單
+    url: "/data_collector_list.html"
+  - title: 訂閱Cloud Insights 此功能
+    url: "/concept_subscribing_to_cloud_insights.html"
+  - title: 自動裝置解析
+    entries:
+    - title: 裝置解析度總覽
+      url: "/concept_device_resolution_overview.html"
+    - title: 裝置解決規則
+      url: "/task_device_resolution_rules.html"
+    - title: Fibre Channel裝置解析度
+      url: "/task_device_resolution_fibre_channel.html"
+    - title: IP裝置解析度
+      url: "/task_device_resolution_ip.html"
+    - title: 設定裝置解析度偏好設定
+      url: "/task_device_resolution_preferences.html"
+    - title: 規則運算式範例
+      url: "/concept_device_resolution_regex_examples.html"
+  - title: 建立儀表板
+    entries:
+    - title: 儀表板總覽
+      url: "/concept_dashboards_overview.html"
+    - title: 儀表板功能
+      url: "/concept_dashboard_features.html"
+    - title: 範例儀表板
+      entries:
+      - title: 虛擬機器效能
+        url: "/task_dashboard_example_VM_performance.html"
+    - title: 儀表板最佳實務做法
+      url: "/concept_dashboard_best_practices.html"
+  - title: Kubernetes Explorer
+    entries:
+    - title: Kubernetes總覽頁面
+      url: "/kubernetes_landing_page.html"
+    - title: Kubernetes叢集頁面
+      url: "/kubernetes_cluster_detail.html"
+  - title: 使用查詢
+    entries:
+    - title: 查詢資產
+      url: "/concept_querying_assets.html"
+    - title: 建立查詢
+      url: "/task_create_query.html"
+    - title: 檢視可用的查詢
+      url: "/task_view_queries.html"
+    - title: 將查詢結果匯出至.CSV
+      url: "/task_export_query_results.html"
+    - title: 修改或刪除查詢
+      url: "/task_modify_delete_query.html"
+    - title: 為物件指派多個應用程式/註釋
+      url: "/task_query_assign_multiple_applicationss.html"
+    - title: 將表格值複製到剪貼簿
+      url: "/task_query_copy_table_values.html"
+    - title: 查詢記錄
+      url: "/concept_log_explorer.html"
+  - title: 使用註釋
+    entries:
+    - title: 定義註釋
+      url: "/task_defining_annotations.html"
+    - title: 使用註釋
+      url: "/task_create_annotation.html"
+    - title: 使用註釋規則
+      url: "/task_create_annotation_rules.html"
+    - title: 使用API匯入附註
+      url: "/task_annotation_import.html"
+  - title: 使用應用程式
+    entries:
+    - title: 應用程式概念
+      url: "/concept_about_applications.html"
+    - title: 設定應用程式
+      url: "/task_create_application.html"
+  - title: 監控與警示
+    entries:
+    - title: 建立監視器
+      url: "/task_create_monitor.html"
+    - title: 檢視及管理警示
+      url: "/task_view_and_manage_alerts.html"
+    - title: 設定通知收件者
+      url: "/concept_notifications_email.html"
+    - title: 系統定義的監視器
+      url: "/task_system_monitors.html"
+  - title: 使用API
+    url: "/API_Overview.html"
+  - title: Webhook通知
+    url: "/task_create_webhook.html"
+  - title: 監控環境
+    entries:
+    - title: 稽核事件
+      url: "/concept_audit.html"
+    - title: TTL和減取樣
+      url: concept_ttl_and_downsampling.html
+  - title: 資產頁面資訊
+    entries:
+    - title: 資產頁面總覽
+      url: "/concept_asset_page_overview.html"
+    - title: 物件的關聯中篩選
+      url: "/concept_in_context_filters.html"
+    - title: 摘要拓撲區段
+      url: "/concept_asset_summary_section.html"
+    - title: 專家檢視區段
+      url: "/concept_asset_expert_view_section.html"
+    - title: 使用者資料區段
+      url: "/concept_asset_user_data_section.html"
+    - title: 相關警示區段
+      url: "/concept_asset_alerts_section.html"
+    - title: 搜尋資產的提示與秘訣
+      url: "/concept_searching_assets.html"
+  - title: 報告
+    entries:
+    - title: 報告總覽
+      url: "/reporting_overview.html"
+    - title: 報告使用者角色
+      url: "/reporting_user_roles.html"
+    - title: 使用預先定義的報告
+      url: "/reporting_predefined_reports.html"
+    - title: Storage Manager儀表板
+      url: "/reporting_storage_manager_dashboard.html"
+    - title: 建立範例報告
+      url: "/reporting_create_example.html"
+    - title: 管理報告
+      url: "/reporting_managing_reports.html"
+    - title: 自訂報告
+      url: "/reporting_creating_custom_reports.html"
+    - title: 資料模型
+      url: "/reporting_creating_custom_reports.html#reporting-data-models"
+    - title: 報告資料庫API
+      url: "/reporting_querying_database.html"
+    - title: 資料保留
+      url: "/reporting_data_retention.html"
+    - title: 架構圖表
+      url: "/reporting_schema_diagrams.html"
+    - title: 架構表格
+      url: "/reference_schemas.html"
+  - title: Cloud Secure
+    entries:
+    - title: 關於Cloud Secure 本公司
+      url: "/cs_intro.html"
+    - title: 快速入門
+      entries:
+      - title: 功能入門Cloud Secure
+        url: "/task_cs_getting_started.html"
+      - title: 代理程式要求Cloud Secure
+        url: "/concept_cs_agent_requirements.html"
+      - title: 設定Cloud Secure 一個功能不均的代理程式
+        url: "/task_cs_add_agent.html"
+      - title: 刪除Cloud Secure 一個功能不一的代理程式
+        url: "/task_cs_delete_agent.html"
+      - title: 設定AD目錄收集器
+        url: "/task_config_user_dir_connect.html"
+      - title: 設定LDAP目錄收集器
+        url: "/task_config_user_dir_connect_ldap.html"
+      - title: 設定Amazon FSX for NetApp ONTAP 蒐集器
+        url: "/task_config_cs_amazon_fsx.html"
+      - title: 設定ONTAP SVM Data Collector
+        url: "/task_add_collector_svm.html"
+      - title: 設定Cloud ONTAP Data Collector
+        url: "/task_config_cs_incloud.html"
+      - title: 使用者管理Cloud Secure
+        url: "/task_cs_user_management.html"
+      - title: 事件率檢查器
+        url: "/concept_cs_event_rate_checker.html"
+    - title: 警示
+      url: "/cs_alert_data.html"
+    - title: 鑑識
+      entries:
+      - title: 活動鑑識：所有活動
+        url: "/forensic_activity_history.html"
+      - title: 活動鑑識：實體
+        url: "/forensic_entity_detail.html"
+      - title: 使用者
+        url: "/forensic_user_overview.html"
+    - title: 自動化回應原則
+      url: "/cs_automated_response_policies.html"
+    - title: 限制使用者存取
+      url: "/cs_restrict_user_access.html"
+    - title: 模擬勒索軟體攻擊
+      url: "/concept_cs_attack_simulator.html"
+    - title: 通知
+      url: "/cs_notifications_email.html"
+    - title: 部分API Cloud Secure
+      url: "/concept_cs_api.html"
+  - title: Active IQ
+    url: "/concept_activeiq.html"
+  - title: 疑難排解
+    entries:
+    - title: 一般疑難排解
+      url: "/task_troubleshooting_general_problems.html"
+    - title: 疑難排解Linux擷取單元問題
+      url: "/task_troubleshooting_linux_acquisition_unit_problems.html"
+    - title: 疑難排解Windows接收單元問題
+      url: "/task_troubleshooting_windows_acquisition_unit_problems.html"
+    - title: 研究資料收集器錯誤
+      url: "/task_research_failed_collector.html"
+  - title: 參考支援
+    entries:
+    - title: 正在申請支援
+      url: "/concept_requesting_support.html"
+    - title: 資料收集器支援對照表
+      url: "/reference_data_collector_support_matrix.html"
+    - title: 資料收集器參考資料-基礎架構
+      entries:
+      - title: 廠商參考總覽
+        url: "/concept_data_collector_reference.html"
+      - title: AWS
+        url: "/task_dc_amazon_ec2.html"
+      - title: Azure
+        url: "/task_dc_ms_azure.html"
+      - title: Broadcom
+        entries:
+        - title: Brocade網路顧問
+          url: "/task_dc_brocade_bna.html"
+        - title: Fibre Channel交換器
+          url: "/task_dc_brocade_fc_switch.html"
+      - title: Cisco
+        url: "/task_dc_cisco_fc_switch.html"
+      - title: Dell
+        entries:
+        - title: XC系列
+          url: "/task_dc_dell_xc_series.html"
+      - title: Dell EMC
+        entries:
+        - title: 資料網域
+          url: "/task_dc_emc_datadomain.html"
+        - title: ECS
+          url: "/task_dc_emc_ecs.html"
+        - title: PowerScale
+          url: "/task_dc_emc_isilon.html"
+        - title: PowerStore
+          url: "/task_dc_emc_powerstore.html"
+        - title: RecoverPoint
+          url: "/task_dc_emc_recoverpoint.html"
+        - title: ScaleIO
+          url: "/task_dc_emc_scaleio.html"
+        - title: Unity（VNXe）
+          url: "/task_dc_emc_unity.html"
+        - title: Vmax /最大PowerMax
+          url: "/task_dc_emc_vmax_powermax.html"
+        - title: VNX區塊（Clariion）
+          url: "/task_dc_emc_vnx_block.html"
+        - title: VNX檔案（Celerra）
+          url: "/task_dc_emc_vnx_file.html"
+        - title: VNX統一化
+          url: "/task_dc_emc_vnx_unified.html"
+        - title: VPLEX
+          url: "/task_dc_emc_vplex.html"
+        - title: XtremIO
+          url: "/task_dc_emc_xio.html"
+      - title: Fujitsu
+        url: "/task_dc_fujitsu_eternus.html"
+      - title: Google
+        url: "/task_dc_google_cloud.html"
+      - title: HP企業
+        entries:
+        - title: HP Alletra 9000與Primera
+          url: "/task_dc_hp_3par.html"
+        - title: HP Command View AE
+          url: "/task_dc_hpe_commandview.html"
+        - title: HPE Alletra 6000
+          url: "/task_dc_hpe_nimble.html"
+      - title: Hitachi Data Systems
+        entries:
+        - title: HDS Command Suite
+          url: "/task_dc_hds_commandsuite.html"
+        - title: HDS HNAS
+          url: "/task_dc_hds_nas.html"
+        - title: HDS Ops Center
+          url: "/task_dc_hds_ops_center.html"
+      - title: Infinidat
+        url: "/task_dc_infinidat_infinibox.html"
+      - title: Huawei
+        url: "/task_dc_huawei_oceanstor.html"
+      - title: IBM
+        entries:
+        - title: 無所不安全
+          url: "/task_dc_ibm_cleversafe.html"
+        - title: CS系列
+          url: "/task_dc_ibm_cs.html"
+        - title: 系統儲存設備DS8000系列
+          url: "/task_dc_ibm_ds.html"
+        - title: PowerVM
+          url: "/task_dc_ibm_powervm.html"
+        - title: SAN Volume控制器（SVC）
+          url: "/task_dc_ibm_svc.html"
+        - title: XIV/A9000
+          url: "/task_dc_ibm_xiv.html"
+      - title: 聯想
+        url: "/task_dc_lenovo.html"
+      - title: Microsoft
+        entries:
+        - title: Azure NetApp Files
+          url: "/task_dc_ms_anf.html"
+        - title: Hyper-V
+          url: "/task_dc_ms_hyperv.html"
+      - title: NetApp
+        entries:
+        - title: Astra資料儲存區
+          url: "/task_dc_na_astra_data_store.html"
+        - title: Cloud Connection for ONTAP 39
+          url: "/task_dc_na_cloud_connection.html"
+        - title: Cloud Volumes ONTAP
+          url: "/task_dc_na_cloud_volumes_ontap.html"
+        - title: 適用於AWS的Cloud Volumes Services
+          url: "/task_dc_na_cloud_volumes.html"
+        - title: 資料管理軟體ONTAP
+          url: "/task_dc_na_cdot.html"
+        - title: 流程7模式Data ONTAP
+          url: "/task_dc_na_7mode.html"
+        - title: E系列
+          url: "/task_dc_na_eseries.html"
+        - title: 解決方案管理伺服器的問題NetApp HCI
+          url: "/task_dc_na_hci.html"
+        - title: SolidFire
+          url: "/task_dc_na_solidfire.html"
+        - title: StorageGRID
+          url: "/task_dc_na_storagegrid.html"
+      - title: Nutanix
+        url: "/task_dc_nutanix.html"
+      - title: OpenStack
+        url: "/task_dc_openstack.html"
+      - title: Oracle
+        url: "/task_dc_oracle_zfs.html"
+      - title: 純
+        url: "/task_dc_pure_flasharray.html"
+      - title: Red Hat
+        url: "/task_dc_redhat_virtualization.html"
+      - title: VMware
+        url: "/task_dc_vmware.html"
+    - title: 資料收集器參考資料-服務
+      entries:
+      - title: 主機/節點
+        url: "/task_config_telegraf_node.html"
+      - title: ActiveMQ
+        url: "/task_config_telegraf_activemq.html"
+      - title: Apache
+        url: "/task_config_telegraf_apache.html"
+      - title: 駐港總領事
+        url: "/task_config_telegraf_consul.html"
+      - title: Couchbase
+        url: "/task_config_telegraf_couchbase.html"
+      - title: CouchDB
+        url: "/task_config_telegraf_couchdb.html"
+      - title: Docker
+        url: "/task_config_telegraf_docker.html"
+      - title: 彈性搜尋
+        url: "/task_config_telegraf_elasticsearch.html"
+      - title: Flink
+        url: "/task_config_telegraf_flink.html"
+      - title: Hadoop
+        url: "/task_config_telegraf_hadoop.html"
+      - title: HAProxy
+        url: "/task_config_telegraf_haproxy.html"
+      - title: Java
+        url: "/task_config_telegraf_jvm.html"
+      - title: 卡夫卡
+        url: "/task_config_telegraf_kafka.html"
+      - title: Kapacitor
+        url: task_config_telegraf_kapacitor.html
+      - title: Kibana
+        url: "/task_config_telegraf_kibana.html"
+      - title: Kubernetes
+        url: "/task_config_telegraf_agent.html#kubernetes"
+      - title: memcached
+        url: "/task_config_telegraf_memcached.html"
+      - title: MongoDB
+        url: "/task_config_telegraf_mongodb.html"
+      - title: MySQL
+        url: "/task_config_telegraf_mysql.html"
+      - title: Netstat
+        url: "/task_config_telegraf_netstat.html"
+      - title: 恩靈思
+        url: "/task_config_telegraf_nginx.html"
+      - title: OpenZFS
+        url: task_config_telegraf_openzfs.html
+      - title: PostgreSQL
+        url: "/task_config_telegraf_postgresql.html"
+      - title: Puppet
+        url: "/task_config_telegraf_puppetagent.html"
+      - title: 紅皮
+        url: "/task_config_telegraf_redis.html"
+      - title: RethinkDB
+        url: task_config_telegraf_rethinkdb.html
+      - title: Zookkeeper
+        url: task_config_telegraf_zookeeper.html
+    - title: 物件圖示參考
+      url: "/reference_object_icons.html"
+  - title: 法律聲明
+    url: "/reference_legal_notices.html"

@@ -1,0 +1,93 @@
+---
+sidebar: sidebar 
+permalink: security_information_and_region.html 
+summary: 整個發行生命週期中、均遵循安全最佳實務做法。Cloud Insights 
+keywords: security, risk, protection 
+---
+= 資訊與地區
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp非常重視客戶資訊的安全性。以下是Cloud Insights 介紹如何以及在哪裡儲存您的資訊。
+
+
+
+== 哪些資訊Cloud Insights 需要儲存？
+
+包含下列資訊：Cloud Insights
+
+* 效能資料
++
+效能資料是時間序列資料、提供有關受監控裝置/來源效能的資訊。例如、這包括儲存系統所交付的IOS數量、Fibre Channel連接埠的處理量、Web伺服器所傳送的頁數、資料庫的回應時間等等。
+
+* 庫存資料
++
+庫存資料包含中繼資料、說明受監控的裝置/來源及其設定方式。例如、其中包括安裝的硬體和軟體版本、儲存系統中的磁碟和LUN、CPU核心、虛擬機器的RAM和磁碟、資料庫的表格空間、SAN交換器上的連接埠數目和類型、目錄/檔案名稱（若Cloud Secure 啟用了「列舉」）等
+
+* 組態資料
++
+此摘要說明客戶提供的組態資料、用於管理客戶的庫存和作業、例如受監控裝置的主機名稱或IP位址、輪詢時間間隔、逾時值等
+
+* 機密
++
+機密資料包含Cloud Insights 由「資訊擷取單元」用來存取客戶裝置和服務的認證資料。這些認證資料會使用AES-256加密、私密金鑰僅儲存在擷取設備上、絕不會離開客戶環境。即使是權限Cloud Insights 僅有的部分SRE、也因為這項設計而無法以純文字存取客戶機密。
+
+* 功能資料
++
+這是NetApp提供雲端資料服務所產生的資料、可讓NetApp在雲端資料服務的開發、部署、營運、維護及安全方面、掌握最新資訊。功能資料不包含客戶資訊或個人資訊。
+
+* 使用者存取資料
++
+驗證與存取資訊、讓NetApp Cloud Central能夠與區域性Cloud Insights 的支援網站通訊、包括與使用者授權相關的資料。
+
+* 支援使用者目錄資料Cloud Secure
++
+如果Cloud Secure 啟用了「支援功能」、且客戶選擇啟用「使用者目錄」收集器、系統將儲存使用者顯示名稱、公司電子郵件地址及從Active Directory收集的其他資訊。
+
+
+
+
+NOTE: 使用者目錄資料指Cloud Secure 的是由「功能性使用者目錄」資料收集器所收集的使用者目錄資訊、而非Cloud Insights / Cloud Secure自身使用者的相關資料。
+
+*不會從基礎架構和服務資源收集明確的個人資料*。收集的資訊僅包含效能指標、組態資訊和基礎架構中繼資料、與許多廠商的電話公司（包括NetApp自動支援和ActiveIQ）非常相似。不過、視客戶的命名慣例而定、共享區、磁碟區、VM、qtree、 應用程式等可能包含個人識別資訊。
+
+如果啟用了支援功能、系統會額外查看SMB或其他共用區上的檔案和目錄名稱、這些檔案和目錄名稱可能包含個人識別資訊。Cloud Secure如果客戶啟用Cloud Secure 「支援此功能的使用者目錄收集器」（基本上是透過Active Directory將Windows Ss對應至使用者名稱）、Cloud Insights 則會收集顯示名稱、公司電子郵件地址及任何選取的其他屬性、並由Sectorate加以儲存。
+
+此外Cloud Insights 、系統也會維護對功能不完整的存取記錄、並包含使用者用來登入服務的IP和電子郵件地址。
+
+
+
+== 我的資訊儲存在何處？
+
+根據環境的建立區域來儲存資訊。Cloud Insights
+
+下列資訊儲存在主機區域中：
+
+* 遙測與資產/物件資訊、包括計數器和效能指標
+* 擷取單位資訊
+* 功能資料
+* 稽核Cloud Insights 有關使用者活動的資訊
+* Active Directory資訊Cloud Secure
+* 包含稽核資訊Cloud Secure
+
+
+下列資訊位於美國、無論您Cloud Insights 的VMware環境所在的地區為何：
+
+* 環境網站（有時稱為「租戶」）資訊、例如網站/帳戶擁有者。
+* 可讓NetApp Cloud Central與區域性Cloud Insights 的不二網站通訊的資訊、包括與使用者授權有關的任何資訊。
+* 關於使用者與租戶之間關係的資訊Cloud Insights 。
+
+
+
+
+== 更多資訊
+
+如需更多關於NetApp隱私權與安全性的資訊、請參閱下列連結：
+
+* link:https://www.netapp.com/us/company/trust-center/index.aspx["信任中心"]
+* link:https://www.netapp.com/us/company/trust-center/privacy/data-location-cross-border-transfers.aspx["跨境資料傳輸"]
+* link:https://www.netapp.com/us/company/trust-center/privacy/bcr-binding-corporate-rules.aspx["具約束力的企業規則"]
+* link:https://www.netapp.com/us/company/trust-center/transparency/third-party-data-requests.aspx["回應第三方資料要求"]
+* link:https://www.netapp.com/us/company/trust-center/privacy/privacy-principles-security-safeguards.aspx["NetApp隱私權原則"]
+

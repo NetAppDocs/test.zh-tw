@@ -1,0 +1,279 @@
+---
+sidebar: sidebar 
+permalink: reporting_schema_diagrams.html 
+keywords: Schema, DB Schema, premium, dwh, data warehouse 
+summary: 報告架構圖表 
+---
+= 回報架構圖表Cloud Insights
+:allow-uri-read: 
+
+
+[role="lead"]
+本文件提供報告資料庫的架構圖表。您也可以下載包含的檔案 link:ci_reporting_database_schema.pdf["架構表格"]。
+
+
+NOTE: 「報告」功能可在Cloud Insights 《資訊時報」中找到 link:concept_subscribing_to_cloud_insights.html["Premium Edition"]。
+
+
+
+== 庫存資料
+
+下列影像說明庫存資料擷取。
+
+
+
+=== 儲存設備
+
+image:storage.png[""]
+
+
+
+=== 儲存節點
+
+image:storage_node.png[""]
+
+
+
+=== SAN Fabric
+
+image:fabric.png[""]
+
+
+
+=== 連接埠連線能力
+
+image:connectivity.png[""]
+
+
+
+=== VM
+
+image:vm.png[""]
+
+
+
+=== NAS
+
+image:nas.png[""]
+
+
+
+=== 路徑和違規
+
+image:logical.png[""]
+
+
+
+=== 註釋
+
+image:annotations.png[""]
+
+
+
+=== 應用程式
+
+image:apps_annot.png[""]
+
+
+
+=== 儲存與儲存資源池容量
+
+image:Storage_and_Storage_Pool_Capacity_Fact.png[""]
+
+
+
+=== Volume容量
+
+image:Volume_Capacity.png[""]
+
+
+
+=== VM容量
+
+image:VM_Capacity_Fact.png[""]
+
+
+
+=== 內部Volume容量
+
+image:Internal_Volume_Capacity_Fact.png[""]
+
+
+
+=== qtree容量
+
+image:Qtree_Capacity_Fact.png[""]
+
+
+
+=== 儲存容量效率
+
+image:efficiency.png[""]
+
+
+
+=== 儲存與儲存資源池容量
+
+image:Storage_and_Storage_Pool_Capacity_Fact.png[""]
+
+
+
+=== 檔案系統使用率
+
+image:fs_util.png[""]
+
+
+
+=== 連接埠容量
+
+image:ports.png[""]
+
+
+
+=== 計費
+
+image:Chargeback_Fact.png[""]
+
+
+
+=== 磁碟群組容量
+
+image:Disk_Group_Capacity.png[""]
+
+
+
+== 效能資料
+
+下列影像說明效能資料藝術。
+
+
+
+=== 應用程式Volume每小時效能
+
+image:application_performance_fact.png[""]
+
+
+
+=== 內部Volume每小時效能
+
+image:host_performance_fact.png[""]
+
+
+
+=== 內部Volume每小時效能
+
+image:internal_volume_performance_fact.png[""]
+
+
+
+=== 內部Volume每日效能
+
+image:internal_volume_daily_performance_fact.png[""]
+
+
+
+=== Volume每小時效能
+
+image:vmdk_hourly_performance_fact.png[""]
+
+
+
+=== Volume每日效能
+
+image:volume_daily_performance_fact.png[""]
+
+
+
+=== qtree每日效能
+
+image:QtreeDailyPerformanceFact.png[""]
+
+
+
+=== 切換主機的每小時效能
+
+image:switch_performance_for_host_hourly_fact.png[""]
+
+
+
+=== 交換器每小時的連接埠效能
+
+image:switch_performance_for_port_hourly_fact.png[""]
+
+
+
+=== 切換每小時儲存效能
+
+image:switch_performance_for_storage_hourly_fact.png[""]
+
+
+
+=== 切換每小時磁帶效能
+
+image:switch_performance_for_tape_hourly_fact.png[""]
+
+
+
+=== VM效能
+
+image:vm_hourly_performance_fact.png[""]
+
+
+
+=== VM每日主機效能
+
+image:vm_daily_performance_fact.png[""]
+
+
+
+=== VM每小時主機效能
+
+image:vm_hourly_performance_fact.png[""]
+
+
+
+=== VM每日主機效能
+
+image:vm_daily_performance_fact.png[""]
+
+
+
+=== VM每小時主機效能
+
+image:vm_hourly_performance_fact.png[""]
+
+
+
+=== VMDK每日效能
+
+image:vmdk_daily_performance_fact.png[""]
+
+
+
+=== VMDK每小時效能
+
+image:vmdk_hourly_performance_fact.png[""]
+
+
+
+=== 儲存節點每小時效能
+
+image:storage_node_hourly_performance_fact.png[""]
+
+
+
+=== 磁碟每日效能
+
+image:disk_daily_performance_fact.png[""]
+
+
+
+=== 磁碟每小時效能
+
+image:disk_hourly_performance_fact.png[""]
+
+
+
+== Kubernetes
+
+image:k8s_schema.jpg["Kubernetes"]

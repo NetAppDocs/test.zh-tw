@@ -1,0 +1,150 @@
+---
+sidebar: sidebar 
+permalink: task_dc_amazon_ec2.html 
+keywords: data collector, EC2, 
+summary: 設定Amazon EC2資料收集器。 
+---
+= 設定Amazon EC2資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+使用Amazon EC2資料收集器從EC2執行個體取得庫存和效能資料。Cloud Insights
+
+
+
+== 需求
+
+若要從Amazon EC2裝置收集資料、您必須具備下列資訊：
+
+* 您必須具備下列其中一項：
++
+** Amazon EC2雲端帳戶的* IAM角色*（如果使用IAM角色驗證）。僅當您的擷取設備安裝在AWS執行個體上時、才適用IAM角色。
+** 如果您使用IAM存取金鑰驗證、則Amazon EC2雲端帳戶的* IAM存取金鑰* ID和秘密存取金鑰。
+
+
+* 您必須擁有「清單組織」權限
+* 連接埠443 HTTPS
+* EC2執行個體可報告為虛擬機器、或（較不自然）主機。EBS Volume可報告為VM使用的虛擬磁碟、以及提供虛擬磁碟容量的資料存放區。
+
+
+存取金鑰包含存取金鑰ID（例如：ASIIOSFODBNODNE7EXAMPLE）和秘密存取金鑰（例如：wJALrXUtnFEM/K7MDENG/bPxRfiCYEXAMPLEKEY）。如果您使用Amazon EC2 SDK、REST或查詢API作業、您可以使用存取金鑰來簽署您對EC2所提出的程式設計要求。這些金鑰會隨您的Amazon合約一起提供。
+
+
+
+== 組態
+
+根據下表、將資料輸入資料收集器欄位：
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| AWS區域 | 選擇AWS區域 
+
+
+| IAM角色 | 僅在AWS的AU上取得時使用。如需詳細資訊、請參閱下方 link:task_dc_amazon_ec2.html#iam-roles["IAM角色"]。 
+
+
+| AWS IAM存取金鑰ID | 輸入AWS IAM存取金鑰ID。如果您不使用IAM角色、則為必要項目。 
+
+
+| AWS IAM秘密存取金鑰 | 輸入AWS IAM秘密存取金鑰。如果您不使用IAM角色、則為必要項目。 
+
+
+| 我瞭解AWS會向我索取API要求 | 請勾選此選項、確認您瞭解AWS會向您索取Cloud Insights 由中繼輪詢所提出的API要求。 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 包括額外的區域 | 指定要納入輪詢的其他區域。 
+
+
+| 跨帳戶角色 | 存取不同AWS帳戶中資源的角色。 
+
+
+| 庫存輪詢時間間隔（分鐘） | 預設值為60 
+
+
+| 選擇「排除」或「包含」以套用至依標記篩選虛擬機器 | 指定在收集資料時、是否要加入或排除VM的by Tags。如果選取「Include」（包含）、則「Tag Key」（標記金鑰）欄位不可為空白。 
+
+
+| 標記要篩選虛擬機器的金鑰和值 | 按一下「*+ Filter Tag*（*+篩選標籤*）」、選擇要納入/排除的VM（及相關磁碟）、方法是篩選符合VM上標籤的機碼和值。標記金鑰為必填、標記值為選用項目。當標記值為空白時、只要VM符合標記金鑰、就會進行篩選。 
+
+
+| 效能意見調查時間間隔（秒） | 預設值為1800 
+
+
+| CloudWatch代理程式指標命名空間 | EC2/EBS中用來收集資料的命名空間。請注意、如果變更此命名空間中預設度量的名稱、Cloud Insights 則可能無法收集重新命名的資料。建議保留預設的度量名稱。 
+|===
+
+
+== IAM存取金鑰
+
+存取金鑰是IAM使用者或AWS帳戶根使用者的長期認證資料。存取金鑰用於簽署AWS CLI或AWS API的程式設計要求（直接或使用AWS SDK）。
+
+存取金鑰包含兩個部分：存取金鑰ID和秘密存取金鑰。當您使用_IAM存取金鑰_驗證（而非_IAM角色_驗證）時、您必須同時使用存取金鑰ID和秘密存取金鑰來驗證要求。如需詳細資訊、請參閱上的Amazon文件 link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html["存取金鑰"]。
+
+
+
+== IAM角色
+
+使用_IAM角色_驗證（與IAM存取金鑰驗證不同）時、您必須確保所建立或指定的角色擁有存取資源所需的適當權限。
+
+例如、如果您建立名為_InstanceEc2ReadOnly_的IAM角色、則必須設定原則、將此IAM角色的所有EC2資源授予EC2唯讀清單存取權限。此外、您必須授予STs（安全性權杖服務）存取權、以便允許此角色擔任跨帳戶的角色。
+
+建立IAM角色之後、您可以在建立新EC2執行個體或任何現有EC2執行個體時附加該角色。
+
+將IAM角色_InstanceEec2ReadOnly_附加至EC2執行個體之後、您將能夠透過IAM角色名稱的執行個體中繼資料擷取暫用認證資料、並使用它來存取此EC2執行個體上執行的任何應用程式AWS資源。
+
+如需詳細資訊、請參閱上的Amazon文件 link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html["IAM角色"]。
+
+附註：只有在擷取裝置執行於AWS執行個體時、才能使用IAM角色。
+
+
+
+== 將Amazon標籤對應Cloud Insights 至不易顯示的附註
+
+Amazon EC2資料收集器包含一個選項、可讓您使用Cloud Insights EC2上設定的標記來填入各個項目的註釋。註釋的名稱必須與EC2標籤完全相同。將一律填入相同名稱的文字類型註釋、並「最佳」嘗試填入其他類型（數字、布林等）的註釋。Cloud Insights如果您的註釋類型不同、而且資料收集器無法填入註釋、則可能需要移除註釋、然後重新建立為文字類型。
+
+請注意、AWS區分大小寫、Cloud Insights 而不區分大小寫。因此、如果您在Cloud Insights E-2中建立名為「Owner"的附註、並在EC2中建立名為「Owner"、「Owner"和「Owner"的標籤、則所有EC2變體的「Owner"（擁有者）附註都會對應至Cloud Insight的「擁有者」附註。
+
+
+
+== 包括額外的區域
+
+在AWS Data Collector *進階組態*區段中、您可以設定*包含額外區域*欄位、以英文或分號分隔、以包含其他區域。根據預設、此欄位會設為*_us-.*、收集所有美國AWS區域的資料。若要在_all_區域收集資料、請將此欄位設定為*。*。如果*包含額外區域*欄位為空白、則資料收集器會收集在*組態*區段中指定的* AWS區域*欄位中所指定的資產。
+
+
+
+== 從AWS子帳戶收集
+
+支援在單一AWS資料收集器中收集AWS的子帳戶。Cloud Insights此集合的組態會在AWS環境中執行：
+
+* 您必須將每個子帳戶設定為使用AWS角色、讓主帳戶ID從子帳戶存取EC2詳細資料。
+* 每個子帳戶都必須將角色名稱設定為相同字串。
+* 在Cloud Insights 「*跨帳戶角色*」欄位的「AWS Data Collector * Advanced Configuration *」區段中、輸入此角色名稱字串。
+
+
+最佳實務做法：強烈建議將AWS預先定義的_Amazon EC2ReadOnlyAccess_原則指派給ECS主帳戶。此外、在資料來源中設定的使用者應至少指派預先定義的_AWSOrganizationsReadOnlyAccess_原則、以便查詢AWS。
+
+如需設定環境以允許Cloud Insights 從AWS子帳戶收集資訊、請參閱下列資訊：
+
+link:https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html["教學課程：使用IAM角色委派整個AWS帳戶的存取權"]
+
+link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html["AWS設定：在您擁有的另一個AWS帳戶中提供存取IAM使用者的權限"]
+
+link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html["建立角色、將權限委派給IAM使用者"]
+
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。

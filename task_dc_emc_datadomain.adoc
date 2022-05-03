@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: task_dc_emc_datadomain.html 
+keywords: data collector, Data Domain, EMC, DELL 
+summary: 設定Dell EMC Data Domain資料收集器。 
+---
+= Dell EMC Data Domain資料收集器
+:allow-uri-read: 
+
+
+[role="lead"]
+此資料收集器會從Dell EMC Data Domain重複資料刪除儲存系統收集庫存與效能資訊。若要設定此資料收集器、您必須遵循特定的組態指示和使用建議。
+
+
+
+== 術語
+
+從Data Domain資料收集器取得下列庫存資訊。Cloud Insights對於由SfeS庫 取得的每種資產類型Cloud Insights 、都會顯示此資產最常用的術語。檢視或疑難排解此資料收集器時、請謹記下列術語：
+
+[cols="2*"]
+|===
+| 廠商/模型術語 | 詞彙Cloud Insights 
+
+
+| 磁碟 | 磁碟 
+
+
+| 陣列 | 儲存設備 
+
+
+| FC連接埠 | 連接埠 
+
+
+| 檔案系統 | 內部Volume 
+
+
+| 配額 | 配額 
+
+
+| NFS與CIFS共用 | 檔案共享 
+|===
+附註：這些只是通用的術語對應、可能不代表此資料整理的每個案例。
+
+
+
+== 需求
+
+您需要下列資訊來設定此資料收集器：
+
+* 資料網域裝置的IP位址
+* Data Domain儲存設備的唯讀使用者名稱和密碼
+* SSH連接埠22
+
+
+
+
+== 組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| IP 位址 | Data Domain儲存陣列的IP位址或完整網域名稱 
+
+
+| 使用者名稱 | Data Domain儲存陣列的使用者名稱 
+
+
+| 密碼 | Data Domain儲存陣列的密碼 
+|===
+
+
+== 進階組態
+
+[cols="2*"]
+|===
+| 欄位 | 說明 
+
+
+| 庫存輪詢時間間隔（分鐘） | 庫存輪詢之間的時間間隔。預設值為20。 
+
+
+| SSH連接埠 | SSH服務連接埠 
+|===
+
+
+== 疑難排解
+
+如需此資料收集器的其他資訊、請參閱 link:concept_requesting_support.html["支援"] 頁面或中的 link:https://docs.netapp.com/us-en/cloudinsights/CloudInsightsDataCollectorSupportMatrix.pdf["資料收集器支援對照表"]。
