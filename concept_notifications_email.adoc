@@ -54,6 +54,7 @@ image:SubscriptionNotificationSection.png["訂閱電子郵件通知"]
 
 若要設定全域警示收件者、請按一下*管理>通知*、然後在*全域監控通知收件者*區段中選擇所需的收件者。
 
+.image:GlobalMonitorRecipients.png["全域監控通知收件者"]
 [role="thumb"]
 在建立或修改監視器時、您可以隨時覆寫個別監視器的全域收件者清單。
 

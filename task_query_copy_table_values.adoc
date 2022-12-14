@@ -11,6 +11,7 @@ keywords: query, queries, copy, values, clipboard
 [role="lead"]
 您可以將表格中的值複製到剪貼簿、以便用於搜尋方塊或其他應用程式。
 
+.關於這項工作
 您可以使用兩種方法、將資料表或查詢結果的值複製到剪貼簿。
 
 .步驟

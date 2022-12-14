@@ -17,7 +17,7 @@ summary: 支援Telegraf作為收集整合資料的代理程式、可在Windows�
 NOTE: 為確保稽核與資料報告的準確性、強烈建議您使用*網路時間傳輸協定（NTP）*或*簡易網路時間傳輸協定（SNTP）*來同步代理機器上的時間。
 
 
-NOTE: 如果您想在安裝代理程式之前驗證安裝檔案、請參閱以下的一節 <<Verifying Checksums>>。
+NOTE: 如果您想在安裝代理程式之前驗證安裝檔案、請參閱以下的一節 <<驗證Checksum>>。
 
 
 
@@ -26,9 +26,9 @@ NOTE: 如果您想在安裝代理程式之前驗證安裝檔案、請參閱以�
 如果您正在安裝服務資料收集器、但尚未設定代理程式、系統會提示您先安裝適當作業系統的代理程式。本主題提供在下列作業系統上安裝Telegraf代理程式的說明：
 
 * <<Windows>>
-* <<RHEL and CentOS>>
-* <<Ubuntu and Debian>>
-* <<macOS>>
+* <<RHEL與CentOS>>
+* <<Ubuntu與DEBIAN>>
+* <<MacOS>>
 * <<Kubernetes>>
 
 

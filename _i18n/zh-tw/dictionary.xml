@@ -559,7 +559,6 @@
   <block id="7cbf4ba3df1c84539924c37da16db19b" category="paragraph">警示頁面（此範例顯示潛在的勒索軟體攻擊）：<block ref="5ff4dcf9689ef64057d8e82508557b5f" category="inline-image-macro-rx" type="image"></block></block>
   <block id="cf7a8875f9ed11e1707cd50fdfc361f6" category="inline-image-macro">勒索軟體詳細資料頁面範例</block>
   <block id="6c9d686a827f50aa2feb7087b665c481" category="paragraph">詳細資料頁面（此範例顯示潛在的勒索軟體攻擊）：<block ref="9d19bd7639e249113839e28d2fea9963" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="3187f3dcb05b639d87ff0ef7bcdc3e02" category="section-title">執行Snapshot動作</block>
   <block id="19b247a947fc686391faebd949689a52" category="paragraph">當偵測到惡意活動時、利用自動擷取快照功能來保護資料、確保資料安全備份。Cloud Secure</block>
   <block id="7683f342a6f18a36645f19f6332de56e" category="inline-link-macro">自動化回應原則</block>
   <block id="d27b2fb629cc2c24086da7257eb32814" category="paragraph">您可以定義 <block ref="5def0187ac3a4d928905bc1e2b8dece3" category="inline-link-macro-rx"></block> 當偵測到勒索軟體攻擊或其他異常使用者活動時、就會擷取快照。您也可以從警示頁面手動擷取快照。</block>
@@ -1007,7 +1006,6 @@
   <block id="e767946157d182cf237f259a3b6478c4" category="paragraph">在Kubernetes Explorer中、您可以按一下「節點」圖示、開啟該節點的詳細資訊頁面。在此頁面上、您可以檢視節點的相關資訊、以及瀏覽VM、Pod和Container資訊。</block>
   <block id="4f29fd9657915b51e00ee112dd495873" category="inline-image-macro">Kubernetes節點詳細資料頁面顯示篩選</block>
   <block id="ff9dcb7868c4ad1ee30492b12c57b9d3" category="paragraph"><block ref="ff9dcb7868c4ad1ee30492b12c57b9d3" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="088972153fa4b405527a2376c07113eb" category="section-title">探索節點的Pod和持續磁碟區</block>
   <block id="3e38ab0c0d78abbf789ae718cc2c8707" category="paragraph">支援VMware View、可讓您清楚掌握Kubernetes環境的後端儲存設備、深入瞭解Kubernetes Pod和持續磁碟區（PV）Cloud Insights 。您可以追蹤PV計數器、例如IOPS、延遲和處理量、從單一Pod的使用量、透過PV計數器、直到PV、再到後端儲存設備。</block>
   <block id="4f199152407556f59fa94af499f084e0" category="paragraph">在PV層級、Cloud Insights 由NetApp收集後端（內部磁碟區或磁碟區、視PV類型而定）容量資訊（總計、使用量、使用百分比）、以及內部磁碟區快照數。從Pod到儲存層級、它會收集後端容量和內部Volume Snapshot數。</block>
   <block id="aae3edef1483f0838d4754d553d09e68" category="paragraph">在Volume或內部Volume登陸頁面上、會顯示兩個表格：</block>
@@ -1411,7 +1409,6 @@
   <block id="ef484ddf1fa70f0f7e6e12c5ec398fd0" category="paragraph">視您選擇要設定的初始資料收集器類型（儲存設備、交換器等）而定、將會匯入一或多個相關儀表板。例如、如果您設定儲存資料收集器、將會匯入一組儲存相關儀表板、其中一組儀表板將設為Cloud Insights 您的「首頁」。您可以從*儀表板&gt;顯示所有儀表板*清單變更首頁。</block>
   <block id="884c68aa76be99399251cf49057f5089" category="inline-link-macro">建立您自己的</block>
   <block id="30ac9f66beb1edda1ef095e871e96e65" category="paragraph">您可以稍後匯入其他儀表板、或 <block ref="d9f1bed19a893c2599f38f8ee38e7f25" category="inline-link-macro-rx"></block>。</block>
-  <block id="d26ece7a14868ffcc86bc3dfce18345c" category="section-title">這就是一切</block>
   <block id="dced233464479bab905d4f3c73af377e" category="paragraph">完成初始設定程序之後、您的環境將開始收集資料。</block>
   <block id="53bc5b0eaf13535f4b602a5830ef8ad6" category="paragraph">如果初始設定程序中斷（例如、關閉瀏覽器視窗）、您必須手動執行下列步驟：</block>
   <block id="3109cfeae79b76c71475be9bfd3c2938" category="list-text">選擇資料收集器</block>
@@ -2735,10 +2732,8 @@
   <block id="d47350de0cb738713602fc081af217e9" category="paragraph">請參閱 <block ref="66b24601b32ea1e28a736b303c9dda16" category="inline-link-macro-rx"></block> 以取得組態資訊。這適用於安裝在雲端的內部部署代理程式和代理程式。</block>
   <block id="0deb145e97d2a45a78872c8c8eb51e12" category="list-text">當代理程式安裝在AWS EC2執行個體中以監控Cloud ONTAP SVM時、代理程式和儲存設備必須位於同一個VPC中。如果它們位於獨立的VPC中、則VPC之間必須有有效的路由。</block>
   <block id="0cd400e3d93cd7ed179f95d57d744891" category="section-title">權限相關注意事項</block>
-  <block id="d6dbed5bc250d74498fd43915882d37c" category="section-title">透過叢集管理IP新增權限：</block>
   <block id="bf3bb5d17ba89dbbd6cbc400e1c6e125" category="paragraph">如果您無法使用叢集管理管理員使用者來允許Cloud Secure Sfuse存取ONTAP SVM資料收集器、您可以建立一個名為「CsUser」的新使用者、其角色如下所示。設定Cloud Secure 使用叢集管理IP的資料收集器時、請使用「CsUser」的使用者名稱和密碼。</block>
   <block id="10414897d078dba7d0d6c5111c2af072" category="paragraph">若要建立新的使用者、ONTAP 請使用叢集管理管理員使用者名稱/密碼登入到功能表、然後在ONTAP 功能表伺服器上執行下列命令：</block>
-  <block id="8891dc1e6e4e5ac8add48653bb6e58e7" category="section-title">透過Vserver管理IP新增權限：</block>
   <block id="cb5fee403d15816a05d17c1eb2ba3cb4" category="paragraph">如果您無法使用叢集管理管理員使用者來允許Cloud Secure Sfuse存取ONTAP SVM資料收集器、您可以建立一個名為「CsUser」的新使用者、其角色如下所示。將Cloud Secure 使用者名稱「CsUser」和密碼設定為使用Vserver Management IP時、請使用「CsUser」。</block>
   <block id="a2eff2103f669c457b93354a8c3f5dce" category="paragraph">若要建立新的使用者、ONTAP 請使用叢集管理管理員使用者名稱/密碼登入到位、然後在ONTAP 伺服器上執行下列命令。為了方便起見、請先將這些命令複製到文字編輯器、並在ONTAP 執行下列命令之前、以Vserver名稱取代&lt;vservername&gt;：</block>
   <block id="e96ded369b9e59a3e1b17c09ebacf307" category="section-title">設定資料收集器</block>
@@ -3509,7 +3504,6 @@
   <block id="b74af5a9ece7cdf67ec6e4e272d7c116" category="paragraph">在大多數情況下、只讀存取是裝置所需的全部功能。有些解決方案不允許唯讀存取、因此需要適當的提高權限。</block>
   <block id="b6e4757a4fed24ae14490ad102cfc2d8" category="section-title">此功能多久收集一次資訊？Cloud Insights</block>
   <block id="ff6f4b330e92d1228f84fcb98d25274c" category="paragraph">通常每隔5分鐘收集一次效能資料、每隔0.5小時就會發現邏輯和實體架構。Cloud Insights根據建議的最佳實務做法和擴充性來設定預設輪詢時間間隔、但確實允許使用者完全控制這些時間間隔。Cloud Insights</block>
-  <block id="33b5ea3829d10119391340b99e723dca" category="section-title">Cloud Insights對我的環境有何影響？</block>
   <block id="c21b8a2a80e57ca923413b1aa8daa2d0" category="paragraph">Cloud Insights的無代理程式、頻外和被動IP通訊、有助於將資料中心生態系統的設定、維護和影響降至最低。Cloud Insights的效能開發團隊會採取重大措施、將監控效能本身活動對資料中心效能的任何影響降至最低。在正常的作業環境中、影響可視為微不足道、而且在高使用率或效能不佳的技術平台中、也可予以緩和或加強。如Cloud Insights 需詳細資訊、請參閱《更新安裝指南》。</block>
   <block id="cf1e9c3fd6c6dda4ce691bf7e1cfbaef" category="section-title">我該如何列出Cloud Insights 所有的主機/虛擬機器在不完整版中？</block>
   <block id="c63925f7ddebcf8bf216776c93dc34ab" category="paragraph">Cloud Insights的小工具和查詢清單功能、可用來提供資料中心資產的庫存樣式清單。可將虛擬機器清單放入磁碟中、並在其中建立許多架構、以便查詢、小工具、儀表板和資料倉儲報告、並可透過RESTful API存取。</block>
@@ -4609,7 +4603,6 @@
   <block id="96cfad9bf45103ee0ef58fa25c0cfa6b" category="summary">自訂報告輸出與交付、將報告複製到剪貼簿、開啟報告（XML）。</block>
   <block id="e1039935b082dfd38ef43eb7fef4b452" category="doc">管理報告</block>
   <block id="ce2ce538c48e429c8dc98553649f3bbd" category="paragraph">您可以自訂報告的輸出格式與交付、設定報告內容或排程、以及電子郵件報告。</block>
-  <block id="5df8ec67e66b1b70f4dd477eeabe20c2" category="section-title">自訂報告的輸出格式與交付</block>
   <block id="8bee38bef7beb0158135e68890b6cc17" category="paragraph">您可以自訂報告的格式和交付方法。</block>
   <block id="c64e7d8f225e7e8875d2446a3b30bd34" category="list-text">在「更新報告入口網站」Cloud Insights 中、將滑鼠游標移到您要自訂的報告上、然後按一下*[...]*。</block>
   <block id="58cae8bb2701afa19011bf0042646c9d" category="inline-image-macro">報告自訂功能表</block>
@@ -6292,7 +6285,6 @@
   <block id="a33e4b0669b0dcd6c6727f25e8e1c46b" category="list-text">*日期*：日期值。視Widget的組態而定、可作為「來源」或「目標」值使用。</block>
   <block id="53cc3f1a4b0d0e434a93a7372b931ac6" category="inline-image-macro">可變類型</block>
   <block id="916ee1d24159df2a85679ef0774f9828" category="paragraph"><block ref="916ee1d24159df2a85679ef0774f9828" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="75514bc8f4a0fcfa4d6e233cf6293d4f" category="section-title">屬性變數</block>
   <block id="cdd0539c5f9ee15c61a20d8600fe7ca5" category="paragraph">選取「屬性類型」變數可讓您篩選包含指定屬性值的Widget資料。以下範例顯示行小工具、顯示值機員節點的可用記憶體趨勢。我們已為代理節點IP建立變數、目前設定為顯示所有IP：</block>
   <block id="e3f9b576b0f66601c43decf70ddc3a40" category="inline-image-macro">變數篩選之前的代理節點</block>
   <block id="8e1962312d6932465c5534f5b70114c0" category="paragraph"><block ref="8e1962312d6932465c5534f5b70114c0" category="inline-image-macro-rx" type="image"></block></block>
@@ -6903,7 +6895,6 @@
   <block id="dd97078b1fded41ab7f0a8081708a7b4" category="inline-image-macro">監控狀況</block>
   <block id="927629cba26acb892b3c2398129ca22e" category="paragraph"><block ref="927629cba26acb892b3c2398129ca22e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="ca82c7bf0a12e1bd7623c916688916ff" category="section-title">2020年7月</block>
-  <block id="6891d5aadc78ac62ff88e77318810010" category="section-title">執行Snapshot動作Cloud Secure</block>
   <block id="a4749fac6233635e6370a9c15d3b1bf4" category="paragraph">您可以定義自動回應原則、以便在偵測到勒索軟體攻擊或其他異常使用者活動時、擷取快照。您也可以從警示頁面手動擷取快照。</block>
   <block id="951c353976f888d39a5d73b6b9bfe6a5" category="section-title">衡量標準/計數器更新</block>
   <block id="bd7d085d6bd1c45996212198e43ff93d" category="paragraph">下列容量計數器可用於Cloud Insights 靜態UI和REST API。以前這些計數器只能用於資料倉儲/報告。</block>
@@ -8543,4 +8534,18 @@
   <block id="399bd1ee587245ecac6f39beaa99886f" category="sidebar">PostgreSQL</block>
   <block id="14590850b4107a6f92feb1af739b82eb" category="sidebar">Puppet</block>
   <block id="15ec8934d96530d4c5f4a3b0f701f745" category="sidebar">RethinkDB</block>
+  <block id="c4902856573b47497259fa66ba244535" category="section-title">屬性變數</block>
+  <block id="0990561b323eccdee60c16a1ced0a306" category="section-title">執行Snapshot動作Cloud Secure</block>
+  <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">關於這項工作</block>
+  <block id="e80e3d8646e24f6d7661808de9274648" category="paragraph-title">捲動清單：</block>
+  <block id="b39c055166e1e8cfc2de8f74b7b76640" category="paragraph-title">類型搜尋：</block>
+  <block id="6baf1e00d599761ac0cdbee221c4569c" category="section-title">_執行Snapshot動作</block>
+  <block id="7f3fae8bcffd39410a8caca4210f5f21" category="section-title">Cloud Insights對我的環境有何影響？</block>
+  <block id="2c8315992b66ae0480f26fe69cea1579" category="section-title">這就是一切</block>
+  <block id="e9a8035e121122e74ece696f921ab7d6" category="section-title">探索節點的Pod和持續磁碟區</block>
+  <block id="b4c2efa32144f8c7f6fa5513ac1c7e55" category="section-title">自訂報告的輸出格式和交付</block>
+  <block id="04f239d51d6f6978df84a2372f6abdb2" category="section-title">透過*叢集管理IP*新增權限：</block>
+  <block id="79b84e26b610d3ce15109f8d174cdf3a" category="section-title">透過* vserver管理IP*新增權限：</block>
+  <block id="d07512f0951eb5634f4d7bb87f599aef" category="inline-image-macro">全域監控通知收件者</block>
+  <block id="090e0b56444a54949e76721ee76bd40d" category="paragraph-title"><block ref="090e0b56444a54949e76721ee76bd40d" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>

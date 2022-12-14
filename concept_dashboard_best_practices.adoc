@@ -95,6 +95,7 @@ keywords: dashboard, hints, tips, best practice, widgets, metrics,
 
 變更散佈圖Widget中的計數器順序、會變更顯示資料的軸。
 
+.關於這項工作
 此範例將建立散佈圖、讓您看到效能不佳的VM、其延遲比低IOPS高。
 
 .步驟

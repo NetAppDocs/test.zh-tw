@@ -113,7 +113,7 @@ image:CloudSecureChangeAlertStatus.png["變更警示狀態"]
 
 
 
-== 執行Snapshot動作
+== _執行Snapshot動作
 
 當偵測到惡意活動時、利用自動擷取快照功能來保護資料、確保資料安全備份。Cloud Secure
 

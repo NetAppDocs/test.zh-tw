@@ -279,10 +279,10 @@ keywords: data collector, vendor, infrastructure, integration, service
 | link:task_config_telegraf_rethinkdb.html["RethinkDB"] | 服務 
 
 
-| link:task_config_telegraf_agent.html#rhel-and-centos["RHEL & CentOS"] | 服務 
+| link:task_config_telegraf_agent.html#rhel-and-centos["RHEL  CentOS"] | 服務 
 
 
-| link:task_config_telegraf_agent.html#ubuntu-and-debian["Ubuntu & DEBIAN"] | 服務 
+| link:task_config_telegraf_agent.html#ubuntu-and-debian["Ubuntu  DEBIAN"] | 服務 
 
 
 | link:task_dc_vmware.html["VMware vSphere"] | 基礎架構 
