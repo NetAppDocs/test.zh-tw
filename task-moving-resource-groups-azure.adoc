@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: task-moving-resource-groups-azure.html 
+keywords: move resource groups, azure, remove working environment, resource groups, azure console, Azure subscriptions 
+summary: 支援Azure資源群組移動、但工作流程僅發生在Azure主控台。Cloud Volumes ONTAP 
+---
+= 正在移動資源群組
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+支援Azure資源群組移動、但工作流程僅發生在Azure主控台。Cloud Volumes ONTAP
+
+您可以在同一Azure訂閱中、將工作環境從一個資源群組移至Azure中的其他資源群組。不支援在不同Azure訂閱之間移動資源群組。
+
+.步驟
+. 從* Canvas*移除工作環境。
++
+若要瞭解如何移除工作環境、請參閱 link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-removing.html["移除 Cloud Volumes ONTAP 運作環境"]。
+
+. 在Azure主控台執行資源群組搬移。
++
+若要完成移動、請參閱 link:https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription["將資源移至新的資源群組或訂閱Microsoft Azure文件中"^]。
+
+. 在* Canvas*中、探索工作環境。
+. 在工作環境的資訊中尋找新的資源群組。
+
+
+.結果
+工作環境及其資源（VM、磁碟、儲存帳戶、網路介面、快照）位於新的資源群組中。

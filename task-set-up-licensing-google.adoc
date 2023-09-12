@@ -1,0 +1,165 @@
+---
+sidebar: sidebar 
+permalink: task-set-up-licensing-google.html 
+keywords: freemium, professional, essentials, licensing, licenses, cloud volumes ontap charging, cloud volumes ontap licenses, cloud volumes ontap licensing, cvo licenses, cvo licensing, byol, bring your own license, paygo, pay as you go, keystone flex, keystone, digital wallet 
+summary: 在決定Cloud Volumes ONTAP 要使用哪個授權選項來執行功能時、在部署新系統時、您必須先執行幾個步驟、才能選擇該授權選項。 
+---
+= 在Cloud Volumes ONTAP Google Cloud中設定適用於此技術的授權
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+決定Cloud Volumes ONTAP 要搭配使用哪種授權選項之後、您必須先執行幾個步驟、才能在建立新的工作環境時選擇授權選項。
+
+
+
+== Freemium
+
+選擇Freemium產品、即可免費使用Cloud Volumes ONTAP 多達500 GiB的配置容量。 link:concept-licensing.html#packages["深入瞭解Freemium產品"]。
+
+.步驟
+. 從左側導覽功能表中、選取*儲存設備> Canvas*。
+. 在「畫版」頁面上、按一下「*新增工作環境*」、然後依照BlueXP中的步驟進行。
++
+.. 在*詳細資料與認證*頁面上、按一下*編輯認證>新增訂閱*、然後依照提示訂閱Google Cloud Marketplace中的隨用隨付方案。
++
+除非您超過500 GiB的已配置容量、系統會自動轉換為、否則不會透過市場訂閱付費 link:concept-licensing.html#packages["Essentials套件"]。
+
+.. 返回BluetXP之後、當您到達「充電方法」頁面時、請選取* Freemium *。
++
+image:screenshot-freemium.png["建立Cloud Volumes ONTAP 一套可運作的環境時、Freemium選項的快照。"]
+
+
+
+
+
+link:task-deploying-gcp.html["請參閱逐步指示Cloud Volumes ONTAP 、在Google Cloud中啟動「功能不全」"]。
+
+
+
+== 容量型授權
+
+容量型授權可讓您針對Cloud Volumes ONTAP 容量的每個TiB付費。容量型授權的形式為_package_：Essentials套件或Professional套件。
+
+Essentials和Professional套件可搭配下列消費模式使用：
+
+* 向NetApp購買的授權（BYOL）
+* 從Google Cloud Marketplace訂閱時數小時隨付（PAYGO）
+* 年度合約
+
+
+link:concept-licensing.html#capacity-based-licensing["深入瞭解容量型授權"]。
+
+下列各節將說明如何開始使用這些消費模式。
+
+
+
+=== BYOL
+
+事先向NetApp購買授權（BYOL）、即可在Cloud Volumes ONTAP 任何雲端供應商部署支援系統。
+
+.步驟
+. https://cloud.netapp.com/contact-cds["請聯絡NetApp銷售人員以取得授權"^]
+. https://docs.netapp.com/us-en/bluexp-setup-admin/task-adding-nss-accounts.html#add-an-nss-account["將NetApp 支援網站 您的不更新帳戶新增至藍圖XP"^]
++
+BlueXP會自動查詢NetApp的授權服務、以取得NetApp 支援網站 與您的還原帳戶相關之授權的詳細資料。如果沒有錯誤、 BlueXP 會自動將授權新增至數位錢包。
+
++
+您必須先從 BlueXP 數位錢包取得授權、才能搭配 Cloud Volumes ONTAP 使用。如有需要、您可以 link:task-manage-capacity-licenses.html#add-purchased-licenses-to-your-account["手動將授權新增至 BlueXP 數位錢包"]。
+
+. 在「畫版」頁面上、按一下「*新增工作環境*」、然後依照BlueXP中的步驟進行。
++
+.. 在*詳細資料與認證*頁面上、按一下*編輯認證>新增訂閱*、然後依照提示訂閱Google Cloud Marketplace中的隨用隨付方案。
++
+您向NetApp購買的授權一律會先收取費用、但如果您超過授權容量或授權到期、則會從市場的每小時費率中收取費用。
+
+.. 返回BlueXP之後、當您到達「充電方法」頁面時、請選取容量型套件。
++
+image:screenshot-professional.png["建立Cloud Volumes ONTAP 功能不正常的環境時、專業人員選項的螢幕快照。"]
+
+
+
+
+
+link:task-deploying-gcp.html["請參閱逐步指示Cloud Volumes ONTAP 、在Google Cloud中啟動「功能不全」"]。
+
+
+
+=== PAYGO訂閱
+
+從雲端供應商的市場訂閱優惠、每小時支付一次。
+
+當您建立Cloud Volumes ONTAP 一個運作環境時、BlueXP會提示您訂閱Google Cloud Marketplace提供的合約。該訂閱之後會與工作環境建立關聯、以便進行充電。您可以在其他工作環境中使用相同的訂閱。
+
+.步驟
+. 從左側導覽功能表中、選取*儲存設備> Canvas*。
+. 在「畫版」頁面上、按一下「*新增工作環境*」、然後依照BlueXP中的步驟進行。
++
+.. 在*詳細資料與認證*頁面上、按一下*編輯認證>新增訂閱*、然後依照提示訂閱Google Cloud Marketplace中的隨用隨付方案。
+.. 返回BlueXP之後、當您到達「充電方法」頁面時、請選取容量型套件。
++
+image:screenshot-professional.png["建立Cloud Volumes ONTAP 功能不正常的環境時、專業人員選項的螢幕快照。"]
+
+
+
+
+
+link:task-deploying-gcp.html["請參閱逐步指示Cloud Volumes ONTAP 、在Google Cloud中啟動「功能不全」"]。
+
+
+TIP: 您可以從「設定」>「認證」頁面管理與您帳戶相關的Google Cloud Marketplace訂閱。 https://docs.netapp.com/us-en/bluexp-setup-admin/task-adding-gcp-accounts.html["瞭解如何管理您的Google Cloud認證與訂閱"^]
+
+
+
+=== 年度合約
+
+購買年度合約、每年支付Cloud Volumes ONTAP 一份銷售費。
+
+.步驟
+. 請聯絡您的NetApp銷售代表以購買年度合約。
++
+合約可在Google Cloud Marketplace以_Private _優惠形式提供。
+
++
+在NetApp與您分享私人優惠之後、您可以在工作環境建立期間、從Google Cloud Marketplace訂閱年度方案。
+
+. 在「畫版」頁面上、按一下「*新增工作環境*」、然後依照BlueXP中的步驟進行。
++
+.. 在*詳細資料與認證*頁面上、按一下*編輯認證>新增訂閱*、然後依照提示在Google Cloud Marketplace訂閱年度計畫。
+.. 在Google Cloud中、選取與您的帳戶共享的年度計畫、然後按一下*訂閱*。
+.. 返回BlueXP之後、當您到達「充電方法」頁面時、請選取容量型套件。
++
+image:screenshot-professional.png["建立Cloud Volumes ONTAP 功能不正常的環境時、專業人員選項的螢幕快照。"]
+
+
+
+
+
+link:task-deploying-gcp.html["請參閱逐步指示Cloud Volumes ONTAP 、在Google Cloud中啟動「功能不全」"]。
+
+
+
+== Keystone訂閱
+
+Keystone 訂閱是一項隨成長付費訂閱服務。 link:concept-licensing.html#keystone-subscription["深入瞭解 NetApp Keystone 訂閱"]。
+
+.步驟
+. 如果您尚未訂閱、 https://www.netapp.com/forms/keystone-sales-contact/["請聯絡NetApp"^]
+. mailto ： ng-keystone-success@netapp.com [ 聯絡 NetApp] 以使用一或多個 Keystone 訂閱來授權您的 BlueXP 使用者帳戶。
+. NetApp授權您的帳戶之後、 link:task-manage-keystone.html#link-a-subscription["連結您的訂閱內容以供Cloud Volumes ONTAP 搭配使用"]。
+. 在「畫版」頁面上、按一下「*新增工作環境*」、然後依照BlueXP中的步驟進行。
++
+.. 當系統提示您選擇充電方法時、請選取 Keystone Subscription 充電方法。
++
+image:screenshot-keystone.png["建立 Cloud Volumes ONTAP 工作環境時 Keystone Subscription 選項的螢幕擷取畫面。"]
+
+
+
+
+
+link:task-deploying-gcp.html["請參閱逐步指示Cloud Volumes ONTAP 、在Google Cloud中啟動「功能不全」"]。

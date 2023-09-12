@@ -1,0 +1,141 @@
+---
+sidebar: sidebar 
+permalink: reference-versions.html 
+keywords: versions, supported versions, new versions, cloud volumes ontap version 
+summary: 在ONTAP 您建立全新Cloud Volumes ONTAP 的支援環境時、BlueXP可讓您從多個不同的支援版本中進行選擇。 
+---
+= 支援的新部署版本
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在ONTAP 您建立全新Cloud Volumes ONTAP 的支援環境時、BlueXP可讓您從多個不同的支援版本中進行選擇。
+
+新部署不支援所有其他Cloud Volumes ONTAP 的版本。
+
+ifdef::aws[]
+
+
+
+== AWS
+
+單一節點::
++
+--
+* 9.13.1 正式
+* 9.12.1 GA
+* 9.12.1 RC1
+* 9.12.0 P1
+* 9.11.1 P3
+* 9.10.1
+* 9.9.1 P6
+* 9.8
+* 9.7 P5..
+* 9.5 p6
+
+
+--
+HA配對::
++
+--
+* 9.13.1 正式
+* 9.12.1 GA
+* 9.12.1 RC1
+* 9.12.0 P1
+* 9.11.1 P3
+* 9.10.1
+* 9.9.1 P6
+* 9.8
+* 9.7 P5..
+* 9.5 p6
+
+
+--
+
+
+endif::aws[]
+
+ifdef::azure[]
+
+
+
+== Azure
+
+單一節點::
++
+--
+* 9.13.1 正式
+* 9.12.1 GA
+* 9.12.1 RC1
+* 9.11.1 P3
+* 9.10.1 P3
+* 9.9.1 第 8 頁
+* 9.9.1 第 7 頁
+* 9.8 第 10 頁
+* 9.7 P6
+* 9.5 p6
+
+
+--
+HA配對::
++
+--
+* 9.13.1 正式
+* 9.12.1 GA
+* 9.12.1 RC1
+* 9.11.1 P3
+* 9.10.1 P3
+* 9.9.1 第 8 頁
+* 9.9.1 第 7 頁
+* 9.8 第 10 頁
+* 9.7 P6
+
+
+--
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+
+
+== Google Cloud
+
+單一節點::
++
+--
+* 9.13.1 正式
+* 9.12.1 GA
+* 9.12.1 RC1
+* 9.12.0 P1
+* 9.11.1 P3
+* 9.10.1
+* 9.9.1 P6
+* 9.8
+* 9.7 P5..
+
+
+--
+HA配對::
++
+--
+* 9.13.1 正式
+* 9.12.1 GA
+* 9.12.1 RC1
+* 9.12.0 P1
+* 9.11.1 P3
+* 9.10.1
+* 9.9.1 P6
+* 9.8
+
+
+--
+
+
+endif::gcp[]

@@ -1,0 +1,439 @@
+---
+sidebar: sidebar 
+permalink: concept-licensing.html 
+keywords: freemium, professional, essentials, licensing, licenses, cloud volumes ontap charging, cloud volumes ontap licenses, cloud volumes ontap licensing, cvo licenses, cvo licensing, byol, bring your own license, paygo, pay as you go, keystone flex, keystone, cloud backup, digital wallet 
+summary: 有多種授權選項可供Cloud Volumes ONTAP 選擇。每個選項都能讓您選擇符合需求的組態。 
+---
+= 提供授權Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+有多種授權選項可供Cloud Volumes ONTAP 選擇。每個選項都能讓您選擇符合需求的消費模式。
+
+
+
+== 授權總覽
+
+下列授權選項適用於新客戶。
+
+容量型授權:: 根據Cloud Volumes ONTAP 資源配置的容量、在NetApp帳戶中支付多個支援系統的費用。包括購買附加雲端資料服務的能力。
+Keystone訂閱:: 以隨成長付費訂閱為基礎的服務、為HA配對提供無縫的混合雲體驗。
+
+
+先前的個別節點授權模式仍適用於已購買授權或正在訂閱市場的現有客戶。
+
+以下各節提供這些選項的詳細資訊。
+
+
+NOTE: 若未取得授權、則無法使用授權功能。
+
+
+
+== 容量型授權
+
+容量型授權套件可讓您針對Cloud Volumes ONTAP 每TiB的容量付費。授權與您的NetApp帳戶相關聯、只要授權有足夠的容量可用、您就能根據授權向多個系統收取費用。
+
+例如、您可以購買單一20 TiB授權、部署四Cloud Volumes ONTAP 個作業系統、然後將5個TiB磁碟區分配給每個系統、總共20 TiB。容量可用於Cloud Volumes ONTAP 該帳戶中部署的每個作業系統上的磁碟區。
+
+容量型授權的形式為_package_。當您部署Cloud Volumes ONTAP 一套解決方案時、您可以根據業務需求、從多個授權套件中進行選擇。
+
+
+
+=== 套件
+
+下列容量型套件可供Cloud Volumes ONTAP 使用。
+
+
+
+==== Freemium
+
+NetApp Cloud Volumes ONTAP 免費提供所有的支援功能（仍需支付雲端供應商費用）。
+
+* 不需要授權或合約。
+* 不包括NetApp的支援。
+* 每Cloud Volumes ONTAP 個系統的資源配置容量上限為500 GiB。
+* 您可以在Cloud Volumes ONTAP 任何雲端供應商中、使用最多10個包含每個NetApp帳戶的Freemium產品的NetApp系統。
+* 如果Cloud Volumes ONTAP 供應的資料系統容量超過500 GiB、則BlueXP會將系統轉換成Essentials套件。
++
+一旦系統轉換成Essentials套件 <<充電注意事項,最低收費>> 適用。
+
++
+任何其他配置容量低於500 GiB的系統、都會留在Freemium上（只要使用Freemium產品進行部署）。
+
+
+
+
+
+==== 最佳化
+
+單獨支付已配置的容量和I/O作業費用。
+
+* 單一節點或HA Cloud Volumes ONTAP
+* 充電是根據兩個成本元件：儲存與使用（I/O）
++
+您將不需支付與資料複寫（SnapMirror）或NDMP相關的I/O費用。
+
+
+
+ifdef::azure[]
+
+* 您可在Azure Marketplace以隨用隨付方案或年度合約形式取得
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* 可在Google Cloud Marketplace以隨用隨付方案或年度合約形式提供
+
+
+endif::gcp[]
+
+* 支援所選VM類型：
+
+
+ifdef::azure[]
+
+* Azure：E4s_v3、E4ds_v4、DS4_v2、DS13_v2、E8s_v3、和E8ds_v4
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* Google Cloud：n2-Standard-4、n2-Standard/8
+
+
+endif::gcp[]
+
+* 以額外成本附加任何NetApp的雲端資料服務
+
+
+
+
+==== 基礎知識
+
+依容量付費Cloud Volumes ONTAP 、以供各種不同組態使用。
+
+* 選擇Cloud Volumes ONTAP 您的需求組態：
++
+** 單一節點或HA系統
+** 用於災難恢復（DR）的檔案與區塊儲存或次要資料
+
+
+* 以額外成本附加任何NetApp的雲端資料服務
+
+
+
+
+==== 專業人員
+
+以容量支付Cloud Volumes ONTAP 任何類型的不受限制的還原組態。
+
+* 提供Cloud Volumes ONTAP 任何功能組態的授權
++
+單一節點或HA、以相同速率為主要和次要磁碟區充電
+
+* 包括使用 BlueXP 備份與還原的不限數量的 Volume 備份、但僅適用於使用專業版套件的 Cloud Volumes ONTAP 系統
+* 以額外成本附加任何NetApp的雲端資料服務
+
+
+
+
+==== 邊際快取
+
+提供Cloud Volumes Edge Cache授權。
+
+* 與Professional套件相同的功能、可為分散式企業提供營運不中斷和資料保護
+* 智慧型邊緣快取功能、可透過每個位置佔用空間較小的Windows VM進行快取
+* 每購買3個Tib容量、就有一個邊緣節點
+
+
+ifdef::azure[]
+
+* 您可在Azure Marketplace以隨用隨付方案或年度合約形式取得
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* 可在Google Cloud Marketplace以隨用隨付方案或年度合約形式提供
+
+
+endif::gcp[]
+
+https://cloud.netapp.com/cloud-volumes-edge-cache["深入瞭解Cloud Volumes Edge Cache如何協助您的企業發展"^]
+
+
+
+=== 消費模式
+
+下列消費模式提供容量型授權套件：
+
+* * BYOL*：向NetApp購買的授權、可用於在Cloud Volumes ONTAP 任何雲端供應商中部署
+
+
+ifdef::azure[]
+
++
+請注意、最佳化和邊緣快取套件不適用於 BYOL 。
+
+endif::azure[]
+
+* * PAYGO*：每小時向雲端供應商的市場訂購一次。
+* *年度*：雲端供應商市場的年度合約。
+
+
+請注意下列事項：
+
+* 如果您向NetApp（BYOL）購買授權、也必須向雲端供應商的市場訂閱PAYGO產品。
++
+您的授權一律會先收取費用、但在下列情況下、您將會從市場的每小時費率中收取費用：
+
++
+** 如果您超過授權容量
+** 如果授權期限已到期
+
+
+* 如果您有市場的年度合約、Cloud Volumes ONTAP 您所部署的_all_系統將根據該合約付費。您無法與BYOL混搭一年一度的市場合約。
+* 中國地區僅支援具有BYOL的單一節點系統。
+
+
+
+
+=== 變更套件
+
+部署完成後、您可以變更Cloud Volumes ONTAP 使用容量型授權的一套功能、以利執行一套功能。例如、如果您部署Cloud Volumes ONTAP 的是含有Essentials套件的功能完善的系統、則當您的業務需求改變時、可以將其變更為Professional套件。
+
+link:task-manage-capacity-licenses.html["瞭解如何變更充電方法"]。
+
+
+
+=== 定價
+
+如需定價的詳細資訊、請前往 https://cloud.netapp.com/pricing?hsCtaTracking=4f8b7b77-8f63-4b73-b5af-ee09eab4fbd6%7C5fefbc99-396c-4084-99e6-f1e22dc8ffe7["NetApp BlueXP網站"^]。
+
+
+
+=== 免費試用
+
+您可以在雲端供應商的市場中、透過隨用隨付訂閱取得30天的免費試用版。免費試用包括 Cloud Volumes ONTAP 和 BlueXP 備份與還原。試用版會在您訂閱市場上的產品項目時開始。
+
+沒有執行個體或容量限制。您可以任意部署Cloud Volumes ONTAP 多個不需付費的功能、並視需要配置多餘的容量、30天內即可免費部署。免費試用版會在30天後自動轉換為付費的每小時訂閱。
+
+雖然不收取Cloud Volumes ONTAP 每小時的軟體授權費用、但您的雲端供應商仍需支付基礎架構費用。
+
+
+TIP: 您將會在BlueXP中收到一則通知、告知免費試用開始、剩餘7天、以及剩餘1天。例如：
+image:screenshot-free-trial-notification.png["BlueXP介面中通知的螢幕快照顯示、免費試用期僅剩7天。"]
+
+
+
+=== 支援的組態
+
+以容量為基礎的授權套件可搭配Cloud Volumes ONTAP 使用於NetApp 9.7及更新版本。
+
+
+
+=== 容量限制
+
+有了這種授權模式、每Cloud Volumes ONTAP 個個別的支援系統都能透過磁碟和分層到物件儲存設備、支援最多2 PIB的容量。
+
+授權本身並無最大容量限制。
+
+
+
+=== 最大系統數
+
+透過容量型授權、Cloud Volumes ONTAP 每個NetApp帳戶最多可有20個不限數量的不二元系統。_system_是Cloud Volumes ONTAP 一個EsireHA配對、Cloud Volumes ONTAP 一個僅供支援的節點系統、或是您所建立的任何其他儲存VM。預設的儲存VM不會計入限制。此限制適用於所有授權模式。
+
+例如、假設您有三種工作環境：
+
+* 單一節點Cloud Volumes ONTAP 的不完整系統、只需一個儲存VM（這是部署Cloud Volumes ONTAP 時建立的預設儲存VM）
++
+這種工作環境是單一系統的重要關鍵。
+
+* 單一節點Cloud Volumes ONTAP 的不完整系統、含兩個儲存VM（預設儲存VM、加上您所建立的一個額外儲存VM）
++
+此工作環境可視為兩個系統：一個用於單一節點系統、另一個用於額外的儲存VM。
+
+* 包含三個儲存VM（預設儲存VM、加上您所建立的兩個額外儲存VM）的支援功能Cloud Volumes ONTAP
++
+此工作環境可算為三個系統：一個用於HA配對、兩個用於額外的儲存VM。
+
+
+
+總共有六個系統。之後您的帳戶就有額外14個系統的空間。
+
+如果您的大型部署需要20個以上的系統、請聯絡您的客戶代表或銷售團隊。
+
+https://docs.netapp.com/us-en/bluexp-setup-admin/concept-netapp-accounts.html["深入瞭解NetApp客戶"^]。
+
+
+
+=== 充電注意事項
+
+下列詳細資料可協助您瞭解充電方式如何搭配容量型授權使用。
+
+
+
+==== 最低收費
+
+每個資料服務儲存VM至少要有一個主要（讀寫）磁碟區、至少需支付4 TiB的最低費用。如果主要磁碟區的總和低於4 TiB、則BlueXP會將4 TiB最低收費套用至該儲存VM。
+
+如果您尚未配置任何磁碟區、則不適用最低收費。
+
+對於 Essentials 套件、 4 TiB 最低容量費用不適用於僅包含次要（資料保護）磁碟區的儲存 VM 。例如、如果您的儲存虛擬機器擁有1個二線資料的TiB、則只需支付1個TiB的資料費用。對於所有其他非 Essentials 套件類型（最佳化、專業版和邊緣快取）、無論磁碟區類型為何、都會套用 4 TiB 的最低容量充電。
+
+
+
+==== 過度使用
+
+如果您超過BYOL容量、或授權過期、系統會根據您的市場訂閱、按每小時費率收取超額費用。
+
+
+
+==== Essentials套件
+
+有了Essentials套件、您將依照部署類型（HA或單一節點）和Volume類型（主要或次要）收費。例如、_Essentials HHA與_Essentials次要HA的定價不同。
+
+如果您向 NetApp （ BYOL ）購買 Essentials 授權、且超過該部署和 Volume 類型的授權容量、則 BlueXP 數位錢包會因價格較高的 Essentials 授權（如果您有）而收取超額費用。這是因為我們會先使用您已購買的可用容量作為預付容量、然後再針對市場進行充電。向市場收取費用會增加每月帳單的成本。
+
+以下是範例。假設您擁有下列Essentials套件授權：
+
+* 500 TiB _Essentials二線HA授權、擁有500 TiB的承諾容量
+* 500 TiB _Essentials單一節點_授權、僅擁有100 TiB的已認可容量
+
+
+另有50個TiB配置在與次要Volume的HA配對上。BlueXP 數位錢包不需向 PAYGO 收取 50 TiB 費用、而是根據 _Essentials Single Node_ 授權收取 50 TiB 超額費用。該授權的價格高於_Essentials二線HA、但比PAYGO價格便宜。
+
+在 BlueXP 數位錢包中、 50 TiB 將根據 _Essentials Single Nodon_ 授權收費。
+
+
+
+==== 儲存VM
+
+* 額外的資料服務儲存VM（SVM）無需額外授權成本、但每個資料服務SVM的最低容量費用為4 TiB。
+* 災難恢復SVM是根據已配置的容量來收費的。
+
+
+
+
+==== HA 配對
+
+對於HA配對、您只需支付節點上已配置容量的費用。您不需支付同步鏡射至合作夥伴節點的資料費用。
+
+
+
+==== FlexClone與FlexCache 功能
+
+* FlexClone磁碟區所使用的容量不需付費。
+* 來源FlexCache 和目的地的資料不只是主要資料、而且會根據已配置的空間進行收費。
+
+
+
+
+=== 如何開始使用
+
+瞭解如何開始使用容量型授權：
+
+ifdef::aws[]
+
+* link:task-set-up-licensing-aws.html["在Cloud Volumes ONTAP AWS中設定適用於此功能的授權"]
+
+
+endif::aws[]
+
+ifdef::azure[]
+
+* link:task-set-up-licensing-azure.html["在Cloud Volumes ONTAP Azure中設定for NetApp的授權"]
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* link:task-set-up-licensing-google.html["在Cloud Volumes ONTAP Google Cloud中設定適用於此技術的授權"]
+
+
+endif::gcp[]
+
+
+
+== Keystone訂閱
+
+以隨成長付費訂閱為基礎的服務、可為偏好營運成本使用模式的使用者、提供無縫的混合雲體驗、以供預先支付資本支出或租賃之用。
+
+充電是根據 Keystone 訂閱中一或多個 Cloud Volumes ONTAP HA 配對的承諾容量大小而定。
+
+系統會定期彙總每個 Volume 的已配置容量、並將其與 Keystone 訂閱上的已認可容量進行比較、而任何超額資料都會在 Keystone 訂閱上以暴增方式收費。
+
+link:https://docs.netapp.com/us-en/keystone-staas/index.html["深入瞭解 NetApp Keystone"^]。
+
+
+
+=== 支援的組態
+
+HA 配對支援 Keystone 訂閱。目前單一節點系統不支援此授權選項。
+
+
+
+=== 容量限制
+
+每Cloud Volumes ONTAP 個個別的支援透過磁碟和分層至物件儲存設備、最多可支援2個PIB容量。
+
+
+
+=== 如何開始使用
+
+瞭解如何開始使用 Keystone 訂閱：
+
+ifdef::aws[]
+
+* link:task-set-up-licensing-aws.html["在Cloud Volumes ONTAP AWS中設定適用於此功能的授權"]
+
+
+endif::aws[]
+
+ifdef::azure[]
+
+* link:task-set-up-licensing-azure.html["在Cloud Volumes ONTAP Azure中設定for NetApp的授權"]
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* link:task-set-up-licensing-google.html["在Cloud Volumes ONTAP Google Cloud中設定適用於此技術的授權"]
+
+
+endif::gcp[]
+
+
+
+== 節點型授權
+
+節點型授權是前一代的授權模式、可讓您依Cloud Volumes ONTAP 節點授權使用。此授權模式不適用於新客戶、也不提供免費試用。副節點充電已由上述的副容量充電方法取代。
+
+現有客戶仍可使用節點型授權：
+
+* 如果您擁有有效授權、BYOL僅適用於授權續約。
+* 如果您有有效的市場訂閱、仍可透過該訂閱付費。
+
+
+
+
+== 授權轉換
+
+不Cloud Volumes ONTAP 支援將現有的支援系統轉換成其他授權方法。目前的三種授權方法是容量型授權、基礎概念訂閱和節點型授權。例如、您無法將系統從節點型授權轉換成容量型授權（反之亦然）。
+
+如果您想要轉換至其他授權方法、可以購買授權、使用Cloud Volumes ONTAP 該授權部署新的一套作業系統、然後將資料複寫到新系統。
+
+請注意、不支援將系統從PAYGO節點授權轉換成BYOL節點授權（反之亦然）。您需要部署新系統、然後將資料複寫到該系統。 link:task-manage-node-licenses.html["瞭解如何在PAYGO和BYOL之間切換"]。

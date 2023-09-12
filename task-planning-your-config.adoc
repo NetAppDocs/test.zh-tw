@@ -1,0 +1,231 @@
+---
+sidebar: sidebar 
+permalink: task-planning-your-config.html 
+keywords: license, disk, ebs, storage, size, write speed, volume usage, ec2, capacity, limit, configurations, virtual machine, vm, regions, supported disks, disk types, general purpose, gp2 provisioned IOPS, piops, throughput optimized, cold, SSD, HDD, st1, use profile, thin provisioning, deduplication, compression, shared instance, dedicated instance, write speed, high write speed, normal write speed, network information, worksheet, limit, limits, storage limits, volume limit, aggregate limit, maximum volume size, maximum aggregate size, supported instances, instances, instances supported, supported ec2 instances, supported instance, aws outpost, outpost, outposts, deploy in outpost, deploy in aws outpost 
+summary: 在 Cloud Volumes ONTAP AWS 中部署時、您可以選擇符合工作負載需求的預先設定系統、也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。 
+---
+= 在Cloud Volumes ONTAP AWS中規劃您的不一樣組態
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在 Cloud Volumes ONTAP AWS 中部署時、您可以選擇符合工作負載需求的預先設定系統、也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。
+
+
+
+== 選擇Cloud Volumes ONTAP 一個不含功能的授權
+
+有多種授權選項可供Cloud Volumes ONTAP 選擇。每個選項都能讓您選擇符合需求的消費模式。
+
+* link:concept-licensing.html["深入瞭Cloud Volumes ONTAP 解適用於此功能的授權選項"]
+* link:task-set-up-licensing-aws.html["瞭解如何設定授權"]
+
+
+
+
+== 選擇支援的地區
+
+支援大部分 AWS 地區的支援。 Cloud Volumes ONTAP https://cloud.netapp.com/cloud-volumes-global-regions["檢視支援區域的完整清單"^]。
+
+您必須先啟用較新的 AWS 區域、才能在這些區域中建立及管理資源。 https://docs.aws.amazon.com/general/latest/gr/rande-manage.html["瞭解如何啟用地區"^]。
+
+
+
+== 選擇支援的執行個體
+
+根據您選擇的授權類型、支援多種執行個體類型。 Cloud Volumes ONTAP
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-aws.html["AWS支援Cloud Volumes ONTAP 的支援組態"^]
+
+
+
+== 瞭解儲存限制
+
+一個不含資源的系統的原始容量上限 Cloud Volumes ONTAP 與授權有關。其他限制會影響集合體和磁碟區的大小。在規劃組態時、您應該注意這些限制。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-limits-aws.html["AWS的儲存限制Cloud Volumes ONTAP"^]
+
+
+
+== 在AWS中調整系統規模
+
+調整 Cloud Volumes ONTAP 您的支援規模、有助於滿足效能與容量的需求。在選擇執行個體類型、磁碟類型和磁碟大小時、您應該注意幾個關鍵點：
+
+執行個體類型::
++
+--
+* 將工作負載需求與每個 EC2 執行個體類型的最大處理量和 IOPS 配對。
+* 如果有多位使用者同時寫入系統、請選擇有足夠 CPU 來管理要求的執行個體類型。
+* 如果您的應用程式大多讀取、請選擇具有足夠 RAM 的系統。
++
+** https://aws.amazon.com/ec2/instance-types/["AWS 文件： Amazon EC2 執行個體類型"^]
+** https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html["AWS 文件： Amazon EBS 最佳化執行個體"^]
+
+
+
+
+--
+EBS 磁碟類型:: EBS磁碟類型之間的差異較高、如下所示。若要深入瞭解EBS磁碟的使用案例、請參閱 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS 文件： EBS Volume 類型"^]。
++
+--
+* _通用SSD（GP3）_磁碟是成本最低的SSD、可在各種工作負載的成本與效能之間取得平衡。效能是以IOPS和處理量來定義。支援GP3磁碟Cloud Volumes ONTAP 的版本可搭配使用。9.7及更新版本。
++
+當您選取GP3磁碟時、BlueXP會填入預設的IOPS和處理量值、這些值會根據選取的磁碟大小提供相當於gp2磁碟的效能。您可以提高價值、以更高的成本獲得更好的效能、但我們不支援較低的值、因為這樣可能導致效能低落。簡而言之、請保留預設值或增加預設值。請勿降低。 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#gp3-ebs-volume-type["深入瞭解GP3磁碟及其效能"^]。
+
++
+請注意Cloud Volumes ONTAP 、此功能可搭配GP3磁碟支援Amazon EBS彈性磁碟區功能。 link:concept-aws-elastic-volumes.html["深入瞭解彈性磁碟區支援"]。
+
+* _通用SSD（gp2）_磁碟可平衡各種工作負載的成本與效能。效能是以 IOPS 定義。
+* _資源配置的IOPS SSD（IO1）_磁碟適用於需要以較高成本獲得最高效能的關鍵應用程式。
++
+請注意Cloud Volumes ONTAP 、支援Amazon EBS彈性Volume功能搭配IO1磁碟。 link:concept-aws-elastic-volumes.html["深入瞭解彈性磁碟區支援"]。
+
+* _Throued Optimized HDD（ST1）_磁碟適用於經常存取的工作負載、這些工作負載需要以較低的價格提供快速且一致的處理量。
++
+
+NOTE: 使用處理量最佳化的HDD（ST1）時、不建議將資料分層至物件儲存設備。
+
+
+
+--
+EBS 磁碟大小:: 如果您選擇不支援的組態 link:concept-aws-elastic-volumes.html["Amazon EBS彈性磁碟區功能"]之後、您需要在啟動Cloud Volumes ONTAP 一套系統時選擇初始磁碟大小。之後、您就可以了 link:concept-storage-management.html["讓BlueXP為您管理系統容量"]但如果您想要的話 link:task-create-aggregates.html["自行建立集合體"]請注意下列事項：
++
+--
+* 集合體中的所有磁碟大小必須相同。
+* EBS 磁碟的效能與磁碟大小有關。大小決定 SSD 磁碟的基準 IOPS 和最大突發持續時間、以及 HDD 磁碟的基準和突發處理量。
+* 最後、您應該選擇能提供所需 _ 持續效能 _ 的磁碟大小。
+* 即使您選擇較大的磁碟（例如六個4 TiB磁碟）、也可能無法取得所有IOPS、因為EC2執行個體可能達到其頻寬限制。
++
+如需 EBS 磁碟效能的詳細資訊、請參閱 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS 文件： EBS Volume 類型"^]。
+
++
+如上所述、Cloud Volumes ONTAP 支援Amazon EBS彈性Volume功能的各種組態不支援選擇磁碟大小。 link:concept-aws-elastic-volumes.html["深入瞭解彈性磁碟區支援"]。
+
+
+
+--
+
+
+
+
+== 檢視預設系統磁碟
+
+除了儲存使用者資料之外、BlueXP也購買雲端儲存設備來儲存Cloud Volumes ONTAP 作業系統資料（開機資料、根資料、核心資料和NVRAM）。為了規劃目的、在部署Cloud Volumes ONTAP 完更新之前、您可能需要先檢閱這些詳細資料。
+
+link:reference-default-configs.html#aws["在Cloud Volumes ONTAP AWS中檢視系統資料的預設磁碟"]。
+
+
+TIP: 連接器也需要系統磁碟。 https://docs.netapp.com/us-en/bluexp-setup-admin/reference-connector-default-config.html["檢視Connector預設組態的詳細資料"^]。
+
+
+
+== 準備在Cloud Volumes ONTAP AWS Outpost部署功能
+
+如果您有 AWS Outpost 、您可以 Cloud Volumes ONTAP 在「工作環境」精靈中選取 Outpost VPC 、在該 Outpost 中部署功能不全。體驗與 AWS 中的任何其他 VPC 相同。請注意、您必須先在 AWS Outpost 部署 Connector 。
+
+有幾項限制可以指出：
+
+* 目前僅 Cloud Volumes ONTAP 支援單一節點的不支援系統
+* 您可以搭配 Cloud Volumes ONTAP 使用的 EC2 執行個體僅限於您的據點所提供的項目
+* 目前僅支援通用SSD（gp2）
+
+
+
+
+== 收集網路資訊
+
+在 Cloud Volumes ONTAP AWS 中啟動時、您需要指定 VPC 網路的詳細資料。您可以使用工作表向系統管理員收集資訊。
+
+
+
+=== 單一AZ中的單一節點或HA配對
+
+[cols="30,70"]
+|===
+| AWS 資訊 | 您的價值 
+
+
+| 區域 |  
+
+
+| VPC |  
+
+
+| 子網路 |  
+
+
+| 安全性群組（如果使用您自己的） |  
+|===
+
+
+=== 多個AZs中的HA配對
+
+[cols="30,70"]
+|===
+| AWS 資訊 | 您的價值 
+
+
+| 區域 |  
+
+
+| VPC |  
+
+
+| 安全性群組（如果使用您自己的） |  
+
+
+| 節點 1 可用度區域 |  
+
+
+| 節點 1 子網路 |  
+
+
+| 節點 2 可用性區域 |  
+
+
+| 節點 2 子網路 |  
+
+
+| 中介可用度區域 |  
+
+
+| 中介子網路 |  
+
+
+| 中介器的金鑰配對 |  
+
+
+| 叢集管理連接埠的浮動 IP 位址 |  
+
+
+| 節點 1 上資料的浮動 IP 位址 |  
+
+
+| 節點 2 上資料的浮動 IP 位址 |  
+
+
+| 浮動 IP 位址的路由表 |  
+|===
+
+
+== 選擇寫入速度
+
+BlueXP可讓您選擇Cloud Volumes ONTAP 適合的寫入速度設定。在您選擇寫入速度之前、您應該先瞭解一般與高設定之間的差異、以及使用高速寫入速度時的風險與建議。 link:concept-write-speed.html["深入瞭解寫入速度"]。
+
+
+
+== 選擇Volume使用設定檔
+
+包含多項儲存效率功能、可減少您所需的總儲存容量。 ONTAP在BlueXP中建立磁碟區時、您可以選擇啟用這些功能的設定檔或停用這些功能的設定檔。您應該深入瞭解這些功能、以協助您決定要使用的設定檔。
+
+NetApp 儲存效率功能提供下列效益：
+
+資源隨需配置:: 為主機或使用者提供比實體儲存資源池實際擁有更多的邏輯儲存設備。儲存空間不會預先配置儲存空間、而是會在寫入資料時動態分配給每個磁碟區。
+重複資料刪除:: 找出相同的資料區塊、並以單一共用區塊的參考資料取代這些區塊、藉此提升效率。這項技術可消除位於同一個磁碟區的備援資料區塊、進而降低儲存容量需求。
+壓縮:: 藉由壓縮主儲存設備、次儲存設備和歸檔儲存設備上磁碟區內的資料、來減少儲存資料所需的實體容量。
+

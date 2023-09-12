@@ -1,0 +1,345 @@
+---
+sidebar: sidebar 
+permalink: task-tiering.html 
+keywords: tier, tiering, cold data, hot data, storage tiering, data tiering, fabricpool, fabric pool, s3 endpoint, endpoint, connection, performance tier, capacity tier, object store, blob tiering, container, inactive, tiering requirements 
+summary: 您可以將熱資料的 SSD 或 HDD 效能層與非作用中資料的物件儲存容量層合併、藉此降低 Cloud Volumes ONTAP VMware 的儲存成本。資料分層是 FabricPool 以不同步技術為後盾。 
+---
+= 將非作用中資料分層至低成本物件儲存設備
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以將熱資料的 SSD 或 HDD 效能層與非作用中資料的物件儲存容量層合併、藉此降低 Cloud Volumes ONTAP VMware 的儲存成本。資料分層是 FabricPool 以不同步技術為後盾。如需詳細概述、請參閱 link:concept-data-tiering.html["資料分層總覽"]。
+
+若要設定資料分層、您需要執行下列動作：
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"] 選擇支援的組態
+[role="quick-margin-para"]
+支援大部分的組態。如果Cloud Volumes ONTAP 您的系統執行的是最新版本、那麼您應該會很滿意。 link:task-tiering.html#configurations-that-support-data-tiering["深入瞭解"]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"] 確保 Cloud Volumes ONTAP 在物件儲存設備與物件儲存設備之間建立連線
+[role="quick-margin-list"]
+ifdef::aws[]
+
+* 對於 AWS 、您需要 VPC 端點對 S3 。 <<將冷資料分層至 AWS S3 的需求,深入瞭解>>。
+
+
+endif::aws[]
+
+ifdef::azure[]
+
+* 對於Azure而言、只要BlueXP具備必要的權限、您就不需要執行任何操作。 <<將冷資料分層至 Azure Blob 儲存設備的需求,深入瞭解>>。
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* 若為Google Cloud、您需要設定私有Google Access的子網路、並設定服務帳戶。 <<將冷資料分層至 Google Cloud Storage 儲存庫的需求,深入瞭解>>。
+
+
+endif::gcp[]
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] 請確定您已啟用分層功能、並有一個 Aggregate
+[role="quick-margin-para"]
+必須在集合體上啟用資料分層、才能在磁碟區上啟用資料分層。您應該瞭解新磁碟區和現有磁碟區的需求。 <<確保在 Aggregate 上啟用分層,深入瞭解>>。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四"] 建立、修改或複寫磁碟區時、請選擇分層原則
+[role="quick-margin-para"]
+在建立、修改或複寫磁碟區時、BlueXP會提示您選擇分層原則。
+
+[role="quick-margin-list"]
+* link:task-tiering.html#tiering-data-from-read-write-volumes["在讀寫磁碟區上分層資料"]
+* link:task-tiering.html#tiering-data-from-data-protection-volumes["在資料保護磁碟區上分層資料"]
+
+
+[NOTE]
+.什麼是資料分層不需要的？ #8217 ？
+====
+* 您不需要安裝功能授權、就能進行資料分層。
+* 您不需要為容量層建立物件存放區。BlueXP能為您實現這項目標。
+* 您不需要在系統層級啟用資料分層。
++
+在系統建立時、BlueXP會為Cold資料建立物件存放區、 <<在實作需求之後啟用資料分層,只要沒有連線或權限問題>>。之後、您只需要在磁碟區上啟用資料分層功能（在某些情況下、 <<確保在 Aggregate 上啟用分層,在 Aggregate 上>>）。
+
+
+
+====
+
+
+== 支援資料分層的組態
+
+您可以在使用特定組態和功能時啟用資料分層。
+
+ifdef::aws[]
+
+
+
+=== AWS支援
+
+* AWS支援資料分層功能、從Cloud Volumes ONTAP 功能表9.2開始。
+* 效能層可以是通用SSD（GP3或gp2）或已配置的IOPS SSD（IO1）。
++
+
+NOTE: 使用處理量最佳化的HDD（ST1）時、不建議將資料分層至物件儲存設備。
+
+
+
+endif::aws[]
+
+ifdef::azure[]
+
+
+
+=== 支援Azure
+
+* Azure支援下列資料分層：
++
+** 9.4版、搭配單一節點系統
+** 9.6版、搭配HA配對
+
+
+* 效能層可以是優質SSD託管磁碟、標準SSD託管磁碟或標準HDD託管磁碟。
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+
+
+=== 支援Google Cloud
+
+* Google Cloud支援資料分層功能、從Cloud Volumes ONTAP 推出的功能僅支援32個9.6個。
+* 效能層可以是SSD持續磁碟、平衡持續磁碟或標準持續磁碟。
+
+
+endif::gcp[]
+
+
+
+=== 功能互通性
+
+* 加密技術支援資料分層。
+* 必須在磁碟區上啟用精簡配置。
+
+
+
+
+== 需求
+
+視您的雲端供應商而定、必須設定特定的連線和權限、 Cloud Volumes ONTAP 以便讓效益管理系統將冷資料分層處理至物件儲存設備。
+
+ifdef::aws[]
+
+
+
+=== 將冷資料分層至 AWS S3 的需求
+
+確保 Cloud Volumes ONTAP 與 S3 建立連線。提供此連線的最佳方法是建立 VPC 端點至 S3 服務。如需相關指示、請參閱 https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-gateway.html#create-gateway-endpoint["AWS 文件：建立閘道端點"^]。
+
+當您建立 VPC 端點時、請務必選取與 Cloud Volumes ONTAP 該實例相對應的區域、 VPC 和路由表。您也必須修改安全性群組、以新增允許流量到 S3 端點的傳出 HTTPS 規則。否則 Cloud Volumes ONTAP 、無法連線至 S3 服務。
+
+如果您遇到任何問題、請參閱 https://aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint/["AWS 支援知識中心：為什麼我無法使用閘道 VPC 端點連線至 S3 儲存區？"^]。
+
+endif::aws[]
+
+ifdef::azure[]
+
+
+
+=== 將冷資料分層至 Azure Blob 儲存設備的需求
+
+只要BlueXP具備必要的權限、您就不需要在效能層與容量層之間建立連線。如果Connector的自訂角色具有下列權限、則BlueXP會為您啟用vnet服務端點：
+
+[source, json]
+----
+"Microsoft.Network/virtualNetworks/subnets/write",
+"Microsoft.Network/routeTables/join/action",
+----
+根據預設、權限會包含在自訂角色中。 https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-azure.html["檢視Azure對Connector的權限"^]
+
+endif::azure[]
+
+ifdef::gcp[]
+
+
+
+=== 將冷資料分層至 Google Cloud Storage 儲存庫的需求
+
+* 駐留的子網路 Cloud Volumes ONTAP 必須設定為私有 Google Access 。如需相關指示、請參閱 https://cloud.google.com/vpc/docs/configure-private-google-access["Google Cloud 文件：設定私有 Google Access"^]。
+* 服務帳戶必須附加Cloud Volumes ONTAP 至
++
+link:task-creating-gcp-service-account.html["瞭解如何設定此服務帳戶"]。
+
++
+當您建立Cloud Volumes ONTAP 一個運作環境時、系統會提示您選擇此服務帳戶。
+
++
+如果您在部署期間未選擇服務帳戶、則必須關閉Cloud Volumes ONTAP 該服務帳戶、前往Google Cloud主控台、然後將該服務帳戶附加至Cloud Volumes ONTAP 該故障。然後、您可以依照下一節所述、啟用資料分層。
+
+* 若要使用客戶管理的加密金鑰來加密儲存區、請啟用Google Cloud儲存區使用金鑰。
++
+link:task-setting-up-gcp-encryption.html["瞭解如何搭配Cloud Volumes ONTAP 使用客戶管理的加密金鑰"]。
+
+
+
+endif::gcp[]
+
+
+
+=== 在實作需求之後啟用資料分層
+
+只要沒有連線或權限問題、在建立系統時、BlueXP就會建立Cold資料的物件存放區。如果您在建立系統之後才實作上述需求、則需要透過建立物件存放區的 API 或系統管理員手動啟用分層功能。
+
+
+NOTE: 未來的 Cloud Volumes ONTAP 版本將提供透過 BlueXP 使用者介面進行分層的功能。
+
+
+
+== 確保在 Aggregate 上啟用分層
+
+必須在集合體上啟用資料分層、才能在磁碟區上啟用資料分層。您應該瞭解新磁碟區和現有磁碟區的需求。
+
+* * 新磁碟區 *
++
+如果您要在新磁碟區上啟用資料分層功能、就不需要擔心在集合體上啟用資料分層功能。BlueXP會在已啟用分層功能的現有Aggregate上建立磁碟區、或是在啟用資料分層功能的Aggregate不存在的情況下、為磁碟區建立新的Aggregate。
+
+* * 現有磁碟區 *
++
+如果您想要在現有磁碟區上啟用資料分層、則必須確保已在基礎 Aggregate 上啟用資料分層。如果在現有的 Aggregate 上未啟用資料分層、則需要使用 System Manager 將現有的 Aggregate 附加至物件存放區。
+
+
+
+.確認是否在 Aggregate 上啟用分層的步驟
+. 在BlueXP中開啟工作環境。
+. 按一下 Aggregate 索引標籤。
+. 瀏覽至所需的方塊、並驗證是否已在 Aggregate 上啟用或停用分層。
++
+image:screenshot_aggregate_tiering_enabled.png["快照顯示有關BlueXP中包含分層狀態的Aggregate資訊。"]
+
+
+
+.在集合體上啟用分層的步驟
+. 在 System Manager 中、按一下 * Storage > Tiers* 。
+. 按一下 Aggregate 的動作功能表、然後選取 * 附加 Cloud Tiers* 。
+. 選取要附加的雲端層、然後按一下「 * 儲存 * 」。
+
+
+.接下來呢？
+您現在可以在新的和現有的磁碟區上啟用資料分層、如下一節所述。
+
+
+
+== 從讀寫磁碟區分層資料
+
+可將讀寫磁碟區上的非作用中資料分層保存至具成本效益的物件儲存設備、以釋出效能層以供熱資料使用。 Cloud Volumes ONTAP
+
+.步驟
+. 在工作環境下的 Volumes （磁碟區）標籤中、建立新的磁碟區或變更現有磁碟區的層級：
++
+[cols="30,70"]
+|===
+| 工作 | 行動 
+
+
+| 建立新的 Volume | 按一下「 * 新增 Volume * 」。 
+
+
+| 修改現有的 Volume | 選取所需的磁碟區方塊、按一下 * 管理磁碟區 * 以存取「管理磁碟區」右側面板、然後按一下右側面板下的 * 進階動作 * 和 * 變更分層原則 * 。 
+|===
+. 選取分層原則。
++
+如需這些原則的說明、請參閱 link:concept-data-tiering.html["資料分層總覽"]。
+
++
+* 範例 *
+
++
+image:screenshot_volumes_change_tiering_policy.png["螢幕擷取畫面、顯示可用於變更磁碟區分層原則的選項。"]
+
++
+如果啟用資料分層的Aggregate不存在、則BlueXP會為磁碟區建立新的Aggregate。
+
+
+
+
+
+== 從資料保護磁碟區分層資料
+
+可將資料從資料保護磁碟區分層至容量層。 Cloud Volumes ONTAP如果您啟動目的地 Volume 、資料會隨著讀取而逐漸移至效能層。
+
+.步驟
+. 從左側導覽功能表中、選取*儲存設備> Canvas*。
+. 在「畫版」頁面上、選取包含來源磁碟區的工作環境、然後將其拖曳至您要複寫磁碟區的工作環境。
+. 依照提示操作、直到您到達分層頁面、並啟用資料分層以供物件儲存使用。
++
+* 範例 *
+
++
+image:screenshot_replication_tiering.gif["快照顯示複寫磁碟區時的 S3 分層選項。"]
+
++
+如需複寫資料的說明、請參閱 https://docs.netapp.com/us-en/bluexp-replication/task-replicating-data.html["在雲端之間複寫資料"^]。
+
+
+
+
+
+== 變更階層式資料的儲存類別
+
+部署 Cloud Volumes ONTAP 完功能後、您可以變更 30 天內未存取的非使用中資料儲存類別、藉此降低儲存成本。如果您確實存取資料、存取成本就會較高、因此在變更儲存類別之前、您必須先將此納入考量。
+
+階層式資料的儲存類別是全系統的、並非每個 Volume 都有。
+
+如需支援的儲存類別資訊、請參閱 link:concept-data-tiering.html["資料分層總覽"]。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下「 * 儲存類別 * 」或「 * Blob 儲存分層 * 」。
+. 選擇一個儲存類別、然後按一下 * 「 Save 」（儲存） * 。
+
+
+
+
+== 變更資料分層的可用空間比率
+
+資料分層的可用空間比率定義Cloud Volumes ONTAP 將資料分層儲存至物件儲存時、需要多少空間才能在物件SSD/HDD上使用。預設設定為10%可用空間、但您可以根據需求調整設定。
+
+例如、您可以選擇少於10%的可用空間、以確保您使用購買的容量。然後、當需要額外容量時、BlueXP可以為您購買額外的磁碟（直到達到Aggregate的磁碟限制為止）。
+
+
+CAUTION: 如果空間不足、Cloud Volumes ONTAP 則無法移動資料、可能會導致效能降低。任何變更都應謹慎進行。如果您不確定、請聯絡NetApp支援部門以取得指引。
+
+此比率對災難恢復案例非常重要、因為Cloud Volumes ONTAP 當資料從物件儲存區讀取時、將資料移至SSD/HDD以提供更好的效能。如果空間不足、Cloud Volumes ONTAP 則無法移動資料。在變更比率時、請將此納入考量、以便符合您的業務需求。
+
+.步驟
+. 在BlueXP主控台右上角、按一下*設定*圖示、然後選取*連接器設定*。
++
+image:screenshot_settings_icon.png["顯示BlueXP主控台右上角「設定」圖示的快照。"]
+
+. 在* Capacity *下、按一下* Aggregate Capacity臨界值- Free Space Ratio for Data Tiering *。
+. 根據您的需求變更可用空間比率、然後按一下「*儲存*」。
+
+
+
+
+== 變更自動分層原則的冷卻週期
+
+如果Cloud Volumes ONTAP 您使用_auto_分層原則在某個SURFVolume上啟用資料分層、您可以根據業務需求調整預設的冷卻時間。此動作僅支援使用 API 和 CLI 。
+
+冷卻期間是指磁碟區中的使用者資料在被視為「冷」並移至物件儲存設備之前、必須保持非作用中狀態的天數。
+
+自動分層原則的預設冷卻期間為31天。您可以變更冷卻期間、如下所示：
+
+* 9.8或更新版本：2天至183天
+* 9.7或更早：2天至63天
+
+
+.步驟
+. 建立磁碟區或修改現有磁碟區時、請將_mirumCoolingDays參數與API要求搭配使用。
+

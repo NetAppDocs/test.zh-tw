@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: concept-gcp-image-verification.html 
+keywords: Google Cloud, image, VHD, image signature file, 
+summary: 驗證Google Cloud映像檔案簽名檔案。 
+---
+= Google Cloud映像驗證總覽
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Google Cloud映像驗證符合增強的NetApp安全要求。已對產生映像的指令碼進行變更、以便在過程中使用專為此工作所產生的私密金鑰來簽署映像。您可以使用已簽署的Google Cloud摘要與公開憑證來驗證GCP映像的完整性、此憑證可透過下載 https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/downloads-tab["NSS"^] 以取得特定版本。
+
+
+NOTE: 支援Google Cloud映像驗證Cloud Volumes ONTAP 功能的更新版本為9.13.0或更新版本。

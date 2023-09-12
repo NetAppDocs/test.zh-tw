@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: concept-gcp-verify-signed-image.html 
+keywords: Google Cloud, image, disk.raw, file signature verification, encryption,ONTAP, Cloud Volumes, OpenSSL, sha256, 
+summary: 透過Cloud Volumes ONTAP 「鏡射影像摘要檔案」工具驗證匯出的Google Cloud影像檔案簽名。 
+---
+= 驗證Google Cloud簽署的映像
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+若要驗證匯出的Google Cloud簽署映像、您必須從NSS下載映像摘要檔案、以驗證disk.RAW檔案和摘要檔案內容。
+
+
+
+== 簽署映像驗證工作流程摘要
+
+以下是Google Cloud簽署映像驗證工作流程的總覽。
+
+* 從 https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/downloads-tab["NSS"^]下載內含下列檔案的Google Cloud歸檔：
++
+** 簽名摘要（.sig）
+** 包含公開金鑰（.pem）的憑證
+** 憑證鏈結（.pem）
++
+image:screenshot_cloud_volumes_ontap_tar.gz.png["顯示包含摘要檔案tar.gz下載的NSS/頁面的映像"]
+
+
+
+* 下載轉換後的disk.原始 檔案
+* 使用憑證鏈結驗證憑證
+* 使用含有公開金鑰的憑證來驗證已簽署的摘要
++
+** 使用公開金鑰解密已簽署的摘要、以擷取映像檔摘要
+** 建立已下載磁碟.原始 檔案的摘要
+** 比較兩個摘要檔案以進行驗證
++
+image:graphic_azure_check_signature.png["顯示映像簽名驗證程序的映像"]
+
+
+
+

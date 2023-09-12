@@ -1,0 +1,98 @@
+---
+sidebar: sidebar 
+permalink: task-manage-keystone.html 
+keywords: license, licensing, install, keystone, request capacity, link subscription, add keystone subscription, keystone subscription, digital wallet, keystone flex 
+summary: BlueXP 數位錢包頁面可讓您從單一位置管理 Cloud Volumes ONTAP 的授權。您可以新增授權並更新現有授權。 
+---
+= 管理基礎概念訂閱
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+透過啟用與 Cloud Volumes ONTAP 搭配使用的訂閱、從 BlueXP 數位錢包管理基礎概念訂閱。您也可以要求變更已提交的容量、也可以取消訂閱連結。
+
+Keystone Subscription_ 是 NetApp 提供的隨成長付費儲存服務。
+
+_BlueXP 數位錢包 _ 可讓您從單一位置管理 Cloud Volumes ONTAP 的授權。您可以新增授權並更新現有授權。
+
+https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-licensing.html["深入瞭Cloud Volumes ONTAP 解不知如何取得授權"]。
+
+
+
+== 授權您的帳戶
+
+在 BlueXP 中使用和管理基礎概念訂閱之前、您必須先聯絡 NetApp 、以授權您的 BlueXP 使用者帳戶使用基礎概念訂閱。
+
+.步驟
+. 從BlueXP導覽功能表中、選取*管理>數位錢包*。
+. 選取 * Keystone * 。
+. 如果您看到*歡迎使用NetApp Keystone S不到*頁面、請傳送電子郵件至頁面上所列的地址。
++
+NetApp代表將授權您的使用者帳戶存取訂閱、以處理您的申請。
+
+. 返回 * Keystone Subscription* 檢視您的訂閱。
++
+image:screenshot-keystone-overview.png["顯示 Keystone 訂閱清單的螢幕擷取畫面。"]
+
+
+
+.接下來呢？
+連結您要搭配Cloud Volumes ONTAP 使用的訂閱內容。
+
+
+
+== 連結訂閱
+
+NetApp 授權您的帳戶後、您需要連結 Keystone 訂閱以搭配 Cloud Volumes ONTAP 使用。此動作可讓使用者選擇訂閱做為新Cloud Volumes ONTAP 版的功能表系統的充電方法。
+
+.步驟
+. 從BlueXP導覽功能表中、選取*管理>數位錢包*。
+. 選取 * Keystone * 。
+. 如需您要連結的訂閱、請按一下 image:icon-action.png["這是三個並排點的圖示"] 然後選取*連結*。
++
+image:screenshot-keystone-link.png["顯示訂閱連結選項的快照。"]
+
+
+
+.結果
+訂閱內容現已連結至您的BlueXP帳戶、可在建立Cloud Volumes ONTAP 運作環境時選擇。
+
+
+
+== 申請更多或更少的已認可容量
+
+如果您需要調整訂閱的已提交容量、可以直接從BlueXP介面傳送要求。
+
+.步驟
+. 從BlueXP導覽功能表中、選取*管理>數位錢包*。
+. 選取 * Keystone * 。
+. 如需調整容量的訂閱、請按一下 image:icon-action.png["這是三個並排點的圖示"] 然後選取*檢視詳細資料並編輯*。
+. 輸入一或多個訂閱所需的已提交容量。
++
+image:screenshot-keystone-request.png["螢幕快照顯示可要求變更訂閱的已提交容量。"]
+
+. 向下捲動、輸入申請的任何其他詳細資料、然後按一下*提交*。
+
+
+.結果
+您的申請會在NetApp系統中建立Ticket以供處理。
+
+
+
+== 取消訂閱連結
+
+如果您不再想在新的 Cloud Volumes ONTAP 系統上使用 Keystone 訂閱、您可以取消訂閱的連結。請注意、您只能取消連結未附加至現有Cloud Volumes ONTAP 的訂閱內容的訂閱。
+
+.步驟
+. 從BlueXP導覽功能表中、選取*管理>數位錢包*。
+. 選取 * Keystone * 。
+. 若要取消連結訂閱、請按一下 image:icon-action.png["這是三個並排點的圖示"] 然後選取*取消連結*。
+
+
+.結果
+訂閱內容會從您的BlueXP帳戶中取消連結、因此在建立Cloud Volumes ONTAP 運作中的環境時無法再選取。

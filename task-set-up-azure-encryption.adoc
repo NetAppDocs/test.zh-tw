@@ -1,0 +1,257 @@
+---
+sidebar: sidebar 
+permalink: task-set-up-azure-encryption.html 
+keywords: customer-managed key, customer key, azure storage service encryption, azure encryption, encryption key, azure encryption key 
+summary: 使用Cloud Volumes ONTAP Azure Storage Service Encryption搭配Microsoft管理的金鑰、可在Azure中的支援中心自動加密資料。但您可以改用自己的加密金鑰、只要執行本頁的步驟即可。 
+---
+= 設定Cloud Volumes ONTAP 支援使用Azure中客戶管理的金鑰
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+資料會使用在Cloud Volumes ONTAP Azure中的功能自動加密 https://azure.microsoft.com/en-us/documentation/articles/storage-service-encryption/["Azure 儲存服務加密"] 使用Microsoft管理的金鑰。但您可以改用自己的加密金鑰、只要執行本頁的步驟即可。
+
+
+
+== 資料加密總覽
+
+Azure中的資料會使用自動加密Cloud Volumes ONTAP https://azure.microsoft.com/en-us/documentation/articles/storage-service-encryption/["Azure 儲存服務加密"^]。預設實作使用Microsoft管理的金鑰。無需設定。
+
+如果您想要使用客戶管理的支援服務金鑰Cloud Volumes ONTAP 搭配使用、則必須完成下列步驟：
+
+. 從Azure建立金鑰保存庫、然後在該保存庫中產生金鑰
+. 從BlueXP中、使用API建立Cloud Volumes ONTAP 使用金鑰的功能不受影響的環境
+
+
+
+
+=== 金鑰旋轉
+
+如果您建立新版的金鑰、Cloud Volumes ONTAP 則更新版本會自動使用最新的金鑰版本。
+
+
+
+=== 資料加密方式
+
+建立Cloud Volumes ONTAP 一個設定為使用客戶管理金鑰的功能完善的支援環境之後Cloud Volumes ONTAP 、即可將下列資料加密。
+
+Azure HA多重可用度區域::
++
+--
+* 所有的Azure儲存帳戶Cloud Volumes ONTAP 均使用客戶管理的金鑰進行加密
+* 對於root、開機、NVRAM、核心和資料磁碟、BlueXP使用磁碟加密集來管理受管理磁碟的加密金鑰。
+* 任何新的資料磁碟也會使用相同的磁碟加密集。
+
+
+--
+Azure HA單一可用度區域::
++
+--
+* 所有的Azure儲存帳戶Cloud Volumes ONTAP 均使用客戶管理的金鑰進行加密
+* 任何新的儲存帳戶（例如新增磁碟或集合體時）也會使用相同的金鑰
+* 從《支援NVRAM和核心磁碟》的《支援範圍》（《支援範圍》）的《支援範圍》（ONTAP https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption["磁碟加密集"^]，可透過託管磁碟管理加密金鑰。較低版本將使用Microsoft管理的金鑰、而非客戶管理的金鑰。
+
+
+--
+單一節點::
++
+--
+* 所有的Azure儲存帳戶Cloud Volumes ONTAP 均使用客戶管理的金鑰進行加密。^1^
+* 對於root、開機和資料磁碟、BlueXP會使用a https://docs.microsoft.com/en-us/azure/virtual-machines/disk-encryption["磁碟加密集"^]，可透過託管磁碟管理加密金鑰。
+* 任何新的資料磁碟也會使用相同的磁碟加密集。
+* 從適用於NVRAM和核心磁碟的《支援支援支援》9.9、1頁7開始ONTAP 、BlueXP使用磁碟加密集來管理受管理磁碟的加密金鑰。較低版本將使用Microsoft管理的金鑰、而非客戶管理的金鑰。
+
+
+--
+
+
+.註腳
+. 如果您想要在建立儲存帳戶期間加密、則必須在CVO建立要求中建立並提供資源ID。這適用於所有類型的部署。如果您未提供、儲存帳戶仍會加密、但BlueXP會先使用Microsoft管理的金鑰加密來建立儲存帳戶、然後再更新儲存帳戶以使用客戶管理的金鑰。
+
+
+
+
+== 建立使用者指派的託管身分識別
+
+您可以選擇建立稱為使用者指派之託管身分識別的資源。這樣做可讓您在建立 Cloud Volumes ONTAP 工作環境時加密儲存帳戶。建議您在建立金鑰資料保險箱和產生金鑰之前先建立此資源。
+
+資源具有以下 ID ： `userassignedidentity`。
+
+.步驟
+. 在 Azure 中、前往 Azure 服務並選取 * 託管身分識別 * 。
+. 按一下「 * 建立 * 」。
+. 提供下列詳細資料：
++
+** * 訂閱 * ：選擇訂閱。我們建議您選擇與 Connector 訂閱相同的訂閱。
+** * 資源群組 * ：使用現有的資源群組或建立新的資源群組。
+** * 區域 * ：您也可以選擇與 Connector 相同的區域。
+** * 名稱 * ：輸入資源的名稱。
+
+
+. 您也可以新增標記。
+. 按一下「 * 建立 * 」。
+
+
+
+
+== 建立金鑰保存庫並產生金鑰
+
+金鑰庫必須位於您計畫建立Cloud Volumes ONTAP 此系統的同一個Azure訂閱和地區。
+
+如果您 <<建立使用者指派的託管身分識別,建立使用者指派的託管身分識別>>在建立金鑰資料保險箱時、您也應該為金鑰資料保險箱建立存取原則。
+
+.步驟
+. https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal["在您的Azure訂閱中建立金鑰庫"^]。
++
+請注意金鑰庫的下列需求：
+
++
+** 金鑰保存庫必須與Cloud Volumes ONTAP 該系統位於相同的區域。
+** 應啟用下列選項：
++
+*** *軟刪除*（此選項預設為啟用、但不可停用）
+*** *清除保護*
+*** *適用於Volume加密的Azure磁碟加密*（適用於多個區域中的單一節點系統或HA配對）
+
+
+** 如果您建立使用者指派的託管身分識別、則應啟用下列選項：
++
+*** * 資料保險箱存取原則 *
+
+
+
+
+. 如果您選取了 Vault 存取原則、請按一下「建立」來建立金鑰資料保險箱的存取原則。如果沒有、請跳至步驟 3 。
++
+.. 選取下列權限：
++
+*** 取得
+*** 清單
+*** 解密
+*** 加密
+*** 解開密鑰
+*** 換行鍵
+*** 驗證
+*** 簽署
+
+
+.. 選取使用者指派的託管身分識別（資源）做為主體。
+.. 檢閱並建立存取原則。
+
+
+. https://docs.microsoft.com/en-us/azure/key-vault/keys/quick-create-portal#add-a-key-to-key-vault["在金鑰保存庫中產生金鑰"^]。
++
+請注意金鑰的下列需求：
+
++
+** 金鑰類型必須為* RSA*。
+** 建議的RSA金鑰大小為* 2048*、但支援其他大小。
+
+
+
+
+
+
+== 建立使用加密金鑰的工作環境
+
+建立金鑰庫並產生加密金鑰之後、您可以建立Cloud Volumes ONTAP 新的、設定為使用金鑰的整套系統。使用BlueXP API可支援這些步驟。
+
+.必要權限
+如果您想將客戶管理的金鑰與單一節點Cloud Volumes ONTAP 的一套系統整合、請確認BlueXP Connector具有下列權限：
+
+[source, json]
+----
+"Microsoft.Compute/diskEncryptionSets/read",
+"Microsoft.Compute/diskEncryptionSets/write",
+"Microsoft.Compute/diskEncryptionSets/delete"
+"Microsoft.KeyVault/vaults/deploy/action",
+"Microsoft.KeyVault/vaults/read",
+"Microsoft.KeyVault/vaults/accessPolicies/write",
+"Microsoft.ManagedIdentity/userAssignedIdentities/assign/action"
+----
+https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-azure.html["檢視最新的權限清單"^]
+
+.步驟
+. 請使用下列BlueXP API呼叫、取得Azure訂閱中的金鑰保存清單。
++
+對於HA配對： `GET /azure/ha/metadata/vaults`
+
++
+對於單一節點： `GET /azure/vsa/metadata/vaults`
+
++
+請記下*名稱*和*資源群組*。您需要在下一步中指定這些值。
+
++
+https://docs.netapp.com/us-en/bluexp-automation/cm/api_ref_resources.html#azure-hametadata["深入瞭解此API呼叫"^]。
+
+. 使用下列BlueXP API呼叫取得資料保險箱內的金鑰清單。
++
+對於HA配對： `GET /azure/ha/metadata/keys-vault`
+
++
+對於單一節點： `GET /azure/vsa/metadata/keys-vault`
+
++
+請記下*金鑰名稱*。您需要在下一步中指定該值（連同資料保險箱名稱）。
+
++
+https://docs.netapp.com/us-en/bluexp-automation/cm/api_ref_resources.html#azure-hametadata["深入瞭解此API呼叫"^]。
+
+. 使用Cloud Volumes ONTAP 下列BlueXP API呼叫建立一個系統。
++
+.. 對於HA配對：
++
+`POST /azure/ha/working-environments`
+
++
+申請本文必須包含下列欄位：
+
++
+[source, json]
+----
+"azureEncryptionParameters": {
+              "key": "keyName",
+              "vaultName": "vaultName"
+}
+----
++
+
+NOTE: 包括 `"userAssignedIdentity": " userAssignedIdentityId"` 如果您建立此資源以用於儲存帳戶加密、請輸入此欄位。
+
++
+https://docs.netapp.com/us-en/bluexp-automation/cm/api_ref_resources.html#azure-haworking-environments["深入瞭解此API呼叫"^]。
+
+.. 對於單一節點系統：
++
+`POST /azure/vsa/working-environments`
+
++
+申請本文必須包含下列欄位：
+
++
+[source, json]
+----
+"azureEncryptionParameters": {
+              "key": "keyName",
+              "vaultName": "vaultName"
+}
+----
++
+
+NOTE: 包括 `"userAssignedIdentity": " userAssignedIdentityId"` 如果您建立此資源以用於儲存帳戶加密、請輸入此欄位。
+
++
+https://docs.netapp.com/us-en/bluexp-automation/cm/api_ref_resources.html#azure-vsaworking-environments["深入瞭解此API呼叫"^]。
+
+
+
+
+
+.結果
+您有一個Cloud Volumes ONTAP 全新的支援系統、可設定使用客戶管理的金鑰進行資料加密。

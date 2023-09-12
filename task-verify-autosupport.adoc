@@ -1,0 +1,169 @@
+---
+sidebar: sidebar 
+permalink: task-verify-autosupport.html 
+keywords: autosupport, set up autosupport, test autosupport, asup, test asup 
+summary: 可主動監控系統健全狀況、並傳送訊息給NetApp技術支援部門。AutoSupport根據預設、AutoSupport 每個節點上都會啟用支援功能、以便使用HTTPS傳輸傳輸傳輸協定將訊息傳送給技術支援。最好驗證AutoSupport 此資訊是否能傳送。 
+---
+= 驗AutoSupport 證此設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+可主動監控系統健全狀況、並傳送訊息給NetApp技術支援部門。AutoSupport根據預設、AutoSupport 每個節點上都會啟用支援功能、以便使用HTTPS傳輸傳輸傳輸協定將訊息傳送給技術支援。最好驗證AutoSupport 此資訊是否能傳送。
+
+唯一必要的組態步驟是確保Cloud Volumes ONTAP 使用者能夠連線到傳出的網際網路。如需詳細資料、請參閱雲端供應商的網路需求。
+
+
+
+== 需求AutoSupport
+
+支援NetApp功能的支援節點需要外傳網際網路存取功能、此功能可主動監控系統健全狀況、並將訊息傳送給NetApp技術支援部門。Cloud Volumes ONTAP AutoSupport
+
+路由和防火牆原則必須允許將 HTTP / HTTPS 流量傳送至下列端點、 Cloud Volumes ONTAP 才能讓下列端點傳送 AutoSupport 動態訊息：
+
+* \https://support.netapp.com/aods/asupmessage
+* \https://support.netapp.com/asupprod/post/1.0/postAsup
+
+
+如果傳出的網際網路連線無法傳送AutoSupport 功能性訊息、則BlueXP會自動將Cloud Volumes ONTAP 您的功能性更新系統設定為使用Connector做為Proxy伺服器。唯一的需求是確保連接器的安全性群組允許連接埠3128上的傳入連線。部署Connector之後、您需要開啟此連接埠。
+
+如果您定義了Cloud Volumes ONTAP 嚴格的傳出規則以供支援、那麼Cloud Volumes ONTAP 您也必須確保支援透過連接埠3128建立_Outbound _連線的安全性群組。
+
+在您確認可以存取傳出網際網路之後、您可以測試AutoSupport 以確保能夠傳送訊息。如需相關指示、請參閱 https://docs.netapp.com/us-en/ontap/system-admin/setup-autosupport-task.html["文件：設定檔ONTAP AutoSupport"^]。
+
+
+
+== 疑難排解AutoSupport 您的VMware組態
+
+如果傳出連線無法使用、且BlueXP無法將Cloud Volumes ONTAP 您的作業系統設定為使用Connector做為Proxy伺服器、您將會收到來自BlueXP的通知、標題為「<工作環境名稱>無法傳送AutoSupport 靜態訊息」。
+
+您很可能因為網路問題而收到此訊息。
+
+請依照下列步驟來解決此問題。
+
+.步驟
+. SSH到Cloud Volumes ONTAP 支援系統、以便從CLI管理系統。
++
+link:task-connecting-to-otc.html["瞭解如何從SSH到Cloud Volumes ONTAP 功能"]。
+
+. 顯示AutoSupport 資訊子系統的詳細狀態：
++
+`autosupport check show-details`
+
++
+回應應類似下列內容：
+
++
+[listing]
+----
+    Category: smtp
+          Component: mail-server
+             Status: failed
+             Detail: SMTP connectivity check failed for destination:
+                     mailhost. Error: Could not resolve host - 'mailhost'
+            Corrective Action: Check the hostname of the SMTP server
+
+    Category: http-https
+        Component: http-put-destination
+            Status: ok
+            Detail: Successfully connected to:
+                    <https://support.netapp.com/put/AsupPut/>.
+
+          Component: http-post-destination
+             Status: ok
+             Detail: Successfully connected to:
+                     https://support.netapp.com/asupprod/post/1.0/postAsup.
+
+    Category: on-demand
+          Component: ondemand-server
+             Status: ok
+             Detail: Successfully connected to:
+                     https://support.netapp.com/aods/asupmessage.
+
+    Category: configuration
+            Component: configuration
+                Status: ok
+                Detail: No configuration issues found.
+    5 entries were displayed.
+----
++
+如果http-https類別的狀態為「ok」、表示AutoSupport 已正確設定、並可傳送訊息。
+
+. 如果狀態不正常、請驗證每Cloud Volumes ONTAP 個節點的Proxy URL：
++
+`autosupport show -fields proxy-url`
+
+. 如果Proxy URL參數是空的、請設定Cloud Volumes ONTAP 使用連接器做為Proxy：
++
+`autosupport modify -proxy-url \http://<connector private ip>:3128`
+
+. 再次驗AutoSupport 證此狀態：
++
+`autosupport check show-details`
+
+. 如果狀態仍然失敗、請驗證Cloud Volumes ONTAP 透過連接埠3128驗證顯示的是在連接埠之間與連接器之間是否有連線。
+. 如果狀態ID在驗證是否有連線後仍失敗、請使用SSH連線至連接器。
++
+https://docs.netapp.com/us-en/bluexp-setup-admin/task-managing-connectors.html#connect-to-the-linux-vm["深入瞭解連接至Linux VM for the Connector的相關資訊"^]
+
+. 前往 `/opt/application/netapp/cloudmanager/docker_occm/data/`
+. 開啟 Proxy 組態檔案 `squid.conf`
++
+檔案的基本結構如下：
+
++
+[listing]
+----
+        http_port 3128
+        acl localnet src 172.31.0.0/16
+        acl azure_aws_metadata dst 169.254.169.254
+
+        http_access allow localnet
+        http_access deny azure_aws_metadata
+        http_access allow localhost
+        http_access deny all
+----
++
+localnet src值是Cloud Volumes ONTAP 指整個過程中的CIDR。
+
+. 如果Cloud Volumes ONTAP 無法在檔案中指定的範圍內更新整個系統的CIDR區塊、請更新該值或新增下列項目：
++
+`acl cvonet src <cidr>`
+
++
+如果您新增此新項目、請別忘了新增允許項目：
+
++
+`http_access allow cvonet`
+
++
+範例如下：
+
++
+[listing]
+----
+        http_port 3128
+        acl localnet src 172.31.0.0/16
+        acl cvonet src 172.33.0.0/16
+        acl azure_aws_metadata dst 169.254.169.254
+
+        http_access allow localnet
+        http_access allow cvonet
+        http_access deny azure_aws_metadata
+        http_access allow localhost
+        http_access deny all
+----
+. 編輯組態檔之後、請重新啟動Proxy容器作為Sudo：
++
+`docker restart squid`
+
+. 返回Cloud Volumes ONTAP 到還原CLI、確認Cloud Volumes ONTAP 功能不只能傳送AutoSupport 功能不實的訊息：
++
+`autosupport check show-details`
+
+

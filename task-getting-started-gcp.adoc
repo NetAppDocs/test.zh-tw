@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: task-getting-started-gcp.html 
+keywords: google cloud platform, gcp, cloud manager, deploy BlueXP, launch BlueXP, create BlueXP, getting started, networking, gcp networking, service account, tiering, data tiering, bucket, fabricpool, cloud backup, storage access key, gcp role, role, iam role, permissions, gcp permissions, cloud backup 
+summary: 只要幾個步驟、就能開始使用Cloud Volumes ONTAP 適用於Google Cloud的解決方案。 
+---
+= 在Google Cloud中快速入門Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+只要幾個步驟、就能開始使用Cloud Volumes ONTAP 適用於Google Cloud的解決方案。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"] 建立連接器
+[role="quick-margin-para"]
+如果您沒有 https://docs.netapp.com/us-en/bluexp-setup-admin/concept-connectors.html["連接器"^] 然而、帳戶管理員需要建立一個帳戶。 https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-google.html["瞭解如何在Google Cloud中建立Connector"^]
+
+[role="quick-margin-para"]
+請注意、如果您想要在Cloud Volumes ONTAP 無法存取網際網路的子網路中部署支援、則必須手動安裝Connector、並存取在該Connector上執行的BlueXP使用者介面。 https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-private-mode.html["瞭解如何在無法存取網際網路的位置手動安裝Connector"^]
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"] 規劃您的組態
+[role="quick-margin-para"]
+BlueXP提供符合工作負載需求的預先設定套件、或者您也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。
+
+[role="quick-margin-para"]
+link:task-planning-your-config-gcp.html["深入瞭解規劃組態"]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] 設定您的網路
+[role="quick-margin-list"]
+. 確保您的 VPC 和子網路支援連接器與 Cloud Volumes ONTAP 支援之間的連線。
+. 如果您打算啟用資料分層、 https://cloud.google.com/vpc/docs/configure-private-google-access["設定Cloud Volumes ONTAP 私有Google Access的子網路"^]。
+. 如果您要部署 HA 配對、請確定您有四個 VPC 、每個 VPC 都有自己的子網路。
+. 如果您使用的是共享VPC、請將_Compute Network User_角色提供給Connector服務帳戶。
+. 啟用從目標VPC for NetApp AutoSupport 的傳出網際網路存取功能。
++
+如果您在Cloud Volumes ONTAP 無法存取網際網路的位置部署支援、則不需要執行此步驟。
+
+
+
+[role="quick-margin-para"]
+link:reference-networking-gcp.html["深入瞭解網路需求"]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四"] 設定服務帳戶
+[role="quick-margin-para"]
+下列兩種用途需要Google Cloud服務帳戶：Cloud Volumes ONTAP第一個是啟用時 link:concept-data-tiering.html["資料分層"] 將冷資料分層至Google Cloud中的低成本物件儲存設備。第二個是啟用時 https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-backup-to-cloud.html["BlueXP 備份與還原"^] 將磁碟區備份至低成本的物件儲存設備。
+
+[role="quick-margin-para"]
+您可以設定一個服務帳戶、並將其用於這兩種用途。服務帳戶必須具有*儲存設備管理*角色。
+
+[role="quick-margin-para"]
+link:task-creating-gcp-service-account.html["閱讀逐步指示"]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"] 啟用 Google Cloud API
+[role="quick-margin-para"]
+https://cloud.google.com/apis/docs/getting-started#enabling_apis["在專案中啟用下列 Google Cloud API"^]。這些 API 是部署連接器和 Cloud Volumes ONTAP 功能不全的必備條件。
+
+[role="quick-margin-list"]
+* Cloud Deployment Manager V2 API
+* 雲端記錄 API
+* Cloud Resource Manager API
+* 運算引擎 API
+* 身分識別與存取管理（ IAM ） API
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"] 使用BlueXP啟動Cloud Volumes ONTAP
+[role="quick-margin-para"]
+按一下「 * 新增工作環境 * 」、選取您要部署的系統類型、然後完成精靈中的步驟。 link:task-deploying-gcp.html["閱讀逐步指示"]。
+
+.相關連結
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-google.html["從BlueXP建立連接器"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-install-connector-on-prem.html["在 Linux 主機上安裝 Connector 軟體"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-gcp.html["BlueXP使用Google Cloud權限的功能"^]
+

@@ -1,41 +1,15 @@
 ---
+layout: astra 
 sidebar: sidebar 
 permalink: index.html 
-summary: 歡迎使用Cloud Insights 適用於此的文件入口網站。 
+summary: 利用 NetApp 技術、您可以最佳化雲端儲存成本與效能、同時強化資料保護、安全性與法規遵循。 Cloud Volumes ONTAP 
 ---
-= 本文檔 Cloud Insights
+= 本文檔Cloud Volumes ONTAP
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
 
-
-[role="lead"]
-NetApp Cloud Insights 解決方案是一套雲端基礎架構監控工具、可讓您清楚掌握完整的基礎架構。利用VMware、您可以監控、疑難排解及最佳化所有資源、包括公有雲和私有資料中心。Cloud Insights
-
-協助您：Cloud Insights
-
-* *平均解決時間減少90%*
-+
-停止搜尋記錄數天、無法手動建立基礎架構的關聯：請使用我們的動態拓撲與關聯分析、立即找出問題所在。
-
-* *平均降低33%的雲端基礎架構成本*
-+
-找出已放棄和未使用的資源、並在最佳化的效能和成本層中找出適當規模的工作負載、藉此排除效率不彰的情況。
-
-* *避免高達80%的雲端問題影響終端使用者*
-+
-使用進階分析和機器學習功能、在問題變成關鍵性停機之前、先找出問題、然後搜尋大量資料以找出相關的部分。
-
-
-
-
-
-== 快速入門
-
-* 我是新客戶： link:task_cloud_insights_onboarding_1.html["就職"]
-* 我已註冊：現在該怎麼辦？link:task_getting_started_with_cloud_insights.html["取得資料"]
-link:concept_user_roles.html["設定使用者"]
-* 如何充分發揮Cloud Insights 效益？link:task_defining_annotations.html["準備資產：註釋"]
-link:concept_querying_assets.html["尋找您想要的資產：查詢"]
-link:concept_dashboards_overview.html["查看您想要的資料：儀表板"]
-link:https:task_create_monitor.html["監控與警示"]
-* 我已經嘗試Cloud Insights 過這個解決方法、現在我已經準備好了 link:concept_subscribing_to_cloud_insights.html["*訂閱*"]。
 

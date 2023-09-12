@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: task-connecting-to-otc.html 
+keywords: connecting, cli, command, command line, connect, shell, interface 
+summary: 利用此功能、您可以執行所有的管理命令、這是進階工作或使用CLI時的最佳選擇。Cloud Volumes ONTAP您可以使用SSH連線至CLI。 
+---
+= 從Cloud Volumes ONTAP CLI管理
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+利用此功能、您可以執行所有的管理命令、這是進階工作或使用CLI時的最佳選擇。Cloud Volumes ONTAP您可以使用 Secure Shell （ SSH ）連線至 CLI 。
+
+.開始之前
+您使用 SSH 連線 Cloud Volumes ONTAP 到 Suse 的主機必須有連至 Cloud Volumes ONTAP Suse 的網路連線。例如、您可能需要從雲端供應商網路中的跨接主機執行SSH。
+
+ifdef::aws[]
+
+
+NOTE: 當部署於多個 AZs 時 Cloud Volumes ONTAP 、使用浮動 IP 位址進行叢集管理介面、這表示外部路由無法使用。您必須從屬於同一個路由網域的主機連線。
+
+endif::aws[]
+
+.步驟
+. 在BlueXP中、識別叢集管理介面的IP位址：
++
+.. 從左側導覽功能表中、選取*儲存設備> Canvas*。
+.. 在「畫版」頁面上、選取 Cloud Volumes ONTAP 「系統」。
+.. 複製右窗格中顯示的叢集管理 IP 位址。
+
+
+. 使用 SSH 連線至使用管理帳戶的叢集管理介面 IP 位址。
++
+* 範例 *
+
++
+下圖顯示使用 Putty 的範例：
+
++
+image:screenshot_cli2.gif["螢幕擷取畫面：顯示連接埠 22 上的目的地 admin@192.168.11 。"]
+
+. 在登入提示下、輸入 admin 帳戶的密碼。
++
+* 範例 *
+
++
+....
+Password: ********
+COT2::>
+....
+

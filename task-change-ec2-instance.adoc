@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: task-change-ec2-instance.html 
+keywords: ec2 instance type, change ec2 instance type, change instance type, modify instance type, modify ec2 instance, amazon ec2 
+summary: 在Cloud Volumes ONTAP AWS中啟動時、您可以從多個執行個體或類型中進行選擇。如果判斷執行個體的大小過小或過大、您可以隨時變更執行個體類型。 
+---
+= 變更EC2執行個體類型Cloud Volumes ONTAP 以供使用
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在Cloud Volumes ONTAP AWS中啟動時、您可以從多個執行個體或類型中進行選擇。如果判斷執行個體的大小過小或過大、您可以隨時變更執行個體類型。
+
+.關於這項工作
+* 自動恢復必須在 Cloud Volumes ONTAP 一個「無法恢復的 HA 配對」上啟用（這是預設設定）。如果沒有、則作業將會失敗。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/GUID-3F50DE15-0D01-49A5-BEFD-D529713EC1FA.html["供應說明文件：設定自動恢復的命令 ONTAP"^]
+
+* 變更執行個體類型可能會影響AWS服務費用。
+* 此作業會重新啟動 Cloud Volumes ONTAP 。
++
+對於單一節點系統、 I/O 會中斷。
+
++
+對於 HA 配對、變更不中斷營運。HA 配對可繼續提供資料。
+
++
+
+TIP: BlueXP會主動啟動接管並等待回饋、一次只能正常變更一個節點。NetApp 的 QA 團隊在這段過程中測試了寫入和讀取檔案的能力、並未發現客戶端有任何問題。隨著連線變更、我們確實看到 I/O 層級的重試次數、但應用程式層卻取代了 NFS/CIFS 連線的這些短「重新連線」。
+
+
+
+.參考資料
+如需 AWS 中支援的執行個體類型清單、請參閱 link:https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-aws.html#supported-ec2-compute["支援的 EC2 執行個體"^]。
+
+.步驟
+. 在 Canvas 頁面上、選取工作環境。
+. 在「概述」標籤上、按一下「功能」面板、然後按一下「 * 執行個體類型 * 」旁邊的鉛筆圖示。
++
+image::screenshot_features_instance_type.png[400]
+
++
+.. 如果您使用的是節點型 PAYGO 授權、您可以選擇不同的授權和執行個體類型、方法是按一下 * 授權類型 * 旁的鉛筆圖示。
+
+
+. 選擇執行個體類型、選取核取方塊以確認您瞭解變更的影響、然後按一下 * 變更 * 。
+
+
+.結果
+以新組態重新開機。 Cloud Volumes ONTAP

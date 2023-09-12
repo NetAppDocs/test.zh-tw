@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: task-change-gcp-machine.html 
+keywords: change machine type, google cloud machine type, gcp machine type, modify machine type 
+summary: 在Cloud Volumes ONTAP Google Cloud上啟動時、您可以從多種機器類型中進行選擇。如果判斷執行個體的大小過小或過大、您可以隨時變更執行個體或機器類型。 
+---
+= 變更Google Cloud機器類型Cloud Volumes ONTAP 以供使用
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在Cloud Volumes ONTAP Google Cloud上啟動時、您可以從多種機器類型中進行選擇。如果判斷執行個體的大小過小或過大、您可以隨時變更執行個體或機器類型。
+
+.關於這項工作
+* 自動恢復必須在 Cloud Volumes ONTAP 一個「無法恢復的 HA 配對」上啟用（這是預設設定）。如果沒有、則作業將會失敗。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/GUID-3F50DE15-0D01-49A5-BEFD-D529713EC1FA.html["供應說明文件：設定自動恢復的命令 ONTAP"^]
+
+* 變更機器類型可能會影響Google Cloud服務費用。
+* 此作業會重新啟動 Cloud Volumes ONTAP 。
++
+對於單一節點系統、 I/O 會中斷。
+
++
+對於 HA 配對、變更不中斷營運。HA 配對可繼續提供資料。
+
++
+
+TIP: BlueXP會主動啟動接管並等待回饋、一次只能正常變更一個節點。NetApp 的 QA 團隊在這段過程中測試了寫入和讀取檔案的能力、並未發現客戶端有任何問題。隨著連線變更、我們確實看到 I/O 層級的重試次數、但應用程式層卻取代了 NFS/CIFS 連線的這些短「重新連線」。
+
+
+
+.步驟
+. 在 Canvas 頁面上、選取工作環境。
+. 在「概述」索引標籤上、按一下「功能」面板、然後按一下「 * 機器類型 * 」旁邊的鉛筆圖示。
++
+image:screenshot_features_machine_type.png["在檢視工作環境時、會在「概觀」頁面右上角的「功能」面板下顯示「機器類型」設定的螢幕擷取畫面。"]
+
++
+.. 如果您使用的是節點型 PAYGO 授權、您可以選擇不同的授權和機器類型、方法是按一下 * 授權類型 * 旁的鉛筆圖示。
+
+
+. 選擇機器類型、勾選核取方塊以確認您瞭解變更的影響、然後按一下 * 變更 * 。
+
+
+.結果
+以新組態重新開機。 Cloud Volumes ONTAP

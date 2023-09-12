@@ -1,0 +1,194 @@
+---
+sidebar: sidebar 
+permalink: task-azure-key-vault.html 
+keywords: azure, encryption, NVE, NetApp volume encryption, KMIP, azure key vault 
+summary: 利用Azure Key Vault提供第三方金鑰管理服務。 
+---
+= 使用Azure Key Vault管理金鑰
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以使用 link:https://docs.microsoft.com/en-us/azure/key-vault/general/basic-concepts["Azure Key Vault（AKV）"^] 在ONTAP Azure部署的應用程式中保護您的不加密金鑰。
+
+AKV可用於保護 link:https://docs.netapp.com/us-en/ontap/encryption-at-rest/configure-netapp-volume-encryption-concept.html["NetApp Volume Encryption（NVE）金鑰"^] 僅適用於資料SVM。
+
+使用AKV的金鑰管理可透過CLI或ONTAP REST API來啟用。
+
+使用AKV時、請注意、預設會使用資料SVM LIF與雲端金鑰管理端點進行通訊。節點管理網路用於與雲端供應商的驗證服務（login.microsoftonline.com）進行通訊。如果叢集網路設定不正確、叢集將無法正確使用金鑰管理服務。
+
+.開始之前
+* 必須執行9.10.1版或更新版本Cloud Volumes ONTAP
+* 已安裝Volume Encryption（VE）授權（NetApp Volume Encryption授權會自動安裝在Cloud Volumes ONTAP 向NetApp支援註冊的每個支援系統上）
+* 您必須擁有多租戶加密金鑰管理（MT_EK-Mgmt）授權
+* 您必須是叢集或SVM管理員
+* 現用Azure訂閱
+
+
+.限制
+* AKV只能在資料SVM上設定
+
+
+
+
+== 組態程序
+
+概述的步驟將說明如何向Cloud Volumes ONTAP Azure註冊您的「還原組態」、以及如何建立Azure Key Vault和金鑰。如果您已經完成這些步驟、請確定您擁有正確的組態設定、尤其是在中 <<create-akv>>，然後繼續 <<ontap>>。
+
+* <<azure-app>>
+* <<secret>>
+* <<create-akv>>
+* <<key>>
+* <<AAD>>
+* <<ontap>>
+
+
+[[azure-app]]
+.Azure應用程式註冊
+. 您必須先在Azure訂閱中註冊您的應用程式Cloud Volumes ONTAP 、才能使用此功能來存取Azure Key Vault。在Azure入口網站中、選取「*應用程式註冊*」。
+. 選擇「**新登錄」。
+. 提供應用程式名稱、並選取支援的應用程式類型。Azure Key Vault使用預設的單一租戶即可滿足需求。選擇「*註冊*」。
+. 在Azure Overview（Azure總覽）視窗中、選取您已註冊的應用程式。將應用程式（用戶端）ID *和*目錄（租戶）ID *複製到安全位置。在稍後的註冊程序中、將會需要這些工具。
+
+
+[[secret]]
+.建立Azure用戶端機密
+. 在Azure入口網站中註冊Azure Key Vault應用程式、選取「**憑證與機密」窗格。
+. 選取「**新用戶端密碼」。輸入有意義的用戶端機密名稱。NetApp建議使用24個月到期日、不過您的特定雲端治理原則可能需要不同的設定。
+. 按一下「**新增」以建立用戶端機密。複製「**Value*」欄中所列的秘密字串、並將其儲存在安全的位置以供稍後使用 <<ontap>>。在您離開頁面後、不會再顯示機密值。
+
+
+[[create-akv]]
+.建立Azure Key Vault
+. 如果您有現有的Azure Key Vault、您可以將其連線至Cloud Volumes ONTAP 您的整套組態；不過、您必須根據此程序中的設定來調整存取原則。
+. 在Azure入口網站中、瀏覽至「**關鍵故障」區段。
+. 按一下「**+建立」、然後輸入所需資訊、包括資源群組、地區及價格層級。此外、請輸入保留刪除的保存庫的天數、然後在金鑰保存庫中選取「*啟用清除保護*」。
+. 選擇「**下一步*」以選擇存取原則。
+. 選取下列選項：
++
+.. 在「**存取組態*」下、選取「**資料庫存取原則*」。
+.. 在「**資源存取*」下、選取「** Azure磁碟加密」以進行Volume加密*。
+
+
+. 選取「**+建立」以新增存取原則。
+. 在「從範本*設定」下、按一下下拉式功能表、然後選取「**金鑰、秘密及憑證管理」範本。
+. 選擇每個下拉式權限功能表（金鑰、秘密、憑證）、然後在功能表清單頂端選擇所有*、以選取所有可用的權限。您應該擁有：
++
+** *關鍵權限*：已選取20項
+** **機密權限：選擇8項
+** *認證權限*：16項已選取
++
+image:screenshot-azure-key-secret-cert-all-list.png["「建立存取原則」的快照、顯示建立存取原則所需的所有權限選項"]
+
+
+
+. 按一下「下一步」*以選取您在其中建立的「**主要」* Azure註冊應用程式 <<azure-app>>。選擇「*下一步*」。
++
+
+NOTE: 每個原則只能指派一個主體。
+
++
+image:screenshot-azure-key-secret-cert-principal.png["建立存取原則主體索引標籤的快照"]
+
+. 按兩次「下一步」、直到您抵達「審查並建立」為止。然後按一下「*建立*」。
+. 選擇「下一步」*進入「**網路」*選項。
+. 選擇適當的網路存取方法、或選擇「*所有網路*」和「*審查+建立*」來建立金鑰保存庫。（網路存取方法可能由治理原則或您的企業雲端安全團隊規定。）
+. 記錄金鑰庫URI：在您建立的金鑰庫中、瀏覽至「總覽」功能表、然後從右側欄複製「** Vault URI」。您需要此功能、以便稍後進行。
+
+
+[[key]]
+.建立加密金鑰
+. 在您為Cloud Volumes ONTAP 之建立的Key Vault功能表中、瀏覽至「** Keys」選項。
+. 選取「*產生/匯入*」以建立新的金鑰。
+. 將預設選項設為「**產生」。
+. 提供下列資訊：
++
+** 加密金鑰名稱
+** 金鑰類型：RSA
+** RSA金鑰大小：2048
+** 已啟用：是
+
+
+. 選取「建立」以建立加密金鑰。
+. 返回「**按鍵」功能表、然後選取您剛建立的按鍵。
+. 在「*目前版本*」下方選取金鑰ID、即可檢視金鑰內容。
+. 找到「**金鑰識別碼」欄位。將URI複製到但不包括十六進位字串。
+
+
+[[AAD]]
+.建立Azure Active Directory端點（僅限HA）
+. 只有在您將Azure Key Vault設定為HA Cloud Volumes ONTAP 功能環境時、才需要執行此程序。
+. 在Azure入口網站中、瀏覽至「**虛擬網路」。
+. 選取部署Cloud Volumes ONTAP 了整個功能區的虛擬網路、然後選取頁面左側的「**Subnets」（子網路）功能表。
+. 從Cloud Volumes ONTAP 清單中選取要部署的子網路名稱。
+. 瀏覽至「**服務端點*」標題。在下拉式功能表中、選取下列項目：
++
+** **Microsoft.AzureActiveDirectory
+** **Microsoft.KeyVault**
+** **Microsoft.Storage*（選用）
++
+image:screenshot-azure-service-endpoints-services.png["服務端點的螢幕擷取畫面、顯示三個選取的服務"]
+
+
+
+. 選取「**儲存」以擷取您的設定。
+
+
+[[ontap]]
+.組態Cloud Volumes ONTAP
+. 使用您偏好的SSH用戶端連線至叢集管理LIF。
+. 進入進階權限模式ONTAP ：
+`set advanced -con off`
+. 識別所需的資料 SVM 並驗證其 DNS 組態：
+`vserver services name-service dns show`
++
+.. 如果所需資料SVM的DNS項目存在、且其中包含Azure DNS項目、則不需要採取任何行動。如果沒有、請為資料SVM新增DNS伺服器項目、以指向Azure DNS、私有DNS或內部部署伺服器。  這應該符合叢集管理 SVM 的項目：
+`vserver services name-service dns create -vserver _SVM_name_ -domains _domain_ -name-servers _IP_address_`
+.. 確認已為資料 SVM 建立 DNS 服務：
+`vserver services name-service dns show`
+
+
+. 使用應用程式登錄後儲存的用戶端ID和租戶ID來啟用Azure Key Vault：
+`security key-manager external azure enable -vserver _SVM_name_ -client-id _Azure_client_ID_ -tenant-id _Azure_tenant_ID_ -name _Azure_key_vault_name_ -key-id _Azure_key_ID_`
+. 檢查金鑰管理程式的狀態：
+`security key-manager external azure check`
+輸出內容如下：
++
+[source]
+----
+::*> security key-manager external azure check
+
+Vserver: data_svm_name
+Node: akvlab01-01
+
+Category: service_reachability
+    Status: OK
+
+Category: ekmip_server
+    Status: OK
+
+Category: kms_wrapped_key_status
+    Status: UNKNOWN
+    Details: No volumes created yet for the vserver. Wrapped KEK status will be available after creating encrypted volumes.
+
+3 entries were displayed.
+----
++
+如果是 `service_reachability` 狀態不是 `OK`、SVM無法以所有必要的連線和權限來連線至Azure Key Vault服務。請確保您的Azure網路原則和路由不會封鎖您的私有vNet、使其無法到達Azure KeyVault Public端點。如果有、請考慮使用Azure私有端點、從vNet內存取金鑰庫。您可能還需要在SVM上新增靜態主機項目、以解析端點的私有IP位址。
+
++
+。 `kms_wrapped_key_status` 將會報告 `UNKNOWN` 初始組態時。其狀態將變更為 `OK` 加密第一個磁碟區之後。
+
+. 選用：建立測試Volume以驗證NVE的功能。
++
+`vol create -vserver _SVM_name_ -volume _volume_name_ -aggregate _aggr_ -size _size_ -state online -policy default`
+
++
+如果設定正確、Cloud Volumes ONTAP 則會自動建立Volume並啟用Volume加密。
+
+. 確認磁碟區已正確建立並加密。如果是、則是 `-is-encrypted` 參數會顯示為 `true`。
+`vol show -vserver _SVM_name_ -fields is-encrypted`
+
