@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: task-protecting-ransomware.html 
+keywords: snapshot policy, ransomware, protection, fpolicy, block, extension, attacks, arp, autonomous, monitor, alert, attacks 
+summary: 勒索軟體攻擊可能會耗費一定的時間、資源和商譽。BlueXP可讓您實作NetApp勒索軟體解決方案、提供有效的可見度、偵測及補救工具。 
+---
+= 改善防範勒索軟體的能力
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+勒索軟體攻擊可能會耗費一定的時間、資源和商譽。BlueXP 可讓您針對勒索軟體實作兩種 NetApp 解決方案：防範常見的勒索軟體副檔名和自動勒索軟體保護（ ARP ）。這些解決方案可提供有效的工具、以利可見度、偵測和補救。
+
+
+
+== 防止常見勒索軟體檔案副檔名
+
+透過 BlueXP 、勒索軟體保護設定可讓您利用 ONTAP FPolicy 功能來防範常見的勒索軟體檔案副檔名類型。
+
+.步驟
+. 在 Canvas 頁面上、按兩下您設定為勒索軟體保護的系統名稱。
+. 在「概述」索引標籤上、按一下「功能」面板、然後按一下 * 勒索軟體保護 * 旁的鉛筆圖示。
++
+image::screenshot_features_ransomware.png[在「概觀」頁面右上角的「功能」面板下顯示勒索軟體保護設定的螢幕擷取畫面、可在檢視工作環境時顯示。]
+
+. 實作 NetApp 勒索軟體解決方案：
++
+.. 如果您的磁碟區未啟用 Snapshot 原則、請按一下「 * 啟動 Snapshot Policy* 」。
++
+NetApp Snapshot 技術提供業界最佳的勒索軟體補救解決方案。成功還原的關鍵在於從未受感染的備份還原。Snapshot 複本為唯讀、可防止勒索軟體毀損。他們也能提供精細度、以建立單一檔案複本或完整災難恢復解決方案的映像。
+
+.. 按一下「 * 啟動 FPolicy* 」以啟用 ONTAP 的 FPolicy 解決方案、此解決方案可根據檔案副檔名來封鎖檔案作業。
++
+這項預防解決方案可封鎖常見的勒索軟體檔案類型、藉此改善保護、避免勒索軟體攻擊。
+
++
+預設FPolicy範圍會封鎖下列副檔名的檔案：
+
++
+微、加密、鎖定、加密、加密、 crinf, r5a、XRNT, XDBL、R16M01D05、 Pzdc、好、好！、天哪！、RDM、 RRK、加密RS、crjoker、EnCipErEd、LeChiffre
+
++
+
+TIP: 當您啟動Cloud Volumes ONTAP 有關功能的FPolicy時、BlueXP就會建立這個範圍。此清單是根據常見的勒索軟體檔案類型。您可以使用Cloud Volumes ONTAP 來自於整個CLI的_vserver fpolicy scoon__命令來自訂封鎖的副檔名。
+
++
+image:screenshot_ransomware_protection.gif["顯示工作環境中可用之勒索軟體保護頁面的快照。畫面會顯示沒有 Snapshot 原則的磁碟區數量、以及封鎖勒索軟體副檔名的能力。"]
+
+
+
+
+
+
+
+== 自主勒索軟體保護
+
+Cloud Volumes ONTAP 支援「自動勒索軟體保護」（ ARP ）功能、可對工作負載執行分析、主動偵測並警告可能表示勒索軟體攻擊的異常活動。
+
+與透過提供的檔案副檔名保護分開 https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-protecting-ransomware.html#protection-from-common-ransomware-file-extensions["勒索軟體保護設定"]、 ARP 功能會使用工作負載分析、根據偵測到的「異常活動」來警示使用者可能遭受的攻擊。勒索軟體保護設定和 ARP 功能均可搭配使用、以提供全面的勒索軟體保護。
+
+ARP 功能僅適用於節點型和容量型授權模式的 BYOL 授權（一、二及三年期限）。您必須聯絡您的 NetApp 銷售代表、以購買新的獨立附加授權、以搭配 Cloud Volumes ONTAP 中的 ARP 功能使用。
+
+購買附加授權並將其新增至 Digital Wallet 後、您可以使用 Cloud Volumes ONTAP 以每個磁碟區為基礎來啟用 ARP 。磁碟區的 ARP 組態是透過 ONTAP 系統管理員和 ONTAP CLI 執行。
+
+如需如何使用 ONTAP 系統管理員和 CLI 啟用 ARP 的詳細資訊、請參閱 https://docs.netapp.com/us-en/ontap/anti-ransomware/enable-task.html["啟用自發勒索軟體保護"^]。
+
+
+NOTE: 若未取得授權、則無法使用授權功能。
+
+image::screenshot_arp.png[螢幕擷取畫面顯示 Automware Protection 的附加授權。]

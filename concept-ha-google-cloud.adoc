@@ -1,0 +1,154 @@
+---
+sidebar: sidebar 
+permalink: concept-ha-google-cloud.html 
+keywords: high availability, HA, mediator, concepts, understanding, overview, takeover, giveback, rpo, rto, nondisruptive, ha pairs, node, nodes, synchronous, resync, recovery point objective, recovery time objective, failover, mount, remount, failure, data access, access, ip address, performance, gcp, gcp ha, google cloud ha, ha in google cloud 
+summary: 支援不中斷營運和容錯功能的高可用度組態。 Cloud Volumes ONTAP在Google Cloud中、資料會在兩個節點之間同步鏡射。 
+---
+= Google Cloud的高可用度配對
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+支援高可用度（ HA ）組態、可提供不中斷營運及容錯功能。 Cloud Volumes ONTAP在Google Cloud中、資料會在兩個節點之間同步鏡射。
+
+
+
+== HA 元件
+
+Google Cloud的NetApp HA組態包括下列元件：Cloud Volumes ONTAP
+
+* 兩 Cloud Volumes ONTAP 個彼此同步鏡射資料的鏡射節點。
+* 一種中介執行個體、可在節點之間提供通訊通道、以協助儲存接管和恢復程序。
+* 一個區域或三個區域（建議）。
++
+如果您選擇三個區域、則兩個節點和中介器位於不同的Google Cloud區域。
+
+* 四個虛擬私有雲端（VPC）。
++
+由於 GCP 要求每個網路介面位於獨立的 VPC 網路、因此組態使用四個 VPC 。
+
+* 四個 Google Cloud 內部負載平衡器（ TCP/IP / udp ）、可管理 Cloud Volumes ONTAP 傳入至該「叢集 HA 配對」的流量。
+
+
+link:reference-networking-gcp.html["深入瞭解網路需求"]，包括有關負載平衡器、VPC、內部IP位址、子網路等的詳細資訊。
+
+下列概念性影像顯示Cloud Volumes ONTAP 出一套功能不整的HA配對及其元件：
+
+image:diagram_gcp_ha.png["概念性影像：Cloud Volumes ONTAP 一套概念性影像、顯示出一套關於功能不整的HA配對及其元件。"]
+
+
+
+=== 中介者
+
+以下是Google Cloud中介執行個體的一些重要詳細資料：
+
+執行個體類型:: E2-Micro（先前使用F1-Micro執行個體）
+磁碟:: 兩個標準持續磁碟、每個10 GiB
+作業系統:: DEBIAN11
++
+--
+
+NOTE: 對於版本更新的版本、在中介器上安裝了DEBIAN10。Cloud Volumes ONTAP
+
+--
+升級:: 升級Cloud Volumes ONTAP 時、BlueXP也會視需要更新中介執行個體。
+存取執行個體:: 對於 Debian 、預設的雲端使用者是 `admin`。Google Cloud 會建立及新增的憑證 `admin` 透過 Google Cloud 主控台或 gCloud 命令列要求 SSH 存取時的使用者。您可以指定 `sudo` 以取得 root 權限。
+第三方代理程式:: 中介執行個體不支援協力廠商代理程式或VM延伸。
+
+
+
+
+== 儲存設備接管與恢復
+
+如果某個節點發生故障、另一個節點可以提供資料給其合作夥伴、以提供持續的資料服務。用戶端可以從合作夥伴節點存取相同的資料、因為資料會同步鏡射至合作夥伴。
+
+節點重新開機後、合作夥伴必須重新同步資料、才能退回儲存設備。重新同步資料所需的時間、取決於節點當機時資料的變更量。
+
+儲存設備接管、重新同步及還原均為預設自動執行。不需要使用者採取任何行動。
+
+
+
+== RPO 和 RTO
+
+HA 組態可維持資料的高可用度、如下所示：
+
+* 恢復點目標（ RPO ）為 0 秒。
++
+您的資料交易一致、不會遺失任何資料。
+
+* 恢復時間目標（ RTO ）為 120 秒。
++
+萬一發生停電、資料應在 120 秒或更短時間內可用。
+
+
+
+
+
+== HA 部署模式
+
+您可以在多個區域或單一區域中部署 HA 組態、確保資料的高可用度。
+
+多個區域（建議）:: 跨三個區域部署 HA 組態、可確保在區域內發生故障時、仍能持續提供資料。請注意、與使用單一區域相比、寫入效能略低、但卻是最低的。
+單一區域:: 當部署在單一區域時、 Cloud Volumes ONTAP 使用分散配置原則的即可實現不受限制的 HA 組態。此原則可確保 HA 組態不會在區域內發生單點故障、而無需使用個別區域來實現故障隔離。
++
+--
+此部署模式可降低成本、因為各區域之間不需支付任何資料出口費用。
+
+--
+
+
+
+
+== 儲存設備如何在 HA 配對中運作
+
+不像 ONTAP 是一個叢集、 Cloud Volumes ONTAP 在 GCP 中使用的不二線 HA 配對儲存設備不會在節點之間共享。相反地、資料會在節點之間同步鏡射、以便在發生故障時能夠使用資料。
+
+
+
+=== 儲存配置
+
+當您建立新的磁碟區並需要額外的磁碟時、BlueXP會將相同數量的磁碟分配給兩個節點、建立鏡射的Aggregate、然後建立新的磁碟區。例如、如果磁碟區需要兩個磁碟、則BlueXP會在每個節點上配置兩個磁碟、總共四個磁碟。
+
+
+
+=== 儲存組態
+
+您可以使用 HA 配對做為主動 - 主動式組態、讓兩個節點都能將資料提供給用戶端、或做為主動 - 被動式組態、被動節點只有在接管主動節點的儲存設備時、才會回應資料要求。
+
+
+
+=== HA 組態的效能期望
+
+使用不同步的功能、可在節點之間複寫資料、進而消耗網路頻寬。 Cloud Volumes ONTAP因此、相較於單一節點 Cloud Volumes ONTAP 的 VMware 、您可以預期下列效能：
+
+* 對於僅從一個節點提供資料的 HA 組態、讀取效能可媲美單一節點組態的讀取效能、而寫入效能則較低。
+* 對於同時提供兩個節點資料的 HA 組態、讀取效能高於單一節點組態的讀取效能、寫入效能相同或更高。
+
+
+如需 Cloud Volumes ONTAP 更多關於效能的詳細資訊、請參閱 link:concept-performance.html["效能"]。
+
+
+
+=== 用戶端存取儲存設備
+
+用戶端應使用磁碟區所在節點的資料 IP 位址來存取 NFS 和 CIFS 磁碟區。如果 NAS 用戶端使用合作夥伴節點的 IP 位址來存取磁碟區、則兩個節點之間的流量會降低效能。
+
+
+TIP: 如果您在 HA 配對中的節點之間移動磁碟區、則應使用其他節點的 IP 位址來重新掛載磁碟區。否則、您可能會遇到效能降低的情況。如果用戶端支援 NFSv4 轉介或 CIFS 資料夾重新導向、您可以在 Cloud Volumes ONTAP 支撐系統上啟用這些功能、以避免重新掛載磁碟區。如需詳細資料、請參閱 ONTAP 《關於我們的資料》。
+
+您可以透過 BlueXP 「管理磁碟區」面板下的 _Mount Command_ 選項、輕鬆識別正確的 IP 位址。
+
+image::screenshot_mount_option.png[400]
+
+
+
+=== 相關連結
+
+* link:reference-networking-gcp.html["深入瞭解網路需求"]
+* link:task-getting-started-gcp.html["瞭解如何開始使用 GCP"]
+

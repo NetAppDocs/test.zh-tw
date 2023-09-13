@@ -1,0 +1,141 @@
+---
+sidebar: sidebar 
+permalink: concept-security.html 
+keywords: security, encryption, antivirus, concepts, key managers, safenet, kms, keys, vscan, encrypt, key management service, cmk, customer master key, data at rest, data-at-rest, netapp storage encryption, certificate signing request, csr, certificate, ca certificate, virus, scan, virus scan, certificate authority, netapp volume encryption, nve, volume encryption, key management server, ransomware, fpolicy, snapshots 
+summary: 支援資料加密、並提供防範病毒和勒索軟體的功能。 Cloud Volumes ONTAP 
+---
+= 安全性
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+支援資料加密、並提供防範病毒和勒索軟體的功能。 Cloud Volumes ONTAP
+
+
+
+== 加密閒置的資料
+
+支援下列加密技術： Cloud Volumes ONTAP
+
+* NetApp 加密解決方案（ NVE 和 NAE ）
+
+
+ifdef::aws[]
+
+* AWS 金鑰管理服務
+
+
+endif::aws[]
+
+ifdef::azure[]
+
+* Azure 儲存服務加密
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* Google Cloud Platform 預設加密
+
+
+endif::gcp[]
+
+您可以使用NetApp加密解決方案搭配雲端供應商提供的原生加密、以加密Hypervisor層級的資料。這樣做會提供雙重加密、這可能是非常敏感的資料所需要的。存取加密資料時、加密資料會兩次未加密、一次是 Hypervisor 層級（使用雲端供應商提供的金鑰）、然後再次使用 NetApp 加密解決方案（使用外部金鑰管理程式的金鑰）。
+
+
+
+=== NetApp 加密解決方案（ NVE 和 NAE ）
+
+支援Cloud Volumes ONTAP https://www.netapp.com/us/media/ds-3899.pdf["NetApp Volume Encryption（NVE）與NetApp Aggregate Encryption（NAE）"^]。NVE 和 NAE 是軟體型解決方案、可對磁碟區進行（ FIPS ） 140-2 相容的閒置資料加密。NVE 和 NAE 都使用 AES 256 位元加密。
+
+* NVE 一次加密閒置的資料一個磁碟區。每個資料磁碟區都有其專屬的加密金鑰。
+* Nae 是 NVE 的延伸、它會加密每個磁碟區的資料、而且磁碟區會在整個集合體之間共用金鑰。Nae 也允許對集合體中所有磁碟區的通用區塊進行重複資料刪除。
+
+
+外部金鑰管理程式支援NVE和NAE。
+
+ifdef::azure[]
+
+endif::azure[]
+
+ifdef::gcp[]
+
+endif::gcp[]
+
+新的Aggregate在您設定外部金鑰管理程式之後、預設會啟用NetApp Aggregate Encryption（NAE）。非 NAE Aggregate 一部分的新磁碟區、預設會啟用 NetApp Volume Encryption （ NVE ）（例如、如果您有在設定外部金鑰管理程式之前建立的現有 Aggregate ）。
+
+設定支援的金鑰管理程式是唯一必要的步驟。如需設定指示、請參閱 link:task-encrypting-volumes.html["使用 NetApp 加密解決方案加密磁碟區"]。
+
+ifdef::aws[]
+
+
+
+=== AWS 金鑰管理服務
+
+當您在 Cloud Volumes ONTAP AWS 中啟動一個支援功能系統時、可以使用啟用資料加密 http://docs.aws.amazon.com/kms/latest/developerguide/overview.html["AWS 金鑰管理服務（ KMS ）"^]。BlueXP會使用客戶主金鑰（CMK）要求資料金鑰。
+
+
+TIP: 建立 Cloud Volumes ONTAP 一套系統後、您無法變更 AWS 資料加密方法。
+
+如果您要使用此加密選項、則必須確保 AWS KMS 設定適當。如需詳細資訊、請參閱 link:task-setting-up-kms.html["設定 AWS KMS"]。
+
+endif::aws[]
+
+ifdef::azure[]
+
+
+
+=== Azure 儲存服務加密
+
+資料會使用在Cloud Volumes ONTAP Azure中的功能自動加密 https://azure.microsoft.com/en-us/documentation/articles/storage-service-encryption/["Azure 儲存服務加密"^] 使用Microsoft管理的金鑰。
+
+您可以視需要使用自己的加密金鑰。 link:task-set-up-azure-encryption.html["瞭解如何在Cloud Volumes ONTAP Azure中設定使用客戶管理的金鑰"]。
+
+endif::azure[]
+
+ifdef::gcp[]
+
+
+
+=== Google Cloud Platform 預設加密
+
+https://cloud.google.com/security/encryption-at-rest/["Google Cloud Platform 閒置資料加密"^] 預設為 Cloud Volumes ONTAP 啟用以供使用。無需設定。
+
+雖然Google Cloud Storage會在資料寫入磁碟之前先加密資料、但您可以使用BlueXP API來建立Cloud Volumes ONTAP 使用_客戶管理的加密金鑰_的支援系統。這些是您使用 Cloud Key Management Service 在 GCP 中產生及管理的金鑰。 link:task-setting-up-gcp-encryption.html["深入瞭解"]。
+
+endif::gcp[]
+
+
+
+== 執行防毒掃描 ONTAP
+
+您可以在 ONTAP 更新系統上使用整合式防毒功能、保護資料免受病毒或其他惡意程式碼的侵害。
+
+名為 _VScann_ 的還原病毒掃描、結合同級最佳的協力廠商防毒軟體與各種功能、讓您靈活控制掃描檔案的時間與時間。 ONTAP ONTAP
+
+如需 VScan 支援的廠商、軟體及版本資訊、請參閱 http://mysupport.netapp.com/matrix["NetApp 互通性對照表"^]。
+
+如需有關如何設定 ONTAP 及管理作業系統上防毒功能的資訊、請參閱 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-acg/home.html["《 9 防毒組態指南》 ONTAP"^]。
+
+
+
+== 勒索軟體保護
+
+勒索軟體攻擊可能會耗費一定的時間、資源和商譽。BlueXP可讓您實作NetApp勒索軟體解決方案、提供有效的可見度、偵測及補救工具。
+
+* BlueXP會識別未受Snapshot原則保護的磁碟區、並可讓您在這些磁碟區上啟動預設的Snapshot原則。
++
+Snapshot 複本為唯讀、可防止勒索軟體毀損。他們也能提供精細度、以建立單一檔案複本或完整災難恢復解決方案的映像。
+
+* 此外、您也可以啟用ONTAP的FPolicy解決方案、封鎖常見的勒索軟體副檔名。
+
+
+image:screenshot_ransomware_protection.gif["顯示工作環境中可用之勒索軟體保護頁面的快照。畫面會顯示沒有 Snapshot 原則的磁碟區數量、以及封鎖勒索軟體副檔名的能力。"]
+
+link:task-protecting-ransomware.html["瞭解如何實作 NetApp 勒索軟體解決方案"]。

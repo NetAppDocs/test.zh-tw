@@ -1,0 +1,275 @@
+---
+sidebar: sidebar 
+permalink: reference-default-configs.html 
+keywords: svm, LIF, LIFs, configuration backups, attributes, autosize, security style, space guarantee, unix permissions, NTFS, UNIX, boot, root, disks, aggr0, aggr1, svm, svms, storage virtual machine, LIF failover, failover, attributes, volume attributes, boot disk, root disk, licenses, feature licenses, default licenses, ontap licenses, ontap features 
+summary: 瞭解 Cloud Volumes ONTAP 根據預設設定的功能可協助您設定及管理系統、尤其是熟悉 ONTAP 使用功能時、因為 Cloud Volumes ONTAP 預設的功能與 ONTAP 使用功能不相同、所以使用功能不一。 
+---
+= 的預設組態 Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+瞭解 Cloud Volumes ONTAP 根據預設設定的功能可協助您設定及管理系統、尤其是熟悉 ONTAP 使用功能時、因為 Cloud Volumes ONTAP 預設的功能與 ONTAP 使用功能不相同、所以使用功能不一。
+
+
+
+== 預設設定
+
+* 在部署Cloud Volumes ONTAP 時、BlueXP會建立一個資料服務儲存VM。部分組態支援額外的儲存 VM 。 link:task-managing-svms.html["深入瞭解管理儲存 VM"]。
++
+從BlueXP 3.9.5版本開始、系統會在初始儲存VM上啟用邏輯空間報告功能。以邏輯方式回報空間時ONTAP 、此功能會報告磁碟區空間、讓儲存效率功能所節省的所有實體空間也會報告為已使用。
+
+* BlueXP會自動在ONTAP 下列功能授權上安裝Cloud Volumes ONTAP 到更新版本：
++
+** CIFS
+** FlexCache
+** FlexClone
+** iSCSI
+** 多租戶加密金鑰管理（MTEKM）、從Cloud Volumes ONTAP 版本號為E9.12.1 GA開始
+** NetApp Volume Encryption （僅適用於 BYOL 或註冊的 PAYGO 系統）
+** NFS
+
+
+
+
+ifdef::aws[]
+
+endif::aws[]
+
+ifdef::azure[]
+
+endif::azure[]
+
+* SnapMirror
+* SnapRestore
+* SnapVault
++
+** 預設會建立多個網路介面：
+
+
+* 叢集管理 LIF
+* 叢集間 LIF
+
+
+ifdef::azure[]
+
+* Azure HA系統上的SVM管理LIF
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+* Google Cloud HA系統上的SVM管理LIF
+
+
+endif::gcp[]
+
+ifdef::aws[]
+
+* AWS單一節點系統上的SVM管理LIF
+
+
+endif::aws[]
+
+* 節點管理 LIF
+
+
+ifdef::gcp[]
+
++
+在 Google Cloud 中、此 LIF 與叢集間 LIF 結合。
+
+endif::gcp[]
+
+* iSCSI 資料 LIF
+* CIFS 與 NFS 資料 LIF
++
+
+NOTE: 根據Cloud Volumes ONTAP 雲端供應商的需求、根據預設、LIF容錯移轉功能會停用以供使用。將 LIF 移轉至其他連接埠會中斷執行個體上 IP 位址與網路介面的外部對應、使 LIF 無法存取。
+
++
+** 使用HTTP將組態備份傳送至Connector Cloud Volumes ONTAP 。
++
+可從 \http://ipaddress/occm/offboxconfig/ 存取備份、其中 _ipaddress_ 是 Connector 主機的 IP 位址。
+
+** BlueXP會設定一些不同於其他管理工具的Volume屬性（例如System Manager或CLI）。
++
+下表列出BlueXP設定的Volume屬性與預設值不同：
+
++
+[cols="15,85"]
+|===
+| 屬性 | 由BlueXP設定的值 
+
+
+| 自動調整大小模式 | 成長 
+
+
+| 最大自動調整大小  a| 
+1 、 000 %
+
+
+NOTE: 帳戶管理員可從「設定」頁面修改此值。
+
+
+
+| 安全風格 | 適用於 CIFS 磁碟區的 NTFS
+UNIX for NFS Volume 
+
+
+| 空間保證風格 | 無 
+
+
+| UNIX 權限（僅限 NFS ） | 7777 
+|===
++
+請參閱 link:https://docs.netapp.com/us-en/ontap-cli-9121/volume-create.html["SUR_volume cre__手冊頁ONTAP"] 以取得這些屬性的相關資訊。
+
+
+
+
+
+
+
+== 用於系統資料的內部磁碟
+
+除了儲存使用者資料之外、BlueXP也購買雲端儲存設備來儲存系統資料。
+
+ifdef::aws[]
+
+
+
+=== AWS
+
+* 每個節點有三個磁碟用於開機、根和核心資料：
++
+** 45 GB IO1磁碟用於開機資料
+** 140 GiB GP3磁碟用於根資料
+** 540 GiB gp2磁碟用於核心資料
+
+
+* 每個開機磁碟和根磁碟各一份 EBS 快照
++
+
+NOTE: 快照會在重新開機時自動建立。
+
+* 對於HA配對、一個EBS Volume用於「內化器」執行個體、約為8 GiB
+* 當您使用金鑰管理服務（ KMS ）在 AWS 中啟用資料加密時、 Cloud Volumes ONTAP 也會加密適用於此功能的開機磁碟和根磁碟。這包括 HA 配對中中介執行個體的開機磁碟。磁碟會使用您在建立工作環境時所選取的 CMK 進行加密。
+
+
+
+TIP: 在AWS中、NVRAM位於開機磁碟上。
+
+endif::aws[]
+
+ifdef::azure[]
+
+
+
+=== Azure （單一節點）
+
+* 三個優質 SSD 磁碟：
++
+** 一個10 GiB磁碟用於開機資料
+** 一個140 GiB磁碟用於根資料
+** 一個512 GiB磁碟用於NVRAM
++
+如果您選擇Cloud Volumes ONTAP 的虛擬機器支援Ultra SSD、則系統會使用32 GiB Ultra SSD來執行NVRAM、而非使用Premium SSD。
+
+
+
+* 一張1024 GiB標準HDD磁碟、可節省核心
+* 每個開機磁碟和根磁碟各一份 Azure 快照
+* Azure中的每個磁碟預設都會在閒置時加密。
+
+
+
+
+=== Azure（HA配對）
+
+.HA與頁面blob配對
+* 兩個10 GiB Premium SSD磁碟用於開機磁碟區（每個節點一個）
+* 兩個140 GiB Premium Storage頁面、用於根磁碟區（每個節點一個）
+* 兩個1024 GiB標準HDD磁碟、可節省核心（每個節點一個）
+* 兩個512 GiB Premium SSD磁碟用於NVRAM（每個節點一個）
+* 每個開機磁碟和根磁碟各一份 Azure 快照
++
+
+NOTE: 快照會在重新開機時自動建立。
+
+* Azure中的每個磁碟預設都會在閒置時加密。
+
+
+.多個可用度區域中的HA配對
+* 兩個10 GiB Premium SSD磁碟用於開機磁碟區（每個節點一個）
+* 兩個 512 GiB Premium Storage 網頁用於根磁碟區（每個節點一個）
+* 兩個1024 GiB標準HDD磁碟、可節省核心（每個節點一個）
+* 兩個512 GiB Premium SSD磁碟用於NVRAM（每個節點一個）
+* 每個開機磁碟和根磁碟各一份 Azure 快照
++
+
+NOTE: 快照會在重新開機時自動建立。
+
+* Azure中的每個磁碟預設都會在閒置時加密。
+
+
+endif::azure[]
+
+ifdef::gcp[]
+
+
+
+=== Google Cloud（單一節點）
+
+* 一個10 GiB SSD持續磁碟用於開機資料
+* 一個64 GiB SSD持續磁碟用於根資料
+* 一個500 GiB SSD持續磁碟用於NVRAM
+* 一個315 GiB標準持續磁碟、用於儲存核心
+* 用於開機和根資料的快照
++
+
+NOTE: 快照會在重新開機時自動建立。
+
+* 開機磁碟和根磁碟預設為加密。
+
+
+
+
+=== Google Cloud（HA配對）
+
+* 兩個10 GiB SSD持續磁碟、用於開機資料
+* 四個64 GiB SSD持續磁碟用於根資料
+* 兩個500 GiB SSD持續磁碟用於NVRAM
+* 兩個315 GiB標準持續磁碟、用於儲存核心
+* 一個10 GiB標準持續磁碟、用於中介資料
+* 一個10 GiB標準持續磁碟、用於中介開機資料
+* 用於開機和根資料的快照
++
+
+NOTE: 快照會在重新開機時自動建立。
+
+* 開機磁碟和根磁碟預設為加密。
+
+
+endif::gcp[]
+
+
+
+=== 磁碟所在位置
+
+BlueXP將儲存設備配置如下：
+
+* 開機資料位於附加至執行個體或虛擬機器的磁碟上。
++
+此磁碟包含開機映像、 Cloud Volumes ONTAP 不適用於 Image.
+
+* 根資料包含系統組態和記錄檔、位於 aggr0 中。
+* 儲存虛擬機器（ SVM ）根磁碟區位於 aggr1 中。
+* 資料磁碟區也位於 aggr1 中。
+

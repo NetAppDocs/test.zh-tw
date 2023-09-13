@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: task-configure-placement-group-failure-aws.html 
+keywords: placement group, failure, HA single zone, app.conf, rollback, AWS 
+summary: 使用Azure Private Link連線至相關儲存帳戶。Cloud Volumes ONTAP如有需要、您可以停用Azure私有連結、改用服務端點。 
+---
+= 設定AWS HA單一AZ的放置群組建立
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+當放置群組建立失敗時、可在單一可用度區域（AZ）中容錯並回復AWS高可用度（HA）組態的新部署Cloud Volumes ONTAP 。如有需要、您可以設定放置群組、在建立失敗時略過復原程序、以強制成功完成部署。
+
+
+
+== 總覽
+
+根據預設、只要放置群組在HA單一可用度區域工作環境的建立程序失敗、部署就會失敗並復原。建立放置群組也會失敗、如果Cloud Volumes ONTAP 既不存在任何節點、也不存在中介執行個體、則會回復。
+
+只要放置群組建立失敗、您就可以跳過復原程序、並設定app.conf檔案、讓部署繼續進行。繞過復原程序時、部署作業成功完成、系統會產生通知、指出建立放置群組失敗、狀態為「不完整」。
+
+
+
+=== 停用放置群組故障時的復原功能
+
+若要關閉放置群組失敗、「復原放置位置-群組失敗」旗標必須設定為「假」。
+
+.步驟
+. 使用SSH連線至Connector主機並登入。
+. 瀏覽至下列目錄：/opp/application/netapp/cloudmanager/docker_occm/data
+. 將 "ROLLROLLROLL-On-Place-group-failure " 參數的值變更為 "FALSE" 、以編輯 app.conf ：
++
+[listing]
+----
+{
+    "occm" : {
+        "aws" : {
+            "rollback-on-placement-group-failure" : false
+        }
+    }
+}
+----
++
+
+NOTE: 根據預設、「復原到位置-群組失敗」參數設為「真」。
+
+. 儲存檔案並登出 Connector 。
++
+不需要重新開機。
+
+

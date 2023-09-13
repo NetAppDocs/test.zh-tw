@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: task-connect-lun.html 
+keywords: lun, connect lun, iscsi lun, target iqn, iqn 
+summary: 建立iSCSI磁碟區時、BlueXP會自動為您建立LUN。我們只要在每個磁碟區建立一個LUN、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、請使用 IQN 從主機連線至 LUN 。 
+---
+= 將LUN連接至主機
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+建立iSCSI磁碟區時、BlueXP會自動為您建立LUN。我們只要在每個磁碟區建立一個LUN、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、請使用 IQN 從主機連線至 LUN 。
+
+請注意下列事項：
+
+* BlueXP的自動容量管理不適用於LUN。當BlueXP建立LUN時、會停用自動擴充功能。
+* 您可以從 System Manager 或 CLI 建立其他 LUN 。
+
+
+.步驟
+. 從左側導覽功能表中、選取*儲存設備> Canvas*。
+. 在「畫版」頁面上、按兩下 Cloud Volumes ONTAP 您要管理磁碟區的「功能區」工作環境。
+. 在工作環境中、按一下 * Volumes （磁碟區） * 標籤。
+. 在 Volumes （磁碟區）索引標籤上、瀏覽至所需的磁碟區標題、然後按一下 * Manage Volumes （管理磁碟區） * 以存取 Manage Volumes （管理磁碟區）右側面板。
+. 按一下 * 目標 IQN* 。
+. 按一下「 * 複製 * 」以複製 IQN 名稱。
+. 設定從主機到 LUN 的 iSCSI 連線。
++
+** http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-rhel-cg/GUID-15E8C226-BED5-46D0-BAED-379EA4311340.html["適用於 Red Hat Enterprise Linux 的支援 9 iSCSI Express 組態：啟動目標的 iSCSI 工作階段 ONTAP"^]
+** http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-cpg/GUID-857453EC-90E9-4AB6-B543-83827CF374BF.html["適用於 Windows 的 S89 iSCSI Express 組態：以目標啟動 iSCSI 工作階段 ONTAP"^]
+** https://docs.netapp.com/us-en/ontap-sanhost/["SAN主機組態ONTAP"^]
+
+
+

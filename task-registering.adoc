@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: task-registering.html 
+keywords: Cloud Volumes ONTAP, register, registering, paygo, pay-as-you-go, registration, instance id, serial number, account id, support 
+summary: NetApp提供的支援包含Cloud Volumes ONTAP 在整個過程中、但您必須先向NetApp註冊系統、才能啟動支援。 
+---
+= 註冊隨用隨付系統
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp提供的支援包含Cloud Volumes ONTAP 在整個過程中、但您必須先向NetApp註冊系統、才能啟動支援。
+
+向 NetApp 註冊 PAYGO 系統時、必須 ONTAP 使用任何方法來升級 __LW_NETAPP 軟體 link:task-updating-ontap-cloud.html["本頁說明"]。
+
+
+TIP: 尚未註冊支援的系統仍會在新版本推出時收到在BlueXP中顯示的軟體更新通知。但您必須先註冊系統、才能升級軟體。
+
+.步驟
+. 如果NetApp 支援網站 您尚未將您的支援帳戶新增至藍圖XP、請前往*帳戶設定*、立即新增。
++
+https://docs.netapp.com/us-en/bluexp-setup-admin/task-adding-nss-accounts.html["瞭解如何新增 NetApp 支援網站帳戶"^]。
+
+. 在「 Canvas 」頁面上、按兩下您要登錄的系統名稱。
+. 在「概述」標籤上、按一下「功能」面板、然後按一下「 * 支援註冊 * 」旁邊的鉛筆圖示。
++
+image::screenshot_features_support_registration_2.png[400]
+
+. 選擇 NetApp 支援網站帳戶，然後按一下「*Register（註冊）*」。
+
+
+.結果
+BlueXP向NetApp註冊系統。

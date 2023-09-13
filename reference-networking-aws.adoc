@@ -1,0 +1,287 @@
+---
+sidebar: sidebar 
+permalink: reference-networking-aws.html 
+keywords: networking, network, requirements, connection, connections, vpc, security group, security groups, subnets, vpn, internet, nat, s3, dns, ad, active directory, az, availability zone, floating IP, floating, SVM, management LIF, route, route tables, proxy, HTTP, private, tier, s3 endpoint, tiering, storage tier, storage tiering, proxy server, nat device, vpn, snapmanager, snapcenter, iscsi, nfs, cifs, nas, san, outbound, inbound, connections, autosupport, ha, ha pair, high availability 
+summary: BlueXP負責Cloud Volumes ONTAP 設定功能完善的網路元件、例如IP位址、網路遮罩和路由。您需要確保可以存取傳出網際網路、有足夠的私有IP位址可用、有適當的連線位置等等。 
+---
+= AWS 的網路需求 Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+BlueXP負責Cloud Volumes ONTAP 設定功能完善的網路元件、例如IP位址、網路遮罩和路由。您需要確保可以存取傳出網際網路、有足夠的私有IP位址可用、有適當的連線位置等等。
+
+
+
+== 一般要求
+
+AWS 必須符合下列要求。
+
+
+
+=== 對節點的輸出網際網路存取 Cloud Volumes ONTAP
+
+支援NetApp功能的支援節點需要外傳網際網路存取功能、此功能可主動監控系統健全狀況、並將訊息傳送給NetApp技術支援部門。Cloud Volumes ONTAP AutoSupport
+
+路由和防火牆原則必須允許將 HTTP / HTTPS 流量傳送至下列端點、 Cloud Volumes ONTAP 才能讓下列端點傳送 AutoSupport 動態訊息：
+
+* \https://support.netapp.com/aods/asupmessage
+* \https://support.netapp.com/asupprod/post/1.0/postAsup
+
+
+如果您有 NAT 執行個體、則必須定義傳入安全性群組規則、以允許 HTTPS 流量從私有子網路傳入網際網路。
+
+如果傳出的網際網路連線無法傳送AutoSupport 功能性訊息、則BlueXP會自動將Cloud Volumes ONTAP 您的功能性更新系統設定為使用Connector做為Proxy伺服器。唯一的需求是確保連接器的安全性群組允許連接埠3128上的傳入連線。部署Connector之後、您需要開啟此連接埠。
+
+如果您定義了Cloud Volumes ONTAP 嚴格的傳出規則以供支援、那麼Cloud Volumes ONTAP 您也必須確保支援透過連接埠3128建立_Outbound _連線的安全性群組。
+
+在您確認可以存取傳出網際網路之後、您可以測試AutoSupport 以確保能夠傳送訊息。如需相關指示、請參閱 https://docs.netapp.com/us-en/ontap/system-admin/setup-autosupport-task.html["文件：設定檔ONTAP AutoSupport"^]。
+
+如果BlueXP通知您AutoSupport 無法傳送資訊、 link:task-verify-autosupport.html#troubleshoot-your-autosupport-configuration["疑難排解AutoSupport 您的VMware組態"]。
+
+
+
+=== HA 中介器的傳出網際網路存取
+
+HA 中介執行個體必須具有 AWS EC2 服務的傳出連線、才能協助進行儲存容錯移轉。若要提供連線、您可以新增公用 IP 位址、指定 Proxy 伺服器或使用手動選項。
+
+手動選項可以是從目標子網路到 AWS EC2 服務的 NAT 閘道或介面 VPC 端點。如需 VPC 端點的詳細資訊、請參閱 http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-interface.html["AWS 文件：介面 VPC 端點（ AWS Private Link ）"^]。
+
+
+
+=== 私有IP位址
+
+BlueXP會自動分配所需的私有IP位址數量給Cloud Volumes ONTAP 整個過程。您必須確保網路有足夠的私有IP位址可用。
+
+BlueXP分配Cloud Volumes ONTAP 給功能的生命量取決於您是部署單一節點系統或HA配對。LIF 是與實體連接埠相關聯的 IP 位址。
+
+
+
+==== 單一節點系統的IP位址
+
+BlueXP會將6個IP位址分配給單一節點系統。
+
+下表提供與每個私有IP位址相關聯的LIF詳細資料。
+
+[cols="20,40"]
+|===
+| LIF | 目的 
+
+
+| 叢集管理 | 整個叢集（HA配對）的管理管理。 
+
+
+| 節點管理 | 節點的管理管理。 
+
+
+| 叢集間 | 跨叢集通訊、備份與複寫。 
+
+
+| NAS資料 | 透過NAS傳輸協定進行用戶端存取。 
+
+
+| iSCSI資料 | 透過iSCSI傳輸協定進行用戶端存取。系統也用於其他重要的網路工作流程。此LIF為必填項目、不應刪除。 
+
+
+| 儲存VM管理 | 儲存VM管理LIF可搭配SnapCenter 使用諸如VMware等管理工具。 
+|===
+
+
+==== HA配對的IP位址
+
+HA配對比單一節點系統需要更多IP位址。這些IP位址分佈在不同的乙太網路介面上、如下圖所示：
+
+image:diagram_cvo_aws_networking_ha.png["圖表顯示Cloud Volumes ONTAP AWS中的eth0、eth1、eth2 on a E25HA組態。"]
+
+HA配對所需的私有IP位址數目取決於您選擇的部署模式。部署在_onle_ AWS可用區域（AZ）中的HA配對需要15個私有IP位址、而部署在_multi__ AZs中的HA配對則需要13個私有IP位址。
+
+下表提供與每個私有IP位址相關聯的LIF詳細資料。
+
+
+
+===== HA配對的生命週數、在單一AZ中
+
+[cols="20,20,20,40"]
+|===
+| LIF | 介面 | 節點 | 目的 
+
+
+| 叢集管理 | eth0 | 節點1 | 整個叢集（HA配對）的管理管理。 
+
+
+| 節點管理 | eth0 | 節點1和節點2 | 節點的管理管理。 
+
+
+| 叢集間 | eth0 | 節點1和節點2 | 跨叢集通訊、備份與複寫。 
+
+
+| NAS資料 | eth0 | 節點1 | 透過NAS傳輸協定進行用戶端存取。 
+
+
+| iSCSI資料 | eth0 | 節點1和節點2 | 透過iSCSI傳輸協定進行用戶端存取。系統也用於其他重要的網路工作流程。這些生命是必要的、不應刪除。 
+
+
+| 叢集連線能力 | eth1. | 節點1和節點2 | 可讓節點彼此通訊、並在叢集內移動資料。 
+
+
+| HA連線能力 | 道德 2 | 節點1和節點2 | 在發生容錯移轉時、兩個節點之間的通訊。 
+
+
+| RSMiSCSI流量 | 道德 3 | 節點1和節點2 | RAID SyncMirror 支援iSCSI流量、以及兩Cloud Volumes ONTAP 個支援節點與中介器之間的通訊。 
+
+
+| 中介者 | eth0 | 中介者 | 節點與中介器之間的通訊通道、可協助進行儲存接管與恢復程序。 
+|===
+
+
+===== 多個AZs中HA配對的LIF
+
+[cols="20,20,20,40"]
+|===
+| LIF | 介面 | 節點 | 目的 
+
+
+| 節點管理 | eth0 | 節點1和節點2 | 節點的管理管理。 
+
+
+| 叢集間 | eth0 | 節點1和節點2 | 跨叢集通訊、備份與複寫。 
+
+
+| iSCSI資料 | eth0 | 節點1和節點2 | 透過iSCSI傳輸協定進行用戶端存取。
+這些LIF也能管理節點之間的浮動IP位址移轉作業。這些生命是必要的、不應刪除。 
+
+
+| 叢集連線能力 | eth1. | 節點1和節點2 | 可讓節點彼此通訊、並在叢集內移動資料。 
+
+
+| HA連線能力 | 道德 2 | 節點1和節點2 | 在發生容錯移轉時、兩個節點之間的通訊。 
+
+
+| RSMiSCSI流量 | 道德 3 | 節點1和節點2 | RAID SyncMirror 支援iSCSI流量、以及兩Cloud Volumes ONTAP 個支援節點與中介器之間的通訊。 
+
+
+| 中介者 | eth0 | 中介者 | 節點與中介器之間的通訊通道、可協助進行儲存接管與恢復程序。 
+|===
+
+TIP: 部署在多個可用度區域時、會與多個生命區建立關聯 link:reference-networking-aws.html#floatingips["浮動 IP 位址"]、不計入AWS私有IP限制。
+
+
+
+=== 安全性群組
+
+您不需要建立安全性群組、因為BlueXP會為您建立安全性群組。如果您需要使用自己的、請參閱 link:reference-security-groups.html["安全性群組規則"]。
+
+
+TIP: 正在尋找Connector的相關資訊？ https://docs.netapp.com/us-en/bluexp-setup-admin/reference-ports-aws.html["檢視Connector的安全群組規則"^]
+
+
+
+=== 資料分層連線
+
+如果您想要將 EBS 當作效能層、將 AWS S3 當作容量層、您必須確保 Cloud Volumes ONTAP 將該連接到 S3 。提供此連線的最佳方法是建立 VPC 端點至 S3 服務。如需相關指示、請參閱 https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-gateway.html#create-gateway-endpoint["AWS 文件：建立閘道端點"^]。
+
+當您建立 VPC 端點時、請務必選取與 Cloud Volumes ONTAP 該實例相對應的區域、 VPC 和路由表。您也必須修改安全性群組、以新增允許流量到 S3 端點的傳出 HTTPS 規則。否則 Cloud Volumes ONTAP 、無法連線至 S3 服務。
+
+如果您遇到任何問題、請參閱 https://aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint/["AWS 支援知識中心：為什麼我無法使用閘道 VPC 端點連線至 S3 儲存區？"^]
+
+
+
+=== 連線ONTAP 至功能鏈接
+
+若要在Cloud Volumes ONTAP AWS系統和ONTAP 其他網路中的更新系統之間複寫資料、您必須在AWS VPC和其他網路（例如您的公司網路）之間建立VPN連線。如需相關指示、請參閱 https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/SetUpVPNConnections.html["AWS 文件：設定 AWS VPN 連線"^]。
+
+
+
+=== 適用於 CIFS 的 DNS 和 Active Directory
+
+如果您想要配置 CIFS 儲存設備、則必須在 AWS 中設定 DNS 和 Active Directory 、或將內部部署設定延伸至 AWS 。
+
+DNS 伺服器必須為 Active Directory 環境提供名稱解析服務。您可以將 DHCP 選項集設定為使用預設 EC2 DNS 伺服器、此伺服器不得是 Active Directory 環境所使用的 DNS 伺服器。
+
+如需相關指示、請參閱 https://aws-quickstart.github.io/quickstart-microsoft-activedirectory/["AWS 文件： AWS Cloud 上的 Active Directory 網域服務：快速入門參考部署"^]。
+
+
+
+=== VPC共享
+
+從9.11.1版開始、Cloud Volumes ONTAP AWS支援搭配VPC共享功能的更新版、VPC共用功能可讓您的組織與其他AWS帳戶共用子網路。若要使用此組態、您必須設定AWS環境、然後使用API部署HA配對。
+
+link:task-deploy-aws-shared-vpc.html["瞭解如何在共用子網路中部署HA配對"]。
+
+
+
+== 多個 AZs 的 HA 配對需求
+
+其他 AWS 網路需求適用於 Cloud Volumes ONTAP 使用多個可用區域（ AZs ）的 SestHA 組態。在啟動HA配對之前、您應該先檢閱這些需求、因為在建立工作環境時、您必須在BlueXP中輸入網路詳細資料。
+
+若要瞭解 HA 配對的運作方式、請參閱 link:concept-ha.html["高可用度配對"]。
+
+可用度區域:: 此 HA 部署模式使用多個 AZs 來確保資料的高可用度。您應該使用專屬的 AZ 來處理每 Cloud Volumes ONTAP 個實例、並使用中介執行個體、以提供 HA 配對之間的通訊通道。
+
+
+每個可用區域都應有一個子網路。
+
+[[floatingips]]
+用於 NAS 資料和叢集 / SVM 管理的浮動 IP 位址:: 多個 AZs 中的 HA 組態會使用浮動 IP 位址、在發生故障時在節點之間移轉。除非您的選擇、否則無法從 VPC 外部原生存取 link:task-setting-up-transit-gateway.html["設定 AWS 傳輸閘道"]。
++
+--
+一個浮動 IP 位址是用於叢集管理、一個用於節點 1 上的 NFS/CIFS 資料、另一個用於節點 2 上的 NFS/CIFS 資料。SVM 管理的第四個浮動 IP 位址為選用項目。
+
+
+NOTE: 如果您使用 SnapDrive 適用於 Windows 的 SHIP 或 SnapCenter 搭配 HA 配對的 SHIP 、則 SVM 管理 LIF 需要一個浮動 IP 位址。
+
+建立Cloud Volumes ONTAP 一套功能完善的運作環境時、您需要在BlueXP中輸入浮動IP位址。在啟動系統時、BlueXP會將IP位址分配給HA配對。
+
+在部署 HA 組態的 AWS 區域中、所有 VPC 的浮動 IP 位址都必須位於 CIDR 區塊之外。將浮動 IP 位址視為位於您所在地區 VPC 外部的邏輯子網路。
+
+下列範例顯示 AWS 區域中浮動 IP 位址與 VPC 之間的關係。雖然浮動 IP 位址位於所有 VPC 的 CIDR 區塊之外、但仍可透過路由表路由傳送至子網路。
+
+image:diagram_ha_floating_ips.png["概念性影像顯示 AWS 區域中五台 VPC 的 CIDR 區塊、以及 VPC CIDR 區塊以外的三個浮動 IP 位址。"]
+
+
+NOTE: BlueXP會自動建立靜態IP位址、以供iSCSI存取及從VPC外部用戶端存取NAS。您不需要滿足這些類型 IP 位址的任何需求。
+
+--
+傳輸閘道、可從 VPC 外部啟用浮動 IP 存取:: 如有需要、 link:task-setting-up-transit-gateway.html["設定 AWS 傳輸閘道"] 可從 HA 配對所在的 VPC 外部存取 HA 配對的浮動 IP 位址。
+路由表:: 在BlueXP中指定浮動IP位址之後、系統會提示您選取路由表、其中應包含通往浮動IP位址的路由。這可讓用戶端存取 HA 配對。
++
+--
+如果VPC中只有一個子網路路由表（主路由表）、則BlueXP會自動將浮動IP位址新增至該路由表。如果您有多個路由表、在啟動 HA 配對時、請務必選取正確的路由表。否則、部分用戶端可能無法存取 Cloud Volumes ONTAP 功能不完全。
+
+例如、您可能有兩個子網路與不同的路由表相關聯。如果您選取路由表 A 而非路由表 B 、則與路由表 A 相關聯的子網路中的用戶端可以存取 HA 配對、但與路由表 B 相關的子網路中的用戶端則無法存取。
+
+如需路由表的詳細資訊、請參閱 http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html["AWS 文件：路由表"^]。
+
+--
+連線至 NetApp 管理工具:: 若要將 NetApp 管理工具搭配多個 AZs 中的 HA 組態使用、您有兩種連線選項：
++
+--
+. 在不同的 VPC 和中部署 NetApp 管理工具 link:task-setting-up-transit-gateway.html["設定 AWS 傳輸閘道"]。閘道可讓您從 VPC 外部存取叢集管理介面的浮動 IP 位址。
+. 在與 NAS 用戶端相同的 VPC 中部署 NetApp 管理工具、其路由組態與 NAS 用戶端相似。
+
+
+--
+
+
+
+
+=== HA 組態範例
+
+下圖說明多個AZs中HA配對的特定網路元件：三個可用度區域、三個子網路、浮動IP位址和路由表。
+
+image:diagram_ha_networking.png["概念性影像、顯示 Cloud Volumes ONTAP 以 EzeHA 架構為基礎的元件：兩 Cloud Volumes ONTAP 個 Ez供 節點和一個中介執行個體、每個執行個體位於不同的可用度區域。"]
+
+
+
+== 連接器需求
+
+如果您尚未建立連接器、也應該檢閱連接器的網路需求。
+
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-aws.html["檢視連接器的網路需求"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/reference-ports-aws.html["AWS中的安全群組規則"^]
+

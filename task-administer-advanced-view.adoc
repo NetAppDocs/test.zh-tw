@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: task-administer-advanced-view.html 
+keywords: system manager, advanced view, access system manager, load system manager, use system manager, cloud tiering 
+summary: 如果您需要執行Cloud Volumes ONTAP 進階的支援管理功能、可以使用ONTAP 支援ONTAP 此功能的支援功能、這個功能是隨附於一個系統的管理介面。我們已將System Manager介面直接納入BlueXP、因此您不需要離開BlueXP進行進階管理。 
+---
+= 使用進階檢視來管理Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+如果您需要執行Cloud Volumes ONTAP 進階的支援管理功能、可以使用ONTAP 支援ONTAP 此功能的支援功能、這個功能是隨附於一個系統的管理介面。我們已將System Manager介面直接納入BlueXP、因此您不需要離開BlueXP進行進階管理。
+
+此「進階檢視」可作為預覽使用。我們計畫改善這項體驗、並在即將推出的版本中加入增強功能。請使用產品內建聊天功能、向我們傳送意見反應。
+
+
+
+== 功能
+
+BlueXP的進階檢視可讓您存取其他管理功能：
+
+* 進階儲存管理
++
+管理一致性群組、共用區、qtree、配額和儲存VM。
+
+* 網路管理
++
+管理IPspace、網路介面、連接埠集和乙太網路連接埠。
+
+* 活動與工作
++
+檢視事件記錄、系統警示、工作和稽核記錄。
+
+* 進階資料保護
++
+保護儲存VM、LUN及一致性群組。
+
+* 主機管理
++
+設定SAN啟動器群組和NFS用戶端。
+
+
+
+
+
+== 支援的組態
+
+透過System Manager進階管理功能、Cloud Volumes ONTAP 可在標準雲端區域中以支援使用支援的版本為0、10.0及更新版本。
+
+不支援在GovCloud區域或沒有外傳網際網路存取的區域整合System Manager。
+
+
+
+== 限制
+
+下列功能不支援出現在System Manager介面中Cloud Volumes ONTAP 的部分功能：
+
+* BlueXP 分層
++
+Cloud Volumes ONTAP 不支援 BlueXP 分層服務。建立磁碟區時、必須直接從BlueXP的標準檢視畫面設定將資料分層至物件儲存設備。
+
+* 階層
++
+System Manager不支援集合管理（包括本機層級和雲端層）。您必須直接從BlueXP的「標準檢視」管理集合體。
+
+* 韌體升級
++
+不支援Cloud Volumes ONTAP 從*叢集>設定*頁面自動更新韌體。
+
+
+
+此外、不支援System Manager的角色型存取控制。
+
+
+
+== 如何開始使用
+
+開啟Cloud Volumes ONTAP 一個運作環境、然後按一下「進階檢視」選項。
+
+.步驟
+. 從左側導覽功能表中、選取*儲存設備> Canvas*。
+. 在「畫版」頁面上、按兩下Cloud Volumes ONTAP 某個系統的名稱。
+. 在右上角、按一下*切換至進階檢視*。
++
+image:screenshot_advanced_view.png["顯示「切換至進階檢視」選項的「不工作環境」快照Cloud Volumes ONTAP 。"]
+
+. 如果出現確認訊息、請仔細閱讀、然後按一下*關閉*。
+. 使用System Manager來管理Cloud Volumes ONTAP 功能。
+. 如有需要、請按一下*切換至標準檢視*、透過BlueXP返回標準管理。
+
+
+
+
+== 協助使用System Manager
+
+如果您需要協助、請Cloud Volumes ONTAP 參閱《System Manager with》（搭配使用系統管理程式） https://docs.netapp.com/us-en/ontap/index.html["本文檔 ONTAP"^] 以取得逐步指示。以下是幾個可能有幫助的連結：
+
+* https://docs.netapp.com/us-en/ontap/volume-admin-overview-concept.html["Volume與LUN管理"^]
+* https://docs.netapp.com/us-en/ontap/network-manage-overview-concept.html["網路管理"^]
+* https://docs.netapp.com/us-en/ontap/concept_dp_overview.html["資料保護"^]
+

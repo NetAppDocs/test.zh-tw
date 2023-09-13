@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: task-getting-started-aws.html 
+keywords: amazon web services, aws, netapp, data fabric, hybrid cloud, cloud, public cloud, networking, vpc, quick, getting started, install, installing, deploy, deploying, setup, setting up, launching, requirements, prerequisites, cloud central, get started, network, vpn, multi-cloud, tier, tiering, storage tier, data tier, vpc endpoint, endpoint, S3, subscribe, subscribing, marketplace, granting, permissions, policy, iam policy, ec2 console, ami, mediator, connectivity, internet, outbound, endpoint, connection, networks, replicating, ec2 service, policies, attach, iam user, access key, secret key, keys, sign up, cloud manager, BlueXP, cloud volumes ontap, cloud ontap, create 
+summary: 只要幾個步驟、就能開始使用 Cloud Volumes ONTAP 適用於 AWS 的解決方法。 
+---
+= 在AWS中快速入門Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+只要幾個步驟、Cloud Volumes ONTAP 就能開始使用AWS的功能。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一"] 建立連接器
+[role="quick-margin-para"]
+如果您沒有 https://docs.netapp.com/us-en/bluexp-setup-admin/concept-connectors.html["連接器"^] 然而、帳戶管理員需要建立一個帳戶。 https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-aws.html["瞭解如何在 AWS 中建立 Connector"^]
+
+[role="quick-margin-para"]
+請注意、如果您想要在Cloud Volumes ONTAP 無法存取網際網路的子網路中部署支援、則必須手動安裝Connector、並存取在該Connector上執行的BlueXP使用者介面。 https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-private-mode.html["瞭解如何在無法存取網際網路的位置手動安裝Connector"^]
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["二"] 規劃您的組態
+[role="quick-margin-para"]
+BlueXP提供符合工作負載需求的預先設定套件、或者您也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。 link:task-planning-your-config.html["深入瞭解"]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"] 設定您的網路
+[role="quick-margin-list"]
+. 確保您的 VPC 和子網路支援連接器與 Cloud Volumes ONTAP 支援之間的連線。
+. 啟用從目標VPC for NetApp AutoSupport 的傳出網際網路存取功能。
++
+如果您在Cloud Volumes ONTAP 無法存取網際網路的位置部署支援、則不需要執行此步驟。
+
+. 設定 S3 服務的 VPC 端點。
++
+如果您想要將冷資料從 Cloud Volumes ONTAP 不願儲存到低成本物件儲存設備、則需要 VPC 端點。
+
+
+
+[role="quick-margin-para"]
+link:reference-networking-aws.html["深入瞭解網路需求"]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四"] 設定 AWS KMS
+[role="quick-margin-para"]
+如果您想搭配 Cloud Volumes ONTAP 使用 Amazon 加密搭配使用、則必須確保存在作用中的客戶主金鑰（ CMK ）。您也必須新增 IAM 角色、將連接器的權限提供給作為 _key 使用者 _ 的連接器、以修改每個 CMK 的金鑰原則。 link:task-setting-up-kms.html["深入瞭解"]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"] 使用BlueXP啟動Cloud Volumes ONTAP
+[role="quick-margin-para"]
+按一下「 * 新增工作環境 * 」、選取您要部署的系統類型、然後完成精靈中的步驟。 link:task-deploying-otc-aws.html["閱讀逐步指示"]。
+
+.相關連結
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-aws.html["從BlueXP建立連接器"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-install-connector-aws.html["從 AWS Marketplace 啟動 Connector"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-install-connector-on-prem.html["在 Linux 主機上安裝 Connector 軟體"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-aws.html["BlueXP使用AWS權限的功能"^]
+

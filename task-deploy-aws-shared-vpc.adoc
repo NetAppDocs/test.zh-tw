@@ -1,0 +1,89 @@
+---
+sidebar: sidebar 
+permalink: task-deploy-aws-shared-vpc.html 
+keywords: shared vpc, aws shared vpc, vpc sharing, shared subnet, deploy shared vpc, assume role 
+summary: 從9.11.1版開始、Cloud Volumes ONTAP AWS支援搭配VPC共享功能的更新版、VPC共用功能可讓您的組織與其他AWS帳戶共用子網路。若要使用此組態、您必須設定AWS環境、然後使用API部署HA配對。 
+---
+= 在共享子網路中部署HA配對
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+從9.11.1版開始、Cloud Volumes ONTAP AWS支援搭配VPC共享功能的更新版、VPC共用功能可讓您的組織與其他AWS帳戶共用子網路。若要使用此組態、您必須設定AWS環境、然後使用API部署HA配對。
+
+與 https://aws.amazon.com/blogs/networking-and-content-delivery/vpc-sharing-a-new-approach-to-multiple-accounts-and-vpc-management/["VPC共享"^]、將一個功能豐富的全功能HA組態分佈於兩個帳戶：Cloud Volumes ONTAP
+
+* VPC擁有者帳戶、擁有網路（VPC、子網路、路由表和Cloud Volumes ONTAP 保密群組）
+* 參與者帳戶、其中EC2執行個體部署在共享子網路中（包括兩個HA節點和中介器）
+
+
+若將某個版本部署在多個可用度區域中、HA中介程式需要特定權限、才能寫入VPC擁有者帳戶中的路由表。Cloud Volumes ONTAP您必須設定協調員可以承擔的IAM角色、以提供這些權限。
+
+下圖顯示此部署所涉及的元件：
+
+image:diagram-aws-vpc-sharing.png["在共享VPC中部署的概念性Cloud Volumes ONTAP 功能。它會顯示可供VPC擁有者帳戶和參與者帳戶使用的共享VPC。共享VPC包括IAM角色、路由表、安全組和三個子網。參與者帳戶包含Cloud Volumes ONTAP 不含「功能性HA」組態、以及附加至中介器的IAM角色。"]
+
+如下列步驟所述、您必須與參與者帳戶共用子網路、然後在VPC擁有者帳戶中建立IAM角色和安全性群組。
+
+當您建立Cloud Volumes ONTAP 不協調作業環境時、BlueXP會自動建立IAM角色、並將其附加至協調者。此角色會假設您在VPC擁有者帳戶中建立的IAM角色、以便變更與HA配對相關的路由表。
+
+.步驟
+. 與參與者帳戶共用VPC擁有者帳戶中的子網路。
++
+若要在共用子網路中部署HA配對、必須執行此步驟。
+
++
+https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html#vpc-sharing-share-subnet["AWS文件：共用子網路"^]
+
+. 在VPC擁有者帳戶中、建立Cloud Volumes ONTAP 一個安全群組以供使用。
++
+link:reference-security-groups.html["請參閱Cloud Volumes ONTAP 安全性群組規則以瞭解相關資訊"]。請注意、您不需要為HA中介者建立安全性群組。BlueXP能為您實現這項目標。
+
+. 在VPC擁有者帳戶中、建立包含下列權限的IAM角色：
++
+[source, json]
+----
+Action": [
+                "ec2:AssignPrivateIpAddresses",
+                "ec2:CreateRoute",
+                "ec2:DeleteRoute",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeVpcs",
+                "ec2:ReplaceRoute",
+                "ec2:UnassignPrivateIpAddresses"
+----
+. 使用BlueXP API建立新Cloud Volumes ONTAP 的功能不全的工作環境。
++
+請注意、您必須指定下列欄位：
+
++
+** "安全性群組Id"
++
+「安全性GroupId」欄位應指定您在VPC擁有者帳戶中建立的安全性群組（請參閱上述步驟2）。
+
+** 「haParam」物件中的「assugerme勞力Arn」
++
+「assume勞力arn」欄位應包含您在VPC擁有者帳戶中建立的IAM角色ARN（請參閱上述步驟3）。
+
++
+例如：
+
++
+[source, json]
+----
+"haParams": {
+     "assumeRoleArn": "arn:aws:iam::642991768967:role/mediator_role_assume_fromdev"
+}
+----
++
+https://docs.netapp.com/us-en/bluexp-automation/cm/overview.html["深入瞭Cloud Volumes ONTAP 解NetApp API"^]
+
+
+
+

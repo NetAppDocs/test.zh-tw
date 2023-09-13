@@ -1,0 +1,504 @@
+---
+sidebar: sidebar 
+permalink: reference-networking-azure.html 
+keywords: networking, network, requirements, connection, connections, vnet, security group, security groups, subnet, vpn, internet, proxy, HTTP, private, proxy server, routing, firewall, autosupport, connection, jump host, outbound, ports, blob, service endpoint 
+summary: 設定您的 Azure 網路、 Cloud Volumes ONTAP 使其能夠正常運作。 
+---
+= Azure 的網路需求 Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+設定您的 Azure 網路、 Cloud Volumes ONTAP 使其能夠正常運作。
+
+
+
+== 需求 Cloud Volumes ONTAP
+
+Azure 必須符合下列網路需求。
+
+
+
+=== 傳出網際網路存取
+
+支援NetApp功能的支援節點需要外傳網際網路存取功能、此功能可主動監控系統健全狀況、並將訊息傳送給NetApp技術支援部門。Cloud Volumes ONTAP AutoSupport
+
+路由和防火牆原則必須允許將 HTTP / HTTPS 流量傳送至下列端點、 Cloud Volumes ONTAP 才能讓下列端點傳送 AutoSupport 動態訊息：
+
+* \https://support.netapp.com/aods/asupmessage
+* \https://support.netapp.com/asupprod/post/1.0/postAsup
+
+
+如果傳出的網際網路連線無法傳送AutoSupport 功能性訊息、則BlueXP會自動將Cloud Volumes ONTAP 您的功能性更新系統設定為使用Connector做為Proxy伺服器。唯一的需求是確保連接器的安全性群組允許連接埠3128上的傳入連線。部署Connector之後、您需要開啟此連接埠。
+
+如果您定義了Cloud Volumes ONTAP 嚴格的傳出規則以供支援、那麼Cloud Volumes ONTAP 您也必須確保支援透過連接埠3128建立_Outbound _連線的安全性群組。
+
+在您確認可以存取傳出網際網路之後、您可以測試AutoSupport 以確保能夠傳送訊息。如需相關指示、請參閱 https://docs.netapp.com/us-en/ontap/system-admin/setup-autosupport-task.html["文件：設定檔ONTAP AutoSupport"^]。
+
+如果BlueXP通知您AutoSupport 無法傳送資訊、 link:task-verify-autosupport.html#troubleshoot-your-autosupport-configuration["疑難排解AutoSupport 您的VMware組態"]。
+
+
+
+=== IP位址
+
+BlueXP會自動將所需數量的私有IP位址分配Cloud Volumes ONTAP 給Azure中的所有人。您必須確定網路有足夠的私有IP位址可用。
+
+BlueXP分配Cloud Volumes ONTAP 給功能的生命量取決於您是部署單一節點系統或HA配對。LIF 是與實體連接埠相關聯的 IP 位址。諸如 VMware 的管理工具需要 SVM 管理 LIF SnapCenter 。
+
+
+NOTE: iSCSI LIF可透過iSCSI傳輸協定提供用戶端存取、並供系統用於其他重要的網路工作流程。這些生命是必要的、不應刪除。
+
+
+
+==== 單一節點系統的IP位址
+
+BlueXP會將5或6個IP位址分配給單一節點系統：
+
+* 叢集管理 IP
+* 節點管理IP
+* SnapMirror的叢集間IP
+* NFS/CIFS IP
+* iSCSI IP
++
+
+NOTE: iSCSI IP可透過iSCSI傳輸協定提供用戶端存取。系統也會將其用於其他重要的網路工作流程。此LIF為必填項目、不應刪除。
+
+* SVM管理（選用-預設為未設定）
+
+
+
+
+==== HA配對的IP位址
+
+在部署期間、BlueXP會將IP位址分配給4個NIC（每個節點）。
+
+請注意、BlueXP會在HA配對上建立SVM管理LIF、但不會在Azure中的單一節點系統上建立。
+
+*網卡0*
+
+* 節點管理IP
+* 叢集間IP
+* iSCSI IP
++
+
+NOTE: iSCSI IP可透過iSCSI傳輸協定提供用戶端存取。系統也會將其用於其他重要的網路工作流程。此LIF為必填項目、不應刪除。
+
+
+
+*網卡1*
+
+* 叢集網路IP
+
+
+*網卡2 *
+
+* 叢集互連IP（HA IC）
+
+
+* NIC 3 *
+
+* Pageblob NIC IP（磁碟存取）
+
+
+
+NOTE: NIC 3僅適用於使用網頁BLOB儲存設備的HA部署。
+
+上述IP位址不會在容錯移轉事件上移轉。
+
+此外、還設定4個前端IP（FIPS）在容錯移轉事件上進行移轉。這些前端IP位於負載平衡器中。
+
+* 叢集管理 IP
+* 節點A資料IP（NFS/CIFS）
+* 節點B資料IP（NFS/CIFS）
+* SVM管理IP
+
+
+
+
+=== 安全連線至Azure服務
+
+根據預設、BlueXP會啟用Azure Private Link、以便Cloud Volumes ONTAP 在支援鏈接的情況下連接到支援鏈接的畫面和Azure網頁BLOB儲存帳戶。
+
+在大多數情況下、您無需做任何事、因為BlueXP會為您管理Azure Private Link。但如果您使用Azure私有DNS、則必須編輯組態檔。您也應該瞭解Azure中的Connector位置需求。
+
+您也可以視業務需求而停用「私有連結」連線。如果您停用連結、則BlueXP會設定Cloud Volumes ONTAP 使用服務端點的功能。
+
+link:task-enabling-private-link.html["深入瞭解如何搭配Cloud Volumes ONTAP 使用Azure私有連結或服務端點搭配使用"]。
+
+
+
+=== 連線至其他ONTAP 的系統
+
+若要在Cloud Volumes ONTAP Azure中的某個系統與ONTAP 其他網路中的某些系統之間複寫資料、您必須在Azure vnet與其他網路（例如您的公司網路）之間建立VPN連線。
+
+如需相關指示、請參閱 https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal["Microsoft Azure 文件：在 Azure 入口網站中建立站台對站台連線"^]。
+
+
+
+=== HA互連的連接埠
+
+一個包含HA互連的「支援功能」配對、可讓每個節點持續檢查其合作夥伴是否正常運作、並鏡射另一個非揮發性記憶體的記錄資料。Cloud Volumes ONTAPHA互連使用TCP連接埠10006進行通訊。
+
+依預設、HA互連生命體之間的通訊會開啟、而且此連接埠沒有安全性群組規則。但是、如果您在HA互連生命期之間建立防火牆、則必須確保TCP流量已開啟連接埠10006、如此HA配對才能正常運作。
+
+
+
+=== Azure資源群組中只有一組HA配對
+
+您必須使用_Dedicated資源群組來處理Cloud Volumes ONTAP 您在Azure中部署的每一組EHA。資源群組僅支援一個HA配對。
+
+如果您嘗試在Cloud Volumes ONTAP Azure資源群組中部署第二個「鏈接HA配對」、則BlueXP會遇到連線問題。
+
+
+
+=== 安全性群組規則
+
+BlueXP會建立Azure安全性群組、其中包含Cloud Volumes ONTAP 了順利運作所需的傳入和傳出規則。您可能需要參照連接埠進行測試、或是偏好使用自己的安全性群組。
+
+適用於此功能的安全性群組 Cloud Volumes ONTAP 需要傳入和傳出規則。
+
+
+TIP: 正在尋找Connector的相關資訊？ https://docs.netapp.com/us-en/bluexp-setup-admin/reference-ports-azure.html["檢視Connector的安全群組規則"^]
+
+
+
+==== 單一節點系統的傳入規則
+
+當您建立工作環境並選擇預先定義的安全性群組時、可以選擇允許下列其中一項的流量：
+
+* *僅限所選vnet*：傳入流量的來源是vnet的子網路範圍、Cloud Volumes ONTAP 以及連接器所在vnet的子網路範圍。這是建議的選項。
+* *所有VNet*：傳入流量的來源為0.00.0.0/0 IP範圍。
+
+
+[cols="4*"]
+|===
+| 優先順序和名稱 | 連接埠與傳輸協定 | 來源與目的地 | 說明 
+
+
+| 1000
+inbound（傳入）_ssh | 22.
+TCP | 任意 | SSH 存取叢集管理 LIF 的 IP 位址或節點管理 LIF 
+
+
+| 1001..
+inbound http | 80
+TCP | 任意 | 使用叢集管理 LIF 的 IP 位址、以 HTTP 存取 System Manager Web 主控台 
+
+
+| 1002..
+inbound（傳入）_111_TCP | 111.
+TCP | 任意 | 遠端程序需要 NFS 
+
+
+| 1003.
+inbound（傳入）_111_udp | 111.
+UDP | 任意 | 遠端程序需要 NFS 
+
+
+| 1004.
+傳入_139 | 139.
+TCP | 任意 | CIFS 的 NetBios 服務工作階段 
+
+
+| 1005.
+inbound（傳入）_161-162 _tcp | 161-162-163.
+TCP | 任意 | 簡單的網路管理傳輸協定 
+
+
+| 1006..
+傳入_161-162 _udp | 161-162-163.
+UDP | 任意 | 簡單的網路管理傳輸協定 
+
+
+| 1007.
+傳入_443 | 443..
+TCP | 任意 | 使用叢集管理LIF的IP位址、連線到Connector和HTTPS、存取System Manager Web主控台 
+
+
+| 1008.
+傳入_445 | 445
+TCP | 任意 | Microsoft SMB/CIFS over TCP 搭配 NetBios 架構 
+
+
+| 1009.
+inbound（傳入）_6335_tcp | 635
+TCP | 任意 | NFS 掛載 
+
+
+| 1010)
+inbound（傳入）_6335_udp | 635
+UDP | 任意 | NFS 掛載 
+
+
+| 1011.
+傳入_749 | 749
+TCP | 任意 | Kerberos 
+
+
+| 1012.
+inbound（傳入）_2049_tcp | 2049
+TCP | 任意 | NFS 伺服器精靈 
+
+
+| 1013.
+inbound（傳入）_2049_udp | 2049
+UDP | 任意 | NFS 伺服器精靈 
+
+
+| 1014.
+inbound（傳入）_3260 | 3260
+TCP | 任意 | 透過 iSCSI 資料 LIF 存取 iSCSI 
+
+
+| 1015
+inbound（傳入）_4045-4046_tcp | 4045-4046
+TCP | 任意 | NFS 鎖定精靈和網路狀態監控 
+
+
+| 1016.
+傳入_4045-4046_udp | 4045-4046
+UDP | 任意 | NFS 鎖定精靈和網路狀態監控 
+
+
+| 1017.
+傳入_10000 | 10000
+TCP | 任意 | 使用 NDMP 備份 
+
+
+| 1018.
+inbound（傳入）_11104-11105 | 11104-11105
+TCP | 任意 | SnapMirror 資料傳輸 
+
+
+| 3000
+inbound拒絕_all_tcp | 任何連接埠
+TCP | 任意 | 封鎖所有其他 TCP 傳入流量 
+
+
+| 3001.
+inbound拒絕_all_udp | 任何連接埠
+UDP | 任意 | 封鎖所有其他的 UDP 傳入流量 
+
+
+| 65000
+允許VnetInBound | 任何連接埠
+任何通訊協定 | 虛擬網路至虛擬網路 | 來自 vnet 的傳入流量 
+
+
+| 65001
+允許AzureLoad BalancerInBound | 任何連接埠
+任何通訊協定 | 將 AzureLoadBalancer 移至任何 | Azure Standard 負載平衡器的資料流量 
+
+
+| 65500
+DenyAllInBound | 任何連接埠
+任何通訊協定 | 任意 | 封鎖所有其他傳入流量 
+|===
+
+
+==== HA 系統的傳入規則
+
+當您建立工作環境並選擇預先定義的安全性群組時、可以選擇允許下列其中一項的流量：
+
+* *僅限所選vnet*：傳入流量的來源是vnet的子網路範圍、Cloud Volumes ONTAP 以及連接器所在vnet的子網路範圍。這是建議的選項。
+* *所有VNet*：傳入流量的來源為0.00.0.0/0 IP範圍。
+
+
+
+NOTE: HA 系統的傳入規則少於單一節點系統、因為傳入資料流量會流經 Azure Standard Load Balancer 。因此、來自負載平衡器的流量應開啟、如「 AllowAzureLoadBalancerInBound 」規則所示。
+
+[cols="4*"]
+|===
+| 優先順序和名稱 | 連接埠與傳輸協定 | 來源與目的地 | 說明 
+
+
+| 100
+傳入_443 | 443..
+任何通訊協定 | 任意 | 使用叢集管理LIF的IP位址、連線到Connector和HTTPS、存取System Manager Web主控台 
+
+
+| 101.
+inbound（傳入）_111_TCP | 111.
+任何通訊協定 | 任意 | 遠端程序需要 NFS 
+
+
+| 102.
+inbound（傳入）_2049_tcp | 2049
+任何通訊協定 | 任意 | NFS 伺服器精靈 
+
+
+| 111.
+inbound（傳入）_ssh | 22.
+任何通訊協定 | 任意 | SSH 存取叢集管理 LIF 的 IP 位址或節點管理 LIF 
+
+
+| 121.
+傳入_53 | 53.
+任何通訊協定 | 任意 | DNS 與 CIFS 
+
+
+| 65000
+允許VnetInBound | 任何連接埠
+任何通訊協定 | 虛擬網路至虛擬網路 | 來自 vnet 的傳入流量 
+
+
+| 65001
+允許AzureLoad BalancerInBound | 任何連接埠
+任何通訊協定 | 將 AzureLoadBalancer 移至任何 | Azure Standard 負載平衡器的資料流量 
+
+
+| 65500
+DenyAllInBound | 任何連接埠
+任何通訊協定 | 任意 | 封鎖所有其他傳入流量 
+|===
+
+
+==== 傳出規則
+
+預先定義 Cloud Volumes ONTAP 的 Security Group for the 旅行團會開啟所有的傳出流量。如果可以接受、請遵循基本的傳出規則。如果您需要更嚴格的規則、請使用進階的傳出規則。
+
+
+
+===== 基本傳出規則
+
+適用於此功能的預先定義安全性群組 Cloud Volumes ONTAP 包括下列傳出規則。
+
+[cols="3*"]
+|===
+| 連接埠 | 傳輸協定 | 目的 
+
+
+| 全部 | 所有 TCP | 所有傳出流量 
+
+
+| 全部 | 所有的 udp | 所有傳出流量 
+|===
+
+
+===== 進階傳出規則
+
+如果您需要嚴格的傳出流量規則、可以使用下列資訊、僅開啟 Cloud Volumes ONTAP 那些由真人進行傳出通訊所需的連接埠。
+
+
+NOTE: 來源是 Cloud Volumes ONTAP 指在整個系統上的介面（ IP 位址）。
+
+[cols="10,10,6,20,20,34"]
+|===
+| 服務 | 連接埠 | 傳輸協定 | 來源 | 目的地 | 目的 
+
+
+.18+| Active Directory | 88 | TCP | 節點管理 LIF | Active Directory 樹系 | Kerberos V 驗證 
+
+
+| 137. | UDP | 節點管理 LIF | Active Directory 樹系 | NetBios 名稱服務 
+
+
+| 138 | UDP | 節點管理 LIF | Active Directory 樹系 | NetBios 資料報服務 
+
+
+| 139. | TCP | 節點管理 LIF | Active Directory 樹系 | NetBios 服務工作階段 
+
+
+| 389.. | TCP 與 UDP | 節點管理 LIF | Active Directory 樹系 | LDAP 
+
+
+| 445 | TCP | 節點管理 LIF | Active Directory 樹系 | Microsoft SMB/CIFS over TCP 搭配 NetBios 架構 
+
+
+| 464.64 | TCP | 節點管理 LIF | Active Directory 樹系 | Kerberos V 變更及設定密碼（ Set_change ） 
+
+
+| 464.64 | UDP | 節點管理 LIF | Active Directory 樹系 | Kerberos 金鑰管理 
+
+
+| 749 | TCP | 節點管理 LIF | Active Directory 樹系 | Kerberos V 變更與設定密碼（ RPCSEC_GSS ） 
+
+
+| 88 | TCP | 資料 LIF （ NFS 、 CIFS 、 iSCSI ） | Active Directory 樹系 | Kerberos V 驗證 
+
+
+| 137. | UDP | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | NetBios 名稱服務 
+
+
+| 138 | UDP | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | NetBios 資料報服務 
+
+
+| 139. | TCP | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | NetBios 服務工作階段 
+
+
+| 389.. | TCP 與 UDP | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | LDAP 
+
+
+| 445 | TCP | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | Microsoft SMB/CIFS over TCP 搭配 NetBios 架構 
+
+
+| 464.64 | TCP | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | Kerberos V 變更及設定密碼（ Set_change ） 
+
+
+| 464.64 | UDP | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | Kerberos 金鑰管理 
+
+
+| 749 | TCP | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | Kerberos V 變更及設定密碼（ RPCSEC_GSS ） 
+
+
+.3+| AutoSupport | HTTPS | 443.. | 節點管理 LIF | support.netapp.com | 支援（預設為HTTPS）AutoSupport 
+
+
+| HTTP | 80 | 節點管理 LIF | support.netapp.com | 僅當傳輸傳輸傳輸傳輸傳輸協定從HTTPS變更為HTTP時、AutoSupport 
+
+
+| TCP | 3128 | 節點管理 LIF | 連接器 | 如果無法使用傳出的網際網路連線、請透過Connector上的Proxy伺服器傳送AutoSupport 功能介紹訊息 
+
+
+| 組態備份 | HTTP | 80 | 節點管理 LIF | \http ： //// <connector-IP-address> occm/offboxconfig | 將組態備份傳送至Connector。 link:https://docs.netapp.com/us-en/ontap/system-admin/node-cluster-config-backed-up-automatically-concept.html["深入瞭解組態備份檔案"^]。 
+
+
+| DHCP | 68 | UDP | 節點管理 LIF | DHCP | 第一次設定的 DHCP 用戶端 
+
+
+| DHCPS | 67 | UDP | 節點管理 LIF | DHCP | DHCP 伺服器 
+
+
+| DNS | 53. | UDP | 節點管理 LIF 與資料 LIF （ NFS 、 CIFS ） | DNS | DNS 
+
+
+| NDMP | 18600 – 18699 | TCP | 節點管理 LIF | 目的地伺服器 | NDMP 複本 
+
+
+| SMTP | 25. | TCP | 節點管理 LIF | 郵件伺服器 | 可以使用 SMTP 警示 AutoSupport 來執行功能 
+
+
+.4+| SNMP | 161. | TCP | 節點管理 LIF | 監控伺服器 | 透過 SNMP 設陷進行監控 
+
+
+| 161. | UDP | 節點管理 LIF | 監控伺服器 | 透過 SNMP 設陷進行監控 
+
+
+| 162-1662 | TCP | 節點管理 LIF | 監控伺服器 | 透過 SNMP 設陷進行監控 
+
+
+| 162-1662 | UDP | 節點管理 LIF | 監控伺服器 | 透過 SNMP 設陷進行監控 
+
+
+.2+| SnapMirror | 11104. | TCP | 叢集間 LIF | 叢集間 LIF ONTAP | 管理 SnapMirror 的叢集間通訊工作階段 
+
+
+| 11105. | TCP | 叢集間 LIF | 叢集間 LIF ONTAP | SnapMirror 資料傳輸 
+
+
+| 系統記錄 | 514 | UDP | 節點管理 LIF | 系統記錄伺服器 | 系統記錄轉送訊息 
+|===
+
+
+== 連接器需求
+
+如果您尚未建立連接器、也應該檢閱連接器的網路需求。
+
+* https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-azure.html["檢視連接器的網路需求"^]
+* https://docs.netapp.com/us-en/bluexp-setup-admin/reference-ports-azure.html["Azure中的安全性群組規則"^]
+

@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: task-accelerate-data-access.html 
+keywords: flexcache, flexcache volumes, create a flexcache volume, provision flexcache, create flexcache volume 
+summary: 流通量是儲存磁碟區、可快取來源或來源磁碟區的NFS讀取資料。FlexCache後續讀取快取資料會加快該資料的存取速度。 
+---
+= 利用NetApp功能加速資料存取FlexCache
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+FlexCache Volume 是一種儲存磁碟區、可從來源（或來源）磁碟區快取 SMB 和 NFS 讀取資料。後續讀取快取資料會加快該資料的存取速度。
+
+您可以使用 FlexCache 功能區來加速資料存取、或卸載大量存取磁碟區的流量。由於資料無需存取來源磁碟區、因此能夠直接提供服務、因此在用戶端需要重複存取相同資料時、支援使用者更能提升效能。 FlexCache適用於讀取密集的系統工作負載的資料量。 FlexCache
+
+BlueXP 提供 FlexCache 磁碟區的管理功能 link:https://docs.netapp.com/us-en/bluexp-volume-caching/index.html["BlueXP Volume 快取"^] 服務：
+
+您也可以使用 ONTAP CLI 或 ONTAP 系統管理員來建立及管理 FlexCache 磁碟區：
+
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["《資料存取能力快速指南》的《支援資料量》（英文） FlexCache"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help-960/GUID-07F4C213-076D-4FE8-A8E3-410F49498D49.html["在 FlexCache System Manager 中建立功能區"^]
+
+
+BlueXP 會為所有新的 Cloud Volumes ONTAP 系統產生 FlexCache 授權。授權包含500 GiB使用限制。
+
+video::PBNPVRUeT1o[youtube,width=848,height=480]
