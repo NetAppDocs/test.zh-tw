@@ -3,11 +3,13 @@ settings:
   name: Cloud Volumes ONTAP
   harmony_integration: maestro
   platform: cloud
+  downlevel: true
   internal:
     pdf_enabled: true
   prod:
     pdf_enabled: true
     harmony_enabled: false
+  rss_page: whats-new.html
   versions:
   - name: Cloud Volumes ONTAP
     url: "/cloud-volumes-ontap-relnotes"
@@ -57,7 +59,6 @@ settings:
   - name: 解決方案ONTAP
     url: "/cloud-volumes-ontap-93-relnotes"
     version-number: '9.3'
-  rss_page: whats-new.html
   filter:
     label: 雲端供應商
     default: 所有雲端供應商
