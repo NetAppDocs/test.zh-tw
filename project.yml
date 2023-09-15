@@ -1,4 +1,5 @@
 ---
+jekyll: srd23-stable-11
 settings:
   name: Cloud Volumes ONTAP
   harmony_integration: maestro
