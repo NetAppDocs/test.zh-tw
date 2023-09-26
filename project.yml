@@ -2,6 +2,7 @@
 settings:
   name: Cloud Volumes ONTAP
   harmony_integration: maestro
+  hide_language_selector: true
   platform: cloud
   internal:
     pdf_enabled: true
