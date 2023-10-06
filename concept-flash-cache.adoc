@@ -14,7 +14,7 @@ summary: 部分Cloud Volumes ONTAP 支援的組態包括本機NVMe儲存設備�
 
 
 [role="lead"]
-部分Cloud Volumes ONTAP 支援的組態包括本機NVMe儲存設備、Cloud Volumes ONTAP 這些儲存設備可作為_Flash Cache使用、以獲得更好的效能。
+部分Cloud Volumes ONTAP 支援的組態包括本機NVMe儲存設備、Cloud Volumes ONTAP 這些儲存設備可作為_Flash Cache使用、以獲得更好的效能。新增權杖更新測試的行。
 
 
 

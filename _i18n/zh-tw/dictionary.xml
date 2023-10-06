@@ -643,7 +643,6 @@
   <block id="5e167ef814cd8fe02fd01be002ffa235" category="list-text"><block ref="5e167ef814cd8fe02fd01be002ffa235" category="inline-link-macro-rx"></block></block>
   <block id="2f2289dc4d144dd69a1fd73eaab183e0" category="summary">部分Cloud Volumes ONTAP 支援的組態包括本機NVMe儲存設備、Cloud Volumes ONTAP 這些儲存設備以Flash Cache的形式使用、可提供更好的效能。</block>
   <block id="5fbc523d8d2ad241522a15100f23bef2" category="doc">Flash 快取</block>
-  <block id="712cc6bb6749aa390ea026f9c60a15ec" category="paragraph">部分Cloud Volumes ONTAP 支援的組態包括本機NVMe儲存設備、Cloud Volumes ONTAP 這些儲存設備可作為_Flash Cache使用、以獲得更好的效能。</block>
   <block id="675d38d552c49bbf67606b2c5f1d5bed" category="section-title">什麼是Flash Cache？</block>
   <block id="3a36e6b466e0265c25d241c486f64e02" category="paragraph">Flash Cache 可透過即時智慧快取來加速資料存取、快取最近讀取的使用者資料和 NetApp 中繼資料。它適用於隨機讀取密集的工作負載、包括資料庫、電子郵件和檔案服務。</block>
   <block id="1f0b82560627b660c6c6958a1df834b8" category="section-title">支援的組態</block>
@@ -5155,4 +5154,5 @@ BlueXP 會將 12-13 個 IP 位址分配給 HA 配對：</block>
   <block id="522cbb900314aeb84eb5a961c5f94672" category="section-title">取得雲端供應商檔案服務的支援</block>
   <block id="f6185bb12f5e53c800be8cda7fbca65b" category="paragraph">如需雲端供應商檔案服務、其基礎架構或任何使用服務的解決方案的相關技術支援、請參閱該產品的 BlueXP 文件中的「取得說明」。</block>
   <block id="3880ae5df9fdc4d0fc4a6d00a2239530" category="paragraph">若要獲得 BlueXP 及其儲存解決方案與服務的專屬技術支援、請使用下列支援選項。</block>
+  <block id="85a772bebde3e95966723beb7a641685" category="paragraph">部分Cloud Volumes ONTAP 支援的組態包括本機NVMe儲存設備、Cloud Volumes ONTAP 這些儲存設備可作為_Flash Cache使用、以獲得更好的效能。新增權杖更新測試的行。</block>
 </blocks>
