@@ -4617,7 +4617,6 @@ BlueXP 會將 12-13 個 IP 位址分配給 HA 配對：</block>
   <block id="3f0a47d5e00d1740ceca3815cf7bf9b4" category="section-title">設定資料分層</block>
   <block id="ac50ed5a6f154224bf044f6797accc8c" category="paragraph">如需相關指示及支援組態清單、請參閱 <block ref="4fbc08218411ffa53189962e6368b39b" category="inline-link-macro-rx"></block>。</block>
   <block id="3ddffa447216115135ad7b5a7bdd106d" category="doc">深入瞭解 Cloud Volumes ONTAP</block>
-  <block id="f703efebd5f1fe499787635d16bb070c" category="paragraph">不只是軟體的儲存應用裝置、可在雲端上執行功能完善的資料管理軟體。 Cloud Volumes ONTAP ONTAP它提供企業級儲存設備、具備下列主要功能：</block>
   <block id="af20abc7154e9ee224c54b48b6ec7d63" category="list-text">儲存效率</block>
   <block id="18b6826f1d119f55347e1db9badac2c3" category="paragraph">運用內建的重複資料刪除技術、資料壓縮、精簡配置及複製技術、將儲存成本降至最低。</block>
   <block id="05807e454c19f244770adae059b3c330" category="list-text">高可用度</block>
@@ -5155,4 +5154,5 @@ BlueXP 會將 12-13 個 IP 位址分配給 HA 配對：</block>
   <block id="f6185bb12f5e53c800be8cda7fbca65b" category="paragraph">如需雲端供應商檔案服務、其基礎架構或任何使用服務的解決方案的相關技術支援、請參閱該產品的 BlueXP 文件中的「取得說明」。</block>
   <block id="3880ae5df9fdc4d0fc4a6d00a2239530" category="paragraph">若要獲得 BlueXP 及其儲存解決方案與服務的專屬技術支援、請使用下列支援選項。</block>
   <block id="85a772bebde3e95966723beb7a641685" category="paragraph">部分Cloud Volumes ONTAP 支援的組態包括本機NVMe儲存設備、Cloud Volumes ONTAP 這些儲存設備可作為_Flash Cache使用、以獲得更好的效能。新增權杖更新測試的行。</block>
+  <block id="831f5238637d5e95172a19700b3d60d2" category="paragraph">不只是軟體的儲存應用裝置、可在雲端上執行功能完善的資料管理軟體。 Cloud Volumes ONTAP ONTAP它提供企業級儲存設備、具備下列主要功能：</block>
 </blocks>
