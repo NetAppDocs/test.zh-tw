@@ -16,7 +16,7 @@ summary: 利用 NetApp 技術、您可以最佳化雲端儲存成本與效能、
 [role="lead"]
 利用 NetApp 技術、您可以最佳化雲端儲存成本與效能、同時強化資料保護、安全性與法規遵循。 Cloud Volumes ONTAP
 
-不只是軟體的儲存應用裝置、可在雲端上執行功能完善的資料管理軟體。 Cloud Volumes ONTAP ONTAP它提供企業級儲存設備、具備下列主要功能：
+不只是軟體的儲存應用裝置、可在雲端上執行功能完善的資料管理軟體。 Cloud Volumes ONTAP ONTAP它提供企業級儲存設備、並提供下列主要功能以供下次測試：
 
 * 儲存效率
 +
