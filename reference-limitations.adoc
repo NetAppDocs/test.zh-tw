@@ -42,3 +42,45 @@ link:concept-client-protocols.html["深入瞭Cloud Volumes ONTAP 解支援S3和�
 BlueXP 不提供任何儲存 VM （ SVM ）災難恢復的設定或協調支援。您必須使用 System Manager 或 CLI 。
 
 link:task-manage-svm-dr.html["深入瞭解 SVM 災難恢復"]。
+
+
+
+== 測試 AsciDoc 字元置換和內部屬性
+
+透過所有語言的本地化與發佈來測試端點對端點。
+
+.星號
+｛ 星號 ｝
+文字 ｛ 星號 ｝
+文字 ｛ 星號 ｝
+文字 ｛ 星號 ｝ 文字
+
+.雙結腸
+｛ 雙冒號 ｝
+文字 ｛ 雙冒號 ｝
+文字 ｛ 雙冒號 ｝
+文字 ｛ 雙冒號 ｝
+
+.垂直條
+｛ vbar ｝
+文字 ｛ vbar ｝
+文字 ｛ vbar ｝
+文字 ｛ vbar ｝ 文字
+
+.此外
+｛ plus ｝
+文字 ｛ plus ｝
+文字 ｛ plus ｝
+文字 ｛ plus ｝
+
+.方括號
+｛ startsb ｝ 和 ｛ endsb ｝
+文字 ｛ startsb ｝ 和文字 ｛ endsb ｝
+文字 ｛ startsb ｝ 和文字 ｛ endsb ｝
+文字 ｛ startsb ｝ 和文字 ｛ endsb ｝
+
+.不中斷的空間
+｛ nbsp ｝ 之後
+
+.零寬度空間
+在 ｛ zwsp ｝ 之後
