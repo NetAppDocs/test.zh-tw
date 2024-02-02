@@ -1512,7 +1512,6 @@ iSCSI 目標可透過標準乙太網路介面卡（ NIC ）、 TCP 卸載引擎�
   <block id="e3cd99e4aa330ae6bdfb3754d83ae962" category="list-text">如果您有合作夥伴或經銷商帳戶、您可以新增一或多個NSS帳戶、但這些帳戶無法與客戶層級帳戶一起新增。</block>
   <block id="c0e0b7ff0de9558404e9b77ece42948a" category="list-text">選取 *NSS Management &gt; Add NSS Account* 。</block>
   <block id="85b9386ed443776127e099931d73448a" category="list-text">系統提示時、請選取 * 繼續 * 以重新導向至 Microsoft 登入頁面。</block>
-  <block id="19d089db572ee6a1e154a0c9c9e57bfd" category="paragraph">NetApp使用Microsoft Azure Active Directory做為身分識別供應商、提供專為支援與授權所設計的驗證服務。</block>
   <block id="465ec6d5eafa3524c948c99d8bfcd306" category="list-text">在登入頁面上，提供您的 NetApp 支援網站註冊電子郵件地址和密碼，以執行身分驗證程序。</block>
   <block id="cbc6cc3bb022583403171b447b2a962c" category="paragraph">這些行動可讓BlueXP將您的nssa帳戶用於授權下載、軟體升級驗證、以及未來的支援註冊等項目。</block>
   <block id="ec084bb25ed5b934c09b361069c246b2" category="list-text">NSS-帳戶必須是客戶層級的帳戶（而非來賓帳戶或暫存帳戶）。您可以擁有多個客戶層級的NSS帳戶。</block>
@@ -5184,4 +5183,5 @@ BlueXP 會將 12-13 個 IP 位址分配給 HA 配對：</block>
   <block id="f606f03b9471e3c22a0e9412852320bd" category="paragraph">｛ nbsp ｝ 之後</block>
   <block id="64e9073b4fb50b91766ce8b5e61945c1" category="paragraph-title">零寬度空間</block>
   <block id="589a92e5ac7fd2654f5ce5d9594f5e7c" category="paragraph">在 ｛ zwsp ｝ 之後</block>
+  <block id="d59e0b46782e48a01966e5c7ccc38d17" category="paragraph">NetApp 使用 Microsoft Entra ID 做為身分識別提供者、提供專為支援與授權所設計的驗證服務。</block>
 </blocks>
