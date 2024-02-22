@@ -1,0 +1,3497 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>在 Cloud Volumes ONTAP Azure 中啟動 | NetApp Documentation</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="在 Cloud Volumes ONTAP Azure 中啟動 | NetApp Documentation" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/test/task-deploying-otc-azure.html" />
+	<meta property="og:description" content="您可以Cloud Volumes ONTAP 在Cloud Volumes ONTAP BlueXP中建立一個運作環境、在Azure中啟動單一的一套功能完善的系統。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/test/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="您可以Cloud Volumes ONTAP 在Cloud Volumes ONTAP BlueXP中建立一個運作環境、在Azure中啟動單一的一套功能完善的系統。">
+  <meta name="keywords" content=" Cloud Volumes ONTAP, deploying, launching, creating, deploy, launch, create, azure, BYOL, license key, serial number, tags, azure tags, location, license, preconfigured packages, programmatic deployments, disk size, write speed, access control, volume protection, usage profile, register, CIFS share, quota, qtree, HA, HA pair, associate subscription, azure marketplace, marketplace subscription, cloud data sense, cloud backup"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/test/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="NetApp Documentation" href="/zh-tw/test/feed.xml"><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/test/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/zh-tw/test/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/test/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/zh-tw/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/test/task-deploying-otc-azure.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/test/task-deploying-otc-azure.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/test/js/na-search.js'></script><script src='/zh-tw/test/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/zh-tw/test/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/test/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/test/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/test/js/jszip.min.js'></script><script src='/zh-tw/test/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="azure">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/zh-tw/test/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/tw">
+                <image id="ie-header-logo" src="/zh-tw/test/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/support-and-training/documentation/">文件</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/zh-tw/test/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">繁體中文</span>
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/zh-tw/test/task-deploying-otc-azure.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/test/task-deploying-otc-azure.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/test/task-deploying-otc-azure.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ko-kr/test/task-deploying-otc-azure.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/test/task-deploying-otc-azure.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/test/task-deploying-otc-azure.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/es-es/test/task-deploying-otc-azure.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/fr-fr/test/task-deploying-otc-azure.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/test/task-deploying-otc-azure.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/zh-tw/test/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">所有 NetApp</span>
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">支援</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">知識庫</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">訓練</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/zh-tw/test/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/zh-tw/test/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">所有文件</a>
+    </li>
+    
+    
+    <li class="">
+      <a href="https://docs.netapp.com/us-en/cloud/">雲端文件</a>
+    </li>
+    
+
+    
+    <li class="">
+      <a href="https://docs.netapp.com/zh-tw/bluexp-family/">
+        BlueXP
+      </a>
+    </li>
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/zh-tw/test/">-->
+      Cloud Volumes ONTAP
+    <!--</a>-->
+  </div>
+</div>
+
+            
+<div id="ie-selectors"><div id="version-dropdown-new" class="custom-dropdown" >
+  <div class="custom-dropdown-select unselected" title=" 9.13.1">
+    <label>版本</label>
+    <span translate="no" class="notranslate">9.13.1</span>
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown version invisible" />
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup version" />
+  </div>
+
+  <ul class="custom-dropdown-menu"><li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.13.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9130-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.13.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9121-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.12.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9120-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.12.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9111-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.11.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9110-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.11.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9101-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.10.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9100-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.10.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-991-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.9.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-990-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.9.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-98-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.8</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-97-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.7</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-96-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.6</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-95-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.5</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-94-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.4</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-93-relnotes/task-deploying-otc-azure.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.3</span></span>
+      </a>
+                     
+    </li>
+    
+  </ul>
+</div>
+<div id="flavor-dropdown" class="custom-dropdown" data-url="/zh-tw/test/task-deploying-otc-azure.html">
+  
+  
+  <div class="custom-dropdown-select selected" title="Azure">
+    <label>雲端供應商</label>
+    <div>Azure</div>  
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown flavor invisible" />
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup flavor" />
+    <!--<img src="/zh-tw/test/images/dismiss.svg" class="custom-icon selected" id="remove-flavor" alt="" />-->
+  </div>
+  
+
+  <ul class="custom-dropdown-menu">
+    
+    
+    <li data-value="aws" data-url="/zh-tw/test/aws">Amazon Web Services</li>
+    
+    
+    
+    <li data-value="gcp" data-url="/zh-tw/test/gcp">Google Cloud</li>
+    
+    
+    
+    <li data-value="azure" data-url="/zh-tw/test/azure/task-deploying-otc-azure.html">Microsoft Azure
+    </li>
+    
+    
+    <li data-url="/zh-tw/test/task-deploying-otc-azure.html">所有雲端供應商</li>
+  </ul>
+</div>
+</div>
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/zh-tw/test/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/zh-tw/test/azure/search.html" 
+        data-type="widget"
+        data-placeholder="搜尋說明文件"
+        data-no-results-found="找不到 {query} 的結果"
+        data-did-you-mean="搜尋 {suggestion}。"
+        data-no-results-found-did-you-mean="找不到 {query} 的結果。您的意思是 {suggestion} 嗎？"
+        data-results-found="找到 {hitCount} 個結果"
+        data-error-message="發生錯誤。請再試一次。"
+        data-error-reset="重設搜尋"
+        data-sk-es-pf-indexes="" 
+        data-flavor="azure">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="文件Cloud Volumes ONTAP"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/test/azure/index.html">
+        文件Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="版本資訊"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 版本資訊</div>-->
+         版本資訊
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增功能"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/whats-new.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/whats-new.html">
+        新增功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="已知限制"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/reference-limitations.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/reference-limitations.html">
+        已知限制
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="發行說明 Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/whats-new-ontap.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/whats-new-ontap.html">
+        發行說明 Cloud Volumes ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用</div>-->
+         開始使用
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解 Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-overview-cvo.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/concept-overview-cvo.html">
+        深入瞭解 Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="支援的新部署版本"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/reference-versions.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/reference-versions.html">
+        支援的新部署版本
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用Microsoft Azure"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用Microsoft Azure</div>-->
+         開始使用Microsoft Azure
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="快速入門"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-getting-started-azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-getting-started-azure.html">
+        快速入門
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="規劃您的組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-planning-your-config-azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-planning-your-config-azure.html">
+        規劃您的組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定您的網路"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/reference-networking-azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/reference-networking-azure.html">
+        設定您的網路
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用您的金鑰設定加密"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-set-up-azure-encryption.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-set-up-azure-encryption.html">
+        使用您的金鑰設定加密
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-set-up-licensing-azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-set-up-licensing-azure.html">
+        設定授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="啟用高可用度模式"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-azure-high-availability-mode.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-azure-high-availability-mode.html">
+        啟用高可用度模式
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在Cloud Volumes ONTAP Azure中推出功能"
+      data-li-level="3#" 
+      class="  ie-sidebar-selected    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-deploying-otc-azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-deploying-otc-azure.html">
+        在Cloud Volumes ONTAP Azure中推出功能
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用Cloud Volumes ONTAP"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 使用Cloud Volumes ONTAP</div>-->
+         使用Cloud Volumes ONTAP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="授權管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 授權管理</div>-->
+         授權管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理容量型授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-manage-capacity-licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-manage-capacity-licenses.html">
+        管理容量型授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理基礎概念訂閱"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-manage-keystone.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-manage-keystone.html">
+        管理基礎概念訂閱
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理節點型授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-manage-node-licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-manage-node-licenses.html">
+        管理節點型授權
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Volume與LUN管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Volume與LUN管理</div>-->
+         Volume與LUN管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-create-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-create-volumes.html">
+        建立磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理現有磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-manage-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-manage-volumes.html">
+        管理現有磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將非作用中資料分層至物件儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-tiering.html">
+        將非作用中資料分層至物件儲存設備
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將LUN連接至主機"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-connect-lun.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-connect-lun.html">
+        將LUN連接至主機
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="利用NetApp加速資料存取FlexCache"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-accelerate-data-access.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-accelerate-data-access.html">
+        利用NetApp加速資料存取FlexCache
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Aggregate管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Aggregate管理</div>-->
+         Aggregate管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立Aggregate"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-create-aggregates.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-create-aggregates.html">
+        建立Aggregate
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理現有的集合體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-manage-aggregates.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-manage-aggregates.html">
+        管理現有的集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理容量設定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-manage-capacity-settings.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-manage-capacity-settings.html">
+        管理容量設定
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存VM管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 儲存VM管理</div>-->
+         儲存VM管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在BlueXP中使用儲存VM"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-managing-svms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-managing-svms.html">
+        在BlueXP中使用儲存VM
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在Azure中建立儲存VM"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-managing-svms-azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-managing-svms-azure.html">
+        在Azure中建立儲存VM
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 SVM 災難恢復"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-manage-svm-dr.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-manage-svm-dr.html">
+        設定 SVM 災難恢復
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安全性與資料加密"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 安全性與資料加密</div>-->
+         安全性與資料加密
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 NetApp 加密來加密磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-encrypting-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-encrypting-volumes.html">
+        使用 NetApp 加密來加密磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用Azure Key Vault管理金鑰"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-azure-key-vault.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-azure-key-vault.html">
+        使用Azure Key Vault管理金鑰
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="改善勒索軟體保護"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-protecting-ransomware.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-protecting-ransomware.html">
+        改善勒索軟體保護
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 系統管理</div>-->
+         系統管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="升級Cloud Volumes ONTAP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-updating-ontap-cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-updating-ontap-cloud.html">
+        升級Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊隨用隨付系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-registering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-registering.html">
+        註冊隨用隨付系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="停止並啟動系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-managing-state.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-managing-state.html">
+        停止並啟動系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="同步系統時間"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-sync-time.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-sync-time.html">
+        同步系統時間
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="修改系統寫入速度"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-modify-write-speed.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-modify-write-speed.html">
+        修改系統寫入速度
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更系統密碼"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-change-password.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-change-password.html">
+        變更系統密碼
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增、移除或刪除系統"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 新增、移除或刪除系統</div>-->
+         新增、移除或刪除系統
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增現有系統"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-adding-systems.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/azure/task-adding-systems.html">
+        新增現有系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="移除工作環境"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-removing.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/azure/task-removing.html">
+        移除工作環境
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="刪除系統"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-deleting-working-env.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/azure/task-deleting-working-env.html">
+        刪除系統
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure管理"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Azure管理</div>-->
+         Azure管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更Azure VM類型"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-change-azure-vm.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/azure/task-change-azure-vm.html">
+        變更Azure VM類型
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="覆寫CIFS鎖定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-overriding-cifs-locks.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/azure/task-overriding-cifs-locks.html">
+        覆寫CIFS鎖定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用Azure私有連結或服務端點"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-enabling-private-link.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/azure/task-enabling-private-link.html">
+        使用Azure私有連結或服務端點
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="移動資源群組"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-moving-resource-groups-azure.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/azure/task-moving-resource-groups-azure.html">
+        移動資源群組
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統管理員的系統管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-administer-advanced-view.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-administer-advanced-view.html">
+        系統管理員的系統管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="從CLI進行管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-connecting-to-otc.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-connecting-to-otc.html">
+        從CLI進行管理
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統健全狀況與事件"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 系統健全狀況與事件</div>-->
+         系統健全狀況與事件
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="驗AutoSupport 證此設定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-verify-autosupport.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-verify-autosupport.html">
+        驗AutoSupport 證此設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 EMS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-configure-ems.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/task-configure-ems.html">
+        設定 EMS
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="概念"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 概念</div>-->
+         概念
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="授權"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-licensing.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/concept-licensing.html">
+        授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存設備"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 儲存設備</div>-->
+         儲存設備
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="用戶端傳輸協定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-client-protocols.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/concept-client-protocols.html">
+        用戶端傳輸協定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="磁碟與集合體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/concept-storage.html">
+        磁碟與集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="資料分層"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-data-tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/concept-data-tiering.html">
+        資料分層
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-storage-management.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/concept-storage-management.html">
+        儲存管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="寫入速度"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-write-speed.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/concept-write-speed.html">
+        寫入速度
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Flash 快取"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-flash-cache.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/concept-flash-cache.html">
+        Flash 快取
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="WORM 儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-worm.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/concept-worm.html">
+        WORM 儲存設備
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="高可用度配對"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 高可用度配對</div>-->
+         高可用度配對
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure 中的 HA 配對"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-ha-azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/concept-ha-azure.html">
+        Azure 中的 HA 配對
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存設備接管期間的行動"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-degraded-ha-pair.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/azure/concept-degraded-ha-pair.html">
+        儲存設備接管期間的行動
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安全性"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-security.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/concept-security.html">
+        安全性
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="效能"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-performance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/concept-performance.html">
+        效能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理節點型BYOL"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-license-management.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/concept-license-management.html">
+        管理節點型BYOL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AutoSupport 與 Active IQ Digital Advisor"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/concept-active-iq.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/concept-active-iq.html">
+        AutoSupport 與 Active IQ Digital Advisor
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="預設組態"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/reference-default-configs.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/reference-default-configs.html">
+        預設組態
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="知識與支援"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 知識與支援</div>-->
+         知識與支援
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊以取得支援"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-support-registration.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/task-support-registration.html">
+        註冊以取得支援
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="取得協助"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/task-get-help.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/azure/task-get-help.html">
+        取得協助
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="法律聲明"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task-deploying-otc-azure.html" 
+      dale-entry-url="/legal-notices.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/test/azure/legal-notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/zh-tw/test"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/zh-tw/test"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      <div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/zh-tw/test/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">在 Cloud Volumes ONTAP Azure 中啟動</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2023-09-13 15:07:13 +0000">09/13/2023</time>
+        
+    
+    
+        <span>貢獻者
+        </span>
+    
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/zh-tw/test/images/discuss-sm.svg" alt="" class="github-icon" />建議變更</span>
+        <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/test.zh-tw/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/zh-tw/test/task-deploying-otc-azure.html&page-title=在 Cloud Volumes ONTAP Azure 中啟動" class="page-nav-contribute-link" role="button">請求文件變更</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/test/blob/main/task-deploying-otc-azure.adoc" class="page-nav-contribute-link" role="button">編輯本頁</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >瞭解如何貢獻</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/zh-tw/test/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/zh-tw/test/pdfs/azure/fullsite-sidebar/本文檔Cloud_Volumes_ONTAP.pdf" >
+                    <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>此文件 PDF 的網站</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/版本資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            版本資訊
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/Amazon_Web_Services入門.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Amazon Web Services入門
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/設定您的網路.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            設定您的網路
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/開始使用Microsoft_Azure.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用Microsoft Azure
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/開始使用Google_Cloud.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用Google Cloud
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/Google_Cloud_Platform映像驗證.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Google Cloud Platform映像驗證
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/影像簽名驗證.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            影像簽名驗證
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/使用Cloud_Volumes_ONTAP.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            使用Cloud Volumes ONTAP
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/授權管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            授權管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/Volume與LUN管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Volume與LUN管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/Aggregate管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Aggregate管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/儲存VM管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            儲存VM管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/安全性與資料加密.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            安全性與資料加密
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/系統管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            系統管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/新增_移除或刪除系統.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            新增、移除或刪除系統
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/AWS_管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            AWS 管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/Azure管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Azure管理
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/Google_Cloud管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Google Cloud管理
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/系統健全狀況與事件.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            系統健全狀況與事件
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/概念.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            概念
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/儲存設備.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            儲存設備
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/高可用度配對.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            高可用度配對
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/azure/sidebar/知識與支援.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            知識與支援
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/zh-tw/test/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>個別的 PDF 文件集合<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>您可以在Cloud Volumes ONTAP BlueXP中建立運作環境、在Azure中啟動單一節點系統或HA配對。</p>
+</div>
+<div class="paragraph">
+<div class="title">您需要的產品</div>
+<p>您需要下列項目才能建立工作環境。</p>
+</div>
+<div id="licensing" class="ulist">
+<ul>
+<li>
+<p>已啟動並執行的連接器。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>您應該擁有 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-azure.html" target="_blank" rel="noopener">"與工作區相關的連接器"</a>。</p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/bluexp-setup-admin/concept-connectors.html" target="_blank" rel="noopener">"您應該隨時準備好讓 Connector 保持運作"</a>。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>瞭解您要使用的組態。</p>
+<div class="paragraph">
+<p>您應該已經選擇組態、並從系統管理員取得 Azure 網路資訊。如需詳細資訊、請參閱 <a href="task-planning-your-config-azure.html" target="_blank" rel="noopener">"規劃 Cloud Volumes ONTAP 您的需求組態"</a>。</p>
+</div>
+</li>
+<li>
+<p>瞭解設定Cloud Volumes ONTAP 驗證功能所需的條件。</p>
+<div class="paragraph">
+<p><a href="task-set-up-licensing-azure.html" target="_blank" rel="noopener">"瞭解如何設定授權"</a>。</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">關於這項工作</div>
+<p>當BlueXP在Cloud Volumes ONTAP Azure中建立一個功能完善的系統時、它會建立多個Azure物件、例如資源群組、網路介面和儲存帳戶。您可以在精靈結束時檢閱資源摘要。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/warning.svg" alt="警告">
+</td>
+<td class="content">
+<div class="title">資料遺失的可能性</div>
+<div class="paragraph">
+<p>最佳實務做法是針對每Cloud Volumes ONTAP 個系統使用新的專屬資源群組。</p>
+</div>
+<div class="paragraph">
+<p>由於資料遺失的風險、不建議在 Cloud Volumes ONTAP 現有的共享資源群組中部署此功能。雖然在Cloud Volumes ONTAP 部署失敗或刪除的情況下、BlueXP可以從共用資源群組移除一些不必要的資源、但Azure使用者可能會不小心從Cloud Volumes ONTAP 共用資源群組中刪除一些不必要的資源。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="在cloud-volumes-ontap-azure中啟動單一節點的不完整系統">在Cloud Volumes ONTAP Azure中啟動單一節點的不完整系統</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果您想要在Cloud Volumes ONTAP Azure中啟動單一節點的功能、您需要在BlueXP中建立單一節點的工作環境。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>從左側導覽功能表中、選取*儲存設備&gt; Canvas*。</p>
+</li>
+<li>
+<p>[[訂閱]在「畫版」頁面上、按一下「<strong>新增工作環境</strong>」、然後依照提示進行。</p>
+</li>
+<li>
+<p><strong>選擇位置</strong>：選擇* Microsoft Azure <strong>和</strong> Cloud Volumes ONTAP 《單一節點*》。</p>
+</li>
+<li>
+<p>如果出現提示、 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-azure.html" target="_blank" rel="noopener">"建立連接器"</a>。</p>
+</li>
+<li>
+<p><strong>詳細資料與認證</strong>：選擇性變更Azure認證與訂閱、指定叢集名稱、視需要新增標籤、然後指定認證資料。</p>
+<div class="paragraph">
+<p>下表說明您可能需要指導的欄位：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">工作環境名稱</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BlueXP使用工作環境名稱來命名Cloud Volumes ONTAP 整個系統、以及Azure虛擬機器。如果您選取該選項、它也會使用名稱做為預先定義安全性群組的前置詞。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">資源群組標記</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">標記是 Azure 資源的中繼資料。在此欄位中輸入標記時、BlueXP會將標記新增至與Cloud Volumes ONTAP 該系統相關聯的資源群組。<br>
+<br>
+建立工作環境時、您最多可以從使用者介面新增四個標記、然後在建立之後新增更多標記。請注意、在建立工作環境時、 API 不會限制您使用四個標記。<br>
+<br>
+如需標記的相關資訊、請參閱 <a href="https://azure.microsoft.com/documentation/articles/resource-group-using-tags/" target="_blank" rel="noopener">"Microsoft Azure 說明文件：使用標籤來組織 Azure 資源"</a>。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用者名稱和密碼</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">這些是Cloud Volumes ONTAP 適用於整個叢集管理員帳戶的認證資料。您可以使用這些認證資料、 Cloud Volumes ONTAP 透過 System Manager 或其 CLI 連線至功能驗證。保留預設的_admin_使用者名稱、或將其變更為自訂使用者名稱。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[[video ） ] 編輯認證資料</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">您可以選擇不同的 Azure 認證資料和其他 Azure 訂閱、以搭配此 Cloud Volumes ONTAP 款作業系統使用。您必須將 Azure Marketplace 訂閱與所選 Azure 訂閱建立關聯、才能部署隨用隨付 Cloud Volumes ONTAP 的功能。 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/task-adding-azure-accounts.html" target="_blank" rel="noopener">"瞭解如何新增認證"</a>。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>下列影片說明如何將 Marketplace 訂閱與 Azure 訂閱建立關聯：</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="./media/video_subscribing_azure.mp4" width="848" height="480" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+</li>
+<li>
+<p>* 服務 * ：啟用或停用 Cloud Volumes ONTAP 您不想搭配使用的個別服務。</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/bluexp-classification/concept-cloud-compliance.html" target="_blank" rel="noopener">"深入瞭解 BlueXP 分類"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-backup-to-cloud.html" target="_blank" rel="noopener">"深入瞭解 BlueXP 備份與還原"</a></p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+如果您想要使用 WORM 和資料分層功能、您必須停用 BlueXP 備份與還原、並部署 9.8 版或更新版本的 Cloud Volumes ONTAP 工作環境。
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>位置</strong>：選取區域、可用度區域、vnet和子網路、然後選取核取方塊以確認連接器與目標位置之間的網路連線。</p>
+<div class="paragraph">
+<p>對於單一節點系統、您可以選擇要部署 Cloud Volumes ONTAP 的可用度區域。如果您未選擇AZ、則BlueXP會為您選擇一個。</p>
+</div>
+</li>
+<li>
+<p><strong>連線能力</strong>：選擇新的或現有的資源群組、然後選擇是使用預先定義的安全性群組、還是使用自己的。</p>
+<div class="paragraph">
+<p>下表說明您可能需要指導的欄位：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">資源群組</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>建立Cloud Volumes ONTAP 新的資源群組以供使用、或使用現有的資源群組。最佳實務做法是使用全新的資源群組 Cloud Volumes ONTAP 來進行支援。雖然可以在Cloud Volumes ONTAP 現有的共享資源群組中部署功能、但由於資料遺失的風險、不建議這麼做。如需詳細資料、請參閱上述警告。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+如果您使用的Azure帳戶具有 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-azure.html" target="_blank" rel="noopener">"必要權限"</a>、在Cloud Volumes ONTAP 部署失敗或刪除的情況下、BlueXP會從資源群組移除一些不必要的資源。
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">產生的安全性群組</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>如果讓BlueXP為您產生安全性群組、您必須選擇允許流量的方式：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果您選擇*選取的vnet only *、則傳入流量的來源是所選vnet的子網路範圍、以及連接器所在vnet的子網路範圍。這是建議的選項。</p>
+</li>
+<li>
+<p>如果您選擇*所有VNet*、則傳入流量的來源為0.00.0.0/0 IP範圍。</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用現有的</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果您選擇現有的安全群組、則必須符合Cloud Volumes ONTAP 下列需求： <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/reference-networking-azure.html#security-group-rules" target="_blank" rel="noopener">"檢視預設的安全性群組"</a>。</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>收費方法與 NSS 帳戶</strong>：指定您要搭配此系統使用的收費選項，然後指定 NetApp 支援網站帳戶。</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="concept-licensing.html" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解適用於此功能的授權選項"</a>。</p>
+</li>
+<li>
+<p><a href="task-set-up-licensing-azure.html" target="_blank" rel="noopener">"瞭解如何設定授權"</a>。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>* 預先設定的套件 * ：選取其中一個套件以快速部署 Cloud Volumes ONTAP 某個作業系統、或按一下 * 建立我自己的組態 * 。</p>
+<div class="paragraph">
+<p>如果您選擇其中一個套件、則只需指定一個 Volume 、然後檢閱並核准組態。</p>
+</div>
+</li>
+<li>
+<p><strong>授權</strong>：視Cloud Volumes ONTAP 需要變更此版本、然後選取虛擬機器類型。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="註">
+</td>
+<td class="content">
+如果所選版本有較新的發行候選版本、一般可用度或修補程式版本、則在建立工作環境時、BlueXP會將系統更新至該版本。例如、如果您選擇Cloud Volumes ONTAP 了「更新」功能、就會進行更新。更新不會從一個版本發生到另一個版本、例如從 9.6 到 9.7 。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><strong>從Azure Marketplace訂閱</strong>：如果BlueXP無法啟用Cloud Volumes ONTAP 程式化部署的功能、請依照下列步驟進行。</p>
+</li>
+<li>
+<p>* 基礎儲存資源 * ：選擇初始 Aggregate 的設定：磁碟類型、每個磁碟的大小、以及是否應啟用資料分層至 Blob 儲存設備。</p>
+<div class="paragraph">
+<p>請注意下列事項：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>磁碟類型適用於初始磁碟區。您可以為後續磁碟區選擇不同的磁碟類型。</p>
+</li>
+<li>
+<p>磁碟大小適用於初始Aggregate中的所有磁碟、以及使用Simple Provisioning選項時、BlueXP所建立的任何其他Aggregate。您可以使用進階配置選項、建立使用不同磁碟大小的集合體。</p>
+<div class="paragraph">
+<p>如需選擇磁碟類型和大小的說明、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-planning-your-config-azure.html#size-your-system-in-azure" target="_blank" rel="noopener">"在 Azure 中調整系統規模"</a>。</p>
+</div>
+</li>
+<li>
+<p>您可以在建立或編輯磁碟區時、選擇特定的磁碟區分層原則。</p>
+</li>
+<li>
+<p>如果停用資料分層、您可以在後續的 Aggregate 上啟用。</p>
+<div class="paragraph">
+<p><a href="concept-data-tiering.html" target="_blank" rel="noopener">"深入瞭解資料分層"</a>。</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>*寫入速度與WORM *：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>如果需要、請選擇*正常*或*高速*寫入速度。</p>
+<div class="paragraph">
+<p><a href="concept-write-speed.html" target="_blank" rel="noopener">"深入瞭解寫入速度"</a>。</p>
+</div>
+</li>
+<li>
+<p>視需要啟動一次寫入、多次讀取（WORM）儲存設備。</p>
+<div class="paragraph">
+<p>此選項僅適用於特定VM類型。若要瞭解支援哪些VM類型、請參閱 <a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-azure.html#ha-pairs" target="_blank" rel="noopener">"HA配對授權的支援組態"</a>。</p>
+</div>
+<div class="paragraph">
+<p>如果啟用Cloud Volumes ONTAP 資料分層功能、無法啟用WORM 9.7版及更低版本。啟用WORM和分層後、將Cloud Volumes ONTAP 會封鎖還原或降級至物件9.8。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="concept-worm.html" target="_blank" rel="noopener">"深入瞭解 WORM 儲存設備"</a>。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>如果您啟動WORM儲存設備、請選取保留期間。</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>* 建立 Volume * ：輸入新磁碟區的詳細資料、或按一下 * 跳過 * 。</p>
+<div class="paragraph">
+<p><a href="concept-client-protocols.html" target="_blank" rel="noopener">"瞭解支援的用戶端傳輸協定和版本"</a>。</p>
+</div>
+<div class="paragraph">
+<p>本頁中的部分欄位是不知自明的。下表說明您可能需要指導的欄位：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">尺寸</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">您可以輸入的最大大小、主要取決於您是否啟用精簡配置、這可讓您建立比目前可用實體儲存容量更大的磁碟區。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">存取控制（僅適用於 NFS ）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">匯出原則會定義子網路中可存取磁碟區的用戶端。根據預設、BlueXP會輸入一個值、以供存取子網路中的所有執行個體。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">權限與使用者 / 群組（僅限 CIFS ）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">這些欄位可讓您控制使用者和群組（也稱為存取控制清單或 ACL ）的共用存取層級。您可以指定本機或網域 Windows 使用者或群組、或 UNIX 使用者或群組。如果您指定網域 Windows 使用者名稱、則必須使用網域 \ 使用者名稱格式來包含使用者的網域。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Snapshot 原則</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Snapshot 複製原則會指定自動建立的 NetApp Snapshot 複本的頻率和數量。NetApp Snapshot 複本是一種不影響效能的時間點檔案系統映像、需要最少的儲存容量。您可以選擇預設原則或無。您可以針對暫時性資料選擇「無」：例如、 Microsoft SQL Server 的 Tempdb 。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">進階選項（僅適用於 NFS ）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">為磁碟區選取 NFS 版本： NFSv3 或 NFSv3 。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">啟動器群組和 IQN （僅適用於 iSCSI ）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iSCSI 儲存目標稱為 LUN （邏輯單元）、以標準區塊裝置的形式呈現給主機。<br>
+<br>
+啟動器群組是 iSCSI 主機節點名稱的表格、可控制哪些啟動器可存取哪些 LUN 。<br>
+<br>
+iSCSI 目標可透過標準乙太網路介面卡（ NIC ）、 TCP 卸載引擎（ TOE ）卡（含軟體啟動器）、整合式網路介面卡（ CNA ）或專用主機匯流排介面卡（ HBA ）連線至網路、並由 iSCSI 合格名稱（ IQN ）識別。<br>
+<br>
+建立iSCSI磁碟區時、BlueXP會自動為您建立LUN。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、 <a href="task-connect-lun.html">"使用 IQN 從主機連線至 LUN"</a>。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>下圖顯示 CIFS 傳輸協定的「 Volume 」（磁碟區）頁面：</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cot_vol.gif" alt="螢幕擷取畫面：顯示針對 Cloud Volumes ONTAP 某個實例填寫的 Volume 頁面。"></span></p>
+</div>
+</li>
+<li>
+<p>* CIFS 設定 * ：如果您選擇 CIFS 傳輸協定、請設定 CIFS 伺服器。</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS 主要和次要 IP 位址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">提供 CIFS 伺服器名稱解析的 DNS 伺服器 IP 位址。<br>
+列出的 DNS 伺服器必須包含所需的服務位置記錄（ SRV), 才能找到 CIFS 伺服器要加入之網域的 Active Directory LDAP 伺服器和網域控制器。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">要加入的 Active Directory 網域</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">您要 CIFS 伺服器加入之 Active Directory （ AD ）網域的 FQDN 。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">授權加入網域的認證資料</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">具有足夠權限的 Windows 帳戶名稱和密碼、可將電腦新增至 AD 網域內的指定組織單位（ OU ）。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIFS 伺服器 NetBios 名稱</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AD 網域中唯一的 CIFS 伺服器名稱。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">組織單位</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AD 網域中與 CIFS 伺服器相關聯的組織單位。預設值為「 CN= 電腦」。<br>
+<br>
+若要將 Azure AD 網域服務設定為 Cloud Volumes ONTAP AD 伺服器以供使用、您應在此欄位中輸入 * OID=AADDC computers* 或 * OID=AADDC 使用者 * 。<br>
+<a href="https://docs.microsoft.com/en-us/azure/active-directory-domain-services/create-ou" target="_blank" rel="noopener">"Azure 說明文件：在 Azure AD 網域服務託管網域中建立組織單位（ OU ）"</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS 網域</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">適用於整個儲存虛擬 Cloud Volumes ONTAP 機器（ SVM ）的 DNS 網域。在大多數情況下、網域與 AD 網域相同。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NTP 伺服器</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">選擇 * 使用 Active Directory 網域 * 來使用 Active Directory DNS 設定 NTP 伺服器。如果您需要使用不同的位址來設定 NTP 伺服器、則應該使用 API 。請參閱 <a href="https://docs.netapp.com/us-en/bluexp-automation/index.html" target="_blank" rel="noopener">"藍圖XP自動化文件"</a> 以取得詳細資料。<br>
+<br>
+請注意、您只能在建立CIFS伺服器時設定NTP伺服器。您建立CIFS伺服器之後、就無法進行設定。</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>* 使用率設定檔、磁碟類型及分層原則 * ：視需要選擇是否要啟用儲存效率功能、並變更磁碟區分層原則。</p>
+<div class="paragraph">
+<p>如需詳細資訊、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-planning-your-config-azure.html#choose-a-volume-usage-profile" target="_blank" rel="noopener">"瞭解 Volume 使用量設定檔"</a> 和 <a href="concept-data-tiering.html" target="_blank" rel="noopener">"資料分層總覽"</a>。</p>
+</div>
+</li>
+<li>
+<p>* 審查與核准 * ：檢閱並確認您的選擇。</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>檢閱組態的詳細資料。</p>
+</li>
+<li>
+<p>按一下*更多資訊*以檢閱有關支援與BlueXP將購買之Azure資源的詳細資料。</p>
+</li>
+<li>
+<p>選取「 * 我瞭解 &#8230;&#8203; * 」核取方塊。</p>
+</li>
+<li>
+<p>按一下「 * 執行 * 」。</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">結果</div>
+<p>BlueXP部署Cloud Volumes ONTAP 了這個功能完善的系統。您可以追蹤時間表的進度。</p>
+</div>
+<div class="paragraph">
+<p>如果您在部署 Cloud Volumes ONTAP 此系統時遇到任何問題、請檢閱故障訊息。您也可以選取工作環境、然後按一下 * 重新建立環境 * 。</p>
+</div>
+<div class="paragraph">
+<p>如需其他協助、請前往 <a href="https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/guideme-tab" target="_blank" rel="noopener">"NetApp Cloud Volumes ONTAP 支援"</a>。</p>
+</div>
+<div class="ulist">
+<div class="title">完成後</div>
+<ul>
+<li>
+<p>如果您已配置 CIFS 共用區、請授予使用者或群組檔案和資料夾的權限、並確認這些使用者可以存取共用區並建立檔案。</p>
+</li>
+<li>
+<p>如果您要將配額套用至磁碟區、請使用 System Manager 或 CLI 。</p>
+<div class="paragraph">
+<p>配額可讓您限制或追蹤使用者、群組或 qtree 所使用的磁碟空間和檔案數量。</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="在cloud-volumes-ontap-azure中啟動一套功能完善的">在Cloud Volumes ONTAP Azure中啟動一套功能完善的</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果您想要在Cloud Volumes ONTAP Azure中啟動一套功能不均的HA配對、您必須在BlueXP中建立HA工作環境。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>從左側導覽功能表中、選取*儲存設備&gt; Canvas*。</p>
+</li>
+<li>
+<p>[[訂閱]在「畫版」頁面上、按一下「<strong>新增工作環境</strong>」、然後依照提示進行。</p>
+</li>
+<li>
+<p>如果出現提示、 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-connector-azure.html" target="_blank" rel="noopener">"建立連接器"</a>。</p>
+</li>
+<li>
+<p><strong>詳細資料與認證</strong>：選擇性變更Azure認證與訂閱、指定叢集名稱、視需要新增標籤、然後指定認證資料。</p>
+<div class="paragraph">
+<p>下表說明您可能需要指導的欄位：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">工作環境名稱</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BlueXP使用工作環境名稱來命名Cloud Volumes ONTAP 整個系統、以及Azure虛擬機器。如果您選取該選項、它也會使用名稱做為預先定義安全性群組的前置詞。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">資源群組標記</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">標記是 Azure 資源的中繼資料。在此欄位中輸入標記時、BlueXP會將標記新增至與Cloud Volumes ONTAP 該系統相關聯的資源群組。<br>
+<br>
+建立工作環境時、您最多可以從使用者介面新增四個標記、然後在建立之後新增更多標記。請注意、在建立工作環境時、 API 不會限制您使用四個標記。<br>
+<br>
+如需標記的相關資訊、請參閱 <a href="https://azure.microsoft.com/documentation/articles/resource-group-using-tags/" target="_blank" rel="noopener">"Microsoft Azure 說明文件：使用標籤來組織 Azure 資源"</a>。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用者名稱和密碼</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">這些是Cloud Volumes ONTAP 適用於整個叢集管理員帳戶的認證資料。您可以使用這些認證資料、 Cloud Volumes ONTAP 透過 System Manager 或其 CLI 連線至功能驗證。保留預設的_admin_使用者名稱、或將其變更為自訂使用者名稱。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[[video ） ] 編輯認證資料</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">您可以選擇不同的 Azure 認證資料和其他 Azure 訂閱、以搭配此 Cloud Volumes ONTAP 款作業系統使用。您必須將 Azure Marketplace 訂閱與所選 Azure 訂閱建立關聯、才能部署隨用隨付 Cloud Volumes ONTAP 的功能。 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/task-adding-azure-accounts.html" target="_blank" rel="noopener">"瞭解如何新增認證"</a>。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>下列影片說明如何將 Marketplace 訂閱與 Azure 訂閱建立關聯：</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<video src="./media/video_subscribing_azure.mp4" width="848" height="480" controls>
+Your browser does not support the video tag.
+</video>
+</div>
+</div>
+</li>
+<li>
+<p>* 服務 * ：啟用或停用 Cloud Volumes ONTAP 您不想搭配使用的個別服務。</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/bluexp-classification/concept-cloud-compliance.html" target="_blank" rel="noopener">"深入瞭解 BlueXP 分類"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-backup-to-cloud.html" target="_blank" rel="noopener">"深入瞭解 BlueXP 備份與還原"</a></p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+如果您想要使用 WORM 和資料分層功能、您必須停用 BlueXP 備份與還原、並部署 9.8 版或更新版本的 Cloud Volumes ONTAP 工作環境。
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>* HA部署模式*：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>選擇*單一可用度區域*或*多個可用度區域*。</p>
+</li>
+<li>
+<p><strong>位置與連線</strong>（單一AZ）及*地區與連線*（多個AZs）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>對於單一AZ、請選取一個地區、vnet和子網路。</p>
+</li>
+<li>
+<p>對於多個AZs、請為節點1選取區域、vnet、子網路、區域、為節點2選取區域。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>選取「<strong>我已驗證網路連線能力&#8230;&#8203;</strong>」核取方塊。</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><strong>連線能力</strong>：選擇新的或現有的資源群組、然後選擇是使用預先定義的安全性群組、還是使用自己的。</p>
+<div class="paragraph">
+<p>下表說明您可能需要指導的欄位：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">資源群組</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>建立Cloud Volumes ONTAP 新的資源群組以供使用、或使用現有的資源群組。最佳實務做法是使用全新的資源群組 Cloud Volumes ONTAP 來進行支援。雖然可以在Cloud Volumes ONTAP 現有的共享資源群組中部署功能、但由於資料遺失的風險、不建議這麼做。如需詳細資料、請參閱上述警告。</p>
+</div>
+<div class="paragraph">
+<p>您必須使用專屬的資源群組來處理Cloud Volumes ONTAP 您在Azure中部署的每個「EHA配對」。資源群組僅支援一個HA配對。如果您嘗試在Cloud Volumes ONTAP Azure資源群組中部署第二個「鏈接HA配對」、則BlueXP會遇到連線問題。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+如果您使用的Azure帳戶具有 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-azure.html" target="_blank" rel="noopener">"必要權限"</a>、在Cloud Volumes ONTAP 部署失敗或刪除的情況下、BlueXP會從資源群組移除一些不必要的資源。
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">產生的安全性群組</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>如果讓BlueXP為您產生安全性群組、您必須選擇允許流量的方式：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果您選擇*選取的vnet only *、則傳入流量的來源是所選vnet的子網路範圍、以及連接器所在vnet的子網路範圍。這是建議的選項。</p>
+</li>
+<li>
+<p>如果您選擇*所有VNet*、則傳入流量的來源為0.00.0.0/0 IP範圍。</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用現有的</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果您選擇現有的安全群組、則必須符合Cloud Volumes ONTAP 下列需求： <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/reference-networking-azure.html#security-group-rules" target="_blank" rel="noopener">"檢視預設的安全性群組"</a>。</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>收費方法與 NSS 帳戶</strong>：指定您要搭配此系統使用的收費選項，然後指定 NetApp 支援網站帳戶。</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="concept-licensing.html" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解適用於此功能的授權選項"</a>。</p>
+</li>
+<li>
+<p><a href="task-set-up-licensing-azure.html" target="_blank" rel="noopener">"瞭解如何設定授權"</a>。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>預先設定的套件</strong>：選取其中一個套件以快速部署Cloud Volumes ONTAP 一個作業系統、或按一下*變更組態*。</p>
+<div class="paragraph">
+<p>如果您選擇其中一個套件、則只需指定一個 Volume 、然後檢閱並核准組態。</p>
+</div>
+</li>
+<li>
+<p><strong>授權</strong>：視Cloud Volumes ONTAP 需要變更此版本、然後選取虛擬機器類型。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="註">
+</td>
+<td class="content">
+如果所選版本有較新的發行候選版本、一般可用度或修補程式版本、則在建立工作環境時、BlueXP會將系統更新至該版本。例如、如果您選擇Cloud Volumes ONTAP 了「更新」功能、就會進行更新。更新不會從一個版本發生到另一個版本、例如從 9.6 到 9.7 。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><strong>從Azure Marketplace訂閱</strong>：如果BlueXP無法啟用Cloud Volumes ONTAP 程式化部署的功能、請依照下列步驟進行。</p>
+</li>
+<li>
+<p>* 基礎儲存資源 * ：選擇初始 Aggregate 的設定：磁碟類型、每個磁碟的大小、以及是否應啟用資料分層至 Blob 儲存設備。</p>
+<div class="paragraph">
+<p>請注意下列事項：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>磁碟大小適用於初始Aggregate中的所有磁碟、以及使用Simple Provisioning選項時、BlueXP所建立的任何其他Aggregate。您可以使用進階配置選項、建立使用不同磁碟大小的集合體。</p>
+<div class="paragraph">
+<p>如需選擇磁碟大小的說明、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-planning-your-config-azure.html#size-your-system-in-azure" target="_blank" rel="noopener">"在Azure中調整系統規模"</a>。</p>
+</div>
+</li>
+<li>
+<p>您可以在建立或編輯磁碟區時、選擇特定的磁碟區分層原則。</p>
+</li>
+<li>
+<p>如果停用資料分層、您可以在後續的 Aggregate 上啟用。</p>
+<div class="paragraph">
+<p><a href="concept-data-tiering.html" target="_blank" rel="noopener">"深入瞭解資料分層"</a>。</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>*寫入速度與WORM *：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>如果需要、請選擇*正常*或*高速*寫入速度。</p>
+<div class="paragraph">
+<p><a href="concept-write-speed.html" target="_blank" rel="noopener">"深入瞭解寫入速度"</a>。</p>
+</div>
+</li>
+<li>
+<p>視需要啟動一次寫入、多次讀取（WORM）儲存設備。</p>
+<div class="paragraph">
+<p>此選項僅適用於特定VM類型。若要瞭解支援哪些VM類型、請參閱 <a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-azure.html#ha-pairs" target="_blank" rel="noopener">"HA配對授權的支援組態"</a>。</p>
+</div>
+<div class="paragraph">
+<p>如果啟用Cloud Volumes ONTAP 資料分層功能、無法啟用WORM 9.7版及更低版本。啟用WORM和分層後、將Cloud Volumes ONTAP 會封鎖還原或降級至物件9.8。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="concept-worm.html" target="_blank" rel="noopener">"深入瞭解 WORM 儲存設備"</a>。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>如果您啟動WORM儲存設備、請選取保留期間。</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>*安全通訊至儲存設備與WORM *：選擇是否啟用HTTPS連線至Azure儲存帳戶、並視需要啟動一次寫入、多次讀取（WORM）儲存設備。</p>
+<div class="paragraph">
+<p>HTTPS連線是Cloud Volumes ONTAP 從一個畫面9.7 HA配對到Azure網頁blob儲存帳戶。請注意、啟用此選項可能會影響寫入效能。您無法在建立工作環境之後變更設定。</p>
+</div>
+<div class="paragraph">
+<p><a href="concept-worm.html" target="_blank" rel="noopener">"深入瞭解 WORM 儲存設備"</a>。</p>
+</div>
+<div class="paragraph">
+<p>如果資料分層已啟用、則無法啟用 WORM 。</p>
+</div>
+<div class="paragraph">
+<p><a href="concept-worm.html" target="_blank" rel="noopener">"深入瞭解 WORM 儲存設備"</a>。</p>
+</div>
+</li>
+<li>
+<p>* 建立 Volume * ：輸入新磁碟區的詳細資料、或按一下 * 跳過 * 。</p>
+<div class="paragraph">
+<p><a href="concept-client-protocols.html" target="_blank" rel="noopener">"瞭解支援的用戶端傳輸協定和版本"</a>。</p>
+</div>
+<div class="paragraph">
+<p>本頁中的部分欄位是不知自明的。下表說明您可能需要指導的欄位：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">尺寸</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">您可以輸入的最大大小、主要取決於您是否啟用精簡配置、這可讓您建立比目前可用實體儲存容量更大的磁碟區。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">存取控制（僅適用於 NFS ）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">匯出原則會定義子網路中可存取磁碟區的用戶端。根據預設、BlueXP會輸入一個值、以供存取子網路中的所有執行個體。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">權限與使用者 / 群組（僅限 CIFS ）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">這些欄位可讓您控制使用者和群組（也稱為存取控制清單或 ACL ）的共用存取層級。您可以指定本機或網域 Windows 使用者或群組、或 UNIX 使用者或群組。如果您指定網域 Windows 使用者名稱、則必須使用網域 \ 使用者名稱格式來包含使用者的網域。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Snapshot 原則</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Snapshot 複製原則會指定自動建立的 NetApp Snapshot 複本的頻率和數量。NetApp Snapshot 複本是一種不影響效能的時間點檔案系統映像、需要最少的儲存容量。您可以選擇預設原則或無。您可以針對暫時性資料選擇「無」：例如、 Microsoft SQL Server 的 Tempdb 。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">進階選項（僅適用於 NFS ）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">為磁碟區選取 NFS 版本： NFSv3 或 NFSv3 。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">啟動器群組和 IQN （僅適用於 iSCSI ）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iSCSI 儲存目標稱為 LUN （邏輯單元）、以標準區塊裝置的形式呈現給主機。<br>
+<br>
+啟動器群組是 iSCSI 主機節點名稱的表格、可控制哪些啟動器可存取哪些 LUN 。<br>
+<br>
+iSCSI 目標可透過標準乙太網路介面卡（ NIC ）、 TCP 卸載引擎（ TOE ）卡（含軟體啟動器）、整合式網路介面卡（ CNA ）或專用主機匯流排介面卡（ HBA ）連線至網路、並由 iSCSI 合格名稱（ IQN ）識別。<br>
+<br>
+建立iSCSI磁碟區時、BlueXP會自動為您建立LUN。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、 <a href="task-connect-lun.html">"使用 IQN 從主機連線至 LUN"</a>。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>下圖顯示 CIFS 傳輸協定的「 Volume 」（磁碟區）頁面：</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cot_vol.gif" alt="螢幕擷取畫面：顯示針對 Cloud Volumes ONTAP 某個實例填寫的 Volume 頁面。"></span></p>
+</div>
+</li>
+<li>
+<p>* CIFS 設定 * ：如果您選擇 CIFS 傳輸協定、請設定 CIFS 伺服器。</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS 主要和次要 IP 位址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">提供 CIFS 伺服器名稱解析的 DNS 伺服器 IP 位址。<br>
+列出的 DNS 伺服器必須包含所需的服務位置記錄（ SRV), 才能找到 CIFS 伺服器要加入之網域的 Active Directory LDAP 伺服器和網域控制器。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">要加入的 Active Directory 網域</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">您要 CIFS 伺服器加入之 Active Directory （ AD ）網域的 FQDN 。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">授權加入網域的認證資料</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">具有足夠權限的 Windows 帳戶名稱和密碼、可將電腦新增至 AD 網域內的指定組織單位（ OU ）。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIFS 伺服器 NetBios 名稱</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AD 網域中唯一的 CIFS 伺服器名稱。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">組織單位</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AD 網域中與 CIFS 伺服器相關聯的組織單位。預設值為「 CN= 電腦」。<br>
+<br>
+若要將 Azure AD 網域服務設定為 Cloud Volumes ONTAP AD 伺服器以供使用、您應在此欄位中輸入 * OID=AADDC computers* 或 * OID=AADDC 使用者 * 。<br>
+<a href="https://docs.microsoft.com/en-us/azure/active-directory-domain-services/create-ou" target="_blank" rel="noopener">"Azure 說明文件：在 Azure AD 網域服務託管網域中建立組織單位（ OU ）"</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS 網域</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">適用於整個儲存虛擬 Cloud Volumes ONTAP 機器（ SVM ）的 DNS 網域。在大多數情況下、網域與 AD 網域相同。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NTP 伺服器</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">選擇 * 使用 Active Directory 網域 * 來使用 Active Directory DNS 設定 NTP 伺服器。如果您需要使用不同的位址來設定 NTP 伺服器、則應該使用 API 。請參閱 <a href="https://docs.netapp.com/us-en/bluexp-automation/index.html" target="_blank" rel="noopener">"藍圖XP自動化文件"</a> 以取得詳細資料。<br>
+<br>
+請注意、您只能在建立CIFS伺服器時設定NTP伺服器。您建立CIFS伺服器之後、就無法進行設定。</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>* 使用率設定檔、磁碟類型及分層原則 * ：視需要選擇是否要啟用儲存效率功能、並變更磁碟區分層原則。</p>
+<div class="paragraph">
+<p>如需詳細資訊、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-planning-your-config-azure.html#choose-a-volume-usage-profile" target="_blank" rel="noopener">"選擇Volume使用設定檔"</a> 和 <a href="concept-data-tiering.html" target="_blank" rel="noopener">"資料分層總覽"</a>。</p>
+</div>
+</li>
+<li>
+<p>* 審查與核准 * ：檢閱並確認您的選擇。</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>檢閱組態的詳細資料。</p>
+</li>
+<li>
+<p>按一下*更多資訊*以檢閱有關支援與BlueXP將購買之Azure資源的詳細資料。</p>
+</li>
+<li>
+<p>選取「 * 我瞭解 &#8230;&#8203; * 」核取方塊。</p>
+</li>
+<li>
+<p>按一下「 * 執行 * 」。</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">結果</div>
+<p>BlueXP部署Cloud Volumes ONTAP 了這個功能完善的系統。您可以追蹤時間表的進度。</p>
+</div>
+<div class="paragraph">
+<p>如果您在部署 Cloud Volumes ONTAP 此系統時遇到任何問題、請檢閱故障訊息。您也可以選取工作環境、然後按一下 * 重新建立環境 * 。</p>
+</div>
+<div class="paragraph">
+<p>如需其他協助、請前往 <a href="https://mysupport.netapp.com/site/products/all/details/cloud-volumes-ontap/guideme-tab" target="_blank" rel="noopener">"NetApp Cloud Volumes ONTAP 支援"</a>。</p>
+</div>
+<div class="ulist">
+<div class="title">完成後</div>
+<ul>
+<li>
+<p>如果您已配置 CIFS 共用區、請授予使用者或群組檔案和資料夾的權限、並確認這些使用者可以存取共用區並建立檔案。</p>
+</li>
+<li>
+<p>如果您要將配額套用至磁碟區、請使用 System Manager 或 CLI 。</p>
+<div class="paragraph">
+<p>配額可讓您限制或追蹤使用者、群組或 qtree 所使用的磁碟空間和檔案數量。</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/zh-tw/test/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/zh-tw/test/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">在本頁</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2024 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">使用條款</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">隱私權政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie 政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie 設定</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">傳送有關本網頁的意見反應</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/test/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/test/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/test/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/test/js/ie-tabbed-blocks.js'></script>
+    <script src='/zh-tw/test/js/ie-sidebar.js'></script>
+  </body>
+
+</html>

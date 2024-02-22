@@ -1,0 +1,3640 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>開始使用Cloud Volumes ONTAP AWS C2S環境中的功能 | NetApp Documentation</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="開始使用Cloud Volumes ONTAP AWS C2S環境中的功能 | NetApp Documentation" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/test/task-getting-started-aws-c2s.html" />
+	<meta property="og:description" content="與標準 AWS 區域類似、您可以在 AWS 商業雲端服務（ C2S ）環境中使用 BlueXP 來部署 Cloud Volumes ONTAP 、為您的雲端儲存設備提供企業級功能。AWS C2S是美國專屬的封閉區域智慧社群；本頁的說明僅適用於AWS C2S區域使用者。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/test/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="與標準 AWS 區域類似、您可以在 AWS 商業雲端服務（ C2S ）環境中使用 BlueXP 來部署 Cloud Volumes ONTAP 、為您的雲端儲存設備提供企業級功能。AWS C2S是美國專屬的封閉區域智慧社群；本頁的說明僅適用於AWS C2S區域使用者。">
+  <meta name="keywords" content=" commercial cloud services, c2s, secret region, aws secret region, cloud manager, BlueXP"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/test/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="NetApp Documentation" href="/zh-tw/test/feed.xml"><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/test/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/zh-tw/test/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/test/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/zh-tw/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/test/task-getting-started-aws-c2s.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/test/task-getting-started-aws-c2s.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/test/js/na-search.js'></script><script src='/zh-tw/test/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/zh-tw/test/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/test/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/test/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/test/js/jszip.min.js'></script><script src='/zh-tw/test/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="aws">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/zh-tw/test/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/tw">
+                <image id="ie-header-logo" src="/zh-tw/test/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/support-and-training/documentation/">文件</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/zh-tw/test/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">繁體中文</span>
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/zh-tw/test/task-getting-started-aws-c2s.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/test/task-getting-started-aws-c2s.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/test/task-getting-started-aws-c2s.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ko-kr/test/task-getting-started-aws-c2s.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/test/task-getting-started-aws-c2s.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/test/task-getting-started-aws-c2s.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/es-es/test/task-getting-started-aws-c2s.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/fr-fr/test/task-getting-started-aws-c2s.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/test/task-getting-started-aws-c2s.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/zh-tw/test/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">所有 NetApp</span>
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">支援</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">知識庫</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">訓練</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/zh-tw/test/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/zh-tw/test/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">所有文件</a>
+    </li>
+    
+    
+    <li class="">
+      <a href="https://docs.netapp.com/us-en/cloud/">雲端文件</a>
+    </li>
+    
+
+    
+    <li class="">
+      <a href="https://docs.netapp.com/zh-tw/bluexp-family/">
+        BlueXP
+      </a>
+    </li>
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/zh-tw/test/">-->
+      Cloud Volumes ONTAP
+    <!--</a>-->
+  </div>
+</div>
+
+            
+<div id="ie-selectors"><div id="version-dropdown-new" class="custom-dropdown" >
+  <div class="custom-dropdown-select unselected" title=" 9.13.1">
+    <label>版本</label>
+    <span translate="no" class="notranslate">9.13.1</span>
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown version invisible" />
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup version" />
+  </div>
+
+  <ul class="custom-dropdown-menu"><li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.13.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9130-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.13.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9121-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.12.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9120-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.12.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9111-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.11.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9110-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.11.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9101-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.10.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9100-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.10.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-991-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.9.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-990-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.9.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-98-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.8</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-97-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.7</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-96-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.6</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-95-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.5</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-94-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.4</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-93-relnotes/task-getting-started-aws-c2s.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.3</span></span>
+      </a>
+                     
+    </li>
+    
+  </ul>
+</div>
+<div id="flavor-dropdown" class="custom-dropdown" data-url="/zh-tw/test/task-getting-started-aws-c2s.html">
+  
+  
+  <div class="custom-dropdown-select selected" title="AWS">
+    <label>雲端供應商</label>
+    <div>AWS</div>  
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown flavor invisible" />
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup flavor" />
+    <!--<img src="/zh-tw/test/images/dismiss.svg" class="custom-icon selected" id="remove-flavor" alt="" />-->
+  </div>
+  
+
+  <ul class="custom-dropdown-menu">
+    
+    
+    <li data-value="aws" data-url="/zh-tw/test/aws/task-getting-started-aws-c2s.html">Amazon Web Services
+    </li>
+    
+    
+    
+    <li data-value="gcp" data-url="/zh-tw/test/gcp">Google Cloud</li>
+    
+    
+    
+    <li data-value="azure" data-url="/zh-tw/test/azure">Microsoft Azure</li>
+    
+    
+    <li data-url="/zh-tw/test/task-getting-started-aws-c2s.html">所有雲端供應商</li>
+  </ul>
+</div>
+</div>
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/zh-tw/test/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/zh-tw/test/aws/search.html" 
+        data-type="widget"
+        data-placeholder="搜尋說明文件"
+        data-no-results-found="找不到 {query} 的結果"
+        data-did-you-mean="搜尋 {suggestion}。"
+        data-no-results-found-did-you-mean="找不到 {query} 的結果。您的意思是 {suggestion} 嗎？"
+        data-results-found="找到 {hitCount} 個結果"
+        data-error-message="發生錯誤。請再試一次。"
+        data-error-reset="重設搜尋"
+        data-sk-es-pf-indexes="" 
+        data-flavor="aws">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="文件Cloud Volumes ONTAP"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/test/aws/index.html">
+        文件Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="版本資訊"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 版本資訊</div>-->
+         版本資訊
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增功能"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/whats-new.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/whats-new.html">
+        新增功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="已知限制"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/reference-limitations.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/reference-limitations.html">
+        已知限制
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="發行說明 Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/whats-new-ontap.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/whats-new-ontap.html">
+        發行說明 Cloud Volumes ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用</div>-->
+         開始使用
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解 Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-overview-cvo.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-overview-cvo.html">
+        深入瞭解 Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="支援的新部署版本"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/reference-versions.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/reference-versions.html">
+        支援的新部署版本
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Amazon Web Services入門"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Amazon Web Services入門</div>-->
+         Amazon Web Services入門
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="快速入門"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-getting-started-aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-getting-started-aws.html">
+        快速入門
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="規劃您的組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-planning-your-config.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-planning-your-config.html">
+        規劃您的組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定您的網路"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 設定您的網路</div>-->
+         設定您的網路
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="網路需求"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/reference-networking-aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/reference-networking-aws.html">
+        網路需求
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 AWS 傳輸閘道"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-setting-up-transit-gateway.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-setting-up-transit-gateway.html">
+        設定 AWS 傳輸閘道
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在共享子網路中部署HA配對"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-deploy-aws-shared-vpc.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-deploy-aws-shared-vpc.html">
+        在共享子網路中部署HA配對
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS 的安全群組規則"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/reference-security-groups.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/reference-security-groups.html">
+        AWS 的安全群組規則
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 AWS KMS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-setting-up-kms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-setting-up-kms.html">
+        設定 AWS KMS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定IAM角色"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-set-up-iam-roles.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-set-up-iam-roles.html">
+        設定IAM角色
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-set-up-licensing-aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-set-up-licensing-aws.html">
+        設定授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在Cloud Volumes ONTAP AWS中啟動"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-deploying-otc-aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-deploying-otc-aws.html">
+        在Cloud Volumes ONTAP AWS中啟動
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用 AWS C2S"
+      data-li-level="3#" 
+      class="  ie-sidebar-selected    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-getting-started-aws-c2s.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-getting-started-aws-c2s.html">
+        開始使用 AWS C2S
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用Cloud Volumes ONTAP"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 使用Cloud Volumes ONTAP</div>-->
+         使用Cloud Volumes ONTAP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="授權管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 授權管理</div>-->
+         授權管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理容量型授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-manage-capacity-licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-capacity-licenses.html">
+        管理容量型授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理基礎概念訂閱"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-manage-keystone.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-keystone.html">
+        管理基礎概念訂閱
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理節點型授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-manage-node-licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-node-licenses.html">
+        管理節點型授權
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Volume與LUN管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Volume與LUN管理</div>-->
+         Volume與LUN管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-create-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-create-volumes.html">
+        建立磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理現有磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-manage-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-volumes.html">
+        管理現有磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將非作用中資料分層至物件儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-tiering.html">
+        將非作用中資料分層至物件儲存設備
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將LUN連接至主機"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-connect-lun.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-connect-lun.html">
+        將LUN連接至主機
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="利用NetApp加速資料存取FlexCache"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-accelerate-data-access.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-accelerate-data-access.html">
+        利用NetApp加速資料存取FlexCache
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Aggregate管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Aggregate管理</div>-->
+         Aggregate管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立Aggregate"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-create-aggregates.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-create-aggregates.html">
+        建立Aggregate
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理現有的集合體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-manage-aggregates.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-aggregates.html">
+        管理現有的集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理容量設定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-manage-capacity-settings.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-capacity-settings.html">
+        管理容量設定
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存VM管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 儲存VM管理</div>-->
+         儲存VM管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在BlueXP中使用儲存VM"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-managing-svms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-managing-svms.html">
+        在BlueXP中使用儲存VM
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在AWS中建立儲存VM"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-managing-svms-aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-managing-svms-aws.html">
+        在AWS中建立儲存VM
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 SVM 災難恢復"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-manage-svm-dr.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-svm-dr.html">
+        設定 SVM 災難恢復
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安全性與資料加密"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 安全性與資料加密</div>-->
+         安全性與資料加密
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 NetApp 加密來加密磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-encrypting-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-encrypting-volumes.html">
+        使用 NetApp 加密來加密磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 AWS 金鑰管理服務管理金鑰"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-aws-key-management.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-aws-key-management.html">
+        使用 AWS 金鑰管理服務管理金鑰
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="改善勒索軟體保護"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-protecting-ransomware.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-protecting-ransomware.html">
+        改善勒索軟體保護
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 系統管理</div>-->
+         系統管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="升級Cloud Volumes ONTAP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-updating-ontap-cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-updating-ontap-cloud.html">
+        升級Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊隨用隨付系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-registering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-registering.html">
+        註冊隨用隨付系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="停止並啟動系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-managing-state.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-managing-state.html">
+        停止並啟動系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="同步系統時間"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-sync-time.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-sync-time.html">
+        同步系統時間
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="修改系統寫入速度"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-modify-write-speed.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-modify-write-speed.html">
+        修改系統寫入速度
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更系統密碼"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-change-password.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-change-password.html">
+        變更系統密碼
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增、移除或刪除系統"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 新增、移除或刪除系統</div>-->
+         新增、移除或刪除系統
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增現有系統"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-adding-systems.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-adding-systems.html">
+        新增現有系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="移除工作環境"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-removing.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-removing.html">
+        移除工作環境
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="刪除系統"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-deleting-working-env.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-deleting-working-env.html">
+        刪除系統
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS 管理"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> AWS 管理</div>-->
+         AWS 管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更EC2執行個體類型"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-change-ec2-instance.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-change-ec2-instance.html">
+        變更EC2執行個體類型
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更HA配對的路由表"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-change-route-tables.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-change-route-tables.html">
+        變更HA配對的路由表
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定放置群組建立"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="task-configure-placement-group-failure-aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-configure-placement-group-failure-aws.html">
+        設定放置群組建立
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統管理員的系統管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-administer-advanced-view.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-administer-advanced-view.html">
+        系統管理員的系統管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="從CLI進行管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-connecting-to-otc.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-connecting-to-otc.html">
+        從CLI進行管理
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統健全狀況與事件"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 系統健全狀況與事件</div>-->
+         系統健全狀況與事件
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="驗AutoSupport 證此設定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-verify-autosupport.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-verify-autosupport.html">
+        驗AutoSupport 證此設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 EMS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-configure-ems.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-configure-ems.html">
+        設定 EMS
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="概念"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 概念</div>-->
+         概念
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="授權"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-licensing.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-licensing.html">
+        授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存設備"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 儲存設備</div>-->
+         儲存設備
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="用戶端傳輸協定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-client-protocols.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-client-protocols.html">
+        用戶端傳輸協定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="磁碟與集合體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-storage.html">
+        磁碟與集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS中的彈性Volume"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-aws-elastic-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-aws-elastic-volumes.html">
+        AWS中的彈性Volume
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="資料分層"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-data-tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-data-tiering.html">
+        資料分層
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-storage-management.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-storage-management.html">
+        儲存管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="寫入速度"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-write-speed.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-write-speed.html">
+        寫入速度
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Flash 快取"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-flash-cache.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-flash-cache.html">
+        Flash 快取
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="WORM 儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-worm.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-worm.html">
+        WORM 儲存設備
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="高可用度配對"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 高可用度配對</div>-->
+         高可用度配對
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS 中的 HA 配對"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-ha.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-ha.html">
+        AWS 中的 HA 配對
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存設備接管期間的行動"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-degraded-ha-pair.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-degraded-ha-pair.html">
+        儲存設備接管期間的行動
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安全性"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-security.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-security.html">
+        安全性
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="效能"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-performance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-performance.html">
+        效能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理節點型BYOL"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-license-management.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-license-management.html">
+        管理節點型BYOL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AutoSupport 與 Active IQ Digital Advisor"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/concept-active-iq.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-active-iq.html">
+        AutoSupport 與 Active IQ Digital Advisor
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="預設組態"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/reference-default-configs.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/reference-default-configs.html">
+        預設組態
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="知識與支援"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 知識與支援</div>-->
+         知識與支援
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊以取得支援"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-support-registration.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/task-support-registration.html">
+        註冊以取得支援
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="取得協助"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/task-get-help.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/task-get-help.html">
+        取得協助
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="法律聲明"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task-getting-started-aws-c2s.html" 
+      dale-entry-url="/legal-notices.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/test/aws/legal-notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/zh-tw/test"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/zh-tw/test"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      <div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/zh-tw/test/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">開始使用Cloud Volumes ONTAP AWS C2S環境中的功能</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2023-09-13 15:07:13 +0000">09/13/2023</time>
+        
+    
+    
+        <span>貢獻者
+        </span>
+    
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/zh-tw/test/images/discuss-sm.svg" alt="" class="github-icon" />建議變更</span>
+        <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/test.zh-tw/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/zh-tw/test/task-getting-started-aws-c2s.html&page-title=開始使用Cloud Volumes ONTAP AWS C2S環境中的功能" class="page-nav-contribute-link" role="button">請求文件變更</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/test/blob/main/task-getting-started-aws-c2s.adoc" class="page-nav-contribute-link" role="button">編輯本頁</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >瞭解如何貢獻</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/zh-tw/test/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/zh-tw/test/pdfs/aws/fullsite-sidebar/本文檔Cloud_Volumes_ONTAP.pdf" >
+                    <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>此文件 PDF 的網站</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/版本資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            版本資訊
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Amazon_Web_Services入門.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Amazon Web Services入門
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/設定您的網路.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            設定您的網路
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/開始使用Microsoft_Azure.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用Microsoft Azure
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/開始使用Google_Cloud.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用Google Cloud
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Google_Cloud_Platform映像驗證.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Google Cloud Platform映像驗證
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/影像簽名驗證.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            影像簽名驗證
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/使用Cloud_Volumes_ONTAP.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            使用Cloud Volumes ONTAP
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/授權管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            授權管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Volume與LUN管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Volume與LUN管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Aggregate管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Aggregate管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/儲存VM管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            儲存VM管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/安全性與資料加密.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            安全性與資料加密
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/系統管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            系統管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/新增_移除或刪除系統.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            新增、移除或刪除系統
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/AWS_管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            AWS 管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Azure管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Azure管理
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Google_Cloud管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Google Cloud管理
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/系統健全狀況與事件.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            系統健全狀況與事件
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/概念.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            概念
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/儲存設備.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            儲存設備
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/高可用度配對.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            高可用度配對
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/知識與支援.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            知識與支援
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/zh-tw/test/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>個別的 PDF 文件集合<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>與標準AWS區域類似、您可以在中使用Cloud Manager <a href="https://aws.amazon.com/federal/us-intelligence-community/" target="_blank" rel="noopener">"AWS商業雲端服務（C2S）"</a> 部署Cloud Volumes ONTAP 的環境、為您的雲端儲存設備提供企業級功能。AWS C2S是美國專屬的封閉區域智慧社群；本頁的說明僅適用於AWS C2S區域使用者。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="在c2s中支援的版本">在C2S中支援的版本</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>支援的是支援的部分Cloud Volumes ONTAP</p>
+</li>
+<li>
+<p>支援連接器3.9.4版</p>
+<div class="paragraph">
+<p>Connector是在Cloud Volumes ONTAP AWS中部署和管理功能所需的軟體。您將從安裝在Connector執行個體上的軟體登入Cloud Manager。C2S環境不支援適用於Cloud Manager的SaaS網站。</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="註">
+</td>
+<td class="content">
+Cloud Manager最近重新命名為BlueXP、但我們仍將其稱為C2S中的Cloud Manager、因為Connector 3.9.4版所含的使用者介面仍稱為Cloud Manager。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="c2s支援的功能">C2S支援的功能</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Manager在C2S環境中提供下列功能：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cloud Volumes ONTAP</p>
+</li>
+<li>
+<p>資料複寫</p>
+</li>
+<li>
+<p>稽核時間表</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>對於這個功能、您可以建立單一節點系統或HA配對。Cloud Volumes ONTAP這兩種授權選項皆可供使用：隨用隨付及自帶授權（BYOL）。</p>
+</div>
+<div class="paragraph">
+<p>在C2S中、也支援Cloud Volumes ONTAP 將資料分層至S3的功能。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="限制">限制</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Cloud Manager不提供任何NetApp的雲端服務。</p>
+</li>
+<li>
+<p>由於在C2S環境中無法存取網際網路、因此下列功能也無法使用：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>從Cloud Manager自動升級軟體</p>
+</li>
+<li>
+<p>NetApp AutoSupport</p>
+</li>
+<li>
+<p>AWS Cloud Volumes ONTAP 有關資源的成本資訊</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>C2S環境不支援Freemium授權。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="部署總覽">部署總覽</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在C2S中開始使用功能包括幾個步驟。Cloud Volumes ONTAP</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="#準備aws環境">準備AWS環境</a></p>
+<div class="paragraph">
+<p>這包括設定網路、訂閱Cloud Volumes ONTAP 功能、設定權限、以及選擇性設定AWS KMS。</p>
+</div>
+</li>
+<li>
+<p><a href="#安裝connector並設定cloud-manager">安裝Connector並設定Cloud Manager</a></p>
+<div class="paragraph">
+<p>在開始使用Cloud Manager部署Cloud Volumes ONTAP 功能時、您必須先建立_Connector_。Connector可讓Cloud Manager管理公有雲環境中的資源和程序（包括Cloud Volumes ONTAP</p>
+</div>
+<div class="paragraph">
+<p>您將從安裝在Connector執行個體上的軟體登入Cloud Manager。</p>
+</div>
+</li>
+<li>
+<p><a href="#從cloud-volumes-ontap-cloud-manager啟動">從Cloud Volumes ONTAP Cloud Manager啟動</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>以下說明每個步驟。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="準備aws環境">準備AWS環境</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您的AWS環境必須滿足幾項需求。</p>
+</div>
+<div class="sect2">
+<h3 id="設定您的網路">設定您的網路</h3>
+<div class="paragraph">
+<p>設定AWS網路、Cloud Volumes ONTAP 使其能夠正常運作。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>選擇要在其中啟動Connector執行個體和Cloud Volumes ONTAP 例項的VPC和子網路。</p>
+</li>
+<li>
+<p>確保您的 VPC 和子網路支援連接器與 Cloud Volumes ONTAP 支援之間的連線。</p>
+</li>
+<li>
+<p>設定 S3 服務的 VPC 端點。</p>
+<div class="paragraph">
+<p>如果您想要將冷資料從 Cloud Volumes ONTAP 不願儲存到低成本物件儲存設備、則需要 VPC 端點。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="訂閱cloud-volumes-ontap-此功能">訂閱Cloud Volumes ONTAP 此功能</h3>
+<div class="paragraph">
+<p>需要訂閱Marketplace才能從Cloud Volumes ONTAP Cloud Manager部署功能。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>前往AWS Intelligence Community Marketplace搜尋Cloud Volumes ONTAP 功能。</p>
+</li>
+<li>
+<p>選取您要部署的產品項目。</p>
+</li>
+<li>
+<p>檢閱條款、然後按一下*接受*。</p>
+</li>
+<li>
+<p>如果您打算部署其他產品、請針對這些產品重複上述步驟。</p>
+<div class="paragraph">
+<p>您必須使用Cloud Manager來啟動Cloud Volumes ONTAP 執行個體。您不得Cloud Volumes ONTAP 從EC2主控台啟動支援的執行個體。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="設定權限">設定權限</h3>
+<div class="paragraph">
+<p>設定IAM原則和角色、讓Connector和Cloud Volumes ONTAP 支援人員擁有在AWS商業雲端服務環境中執行動作所需的權限。</p>
+</div>
+<div class="paragraph">
+<p>您需要IAM原則和IAM角色來執行下列各項：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Connector執行個體</p>
+</li>
+<li>
+<p>執行個體Cloud Volumes ONTAP</p>
+</li>
+<li>
+<p>不只是執行個體（如果您想部署HA配對）Cloud Volumes ONTAP</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>移至AWS IAM主控台、然後按一下* Policies *。</p>
+</li>
+<li>
+<p>建立Connector執行個體的原則。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "Version": "2012-10-17",
+    "Statement": [{
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "ec2:DescribeInstanceStatus",
+                "ec2:RunInstances",
+                "ec2:ModifyInstanceAttribute",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeImages",
+                "ec2:CreateTags",
+                "ec2:CreateVolume",
+                "ec2:DescribeVolumes",
+                "ec2:ModifyVolumeAttribute",
+                "ec2:DeleteVolume",
+                "ec2:CreateSecurityGroup",
+                "ec2:DeleteSecurityGroup",
+                "ec2:DescribeSecurityGroups",
+                "ec2:RevokeSecurityGroupEgress",
+                "ec2:RevokeSecurityGroupIngress",
+                "ec2:AuthorizeSecurityGroupEgress",
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface",
+                "ec2:ModifyNetworkInterfaceAttribute",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeDhcpOptions",
+                "ec2:CreateSnapshot",
+                "ec2:DeleteSnapshot",
+                "ec2:DescribeSnapshots",
+                "ec2:GetConsoleOutput",
+                "ec2:DescribeKeyPairs",
+                "ec2:DescribeRegions",
+                "ec2:DeleteTags",
+                "ec2:DescribeTags",
+                "cloudformation:CreateStack",
+                "cloudformation:DeleteStack",
+                "cloudformation:DescribeStacks",
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:ValidateTemplate",
+                "iam:PassRole",
+                "iam:CreateRole",
+                "iam:DeleteRole",
+                "iam:PutRolePolicy",
+                "iam:ListInstanceProfiles",
+                "iam:CreateInstanceProfile",
+                "iam:DeleteRolePolicy",
+                "iam:AddRoleToInstanceProfile",
+                "iam:RemoveRoleFromInstanceProfile",
+                "iam:DeleteInstanceProfile",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:GetBucketTagging",
+                "s3:GetBucketLocation",
+                "s3:ListAllMyBuckets",
+                "kms:List*",
+                "kms:Describe*",
+                "ec2:AssociateIamInstanceProfile",
+                "ec2:DescribeIamInstanceProfileAssociations",
+                "ec2:DisassociateIamInstanceProfile",
+                "ec2:DescribeInstanceAttribute",
+                "ec2:CreatePlacementGroup",
+                "ec2:DeletePlacementGroup"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "fabricPoolPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteBucket",
+                "s3:GetLifecycleConfiguration",
+                "s3:PutLifecycleConfiguration",
+                "s3:PutBucketTagging",
+                "s3:ListBucketVersions"
+            ],
+            "Resource": [
+                "arn:aws-iso:s3:::fabric-pool*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:StartInstances",
+                "ec2:StopInstances",
+                "ec2:TerminateInstances",
+                "ec2:AttachVolume",
+                "ec2:DetachVolume"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "ec2:ResourceTag/WorkingEnvironment": "*"
+                }
+            },
+            "Resource": [
+                "arn:aws-iso:ec2:*:*:instance/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:AttachVolume",
+                "ec2:DetachVolume"
+            ],
+            "Resource": [
+                "arn:aws-iso:ec2:*:*:volume/*"
+            ]
+        }
+    ]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>建立Cloud Volumes ONTAP 一套適用於此功能的原則。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "Version": "2012-10-17",
+    "Statement": [{
+        "Action": "s3:ListAllMyBuckets",
+        "Resource": "arn:aws-iso:s3:::*",
+        "Effect": "Allow"
+    }, {
+        "Action": [
+            "s3:ListBucket",
+            "s3:GetBucketLocation"
+        ],
+        "Resource": "arn:aws-iso:s3:::fabric-pool-*",
+        "Effect": "Allow"
+    }, {
+        "Action": [
+            "s3:GetObject",
+            "s3:PutObject",
+            "s3:DeleteObject"
+        ],
+        "Resource": "arn:aws-iso:s3:::fabric-pool-*",
+        "Effect": "Allow"
+    }]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>如果您計畫部署Cloud Volumes ONTAP 一個「叢集HA配對」、請為HA中介者建立原則。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+	"Version": "2012-10-17",
+	"Statement": [{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:AssignPrivateIpAddresses",
+				"ec2:CreateRoute",
+				"ec2:DeleteRoute",
+				"ec2:DescribeNetworkInterfaces",
+				"ec2:DescribeRouteTables",
+				"ec2:DescribeVpcs",
+				"ec2:ReplaceRoute",
+				"ec2:UnassignPrivateIpAddresses"
+			],
+			"Resource": "*"
+		}
+	]
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>使用角色類型Amazon EC2建立IAM角色、並附加您在先前步驟中建立的原則。</p>
+<div class="paragraph">
+<p>與原則類似、您應該有一個IAM角色用於連接器、一個用於Cloud Volumes ONTAP 鏈結節點、另一個用於HA中介器（如果您要部署HA配對）。</p>
+</div>
+<div class="paragraph">
+<p>啟動Connector執行個體時、您必須選取Connector IAM角色。</p>
+</div>
+<div class="paragraph">
+<p>從Cloud Manager建立一套可運作的環境時、您可以選擇IAM角色做Cloud Volumes ONTAP 為功能性的部分、以及HA中介器Cloud Volumes ONTAP 。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="設定-aws-kms">設定 AWS KMS</h3>
+<div class="paragraph">
+<p>如果您想搭配Cloud Volumes ONTAP 使用Amazon加密搭配使用、請確保AWS金鑰管理服務符合要求。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>請確定您的帳戶或其他AWS帳戶中存在使用中的客戶主金鑰（CMK）。</p>
+<div class="paragraph">
+<p>CMK 可以是 AWS 託管的 CMK 、也可以是客戶託管的 CMK 。</p>
+</div>
+</li>
+<li>
+<p>如果CMK位於AWS帳戶中、而該帳戶與您打算部署Cloud Volumes ONTAP 的帳戶不同、則您需要取得該金鑰的ARN。</p>
+<div class="paragraph">
+<p>建立 Cloud Volumes ONTAP 一套系統時、您必須提供 ARN 給 Cloud Manager 。</p>
+</div>
+</li>
+<li>
+<p>將Connector執行個體的IAM角色新增至CMK的主要使用者清單。</p>
+<div class="paragraph">
+<p>這讓Cloud Manager有權將CMK搭配Cloud Volumes ONTAP 使用。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="安裝connector並設定cloud-manager">安裝Connector並設定Cloud Manager</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您Cloud Volumes ONTAP 必須先從AWS Marketplace啟動Connector執行個體、然後登入並設定Cloud Manager、才能在AWS中啟動此類系統。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>取得由憑證授權單位（CA）簽署的根憑證（採用隱私權增強型郵件（PEF）Base - 64編碼的X．509格式）。請參閱貴組織的原則與程序、以取得該憑證。</p>
+<div class="paragraph">
+<p>您必須在設定程序期間上傳憑證。Cloud Manager透過HTTPS將要求傳送至AWS時、會使用信任的憑證。</p>
+</div>
+</li>
+<li>
+<p>啟動Connector執行個體：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>前往適用於Cloud Manager的AWS Intelligence Community Marketplace頁面。</p>
+</li>
+<li>
+<p>在「自訂啟動」索引標籤上、選擇從EC2主控台啟動執行個體的選項。</p>
+</li>
+<li>
+<p>依照提示設定執行個體。</p>
+<div class="paragraph">
+<p>設定執行個體時請注意下列事項：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>建議使用T3.xLarge。</p>
+</li>
+<li>
+<p>您必須選擇在準備AWS環境時所建立的IAM角色。</p>
+</li>
+<li>
+<p>您應該保留預設的儲存選項。</p>
+</li>
+<li>
+<p>Connector所需的連線方法如下：SSH、HTTP和HTTPS。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>從連線至Connector執行個體的主機設定Cloud Manager：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>開啟網頁瀏覽器並輸入 <a href="https://<em>ipaddress</em>" class="bare">https://<em>ipaddress</em></a> 其中 <em>ipaddress</em> 是您安裝 Connector 的 Linux 主機的 IP 位址。</p>
+</li>
+<li>
+<p>指定用於連線至AWS服務的Proxy伺服器。</p>
+</li>
+<li>
+<p>上傳您在步驟1中取得的憑證。</p>
+</li>
+<li>
+<p>完成設定精靈中的步驟以設定Cloud Manager。</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>系統詳細資料</strong>：輸入此Cloud Manager執行個體的名稱、並提供貴公司名稱。</p>
+</li>
+<li>
+<p><strong>建立使用者</strong>：建立您將用來管理Cloud Manager的管理使用者。</p>
+</li>
+<li>
+<p><strong>審查</strong>：檢閱詳細資料並核准終端使用者授權合約。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>若要完成CA簽署憑證的安裝、請從EC2主控台重新啟動Connector執行個體。</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>重新啟動Connector之後、請使用您在設定精靈中建立的系統管理員使用者帳戶登入。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="從cloud-volumes-ontap-cloud-manager啟動">從Cloud Volumes ONTAP Cloud Manager啟動</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以Cloud Volumes ONTAP 在Cloud Manager中建立新的工作環境、在AWS商業雲端服務環境中啟動執行個體。</p>
+</div>
+<div class="ulist">
+<div class="title">您需要的產品</div>
+<ul>
+<li>
+<p>如果您購買授權、則必須擁有從NetApp收到的授權檔案。授權檔案是Json格式的.NLF檔案。</p>
+</li>
+<li>
+<p>需要金鑰配對、才能對HA中介器啟用金鑰型SSH驗證。</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>在「工作環境」頁面上、按一下「<strong>新增工作環境</strong>」。</p>
+</li>
+<li>
+<p>在「Create（建立）」下、選取Cloud Volumes ONTAP 「HseHA」或Cloud Volumes ONTAP 「</p>
+</li>
+<li>
+<p>完成精靈中的步驟以啟動Cloud Volumes ONTAP 整套系統。</p>
+<div class="paragraph">
+<p>完成精靈時請注意下列事項：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果您想要在Cloud Volumes ONTAP 多個可用度區域中部署SeseHA、請依照下列方式部署組態、因為在發佈時AWS商業雲端服務環境中只有兩個AZs可用：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>節點1：可用度區域A</p>
+</li>
+<li>
+<p>節點2：可用度區域B</p>
+</li>
+<li>
+<p>中介：可用度區域A或B</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>您應該保留預設選項、以使用產生的安全性群組。</p>
+<div class="paragraph">
+<p>預先定義的安全性群組包含Cloud Volumes ONTAP 一些規則、這些規則是讓整個公司順利運作所需的。如果您需要使用自己的安全性、請參閱下方的安全性群組一節。</p>
+</div>
+</li>
+<li>
+<p>您必須選擇在準備AWS環境時所建立的IAM角色。</p>
+</li>
+<li>
+<p>基礎AWS磁碟類型適用於初始Cloud Volumes ONTAP 的流通量。</p>
+<div class="paragraph">
+<p>您可以為後續磁碟區選擇不同的磁碟類型。</p>
+</div>
+</li>
+<li>
+<p>AWS磁碟的效能與磁碟大小有關。</p>
+<div class="paragraph">
+<p>您應該選擇能提供所需持續效能的磁碟大小。如需EBS效能的詳細資訊、請參閱AWS文件。</p>
+</div>
+</li>
+<li>
+<p>磁碟大小是系統上所有磁碟的預設大小。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="註">
+</td>
+<td class="content">
+如果您稍後需要不同的大小、可以使用「進階配置」選項來建立使用特定大小磁碟的集合體。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>儲存效率功能可改善儲存使用率、並減少所需的儲存總容量。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">結果</div>
+<p>Cloud Manager 會啟動 Cloud Volumes ONTAP 此功能。您可以追蹤時間表的進度。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="安全性群組規則">安全性群組規則</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Manager會建立安全群組、其中包括Cloud Manager和Cloud Volumes ONTAP NetApp在雲端成功運作所需的傳入和傳出規則。您可能想要參照連接埠進行測試、或是想要使用自己的安全性群組。</p>
+</div>
+<div class="sect2">
+<h3 id="connector的安全性群組">Connector的安全性群組</h3>
+<div class="paragraph">
+<p>Connector 的安全性群組需要傳入和傳出規則。</p>
+</div>
+<div class="sect3">
+<h4 id="傳入規則">傳入規則</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">傳輸協定</th>
+<th class="tableblock halign-left valign-top">連接埠</th>
+<th class="tableblock halign-left valign-top">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">提供對 Connector 主機的 SSH 存取權</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">80</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">提供從用戶端 Web 瀏覽器到本機使用者介面的 HTTP 存取</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443..</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">提供 HTTPS 存取、從用戶端網頁瀏覽器存取本機使用者介面</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="傳出規則">傳出規則</h4>
+<div class="paragraph">
+<p>Connector 的預先定義安全性群組包括下列傳出規則。</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">傳輸協定</th>
+<th class="tableblock halign-left valign-top">連接埠</th>
+<th class="tableblock halign-left valign-top">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有 TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有傳出流量</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有的 udp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有傳出流量</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="安全性群組cloud-volumes-ontap">安全性群組Cloud Volumes ONTAP</h3>
+<div class="paragraph">
+<p>適用於不支援節點的安全群組Cloud Volumes ONTAP 需要傳入和傳出規則。</p>
+</div>
+<div class="sect3">
+<h4 id="傳入規則-2">傳入規則</h4>
+<div class="paragraph">
+<p>當您建立工作環境並選擇預先定義的安全性群組時、可以選擇允許下列其中一項的流量：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>*僅限選定VPC *：傳入流量的來源是VPC的子網路範圍（適用於Cloud Volumes ONTAP 整個系統）、以及連接器所在VPC的子網路範圍。這是建議的選項。</p>
+</li>
+<li>
+<p><strong>所有VPC</strong>：傳入流量的來源為0.00.0.0/0 IP範圍。</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">傳輸協定</th>
+<th class="tableblock halign-left valign-top">連接埠</th>
+<th class="tableblock halign-left valign-top">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有 ICMP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ping 執行個體</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">80</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用叢集管理 LIF 的 IP 位址、以 HTTP 存取 System Manager Web 主控台</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443..</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用叢集管理 LIF 的 IP 位址、以 HTTPS 存取 System Manager 網路主控台</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSH 存取叢集管理 LIF 的 IP 位址或節點管理 LIF</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">111.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">遠端程序需要 NFS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">139.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CIFS 的 NetBios 服務工作階段</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">161-162-163.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">簡單的網路管理傳輸協定</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">445</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft SMB/CIFS over TCP 搭配 NetBios 架構</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">635</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 掛載</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">749</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2049</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 伺服器精靈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3260</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">透過 iSCSI 資料 LIF 存取 iSCSI</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4045</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 鎖定精靈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4046</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 的網路狀態監控</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用 NDMP 備份</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11104.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">管理 SnapMirror 的叢集間通訊工作階段</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11105.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用叢集間生命體進行 SnapMirror 資料傳輸</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">111.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">遠端程序需要 NFS</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">161-162-163.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">簡單的網路管理傳輸協定</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">635</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 掛載</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2049</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 伺服器精靈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4045</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 鎖定精靈</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4046</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS 的網路狀態監控</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4049</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS rquotad 傳輸協定</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="傳出規則-2">傳出規則</h4>
+<div class="paragraph">
+<p>適用於此功能的預先定義安全性群組 Cloud Volumes ONTAP 包括下列傳出規則。</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">傳輸協定</th>
+<th class="tableblock halign-left valign-top">連接埠</th>
+<th class="tableblock halign-left valign-top">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有 ICMP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有傳出流量</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有 TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有傳出流量</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有的 udp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有傳出流量</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ha中介器的外部安全群組">HA中介器的外部安全群組</h3>
+<div class="paragraph">
+<p>針對此功能、預先定義 Cloud Volumes ONTAP 的外部安全群組包括下列傳入和傳出規則。</p>
+</div>
+<div class="sect3">
+<h4 id="傳入規則-3">傳入規則</h4>
+<div class="paragraph">
+<p>傳入規則的來源是來自連接器所在VPC的流量。</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">傳輸協定</th>
+<th class="tableblock halign-left valign-top">連接埠</th>
+<th class="tableblock halign-left valign-top">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSH 連線至 HA 中介器</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">從 Connector 進行 RESTful API 存取</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="傳出規則-3">傳出規則</h4>
+<div class="paragraph">
+<p>HA 中介器的預先定義安全性群組包括下列傳出規則。</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">傳輸協定</th>
+<th class="tableblock halign-left valign-top">連接埠</th>
+<th class="tableblock halign-left valign-top">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有 TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有傳出流量</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有的 udp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有傳出流量</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ha中介器的內部安全群組">HA中介器的內部安全群組</h3>
+<div class="paragraph">
+<p>針對此功能、預先定義 Cloud Volumes ONTAP 的內部安全群組包含下列規則：Cloud Manager 一律會建立這個安全群組。您沒有使用自己的選項。</p>
+</div>
+<div class="sect3">
+<h4 id="傳入規則-4">傳入規則</h4>
+<div class="paragraph">
+<p>預先定義的安全性群組包含下列傳入規則。</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">傳輸協定</th>
+<th class="tableblock halign-left valign-top">連接埠</th>
+<th class="tableblock halign-left valign-top">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有流量</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HA 中介器與 HA 節點之間的通訊</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="傳出規則-4">傳出規則</h4>
+<div class="paragraph">
+<p>預先定義的安全性群組包括下列傳出規則。</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">傳輸協定</th>
+<th class="tableblock halign-left valign-top">連接埠</th>
+<th class="tableblock halign-left valign-top">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有流量</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HA 中介器與 HA 節點之間的通訊</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/zh-tw/test/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/zh-tw/test/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">在本頁</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2024 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">使用條款</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">隱私權政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie 政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie 設定</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">傳送有關本網頁的意見反應</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/test/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/test/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/test/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/test/js/ie-tabbed-blocks.js'></script>
+    <script src='/zh-tw/test/js/ie-sidebar.js'></script>
+  </body>
+
+</html>

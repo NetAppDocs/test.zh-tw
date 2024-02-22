@@ -1,0 +1,4275 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>新功能 | NetApp Documentation</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="新功能 | NetApp Documentation" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/test/whats-new.html" />
+	<meta property="og:description" content="瞭解 BlueXP 中 Cloud Volumes ONTAP 管理的新功能。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/test/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="瞭解 BlueXP 中 Cloud Volumes ONTAP 管理的新功能。">
+  <meta name="keywords" content=" what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes, cloud manager, BlueXP, digital wallet, cloud backup, cloud data sense, cloud tiering, keystone flex, keystone"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/test/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="NetApp Documentation" href="/zh-tw/test/feed.xml"><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/test/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/zh-tw/test/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/test/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/zh-tw/test/whats-new.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/test/whats-new.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/test/whats-new.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/test/whats-new.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/test/whats-new.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/test/whats-new.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/test/whats-new.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/test/whats-new.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/test/whats-new.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/test/whats-new.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/test/whats-new.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/test/js/na-search.js'></script><script src='/zh-tw/test/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/zh-tw/test/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/test/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/test/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/test/js/jszip.min.js'></script><script src='/zh-tw/test/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="aws">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/zh-tw/test/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/tw">
+                <image id="ie-header-logo" src="/zh-tw/test/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/support-and-training/documentation/">文件</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/zh-tw/test/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">繁體中文</span>
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/zh-tw/test/whats-new.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/test/whats-new.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/test/whats-new.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ko-kr/test/whats-new.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/test/whats-new.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/test/whats-new.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/es-es/test/whats-new.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/fr-fr/test/whats-new.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/test/whats-new.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/zh-tw/test/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">所有 NetApp</span>
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">支援</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">知識庫</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">訓練</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/zh-tw/test/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/zh-tw/test/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">所有文件</a>
+    </li>
+    
+    
+    <li class="">
+      <a href="https://docs.netapp.com/us-en/cloud/">雲端文件</a>
+    </li>
+    
+
+    
+    <li class="">
+      <a href="https://docs.netapp.com/zh-tw/bluexp-family/">
+        BlueXP
+      </a>
+    </li>
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/zh-tw/test/">-->
+      Cloud Volumes ONTAP
+    <!--</a>-->
+  </div>
+</div>
+
+            
+<div id="ie-selectors"><div id="version-dropdown-new" class="custom-dropdown" >
+  <div class="custom-dropdown-select unselected" title=" 9.13.1">
+    <label>版本</label>
+    <span translate="no" class="notranslate">9.13.1</span>
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown version invisible" />
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup version" />
+  </div>
+
+  <ul class="custom-dropdown-menu"><li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.13.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9130-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.13.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9121-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.12.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9120-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.12.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9111-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.11.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9110-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.11.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9101-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.10.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9100-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.10.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-991-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.9.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-990-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.9.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-98-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.8</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-97-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.7</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-96-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.6</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-95-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.5</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-94-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.4</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-93-relnotes/whats-new.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.3</span></span>
+      </a>
+                     
+    </li>
+    
+  </ul>
+</div>
+<div id="flavor-dropdown" class="custom-dropdown" data-url="/zh-tw/test/whats-new.html">
+  
+  
+  <div class="custom-dropdown-select selected" title="AWS">
+    <label>雲端供應商</label>
+    <div>AWS</div>  
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown flavor invisible" />
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup flavor" />
+    <!--<img src="/zh-tw/test/images/dismiss.svg" class="custom-icon selected" id="remove-flavor" alt="" />-->
+  </div>
+  
+
+  <ul class="custom-dropdown-menu">
+    
+    
+    <li data-value="aws" data-url="/zh-tw/test/aws/whats-new.html">Amazon Web Services
+    </li>
+    
+    
+    
+    <li data-value="gcp" data-url="/zh-tw/test/gcp/whats-new.html">Google Cloud
+    </li>
+    
+    
+    
+    <li data-value="azure" data-url="/zh-tw/test/azure/whats-new.html">Microsoft Azure
+    </li>
+    
+    
+    <li data-url="/zh-tw/test/whats-new.html">所有雲端供應商</li>
+  </ul>
+</div>
+</div>
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/zh-tw/test/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/zh-tw/test/aws/search.html" 
+        data-type="widget"
+        data-placeholder="搜尋說明文件"
+        data-no-results-found="找不到 {query} 的結果"
+        data-did-you-mean="搜尋 {suggestion}。"
+        data-no-results-found-did-you-mean="找不到 {query} 的結果。您的意思是 {suggestion} 嗎？"
+        data-results-found="找到 {hitCount} 個結果"
+        data-error-message="發生錯誤。請再試一次。"
+        data-error-reset="重設搜尋"
+        data-sk-es-pf-indexes="" 
+        data-flavor="aws">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="文件Cloud Volumes ONTAP"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/test/aws/index.html">
+        文件Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="版本資訊"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 版本資訊</div>-->
+         版本資訊
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增功能"
+      data-li-level="2#" 
+      class="  ie-sidebar-selected    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/whats-new.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/whats-new.html">
+        新增功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="已知限制"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/reference-limitations.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/reference-limitations.html">
+        已知限制
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="發行說明 Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/whats-new-ontap.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/whats-new-ontap.html">
+        發行說明 Cloud Volumes ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用</div>-->
+         開始使用
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解 Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-overview-cvo.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-overview-cvo.html">
+        深入瞭解 Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="支援的新部署版本"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/reference-versions.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/reference-versions.html">
+        支援的新部署版本
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Amazon Web Services入門"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Amazon Web Services入門</div>-->
+         Amazon Web Services入門
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="快速入門"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-getting-started-aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-getting-started-aws.html">
+        快速入門
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="規劃您的組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-planning-your-config.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-planning-your-config.html">
+        規劃您的組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定您的網路"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 設定您的網路</div>-->
+         設定您的網路
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="網路需求"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/reference-networking-aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/reference-networking-aws.html">
+        網路需求
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 AWS 傳輸閘道"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-setting-up-transit-gateway.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-setting-up-transit-gateway.html">
+        設定 AWS 傳輸閘道
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在共享子網路中部署HA配對"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-deploy-aws-shared-vpc.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-deploy-aws-shared-vpc.html">
+        在共享子網路中部署HA配對
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS 的安全群組規則"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/reference-security-groups.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/reference-security-groups.html">
+        AWS 的安全群組規則
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 AWS KMS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-setting-up-kms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-setting-up-kms.html">
+        設定 AWS KMS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定IAM角色"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-set-up-iam-roles.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-set-up-iam-roles.html">
+        設定IAM角色
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-set-up-licensing-aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-set-up-licensing-aws.html">
+        設定授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在Cloud Volumes ONTAP AWS中啟動"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-deploying-otc-aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-deploying-otc-aws.html">
+        在Cloud Volumes ONTAP AWS中啟動
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用 AWS C2S"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-getting-started-aws-c2s.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-getting-started-aws-c2s.html">
+        開始使用 AWS C2S
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用Cloud Volumes ONTAP"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 使用Cloud Volumes ONTAP</div>-->
+         使用Cloud Volumes ONTAP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="授權管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 授權管理</div>-->
+         授權管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理容量型授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-manage-capacity-licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-capacity-licenses.html">
+        管理容量型授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理基礎概念訂閱"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-manage-keystone.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-keystone.html">
+        管理基礎概念訂閱
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理節點型授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-manage-node-licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-node-licenses.html">
+        管理節點型授權
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Volume與LUN管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Volume與LUN管理</div>-->
+         Volume與LUN管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-create-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-create-volumes.html">
+        建立磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理現有磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-manage-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-volumes.html">
+        管理現有磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將非作用中資料分層至物件儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-tiering.html">
+        將非作用中資料分層至物件儲存設備
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將LUN連接至主機"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-connect-lun.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-connect-lun.html">
+        將LUN連接至主機
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="利用NetApp加速資料存取FlexCache"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-accelerate-data-access.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-accelerate-data-access.html">
+        利用NetApp加速資料存取FlexCache
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Aggregate管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Aggregate管理</div>-->
+         Aggregate管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立Aggregate"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-create-aggregates.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-create-aggregates.html">
+        建立Aggregate
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理現有的集合體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-manage-aggregates.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-aggregates.html">
+        管理現有的集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理容量設定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-manage-capacity-settings.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-capacity-settings.html">
+        管理容量設定
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存VM管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 儲存VM管理</div>-->
+         儲存VM管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在BlueXP中使用儲存VM"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-managing-svms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-managing-svms.html">
+        在BlueXP中使用儲存VM
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在AWS中建立儲存VM"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-managing-svms-aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-managing-svms-aws.html">
+        在AWS中建立儲存VM
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 SVM 災難恢復"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-manage-svm-dr.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-manage-svm-dr.html">
+        設定 SVM 災難恢復
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安全性與資料加密"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 安全性與資料加密</div>-->
+         安全性與資料加密
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 NetApp 加密來加密磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-encrypting-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-encrypting-volumes.html">
+        使用 NetApp 加密來加密磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 AWS 金鑰管理服務管理金鑰"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-aws-key-management.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-aws-key-management.html">
+        使用 AWS 金鑰管理服務管理金鑰
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="改善勒索軟體保護"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-protecting-ransomware.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-protecting-ransomware.html">
+        改善勒索軟體保護
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 系統管理</div>-->
+         系統管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="升級Cloud Volumes ONTAP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-updating-ontap-cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-updating-ontap-cloud.html">
+        升級Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊隨用隨付系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-registering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-registering.html">
+        註冊隨用隨付系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="停止並啟動系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-managing-state.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-managing-state.html">
+        停止並啟動系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="同步系統時間"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-sync-time.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-sync-time.html">
+        同步系統時間
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="修改系統寫入速度"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-modify-write-speed.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-modify-write-speed.html">
+        修改系統寫入速度
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更系統密碼"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-change-password.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-change-password.html">
+        變更系統密碼
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增、移除或刪除系統"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 新增、移除或刪除系統</div>-->
+         新增、移除或刪除系統
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增現有系統"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-adding-systems.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-adding-systems.html">
+        新增現有系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="移除工作環境"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-removing.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-removing.html">
+        移除工作環境
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="刪除系統"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-deleting-working-env.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-deleting-working-env.html">
+        刪除系統
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS 管理"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> AWS 管理</div>-->
+         AWS 管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更EC2執行個體類型"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-change-ec2-instance.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-change-ec2-instance.html">
+        變更EC2執行個體類型
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更HA配對的路由表"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-change-route-tables.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-change-route-tables.html">
+        變更HA配對的路由表
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定放置群組建立"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="task-configure-placement-group-failure-aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/aws/task-configure-placement-group-failure-aws.html">
+        設定放置群組建立
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統管理員的系統管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-administer-advanced-view.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-administer-advanced-view.html">
+        系統管理員的系統管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="從CLI進行管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-connecting-to-otc.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-connecting-to-otc.html">
+        從CLI進行管理
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統健全狀況與事件"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 系統健全狀況與事件</div>-->
+         系統健全狀況與事件
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="驗AutoSupport 證此設定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-verify-autosupport.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-verify-autosupport.html">
+        驗AutoSupport 證此設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 EMS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-configure-ems.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/task-configure-ems.html">
+        設定 EMS
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="概念"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 概念</div>-->
+         概念
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="授權"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-licensing.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-licensing.html">
+        授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存設備"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 儲存設備</div>-->
+         儲存設備
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="用戶端傳輸協定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-client-protocols.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-client-protocols.html">
+        用戶端傳輸協定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="磁碟與集合體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-storage.html">
+        磁碟與集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS中的彈性Volume"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-aws-elastic-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-aws-elastic-volumes.html">
+        AWS中的彈性Volume
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="資料分層"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-data-tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-data-tiering.html">
+        資料分層
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-storage-management.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-storage-management.html">
+        儲存管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="寫入速度"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-write-speed.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-write-speed.html">
+        寫入速度
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Flash 快取"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-flash-cache.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-flash-cache.html">
+        Flash 快取
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="WORM 儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-worm.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-worm.html">
+        WORM 儲存設備
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="高可用度配對"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 高可用度配對</div>-->
+         高可用度配對
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS 中的 HA 配對"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-ha.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-ha.html">
+        AWS 中的 HA 配對
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存設備接管期間的行動"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-degraded-ha-pair.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/aws/concept-degraded-ha-pair.html">
+        儲存設備接管期間的行動
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安全性"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-security.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-security.html">
+        安全性
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="效能"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-performance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-performance.html">
+        效能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理節點型BYOL"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-license-management.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-license-management.html">
+        管理節點型BYOL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AutoSupport 與 Active IQ Digital Advisor"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/concept-active-iq.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/concept-active-iq.html">
+        AutoSupport 與 Active IQ Digital Advisor
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="預設組態"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/reference-default-configs.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/reference-default-configs.html">
+        預設組態
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="知識與支援"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 知識與支援</div>-->
+         知識與支援
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊以取得支援"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-support-registration.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/task-support-registration.html">
+        註冊以取得支援
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="取得協助"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/task-get-help.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/aws/task-get-help.html">
+        取得協助
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="法律聲明"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/whats-new.html" 
+      dale-entry-url="/legal-notices.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/test/aws/legal-notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/zh-tw/test"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/zh-tw/test"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      <div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/zh-tw/test/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">新功能</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2023-09-13 15:07:13 +0000">09/13/2023</time>
+        
+    
+    
+        <span>貢獻者
+        </span>
+    
+    
+        <a target="_blank" class="ext-link-indicator" href="/zh-tw/test/feed.xml"><img width="21" height="21" src="/zh-tw/test/images/rss-button.png" alt="RSS" title="訂閱此頁面的 RSS 更新" /></a>
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/zh-tw/test/images/discuss-sm.svg" alt="" class="github-icon" />建議變更</span>
+        <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/test.zh-tw/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/zh-tw/test/whats-new.html&page-title=新功能" class="page-nav-contribute-link" role="button">請求文件變更</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/test/blob/main/whats-new.adoc" class="page-nav-contribute-link" role="button">編輯本頁</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >瞭解如何貢獻</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/zh-tw/test/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/zh-tw/test/pdfs/aws/fullsite-sidebar/本文檔Cloud_Volumes_ONTAP.pdf" >
+                    <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>此文件 PDF 的網站</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/版本資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            版本資訊
+          </a>
+          
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Amazon_Web_Services入門.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Amazon Web Services入門
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/設定您的網路.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            設定您的網路
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/開始使用Microsoft_Azure.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用Microsoft Azure
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/開始使用Google_Cloud.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用Google Cloud
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Google_Cloud_Platform映像驗證.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Google Cloud Platform映像驗證
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/影像簽名驗證.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            影像簽名驗證
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/使用Cloud_Volumes_ONTAP.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            使用Cloud Volumes ONTAP
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/授權管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            授權管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Volume與LUN管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Volume與LUN管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Aggregate管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Aggregate管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/儲存VM管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            儲存VM管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/安全性與資料加密.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            安全性與資料加密
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/系統管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            系統管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/新增_移除或刪除系統.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            新增、移除或刪除系統
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/AWS_管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            AWS 管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Azure管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Azure管理
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/Google_Cloud管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Google Cloud管理
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/系統健全狀況與事件.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            系統健全狀況與事件
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/概念.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            概念
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/儲存設備.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            儲存設備
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/高可用度配對.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            高可用度配對
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/aws/sidebar/知識與支援.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            知識與支援
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/zh-tw/test/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>個別的 PDF 文件集合<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>瞭解 BlueXP 中 Cloud Volumes ONTAP 管理的新功能。</p>
+</div>
+<div class="paragraph">
+<p>本頁所述的增強功能僅適用於支援Cloud Volumes ONTAP 支援管理功能的BlueXP功能。若要瞭解Cloud Volumes ONTAP 有關此功能的最新消息、請參閱 <a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/index.html" target="_blank" rel="noopener">"前往Cloud Volumes ONTAP 《發行說明》"</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023-年-9-月-10-日">2023 年 9 月 10 日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.33 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="支援-azure-中的-lsv3-系列-vm">支援 Azure 中的 Lsv3 系列 VM</h3>
+<div class="paragraph">
+<p>從 9.13.1 版開始、 Azure 中的 Cloud Volumes ONTAP 現在支援 L48s_v3 和 L64s_v3 執行個體類型、可在單一節點和高可用度配對部署中、在單一和多個可用性區域中部署共用託管磁碟。這些執行個體類型支援 Flash Cache 。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-azure.html">"檢視 Azure 中 Cloud Volumes ONTAP 支援的組態"</a><br>
+<a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-limits-azure.html">"檢視 Azure 中 Cloud Volumes ONTAP 的儲存限制"</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023-年-7-月-30-日">2023 年 7 月 30 日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.32 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="google-cloud-中的-flash-cache-和高速寫入支援">Google Cloud 中的 Flash Cache 和高速寫入支援</h3>
+<div class="paragraph">
+<p>Flash Cache 和高速寫入速度可在 Cloud Volumes ONTAP 9.13.1 及更新版本的 Google Cloud 中個別啟用。所有支援的執行個體類型都提供高速寫入速度。Flash Cache 支援下列執行個體類型：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>n2-Standard-16</p>
+</li>
+<li>
+<p>n2-Standard-32</p>
+</li>
+<li>
+<p>n2 標準 -48</p>
+</li>
+<li>
+<p>n2-Standard-64</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>您可以在單一節點和高可用度配對部署上分別或一起使用這些功能。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-deploying-gcp.html">"在Cloud Volumes ONTAP Google Cloud上啟動"</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="使用報告增強功能">使用報告增強功能</h3>
+<div class="paragraph">
+<p>使用報告中所顯示資訊的各種改善功能現已推出。以下是使用報告的增強功能：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TiB 單元現在已包含在欄名稱中。</p>
+</li>
+<li>
+<p>現在包含序號的新「節點」欄位。</p>
+</li>
+<li>
+<p>儲存 VM 使用量報告中現在包含新的「工作負載類型」一欄。</p>
+</li>
+<li>
+<p>儲存 VM 和 Volume 使用量報告中現在已包含工作環境名稱。</p>
+</li>
+<li>
+<p>Volume 類型「 file 」現在標示為「 Primary （ Read/Write ）（主要（讀取 / 寫入））」。</p>
+</li>
+<li>
+<p>Volume 類型「 Secondary 」現在標示為「 Secondary （ DP ）」（次要（ DP ））。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如需使用報告的詳細資訊、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-capacity-licenses.html#download-usage-reports" target="_blank" rel="noopener">"下載使用報告"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023-年-7-月-26-日">2023 年 7 月 26 日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.31 版本推出下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="cloud-volumes-ontap-9-13-1-ga">Cloud Volumes ONTAP 9.13.1 GA</h3>
+<div class="paragraph">
+<p>BlueXP 現在可以在 AWS 、 Azure 和 Google Cloud 中部署和管理 Cloud Volumes ONTAP 9.13.1 通用可用度版本。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023-年-7-月-2-日">2023 年 7 月 2 日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.31 版本推出下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="支援-azure-中的-ha-多重可用性區域部署">支援 Azure 中的 HA 多重可用性區域部署</h3>
+<div class="paragraph">
+<p>Azure 中的 Japan East 和 Korea Central 現在支援 Cloud Volumes ONTAP 9.12.1 GA 及更新版本的 HA 多重可用性區域部署。</p>
+</div>
+<div class="paragraph">
+<p>如需支援多個可用區域的所有區域清單、請參閱 <a href="https://bluexp.netapp.com/cloud-volumes-global-regions" target="_blank" rel="noopener">"Azure 下的 Global Regions Map"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="自主勒索軟體保護支援">自主勒索軟體保護支援</h3>
+<div class="paragraph">
+<p>Cloud Volumes ONTAP 現在支援自主勒索軟體保護（ ARP ）。Cloud Volumes ONTAP 9.12.1 版及更高版本均提供 ARP 支援。</p>
+</div>
+<div class="paragraph">
+<p>若要深入瞭解 Cloud Volumes ONTAP 的 ARP 、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-protecting-ransomware.html#autonomous-ransomware-protection" target="_blank" rel="noopener">"自主勒索軟體保護"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023-年-6-月-26-日">2023 年 6 月 26 日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.30 版本推出下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="cloud-volumes-ontap-9-13-1-rc1">Cloud Volumes ONTAP 9.13.1 RC1</h3>
+<div class="paragraph">
+<p>BlueXP 現在可以在 AWS 、 Azure 和 Google Cloud 中部署和管理 Cloud Volumes ONTAP 9.13.1 。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023-年-6-月-4-日">2023 年 6 月 4 日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.30 版本推出下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="cloud-volumes-ontap-升級版本選擇器更新">Cloud Volumes ONTAP 升級版本選擇器更新</h3>
+<div class="paragraph">
+<p>現在您可以透過「升級 Cloud Volumes ONTAP 」頁面、選擇升級至最新的 Cloud Volumes ONTAP 版本或舊版。</p>
+</div>
+<div class="paragraph">
+<p>若要深入瞭解如何透過 BlueXP 升級 Cloud Volumes ONTAP 、請參閱 <a href="https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-updating-ontap-cloud.html#upgrade-cloud-volumes-ontap" target="_blank" rel="noopener">"升級Cloud Volumes ONTAP"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023-年-5-月-7-日">2023 年 5 月 7 日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.29 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="現在-google-cloud-支援卡塔爾地區">現在、 Google Cloud 支援卡塔爾地區</h3>
+<div class="paragraph">
+<p>現在、 Google Cloud for Cloud Volumes ONTAP 和 Connector for Cloud Volumes ONTAP 9.12.1 GA 及更新版本均支援卡塔爾地區。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="瑞典中部地區現在支援-azure">瑞典中部地區現在支援 Azure</h3>
+<div class="paragraph">
+<p>現在 Azure for Cloud Volumes ONTAP 和 Connector for Cloud Volumes ONTAP 9.12.1 GA 及更新版本均支援瑞典中部地區。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援-azure-australia-east-的-ha-多重可用性區域部署">支援 Azure Australia East 的 HA 多重可用性區域部署</h3>
+<div class="paragraph">
+<p>Azure 中的澳洲東部地區現在支援 Cloud Volumes ONTAP 9.12.1 GA 及更新版本的 HA 多重可用性區域部署。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="充電使用量明細">充電使用量明細</h3>
+<div class="paragraph">
+<p>現在、您可以瞭解訂閱容量型授權時所需支付的費用。以下類型的使用報告可從 BlueXP 的數位錢包下載。使用報告會提供您訂閱的容量詳細資料、並告訴您如何為 Cloud Volumes ONTAP 訂閱中的資源收取費用。可下載的報告可輕鬆與他人共用。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cloud Volumes ONTAP 套件使用率</p>
+</li>
+<li>
+<p>高階使用率</p>
+</li>
+<li>
+<p>儲存 VM 使用率</p>
+</li>
+<li>
+<p>Volume 使用量</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如需詳細資訊、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-capacity-licenses.html" target="_blank" rel="noopener">"管理容量型授權"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="現在在沒有市場訂閱的情況下存取-bluexp-時會顯示通知">現在在沒有市場訂閱的情況下存取 BlueXP 時會顯示通知</h3>
+<div class="paragraph">
+<p>當您在 BlueXP 中存取 Cloud Volumes ONTAP 而不訂閱市場時、現在就會顯示通知。通知指出：「此工作環境的市場訂閱必須符合 Cloud Volumes ONTAP 條款與條件。」</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023-年-4-月-4-日">2023 年 4 月 4 日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>從 Cloud Volumes ONTAP 9.12.1 GA 開始、 AWS 現在支援中國地區、如下所示。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>支援單一節點系統。</p>
+</li>
+<li>
+<p>支援直接向NetApp購買的授權。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如需區域可用度、請參閱 <a href="https://bluexp.netapp.com/cloud-volumes-global-regions" target="_blank" rel="noopener">"全球區域地圖Cloud Volumes ONTAP 、供您使用"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023年4月3日">2023年4月3日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.28 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="google-cloud-現在支援都靈地區">Google Cloud 現在支援都靈地區</h3>
+<div class="paragraph">
+<p>Google Cloud for Cloud Volumes ONTAP 和 Connector for Cloud Volumes ONTAP 9.12.1 GA 及更新版本均支援都靈地區。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bluexp-數位錢包增強功能">BlueXP 數位錢包增強功能</h3>
+<div class="paragraph">
+<p>BlueXP 數位錢包現在顯示您購買的授權容量、並提供市場私有優惠。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-capacity-licenses.html" target="_blank" rel="noopener">"瞭解如何檢視您帳戶中的已用容量"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援在磁碟區建立期間提出意見">支援在磁碟區建立期間提出意見</h3>
+<div class="paragraph">
+<p>此版本可讓您在使用 API 建立 Cloud Volumes ONTAP FlexGroup Volume 或 FlexVol Volume 時、提出意見。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="重新設計-bluexp-使用者介面以重新設計-cloud-volumes-ontap-概觀-volume-和集合頁面">重新設計 BlueXP 使用者介面、以重新設計 Cloud Volumes ONTAP 概觀、 Volume 和集合頁面</h3>
+<div class="paragraph">
+<p>BlueXP 現在已重新設計了 Cloud Volumes ONTAP 概觀、磁碟區和集合網頁的使用者介面。並排式設計會在每個方塊中提供更完整的資訊、以提供更好的使用者體驗。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://raw.githubusercontent.com/NetAppDocs/bluexp-cloud-volumes-ontap/main/media/screenshot-resource-page-rn.png" alt="此螢幕擷取畫面會在 Cloud Volumes ONTAP 總覽頁面上顯示重新設計的 BlueXP 使用者介面。各種方塊顯示儲存效率、版本、容量分配、 Cloud Volumes ONTAP 部署、磁碟區、集合體、複製和備份的相關資訊。"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="可透過-cloud-volumes-ontap-檢視的-flexgroup-volume">可透過 Cloud Volumes ONTAP 檢視的 FlexGroup Volume</h3>
+<div class="paragraph">
+<p>透過 CLI 或系統管理員直接建立的 FlexGroup Volume 現在可透過 BlueXP 中重新設計的 Volumes 動態磚來檢視。BlueXP 與提供給 FlexVol Volume 的資訊相同、透過專用的 Volumes 磚提供建立的 FlexGroup Volume 的詳細資訊。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="註">
+</td>
+<td class="content">
+目前、您只能在 BlueXP 下檢視現有的 FlexGroup 磁碟區。在 BlueXP 中建立 FlexGroup 磁碟區的功能無法使用、但已計畫在未來版本中使用。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://raw.githubusercontent.com/NetAppDocs/bluexp-cloud-volumes-ontap/main/media/screenshot-show-flexgroup-volume.png" alt="顯示 FlexGroup Volume 圖示的螢幕擷取畫面會將文字暫留在 Volumes 磚下方。"></span></p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-volumes.html" target="_blank" rel="noopener">"深入瞭解如何檢視建立的 FlexGroup Volume 。"</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023年3月13日">2023年3月13日</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="中國地區支援">中國地區支援</h3>
+<div class="paragraph">
+<p>從推出支援中國地區的支援功能到現在起、Azure已提供下列支援Cloud Volumes ONTAP ：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>支援中國北方3 Cloud Volumes ONTAP 。</p>
+</li>
+<li>
+<p>支援單一節點系統。</p>
+</li>
+<li>
+<p>支援直接向NetApp購買的授權。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如需區域可用度、請參閱 <a href="https://bluexp.netapp.com/cloud-volumes-global-regions" target="_blank" rel="noopener">"全球區域地圖Cloud Volumes ONTAP 、供您使用"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023年3月5日">2023年3月5日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.27 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="支援的支援cloud-volumes-ontap">支援的支援Cloud Volumes ONTAP</h3>
+<div class="paragraph">
+<p>現在、BlueXP可以在Cloud Volumes ONTAP AWS、Azure和Google Cloud中部署和管理支援功能。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="azure支援16-tib和32-tib">Azure支援16 TiB和32 Tib</h3>
+<div class="paragraph">
+<p>目前支援16個TiB和32個TiB磁碟大小、可在Azure的託管磁碟上執行高可用度部署Cloud Volumes ONTAP 。</p>
+</div>
+<div class="paragraph">
+<p>深入瞭解 <a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-azure.html#supported-disk-sizes" target="_blank" rel="noopener">"Azure支援的磁碟大小"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mtekm授權">MTEKM授權</h3>
+<div class="paragraph">
+<p>多租戶加密金鑰管理（MTEKM）授權現已隨Cloud Volumes ONTAP 附於執行9.12.1 GA或更新版本的全新及現有的支援系統中。</p>
+</div>
+<div class="paragraph">
+<p>使用NetApp Volume Encryption時、多租戶外部金鑰管理可讓個別儲存VM（SVM）透過KMIP伺服器維護自己的金鑰。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-encrypting-volumes.html" target="_blank" rel="noopener">"瞭解如何使用NetApp加密解決方案來加密磁碟區"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援無網際網路的環境">支援無網際網路的環境</h3>
+<div class="paragraph">
+<p>目前支援任何完全隔離網際網路的雲端環境Cloud Volumes ONTAP 。這些環境僅支援節點型授權（BYOL）。不支援容量型授權。若要開始使用、請手動安裝 Connector 軟體、登入 Connector 上執行的 BlueXP 主控台、將 BYOL 授權新增至 BlueXP 數位錢包、然後部署 Cloud Volumes ONTAP 。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/bluexp-setup-admin/task-quick-start-private-mode.html" target="_blank" rel="noopener">"將Connector安裝在沒有網際網路存取的位置"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/bluexp-setup-admin/task-managing-connectors.html#access-the-local-ui" target="_blank" rel="noopener">"存取Connector上的BlueXP主控台"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-node-licenses.html#manage-byol-licenses" target="_blank" rel="noopener">"新增未指派的授權"</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-cloud的flash-cache和高速寫入速度">Google Cloud的Flash Cache和高速寫入速度</h3>
+<div class="paragraph">
+<p>支援Flash Cache、高速寫入速度、以及高傳輸單位（MTU）8、896位元組、現在Cloud Volumes ONTAP 可用於發行版本為《The》（英文）的特定執行個體。</p>
+</div>
+<div class="paragraph">
+<p>深入瞭解 <a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-gcp.html" target="_blank" rel="noopener">"Google Cloud授權支援的組態"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023年2月5日">2023年2月5日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.26 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="在aws中建立放置群組">在AWS中建立放置群組</h3>
+<div class="paragraph">
+<p>全新組態設定現在可透過AWS HA單一可用度區域（AZ）部署來建立放置群組。現在您可以選擇略過失敗的放置群組建立、並讓AWS HA單一AZ部署順利完成。</p>
+</div>
+<div class="paragraph">
+<p>如需如何設定放置群組建立設定的詳細資訊、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-configure-placement-group-failure-aws.html#overview" target="_blank" rel="noopener">"設定AWS HA單一AZ的放置群組建立"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="私有dns區域組態更新">私有DNS區域組態更新</h3>
+<div class="paragraph">
+<p>現在已有新的組態設定可供使用、以便在使用Azure私有連結時、避免在私有DNS區域和虛擬網路之間建立連結。預設會啟用建立。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-enabling-private-link.html#provide-bluexp-with-details-about-your-azure-private-dns" target="_blank" rel="noopener">"提供您Azure私有DNS的詳細資料給BlueXP"</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="worm儲存與資料分層">WORM儲存與資料分層</h3>
+<div class="paragraph">
+<p>現在您可以在建立Cloud Volumes ONTAP 一套或更新版本的版本時、同時啟用資料分層和WORM儲存。利用WORM儲存設備進行資料分層、可將資料分層至雲端的物件存放區。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-worm.html" target="_blank" rel="noopener">"瞭解WORM儲存設備。"</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2023年1月1日">2023年1月1日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.25 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="google-cloud提供授權套件">Google Cloud提供授權套件</h3>
+<div class="paragraph">
+<p>Google Cloud Volumes ONTAP Cloud Marketplace提供最佳化的Edge Cache容量型授權套件、可作為隨用隨付方案或年度合約、以供使用。</p>
+</div>
+<div class="paragraph">
+<p>請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-licensing.html#packages" target="_blank" rel="noopener">"提供授權Cloud Volumes ONTAP"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="的預設組態-cloud-volumes-ontap">的預設組態 Cloud Volumes ONTAP</h3>
+<div class="paragraph">
+<p>多租戶加密金鑰管理（MTEKM）授權不再包含在新Cloud Volumes ONTAP 的版次部署中。</p>
+</div>
+<div class="paragraph">
+<p>如需ONTAP 更多有關隨Cloud Volumes ONTAP 功能自動安裝的功能認證資訊、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/reference-default-configs.html" target="_blank" rel="noopener">"支援的預設組態Cloud Volumes ONTAP"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年12月15日">2022年12月15日</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="零件9-12-0-cloud-volumes-ontap">零件9.12.0 Cloud Volumes ONTAP</h3>
+<div class="paragraph">
+<p>現在、BlueXP可以在Cloud Volumes ONTAP AWS和Google Cloud中部署和管理功能。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-9120-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年12月8日">2022年12月8日</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="cloud-volumes-ontap-9-12-1">Cloud Volumes ONTAP 9.12.1</h3>
+<div class="paragraph">
+<p>現在、BlueXP可以部署及管理Cloud Volumes ONTAP 支援全新功能和其他雲端供應商區域的功能。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年12月4日">2022年12月4日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.24 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="worm-雲端備份現在可在cloud-volumes-ontap-建立過程中使用">WORM +雲端備份現在可在Cloud Volumes ONTAP 建立過程中使用</h3>
+<div class="paragraph">
+<p>現在、在建立流程的過程中、可以同時啟動一次寫入、多次讀取（WORM）和雲端備份功能Cloud Volumes ONTAP 。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="以色列地區現已在google-cloud中獲得支援">以色列地區現已在Google Cloud中獲得支援</h3>
+<div class="paragraph">
+<p>現在、Israel區域已在Google Cloud for Israel和Cloud Volumes ONTAP Connector for Cloud Volumes ONTAP the E29.11.1 P3及更新版本中受到支援。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年11月15日">2022年11月15日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下列變更是在版本3.9.23的Connector中提出。</p>
+</div>
+<div class="sect2">
+<h3 id="google-cloud-中的-ontap-s3-授權">Google Cloud 中的 ONTAP S3 授權</h3>
+<div class="paragraph">
+<p>在Google Cloud Platform中、執行9.12.1版或更新版本的全新及現有的版本不含更新版本的S3授權Cloud Volumes ONTAP ONTAP 。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/ontap/object-storage-management/index.html" target="_blank" rel="noopener">"瞭解如何在ONTAP 功能區中設定及管理S3物件儲存服務"</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年11月6日">2022年11月6日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下列變更是在版本3.9.23的Connector中提出。</p>
+</div>
+<div class="sect2">
+<h3 id="在azure中移動資源群組">在Azure中移動資源群組</h3>
+<div class="paragraph">
+<p>您現在可以將工作環境從同一個資源群組移至Azure中不同的資源群組、並在同一個Azure訂閱中使用。</p>
+</div>
+<div class="paragraph">
+<p>如需詳細資訊、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-moving-resource-groups-azure.html">"正在移動資源群組"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ndmp複製認證">NDMP複製認證</h3>
+<div class="paragraph">
+<p>NDMP複本現已通過認證、可搭配Cloud Volume ONTAP 使用。</p>
+</div>
+<div class="paragraph">
+<p>如需有關如何設定及使用NDMP的資訊、請參閱 <a href="https://docs.netapp.com/us-en/ontap/ndmp/index.html">"NDMP 組態概觀"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="azure的託管磁碟加密支援">Azure的託管磁碟加密支援</h3>
+<div class="paragraph">
+<p>新增Azure權限、讓您在建立時加密所有託管磁碟。</p>
+</div>
+<div class="paragraph">
+<p>如需此新功能的詳細資訊、請參閱 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-set-up-azure-encryption.html">"設定Cloud Volumes ONTAP 支援使用Azure中客戶管理的金鑰"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年9月18日">2022年9月18日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.22 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="數位錢包增強功能">數位錢包增強功能</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>數位錢包現在會顯示最佳化I/O授權套件的摘要、以及Cloud Volumes ONTAP 整個帳戶中針對各個系統所配置的WORM容量。</p>
+<div class="paragraph">
+<p>這些詳細資料可協助您更深入瞭解如何收取費用、以及是否需要購買額外容量。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-capacity-licenses.html">"瞭解如何檢視您帳戶中的已用容量"</a>。</p>
+</div>
+</li>
+<li>
+<p>您現在可以從單一充電方法變更為最佳化的充電方法。</p>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-capacity-licenses.html">"瞭解如何變更充電方法"</a>。</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="最佳化成本與效能">最佳化成本與效能</h3>
+<div class="paragraph">
+<p>您現在Cloud Volumes ONTAP 可以直接從Canvas.將效能與成本最佳化。</p>
+</div>
+<div class="paragraph">
+<p>選擇工作環境之後、您可以選擇*最佳化成本與效能*選項、以變更Cloud Volumes ONTAP 執行個體類型以供使用。選擇較小的執行個體有助於降低成本、而改用較大的執行個體則有助於最佳化效能。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://raw.githubusercontent.com/NetAppDocs/bluexp-cloud-volumes-ontap/main/media/screenshot-optimize-cost-performance.png" alt="在您選取工作環境之後、即可從 Canvas 取得「最佳化成本效益和效能」選項的螢幕擷取畫面。"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="資訊通知autosupport">資訊通知AutoSupport</h3>
+<div class="paragraph">
+<p>現在、如果Cloud Volumes ONTAP 某個不完善的系統無法傳送AutoSupport 功能介紹訊息、則BlueXP會產生通知。此通知包含可用於疑難排解網路問題的指示連結。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年7月31日">2022年7月31日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.21 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="mtekm授權-2">MTEKM授權</h3>
+<div class="paragraph">
+<p>多租戶加密金鑰管理（MNEKM）授權現已隨Cloud Volumes ONTAP 附於執行9.11.1版或更新版本的全新和現有的支援系統中。</p>
+</div>
+<div class="paragraph">
+<p>使用NetApp Volume Encryption時、多租戶外部金鑰管理可讓個別儲存VM（SVM）透過KMIP伺服器維護自己的金鑰。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-encrypting-volumes.html">"瞭解如何使用NetApp加密解決方案來加密磁碟區"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proxy伺服器">Proxy伺服器</h3>
+<div class="paragraph">
+<p>現在、如果Cloud Volumes ONTAP 無法使用傳出的網際網路連線來傳送AutoSupport 更新訊息、則BlueXP會自動將您的還原系統設定為使用Connector做為Proxy伺服器。</p>
+</div>
+<div class="paragraph">
+<p>可主動監控系統健全狀況、並傳送訊息給NetApp技術支援部門。AutoSupport</p>
+</div>
+<div class="paragraph">
+<p>唯一的需求是確保連接器的安全性群組允許連接埠3128上的傳入連線。部署Connector之後、您需要開啟此連接埠。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="變更充電方法">變更充電方法</h3>
+<div class="paragraph">
+<p>您現在可以變更Cloud Volumes ONTAP 使用容量型授權的功能、以供選用的功能。例如、如果您部署Cloud Volumes ONTAP 的是含有Essentials套件的功能完善的系統、則當您的業務需求改變時、可以將其變更為Professional套件。此功能可從Digital Wallet取得。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-capacity-licenses.html">"瞭解如何變更充電方法"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="安全性群組增強功能">安全性群組增強功能</h3>
+<div class="paragraph">
+<p>當您建立Cloud Volumes ONTAP 一個運作環境時、使用者介面現在可讓您選擇是否要讓預先定義的安全性群組僅允許所選網路（建議）或所有網路內的流量。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://raw.githubusercontent.com/NetAppDocs/bluexp-cloud-volumes-ontap/main/media/screenshot-allow-traffic.png" alt="顯示在工作環境精靈中選取安全性群組時可用之「允許內部流量」選項的快照。"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年7月18日">2022年7月18日</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="azure中的新授權方案">Azure中的新授權方案</h3>
+<div class="paragraph">
+<p>當您透過Azure Marketplace訂閱付費時、Azure上有兩個Cloud Volumes ONTAP 全新的容量型授權套件可供使用：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>最佳化</strong>：分別為資源配置的容量和I/O作業付費</p>
+</li>
+<li>
+<p><strong>邊緣快取</strong>：授權 <a href="https://cloud.netapp.com/cloud-volumes-edge-cache" target="_blank" rel="noopener">"Cloud Volumes Edge快取"</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-licensing.html#packages">"深入瞭解這些授權套件"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年7月3日">2022年7月3日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下是3.9.20版Connector的變更。</p>
+</div>
+<div class="sect2">
+<h3 id="數位錢包">數位錢包</h3>
+<div class="paragraph">
+<p>數位錢包現在會顯示您帳戶的總使用容量、以及授權套件的使用容量。這有助於瞭解您的收費方式、以及您是否需要購買額外容量。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://raw.githubusercontent.com/NetAppDocs/bluexp-cloud-volumes-ontap/main/media/screenshot-digital-wallet-summary.png" alt="顯示容量型授權的「Digital Wallet」頁面的快照。此頁面概述您帳戶中的已用容量、然後依照授權套件細分已用容量。"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="彈性磁碟區增強功能">彈性磁碟區增強功能</h3>
+<div class="paragraph">
+<p>在從Cloud Volumes ONTAP 使用者介面建立運作環境時、BlueXP現在支援Amazon EBS彈性磁碟區功能。使用GP3或IO1磁碟時、預設會啟用彈性磁碟區功能。您可以根據儲存需求來選擇初始容量、Cloud Volumes ONTAP 並在部署完畢後加以修改。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-aws-elastic-volumes.html">"深入瞭解AWS對彈性磁碟區的支援"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aws中的ss3授權ontap">AWS中的SS3授權ONTAP</h3>
+<div class="paragraph">
+<p>現在AWS中執行9.11.0版或更新版本的全新和現有的版本不含支援的S3授權。ONTAP Cloud Volumes ONTAP</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/ontap/object-storage-management/index.html" target="_blank" rel="noopener">"瞭解如何在ONTAP 功能區中設定及管理S3物件儲存服務"</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="全新azure-cloud區域支援">全新Azure Cloud區域支援</h3>
+<div class="paragraph">
+<p>從9.10.1版開始、Cloud Volumes ONTAP 現在Azure West US 3地區支援了整套功能。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://cloud.netapp.com/cloud-volumes-global-regions" target="_blank" rel="noopener">"檢視Cloud Volumes ONTAP 支援區域的完整清單以供參閱"</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="azure中的ss3授權ontap">Azure中的SS3授權ONTAP</h3>
+<div class="paragraph">
+<p>Azure中執行9.9.1版或更新版本的全新及現有的支援功能系統、現在已隨附一份支援功能S3的授權。ONTAP Cloud Volumes ONTAP</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/ontap/object-storage-management/index.html" target="_blank" rel="noopener">"瞭解如何在ONTAP 功能區中設定及管理S3物件儲存服務"</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年6月7日">2022年6月7日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.19 版隨附下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="零點9-11-1-cloud-volumes-ontap">零點9.11.1. Cloud Volumes ONTAP</h3>
+<div class="paragraph">
+<p>現在、BlueXP可以部署及管理Cloud Volumes ONTAP 支援全新功能和其他雲端供應商區域的功能。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-9111-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="新的進階檢視">新的進階檢視</h3>
+<div class="paragraph">
+<p>如果您需要執行Cloud Volumes ONTAP 進階的支援管理功能、可以使用ONTAP 支援ONTAP 此功能的支援功能、這個功能是隨附於一個系統的管理介面。我們已將System Manager介面直接納入BlueXP、因此您不需要離開BlueXP進行進階管理。</p>
+</div>
+<div class="paragraph">
+<p>此「進階檢視」可作為Cloud Volumes ONTAP Preview搭配使用的版本（含E59.10.0及更新版本）。我們計畫改善這項體驗、並在即將推出的版本中加入增強功能。請使用產品內建聊天功能、向我們傳送意見反應。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-administer-advanced-view.html">"深入瞭解進階檢視"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援amazon-ebs彈性volume">支援Amazon EBS彈性Volume</h3>
+<div class="paragraph">
+<p>支援Amazon EBS Elastic Volumes功能搭配Cloud Volumes ONTAP 使用支援的不只能提供更好的效能和額外容量、還能讓BlueXP自動視需要增加基礎磁碟容量。</p>
+</div>
+<div class="paragraph">
+<p>從_new _ Cloud Volumes ONTAP 版本-zhustr9.11.0系統、以及GP3和IO1 EBS磁碟類型開始、即可支援彈性磁碟區。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-aws-elastic-volumes.html">"深入瞭解彈性磁碟區的支援"</a>。</p>
+</div>
+<div class="paragraph">
+<p>請注意、若要支援彈性磁碟區、連接器需要新的AWS權限：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">"ec2:DescribeVolumesModifications",
+"ec2:ModifyVolume",</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>請務必為您新增至BlueXP的每組AWS認證資料提供這些權限。 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-aws.html" target="_blank" rel="noopener">"檢視AWS的最新Connector原則"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援在共享aws子網路中部署ha配對">支援在共享AWS子網路中部署HA配對</h3>
+<div class="paragraph">
+<p>支援AWS VPC共享的支援範圍包括在內。Cloud Volumes ONTAP此版本的Connector可讓您在使用API時、將HA配對部署在AWS共用子網路中。</p>
+</div>
+<div class="paragraph">
+<p><a href="task-deploy-aws-shared-vpc.html">"瞭解如何在共用子網路中部署HA配對"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="使用服務端點時網路存取受限">使用服務端點時網路存取受限</h3>
+<div class="paragraph">
+<p>現在、當使用vnet服務端點來連接Cloud Volumes ONTAP 時、BlueXP會限制網路存取、以利連接至各個儲存帳戶。如果您停用Azure Private Link連線、則BlueXP會使用服務端點。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-enabling-private-link.html">"深入瞭解Azure Private Link與Cloud Volumes ONTAP NetApp的連線功能"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援在google-cloud中建立儲存vm">支援在Google Cloud中建立儲存VM</h3>
+<div class="paragraph">
+<p>從9.11.1版開始、Cloud Volumes ONTAP Google Cloud現在支援多個使用支援的儲存VM。從本版Connector開始、BlueXP可讓您Cloud Volumes ONTAP 使用API、在Google Cloud的「以雙埠HA配對」上建立儲存VM。</p>
+</div>
+<div class="paragraph">
+<p>若要支援建立儲存VM、Connector需要新的Google Cloud權限：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">- compute.instanceGroups.get
+- compute.addresses.get</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>請注意、您必須使用ONTAP NetApp CLI或System Manager、在單一節點系統上建立儲存VM。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-limits-gcp.html#storage-vm-limits" target="_blank" rel="noopener">"深入瞭解Google Cloud中的儲存VM限制"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-managing-svms-gcp.html">"瞭解如何在Cloud Volumes ONTAP Google Cloud中建立資料服務儲存VM以供其使用"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年5月2日">2022年5月2日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下是3.9.18版Connector所做的變更。</p>
+</div>
+<div class="sect2">
+<h3 id="版本9-11-0-cloud-volumes-ontap">版本9.11.0 Cloud Volumes ONTAP</h3>
+<div class="paragraph">
+<p>現在、BlueXP可以部署及管理Cloud Volumes ONTAP 功能更新9.11.0。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-9110-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="強化中介升級">強化中介升級</h3>
+<div class="paragraph">
+<p>當BlueXP升級HA配對的中介程式時、它現在會在刪除開機磁碟之前驗證是否有新的中介映像可用。此變更可確保在升級程序失敗時、中介程序仍能繼續順利運作。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="k8s標籤已移除">K8s標籤已移除</h3>
+<div class="paragraph">
+<p>K8s索引標籤已在先前版本中過時、現在已移除。如果您想要搭配Cloud Volumes ONTAP 使用Kubernetes搭配使用、可以將託管Kubernetes叢集新增至Canvas、作為進階資料管理的工作環境。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-kubernetes/concept-kubernetes.html" target="_blank" rel="noopener">"瞭解BlueXP中的Kubernetes資料管理"</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="azure年度合約">Azure年度合約</h3>
+<div class="paragraph">
+<p>Azure現已透過年度合約提供Essentials與Professional套裝軟體。您可以聯絡NetApp銷售代表以購買年度合約。該合約可在Azure Marketplace以私人優惠形式提供。</p>
+</div>
+<div class="paragraph">
+<p>NetApp與您分享私人優惠之後、您可以在工作環境建立期間、從Azure Marketplace訂閱年度方案。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-licensing.html">"深入瞭解授權"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="s3-glacier即時擷取">S3 Glacier即時擷取</h3>
+<div class="paragraph">
+<p>您現在可以將階層式資料儲存在Amazon S3 Glacier即時擷取儲存類別中。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-tiering.html#changing-the-storage-class-for-tiered-data">"瞭解如何變更階層式資料的儲存類別"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="connector需要新的aws權限">Connector需要新的AWS權限</h3>
+<div class="paragraph">
+<p>在單一可用度區域（AZ）中部署HA配對時、現在需要下列權限才能建立AWS分散配置群組：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">"ec2:DescribePlacementGroups",
+"iam:GetRolePolicy",</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>現在需要這些權限、才能最佳化BlueXP建立放置群組的方式。</p>
+</div>
+<div class="paragraph">
+<p>請務必為您新增至BlueXP的每組AWS認證資料提供這些權限。 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-aws.html" target="_blank" rel="noopener">"檢視AWS的最新Connector原則"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="新的google-cloud區域支援">新的Google Cloud區域支援</h3>
+<div class="paragraph">
+<p>從9.10.1版開始、下列Google Cloud區域現在支援此功能：Cloud Volumes ONTAP</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>德里（亞洲-南2）</p>
+</li>
+<li>
+<p>墨爾本（澳洲-蘇特斯塔2）</p>
+</li>
+<li>
+<p>Milan（Europe - west8）-僅限單一節點</p>
+</li>
+<li>
+<p>Santiago,（西南1）-僅限單一節點</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://cloud.netapp.com/cloud-volumes-global-regions" target="_blank" rel="noopener">"檢視Cloud Volumes ONTAP 支援區域的完整清單以供參閱"</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="在google-cloud中支援n2-standard-16">在Google Cloud中支援n2-Standard-16</h3>
+<div class="paragraph">
+<p>從Cloud Volumes ONTAP 9.10.1版開始、Google Cloud現在支援使用支援n2-Standard-16機器類型的功能。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-gcp.html" target="_blank" rel="noopener">"在Cloud Volumes ONTAP Google Cloud中檢視支援的支援功能組態"</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-cloud防火牆原則的增強功能">Google Cloud防火牆原則的增強功能</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>當您Cloud Volumes ONTAP 在Google Cloud中建立一個「叢集式HA配對」時、BlueXP現在會在VPC中顯示所有現有的防火牆原則。</p>
+<div class="paragraph">
+<p>之前、BlueXP不會在VPC-1、VPC-2或VPC-3中顯示任何沒有目標標記的原則。</p>
+</div>
+</li>
+<li>
+<p>當您Cloud Volumes ONTAP 在Google Cloud中建立一個單一節點系統時、現在您可以選擇是否要預先定義的防火牆原則、僅允許所選VPC（建議）或所有VPC內的流量。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-cloud服務帳戶的增強功能">Google Cloud服務帳戶的增強功能</h3>
+<div class="paragraph">
+<p>當您選擇要搭配Cloud Volumes ONTAP 使用的Google Cloud服務帳戶時、BlueXP現在會顯示與每個服務帳戶相關的電子郵件地址。檢視電子郵件地址可讓您更容易區分共用相同名稱的服務帳戶。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://raw.githubusercontent.com/NetAppDocs/bluexp-cloud-volumes-ontap/main/media/screenshot-google-cloud-service-account.png" alt="服務帳戶欄位的快照"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年4月3日">2022年4月3日</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="system-manager連結已移除">System Manager連結已移除</h3>
+<div class="paragraph">
+<p>我們已移除Cloud Volumes ONTAP 先前可從功能環境中取得的System Manager連結。</p>
+</div>
+<div class="paragraph">
+<p>您仍可在連線Cloud Volumes ONTAP 至該系統的網頁瀏覽器中輸入叢集管理IP位址、以連線至System Manager。 <a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-connecting-to-otc.html">"深入瞭解連線至System Manager"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="worm儲存設備充電">WORM儲存設備充電</h3>
+<div class="paragraph">
+<p>入門特惠費率已經到期、現在您將需要支付使用WORM儲存設備的費用。根據WORM磁碟區的總配置容量、每小時充電一次。這適用於新的Cloud Volumes ONTAP 和現有的不全系統。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://cloud.netapp.com/pricing" target="_blank" rel="noopener">"瞭解WORM儲存設備的定價"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年2月27日">2022年2月27日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下變更是在版本3.9.16的Connector中進行。</p>
+</div>
+<div class="sect2">
+<h3 id="重新設計volume精靈">重新設計Volume精靈</h3>
+<div class="paragraph">
+<p>我們最近推出的「建立新磁碟區精靈」、現在可從*進階分配*選項在特定的集合體上建立磁碟區。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-create-volumes.html">"瞭解如何在特定的Aggregate上建立磁碟區"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年2月9日">2022年2月9日</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="市場更新">市場更新</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Essentials套件與專業版套件現已在所有雲端供應商的市場中推出。</p>
+<div class="paragraph">
+<p>這些隨容量付費方法可讓您按小時付費、或直接向雲端供應商購買年度合約。您仍可選擇直接向NetApp購買隨容量授權。</p>
+</div>
+<div class="paragraph">
+<p>如果您在雲端市場中有現有的訂閱、您也會自動訂閱這些新服務項目。您可以在部署全新Cloud Volumes ONTAP 的運作環境時、選擇隨容量充電。</p>
+</div>
+<div class="paragraph">
+<p>如果您是新客戶、當您建立新的工作環境時、BlueXP會提示您訂閱。</p>
+</div>
+</li>
+<li>
+<p>所有雲端供應商市場的個別節點授權已過時、不再適用於新訂閱者。這包括年度合約和每小時訂閱（Explore、Standard和Premium）。</p>
+<div class="paragraph">
+<p>目前有有效訂閱的客戶仍可使用此收費方法。</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/concept-licensing.html">"深入瞭Cloud Volumes ONTAP 解適用於NetApp的授權選項"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年2月6日">2022年2月6日</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="exchange未指派的授權">Exchange未指派的授權</h3>
+<div class="paragraph">
+<p>如果Cloud Volumes ONTAP 您擁有尚未使用的未指派節點型支援功能、您現在可以將授權轉換成Cloud Backup授權、Cloud Data Sense授權或Cloud Tiering授權、以交換授權。</p>
+</div>
+<div class="paragraph">
+<p>此動作會撤銷Cloud Volumes ONTAP 此「不支援」授權、並針對相同到期日的服務建立等值金額的授權。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/task-manage-node-licenses.html#exchange-unassigned-node-based-licenses">"瞭解如何交換未指派的節點型授權"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年1月30日">2022年1月30日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下變更是在版本3.9.15的Connector中提出的。</p>
+</div>
+<div class="sect2">
+<h3 id="重新設計授權選項">重新設計授權選項</h3>
+<div class="paragraph">
+<p>我們重新設計了授權選擇畫面、以建立全新Cloud Volumes ONTAP 的運作環境。這些變更突顯了2021年7月推出的附加容量充電方法、並透過雲端供應商市場支援即將推出的產品。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="數位錢包更新">數位錢包更新</h3>
+<div class="paragraph">
+<p>我們在Cloud Volumes ONTAP 單一索引標籤中整合了各種不完整的授權、藉此更新*數位錢包*。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2022年1月2日">2022年1月2日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下變更是在3.9.14版的Connector中提出的。</p>
+</div>
+<div class="sect2">
+<h3 id="支援其他azure-vm類型">支援其他Azure VM類型</h3>
+<div class="paragraph">
+<p>從9.10.1版開始、下列VM類型現在可在Microsoft Azure中支援此功能：Cloud Volumes ONTAP</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>E4ds_v4</p>
+</li>
+<li>
+<p>E8ds_v4</p>
+</li>
+<li>
+<p>E32ds_v4</p>
+</li>
+<li>
+<p>E48ds_v4</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>前往 <a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes" target="_blank" rel="noopener">"發行說明 Cloud Volumes ONTAP"</a> 如需支援組態的詳細資訊、請參閱。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flexclone充電更新">FlexClone充電更新</h3>
+<div class="paragraph">
+<p>如果您使用 <a href="concept-licensing.html" target="_blank" rel="noopener">"容量型授權"</a> 對於本產品、FlexClone磁碟區所使用的容量不再需要付費。Cloud Volumes ONTAP</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="現在顯示充電方法">現在顯示充電方法</h3>
+<div class="paragraph">
+<p>現在、BlueXP會在Cloud Volumes ONTAP 畫版的右側面板中顯示每個運作環境的充電方法。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot-cvo-charging-method.png" alt="這是一個快照、顯示Cloud Volumes ONTAP 從Canvas.選取工作環境後、右側面板中出現的功能適用於功能不正常的環境充電方法。"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="選擇您的使用者名稱">選擇您的使用者名稱</h3>
+<div class="paragraph">
+<p>當您建立Cloud Volumes ONTAP 一個可運作的環境時、現在可以選擇輸入您偏好的使用者名稱、而非預設的管理使用者名稱。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot-cvo-user-name.png" alt="工作環境精靈中的「詳細資料與認證」頁面快照、您可以在其中指定使用者名稱。"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="volume建立增強功能">Volume建立增強功能</h3>
+<div class="paragraph">
+<p>我們在Volume建立方面做了一些增強：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>我們重新設計了「建立Volume精靈」、以方便使用。</p>
+</li>
+<li>
+<p>您新增至磁碟區的標記現在已與應用程式範本服務相關聯、可協助您組織及簡化資源管理。</p>
+</li>
+<li>
+<p>您現在可以選擇NFS的自訂匯出原則。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot-cvo-create-volume.png" alt="建立新Volume時顯示「Protocol（傳輸協定）」頁面的快照。"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2021年11月28日">2021年11月28日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下是連接器3.9.13版本的變更。</p>
+</div>
+<div class="sect2">
+<h3 id="cloud-volumes-ontap-9-10-1">Cloud Volumes ONTAP 9.10.1</h3>
+<div class="paragraph">
+<p>BlueXP 現在可以部署及管理 Cloud Volumes ONTAP 9.10.1 。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-9101-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="netapp-keystone-訂閱">NetApp Keystone 訂閱</h3>
+<div class="paragraph">
+<p>您現在可以使用 Keystone 訂閱來支付 Cloud Volumes ONTAP HA 配對費用。</p>
+</div>
+<div class="paragraph">
+<p>Keystone Subscription 是一項以隨成長付費訂閱為基礎的服務、可為偏好使用 OpEx 消費模式、而不選擇前期資本支出或租賃模式的使用者、提供順暢的混合雲體驗。</p>
+</div>
+<div class="paragraph">
+<p>您可以從 BlueXP 部署的所有新版 Cloud Volumes ONTAP 都支援 Keystone 訂閱。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.netapp.com/services/keystone/" target="_blank" rel="noopener">"深入瞭解 NetApp Keystone 訂閱"</a>。</p>
+</li>
+<li>
+<p><a href="task-manage-keystone.html" target="_blank" rel="noopener">"瞭解如何開始使用 BlueXP 中的 Keystone 訂閱"</a>。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="全新aws區域支援">全新AWS區域支援</h3>
+<div class="paragraph">
+<p>目前支援AWS亞太地區（大阪）（亞太東北3區）的支援。Cloud Volumes ONTAP</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="連接埠減量">連接埠減量</h3>
+<div class="paragraph">
+<p>Azure中的任何一組節點系統和HA配對、連接埠8023和49000都不再開放於Cloud Volumes ONTAP 支援的整套系統上。</p>
+</div>
+<div class="paragraph">
+<p>此變更適用於從Cloud Volumes ONTAP 連接器3.9.13版開始的_new _版。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2021年10月4日">2021年10月4日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下是3.9.11版本的Connector所做的變更。</p>
+</div>
+<div class="sect2">
+<h3 id="零點9-10-0-cloud-volumes-ontap">零點9.10.0 Cloud Volumes ONTAP</h3>
+<div class="paragraph">
+<p>BlueXP 現在可以部署及管理 Cloud Volumes ONTAP 9.10.0 。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-9100-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="縮短部署時間">縮短部署時間</h3>
+<div class="paragraph">
+<p>我們縮短了在Cloud Volumes ONTAP Microsoft Azure或Google Cloud中部署運作環境所需的時間（啟用正常寫入速度時）。部署時間現在平均縮短3-4分鐘。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2021年9月2日">2021年9月2日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connector 3.9.10 版本推出下列變更。</p>
+</div>
+<div class="sect2">
+<h3 id="azure中由客戶管理的加密金鑰">Azure中由客戶管理的加密金鑰</h3>
+<div class="paragraph">
+<p>資料會使用在Cloud Volumes ONTAP Azure中的功能自動加密 <a href="https://azure.microsoft.com/en-us/documentation/articles/storage-service-encryption/" target="_blank" rel="noopener">"Azure 儲存服務加密"</a> 使用Microsoft管理的金鑰。但您現在可以改為使用客戶管理的加密金鑰、只要完成下列步驟即可：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>從Azure建立金鑰保存庫、然後在該保存庫中產生金鑰。</p>
+</li>
+<li>
+<p>從BlueXP中、使用API建立Cloud Volumes ONTAP 使用金鑰的功能不受影響的環境。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="task-set-up-azure-encryption.html">"深入瞭解這些步驟"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2021年7月7日">2021年7月7日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下列變更是隨附於Connector 3.9.8版中。</p>
+</div>
+<div class="sect2">
+<h3 id="全新的充電方法">全新的充電方法</h3>
+<div class="paragraph">
+<p>全新的充電方法Cloud Volumes ONTAP 可供使用。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>容量型BYOL</strong>：容量型授權可讓您依照Cloud Volumes ONTAP 容量的每一TiB付費。授權與您的NetApp帳戶有關、只Cloud Volumes ONTAP 要您的授權有足夠的容量、您就能建立為多個版本的支援系統。容量型授權以套件形式提供、包括_Essentials或_Professional_。</p>
+</li>
+<li>
+<p>* Freemium產品*：Freemium可讓您免費使用Cloud Volumes ONTAP NetApp提供的所有功能（雲端供應商仍需付費）。每個系統的資源配置容量上限為500 GiB、而且沒有支援合約。您最多可擁有10個Freemium系統。</p>
+<div class="paragraph">
+<p><a href="concept-licensing.html">"深入瞭解這些授權選項"</a>。</p>
+</div>
+<div class="paragraph">
+<p>以下是您可以選擇的充電方法範例：</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvo_charging_methods.png" alt="「功能性環境精靈」的螢幕快照、Cloud Volumes ONTAP 您可以在其中選擇充電方法。"></span></p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="worm儲存設備可供一般使用">WORM儲存設備可供一般使用</h3>
+<div class="paragraph">
+<p>一次寫入、多次讀取（WORM）儲存設備已不再處於預覽模式、現在可用於Cloud Volumes ONTAP 搭配使用。 <a href="concept-worm.html">"深入瞭解 WORM 儲存設備"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援aws中的m5dn-24xlarge">支援AWS中的m5dn.24xlarge</h3>
+<div class="paragraph">
+<p>從9.9.1版開始、Cloud Volumes ONTAP 支援m5dn.24xLarge執行個體類型的功能如下：PAYGO Premium、自帶授權（BYOL）和Freemium。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-aws.html" target="_blank" rel="noopener">"在Cloud Volumes ONTAP AWS中檢視支援的支援組態"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="選取現有的azure資源群組">選取現有的Azure資源群組</h3>
+<div class="paragraph">
+<p>在Cloud Volumes ONTAP Azure中建立一套功能完善的系統時、您現在可以選擇現有的虛擬機器資源群組及其相關資源。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_azure_resource_group.png" alt="「建立工作環境」精靈的快照、您可以在其中選取現有的資源群組。"></span></p>
+</div>
+<div class="paragraph">
+<p>下列權限可讓BlueXP在Cloud Volumes ONTAP 部署失敗或刪除時、從資源群組中移除一些不必要的資源：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">"Microsoft.Network/privateEndpoints/delete",
+"Microsoft.Compute/availabilitySets/delete",</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>請務必為您新增至BlueXP的每組Azure認證提供這些權限。 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-azure.html" target="_blank" rel="noopener">"檢視Azure最新的Connector原則"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="azure中現在已停用blob公開存取">Azure中現在已停用BLOB公開存取</h3>
+<div class="paragraph">
+<p>為Cloud Volumes ONTAP 安全性增強、在建立適用於的儲存帳戶時、BlueXP現在會停用* Blob公有存取*。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="azure-private-link增強功能">Azure Private Link增強功能</h3>
+<div class="paragraph">
+<p>根據預設、BlueXP現在可在開機診斷儲存帳戶上啟用Azure Private Link連線、以供新Cloud Volumes ONTAP 的作業系統使用。</p>
+</div>
+<div class="paragraph">
+<p>這表示Cloud Volumes ONTAP 適用於此功能的_all_儲存帳戶現在將使用私有連結。</p>
+</div>
+<div class="paragraph">
+<p><a href="task-enabling-private-link.html">"深入瞭解如何搭配 Cloud Volumes ONTAP 使用 Azure 私有 Link 搭配使用功能"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-cloud中的平衡式持續磁碟">Google Cloud中的平衡式持續磁碟</h3>
+<div class="paragraph">
+<p>從9.9.1版開始、Cloud Volumes ONTAP 支援平衡式持續磁碟（PD平衡）。</p>
+</div>
+<div class="paragraph">
+<p>這些SSD可提供較低的每GiB IOPS、藉此平衡效能與成本。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-cloud不再支援custom-4-16384">Google Cloud不再支援Custom-4-16384</h3>
+<div class="paragraph">
+<p>全新Cloud Volumes ONTAP 的功能不再支援custom 4-16384機器類型。</p>
+</div>
+<div class="paragraph">
+<p>如果您在此機器類型上執行現有的系統、您可以繼續使用、但我們建議您切換至n2-Standard-4機器類型。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes/reference-configs-gcp.html" target="_blank" rel="noopener">"在Cloud Volumes ONTAP GCP中檢視支援的組態"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2021年5月30日">2021年5月30日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下是3.9.7版本的Connector所帶來的變更。</p>
+</div>
+<div class="sect2">
+<h3 id="aws全新專業套件">AWS全新專業套件</h3>
+<div class="paragraph">
+<p>全新的專業套裝軟體可Cloud Volumes ONTAP 讓您Cloud Backup Service 使用AWS Marketplace的年度合約來搭售各種功能。每TiB付款。此訂閱無法讓您備份內部資料。</p>
+</div>
+<div class="paragraph">
+<p>如果您選擇此付款選項、Cloud Volumes ONTAP 您可以透過EBS磁碟、為每個支援系統配置最多2個PIB、並分層至S3物件儲存設備（單一節點或HA）。</p>
+</div>
+<div class="paragraph">
+<p>前往 <a href="https://aws.amazon.com/marketplace/pp/prodview-q7dg6zwszplri" target="_blank" rel="noopener">"AWS Marketplace頁面"</a> 若要檢視價格詳細資料、請前往 <a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-relnotes" target="_blank" rel="noopener">"發行說明 Cloud Volumes ONTAP"</a> 以深入瞭解此授權選項。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aws中ebs磁碟區上的標記">AWS中EBS磁碟區上的標記</h3>
+<div class="paragraph">
+<p>現在、當BlueXP建立全新Cloud Volumes ONTAP 的運作環境時、它會將標記新增至EBS磁碟區。這些標記是Cloud Volumes ONTAP 在部署完畢後才建立的。</p>
+</div>
+<div class="paragraph">
+<p>如果您的組織使用服務控制原則（SCP）來管理權限、這項變更將有助益。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="自動分層原則的最低冷卻時間">自動分層原則的最低冷卻時間</h3>
+<div class="paragraph">
+<p>如果您使用_auto_分層原則在磁碟區上啟用資料分層、您現在可以使用API調整最小冷卻時間。</p>
+</div>
+<div class="paragraph">
+<p><a href="task-tiering.html#changing-the-cooling-period-for-the-auto-tiering-policy">"瞭解如何調整最低冷卻週期。"</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="增強自訂匯出原則">增強自訂匯出原則</h3>
+<div class="paragraph">
+<p>建立新的NFS Volume時、BlueXP現在會以遞增順序顯示自訂匯出原則、讓您更容易找到所需的匯出原則。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="刪除舊的雲端快照">刪除舊的雲端快照</h3>
+<div class="paragraph">
+<p>現在、BlueXP會刪除在Cloud Volumes ONTAP 部署完一套系統時、以及每次關機時所建立的舊版根磁碟和開機磁碟雲端快照。只有兩個最新的快照會同時保留給根磁碟區和開機磁碟區。</p>
+</div>
+<div class="paragraph">
+<p>這項增強功能可移除不再需要的快照、協助降低雲端供應商的成本。</p>
+</div>
+<div class="paragraph">
+<p>請注意、Connector需要新的權限才能刪除Azure快照。 <a href="https://docs.netapp.com/us-en/bluexp-setup-admin/reference-permissions-azure.html" target="_blank" rel="noopener">"檢視Azure最新的Connector原則"</a>。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">"Microsoft.Compute/snapshots/delete"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2021年5月24日">2021年5月24日</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="部分9-9-1-cloud-volumes-ontap">部分9.9.1 Cloud Volumes ONTAP</h3>
+<div class="paragraph">
+<p>BlueXP 現在可以部署及管理 Cloud Volumes ONTAP 9.9.1 。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-991-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2021年4月11日">2021年4月11日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下列變更是隨附於3.9.5版的Connector所做的變更。</p>
+</div>
+<div class="sect2">
+<h3 id="邏輯空間報告">邏輯空間報告</h3>
+<div class="paragraph">
+<p>現在、BlueXP可針對其建立的Cloud Volumes ONTAP 初始儲存虛擬機器、提供邏輯空間報告功能。</p>
+</div>
+<div class="paragraph">
+<p>以邏輯方式回報空間時ONTAP 、此功能會報告磁碟區空間、讓儲存效率功能所節省的所有實體空間也會報告為已使用。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援aws中的gp3磁碟">支援AWS中的GP3磁碟</h3>
+<div class="paragraph">
+<p>從9.7版開始、支援_通用SSD（GP3）_磁碟。Cloud Volumes ONTAPGP3磁碟是成本最低的SSD、可在各種工作負載的成本與效能之間取得平衡。</p>
+</div>
+<div class="paragraph">
+<p><a href="task-planning-your-config.html#sizing-your-system-in-aws">"深入瞭解搭配Cloud Volumes ONTAP 使用GP3磁碟的相關資訊"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aws不再支援冷hdd磁碟">AWS不再支援冷HDD磁碟</h3>
+<div class="paragraph">
+<p>不再支援冷硬碟（SC1）磁碟。Cloud Volumes ONTAP</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="適用於azure儲存帳戶的tls-1-2">適用於Azure儲存帳戶的TLS 1.2</h3>
+<div class="paragraph">
+<p>當BlueXP在Azure中建立儲存帳戶以Cloud Volumes ONTAP 供支援時、儲存帳戶的TLS版本現在是1.2版。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2021年3月8日">2021年3月8日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下是3.9.4版連接器的變更。</p>
+</div>
+<div class="sect2">
+<h3 id="cloud-volumes-ontap-9-9-0">Cloud Volumes ONTAP 9.9.0</h3>
+<div class="paragraph">
+<p>現在、BlueXP可以部署及管理Cloud Volumes ONTAP 更新9.1.0。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-volumes-ontap-990-relnotes" target="_blank" rel="noopener">"深入瞭Cloud Volumes ONTAP 解本版的更新功能"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援aws-c2s環境">支援AWS C2S環境</h3>
+<div class="paragraph">
+<p>您現在可以在Cloud Volumes ONTAP AWS商業雲端服務（C2S）環境中部署S效能 指數9.8。</p>
+</div>
+<div class="paragraph">
+<p><a href="task-getting-started-aws-c2s.html">"瞭解如何開始使用C2S"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="使用客戶管理的cmk進行aws加密">使用客戶管理的CMK進行AWS加密</h3>
+<div class="paragraph">
+<p>BlueXP一向能讓您Cloud Volumes ONTAP 使用AWS金鑰管理服務（KMS）來加密支援的資料。從Cloud Volumes ONTAP 供應支援支援支援的9.9到0開始、如果您選擇客戶管理的CMK、EBS磁碟上的資料和階層至S3的資料都會加密。以前只會加密EBS資料。</p>
+</div>
+<div class="paragraph">
+<p>請注意Cloud Volumes ONTAP 、您必須提供使用CMK的權限給IAM角色。</p>
+</div>
+<div class="paragraph">
+<p><a href="task-setting-up-kms.html">"深入瞭解如何設定AWS KMS Cloud Volumes ONTAP 搭配功能"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援azure-dod">支援Azure DoD</h3>
+<div class="paragraph">
+<p>您現在可以在Cloud Volumes ONTAP Azure Department of Defence（DoD）Impact Level 6（IL6）中部署整套功能。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-cloud的ip位址減量">Google Cloud的IP位址減量</h3>
+<div class="paragraph">
+<p>我們已經減少Cloud Volumes ONTAP 了在Google Cloud中使用NetApp 9.8及更新版本所需的IP位址數量。根據預設、需要少一個IP位址（我們將叢集間LIF與節點管理LIF統一化）。您也可以選擇在使用API時跳過SVM管理LIF的建立、如此可減少額外IP位址的需求。</p>
+</div>
+<div class="paragraph">
+<p><a href="reference-networking-gcp.html#requirements-for-cloud-volumes-ontap">"深入瞭解Google Cloud的IP位址需求"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-cloud的共享vpc支援">Google Cloud的共享VPC支援</h3>
+<div class="paragraph">
+<p>當您在Cloud Volumes ONTAP Google Cloud中部署一組「叢集式HA」配對時、現在您可以選擇VPC-1、VPC-2和VPC-3的「共享式VPC」。以前只有VPC-0可以是共享VPC。支援此變更Cloud Volumes ONTAP 的更新版本為支援。</p>
+</div>
+<div class="paragraph">
+<p><a href="reference-networking-gcp.html">"深入瞭解Google Cloud網路需求"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2021年1月4日">2021年1月4日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下列變更是隨附於Connector 3.9.2版本中。</p>
+</div>
+<div class="sect2">
+<h3 id="aws-outs">AWS outs</h3>
+<div class="paragraph">
+<p>幾個月前、我們宣佈 Cloud Volumes ONTAP 、在 Amazon Web Services （ AWS ）的「 Ready 」（就緒）頭銜中、此產品已獲獎。今天、我們很高興宣布、我們已驗證了BlueXP和Cloud Volumes ONTAP 以AWS outs為基礎的功能。</p>
+</div>
+<div class="paragraph">
+<p>如果您有 AWS Outpost 、您可以 Cloud Volumes ONTAP 在「工作環境」精靈中選取 Outpost VPC 、在該 Outpost 中部署功能不全。體驗與 AWS 中的任何其他 VPC 相同。請注意、您必須先在 AWS Outpost 部署 Connector 。</p>
+</div>
+<div class="paragraph">
+<p>有幾項限制可以指出：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>目前僅 Cloud Volumes ONTAP 支援單一節點的不支援系統</p>
+</li>
+<li>
+<p>您可以搭配 Cloud Volumes ONTAP 使用的 EC2 執行個體僅限於您的據點所提供的項目</p>
+</li>
+<li>
+<p>目前僅支援通用SSD（gp2）</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援azure地區的ultra-ssd-vnvram">支援Azure地區的Ultra SSD VNVRAM</h3>
+<div class="paragraph">
+<p>當您在單一節點系統上使用 E32s_v3 VM 類型時、可使用 Ultra SSD 做為 VNVRAM Cloud Volumes ONTAP <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/disks-enable-ultra-ssd" target="_blank" rel="noopener">"在任何受支援的 Azure 地區"</a>。</p>
+</div>
+<div class="paragraph">
+<p>VNVRAM 提供更佳的寫入效能。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="選擇azure中的可用度區域">選擇Azure中的可用度區域</h3>
+<div class="paragraph">
+<p>您現在可以選擇要在其中部署單一節點 Cloud Volumes ONTAP 的可用度區域。如果您未選擇AZ、則BlueXP會為您選擇一個。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_azure_az.gif" alt="選擇區域後可用的「可用度區域」下拉式清單快照。"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-cloud中的較大磁碟">Google Cloud中的較大磁碟</h3>
+<div class="paragraph">
+<p>目前支援 GCP 中的 64 TB 磁碟。 Cloud Volumes ONTAP</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="註">
+</td>
+<td class="content">
+由於 GCP 限制、單獨使用磁碟的最大系統容量仍維持在 256 TB 。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="google-cloud中的新機器類型">Google Cloud中的新機器類型</h3>
+<div class="paragraph">
+<p>目前支援下列機器類型： Cloud Volumes ONTAP</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>n2-Standard-4 （含 Explore 授權）及 BYOL</p>
+</li>
+<li>
+<p>n2-Standard/8 （含標準授權）及 BYOL</p>
+</li>
+<li>
+<p>n2-Standard-32 （含 Premium 授權）及 BYOL</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2020年11月3日">2020年11月3日</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下是3.9.0版的Connector所做的變更。</p>
+</div>
+<div class="sect2">
+<h3 id="azure-private-link-cloud-volumes-ontap-for-功能">Azure Private Link Cloud Volumes ONTAP for 功能</h3>
+<div class="paragraph">
+<p>根據預設、BlueXP現在可在Cloud Volumes ONTAP 支援的儲存帳戶之間啟用Azure Private Link連線。私有連結可保護 Azure 中端點之間的連線安全。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.microsoft.com/en-us/azure/private-link/private-link-overview" target="_blank" rel="noopener">"深入瞭解 Azure 私有連結"</a></p>
+</li>
+<li>
+<p><a href="task-enabling-private-link.html" target="_blank" rel="noopener">"深入瞭解如何搭配 Cloud Volumes ONTAP 使用 Azure 私有 Link 搭配使用功能"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/zh-tw/test/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/zh-tw/test/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">在本頁</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2024 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">使用條款</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">隱私權政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie 政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie 設定</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">傳送有關本網頁的意見反應</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/test/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/test/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/test/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/test/js/ie-tabbed-blocks.js'></script>
+    <script src='/zh-tw/test/js/ie-sidebar.js'></script>
+  </body>
+
+</html>

@@ -1,0 +1,3128 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>提供授權Cloud Volumes ONTAP | NetApp Documentation</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="提供授權Cloud Volumes ONTAP | NetApp Documentation" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/test/concept-licensing.html" />
+	<meta property="og:description" content="有多種授權選項可供Cloud Volumes ONTAP 選擇。每個選項都能讓您選擇符合需求的組態。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/test/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="有多種授權選項可供Cloud Volumes ONTAP 選擇。每個選項都能讓您選擇符合需求的組態。">
+  <meta name="keywords" content=" freemium, professional, essentials, licensing, licenses, cloud volumes ontap charging, cloud volumes ontap licenses, cloud volumes ontap licensing, cvo licenses, cvo licensing, byol, bring your own license, paygo, pay as you go, keystone flex, keystone, cloud backup, digital wallet"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/test/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="NetApp Documentation" href="/zh-tw/test/feed.xml"><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/test/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/zh-tw/test/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/test/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/zh-tw/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/test/concept-licensing.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/test/concept-licensing.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/test/js/na-search.js'></script><script src='/zh-tw/test/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/zh-tw/test/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/test/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/test/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/test/js/jszip.min.js'></script><script src='/zh-tw/test/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="gcp">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/zh-tw/test/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/tw">
+                <image id="ie-header-logo" src="/zh-tw/test/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/support-and-training/documentation/">文件</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/zh-tw/test/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">繁體中文</span>
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/zh-tw/test/concept-licensing.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/test/concept-licensing.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/test/concept-licensing.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ko-kr/test/concept-licensing.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/test/concept-licensing.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/test/concept-licensing.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/es-es/test/concept-licensing.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/fr-fr/test/concept-licensing.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/test/concept-licensing.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/zh-tw/test/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">所有 NetApp</span>
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">支援</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">知識庫</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">訓練</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/zh-tw/test/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/zh-tw/test/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">所有文件</a>
+    </li>
+    
+    
+    <li class="">
+      <a href="https://docs.netapp.com/us-en/cloud/">雲端文件</a>
+    </li>
+    
+
+    
+    <li class="">
+      <a href="https://docs.netapp.com/zh-tw/bluexp-family/">
+        BlueXP
+      </a>
+    </li>
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/zh-tw/test/">-->
+      Cloud Volumes ONTAP
+    <!--</a>-->
+  </div>
+</div>
+
+            
+<div id="ie-selectors"><div id="version-dropdown-new" class="custom-dropdown" >
+  <div class="custom-dropdown-select unselected" title=" 9.13.1">
+    <label>版本</label>
+    <span translate="no" class="notranslate">9.13.1</span>
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown version invisible" />
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup version" />
+  </div>
+
+  <ul class="custom-dropdown-menu"><li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.13.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9130-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.13.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9121-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.12.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9120-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.12.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9111-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.11.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9110-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.11.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9101-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.10.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-9100-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.10.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-991-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.9.1</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-990-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.9.0</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-98-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.8</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-97-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.7</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-96-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.6</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-95-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.5</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-94-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.4</span></span>
+      </a>
+                     
+    </li>
+    <li>
+      
+      <a href="https://docs.netapp.com/zh-tw/cloud-volumes-ontap-93-relnotes/concept-licensing.html" target="_self">
+        <span translate="no" class="notranslate"><span class="version"> 9.3</span></span>
+      </a>
+                     
+    </li>
+    
+  </ul>
+</div>
+<div id="flavor-dropdown" class="custom-dropdown" data-url="/zh-tw/test/concept-licensing.html">
+  
+  
+  <div class="custom-dropdown-select selected" title="Google Cloud">
+    <label>雲端供應商</label>
+    <div>Google Cloud</div>  
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown flavor invisible" />
+    <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup flavor" />
+    <!--<img src="/zh-tw/test/images/dismiss.svg" class="custom-icon selected" id="remove-flavor" alt="" />-->
+  </div>
+  
+
+  <ul class="custom-dropdown-menu">
+    
+    
+    <li data-value="aws" data-url="/zh-tw/test/aws/concept-licensing.html">Amazon Web Services
+    </li>
+    
+    
+    
+    <li data-value="gcp" data-url="/zh-tw/test/gcp/concept-licensing.html">Google Cloud
+    </li>
+    
+    
+    
+    <li data-value="azure" data-url="/zh-tw/test/azure/concept-licensing.html">Microsoft Azure
+    </li>
+    
+    
+    <li data-url="/zh-tw/test/concept-licensing.html">所有雲端供應商</li>
+  </ul>
+</div>
+</div>
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/zh-tw/test/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/zh-tw/test/gcp/search.html" 
+        data-type="widget"
+        data-placeholder="搜尋說明文件"
+        data-no-results-found="找不到 {query} 的結果"
+        data-did-you-mean="搜尋 {suggestion}。"
+        data-no-results-found-did-you-mean="找不到 {query} 的結果。您的意思是 {suggestion} 嗎？"
+        data-results-found="找到 {hitCount} 個結果"
+        data-error-message="發生錯誤。請再試一次。"
+        data-error-reset="重設搜尋"
+        data-sk-es-pf-indexes="" 
+        data-flavor="gcp">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="文件Cloud Volumes ONTAP"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/test/gcp/index.html">
+        文件Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="版本資訊"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 版本資訊</div>-->
+         版本資訊
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增功能"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/whats-new.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/whats-new.html">
+        新增功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="已知限制"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/reference-limitations.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/reference-limitations.html">
+        已知限制
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="發行說明 Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/whats-new-ontap.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/whats-new-ontap.html">
+        發行說明 Cloud Volumes ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用</div>-->
+         開始使用
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解 Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-overview-cvo.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/concept-overview-cvo.html">
+        深入瞭解 Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="支援的新部署版本"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/reference-versions.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/reference-versions.html">
+        支援的新部署版本
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用Google Cloud"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用Google Cloud</div>-->
+         開始使用Google Cloud
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="快速入門"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-getting-started-gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-getting-started-gcp.html">
+        快速入門
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="規劃您的組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-planning-your-config-gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-planning-your-config-gcp.html">
+        規劃您的組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定您的網路"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/reference-networking-gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/reference-networking-gcp.html">
+        設定您的網路
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="規劃VPC服務控制"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/reference-vpc-service-controls-gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/reference-vpc-service-controls-gcp.html">
+        規劃VPC服務控制
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立服務帳戶"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-creating-gcp-service-account.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-creating-gcp-service-account.html">
+        建立服務帳戶
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用客戶管理的加密金鑰"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-setting-up-gcp-encryption.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-setting-up-gcp-encryption.html">
+        使用客戶管理的加密金鑰
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-set-up-licensing-google.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-set-up-licensing-google.html">
+        設定授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在Cloud Volumes ONTAP Google Cloud上啟動"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-deploying-gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-deploying-gcp.html">
+        在Cloud Volumes ONTAP Google Cloud上啟動
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google Cloud Platform映像驗證"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Google Cloud Platform映像驗證</div>-->
+         Google Cloud Platform映像驗證
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="總覽"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-gcp-image-verification.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/gcp/concept-gcp-image-verification.html">
+        總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將GCP上的映像轉換成原始格式"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-gcp-convert-image-raw.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/gcp/task-gcp-convert-image-raw.html">
+        將GCP上的映像轉換成原始格式
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="影像簽名驗證"
+      data-li-level="4" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-4  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 影像簽名驗證</div>-->
+         影像簽名驗證
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="驗證GCP簽署映像"
+      data-li-level="5#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-gcp-verify-signed-image.html" 
+    ><a class="ie-sidebar-menuitem-5 " href="/zh-tw/test/gcp/concept-gcp-verify-signed-image.html">
+        驗證GCP簽署映像
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用OpenSSL驗證內容"
+      data-li-level="5#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-verify-openssl-gcp.html" 
+    ><a class="ie-sidebar-menuitem-5 " href="/zh-tw/test/gcp/task-verify-openssl-gcp.html">
+        使用OpenSSL驗證內容
+      </a></li></ul></li></ul></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用Cloud Volumes ONTAP"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 使用Cloud Volumes ONTAP</div>-->
+         使用Cloud Volumes ONTAP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="授權管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 授權管理</div>-->
+         授權管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理容量型授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-manage-capacity-licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-manage-capacity-licenses.html">
+        管理容量型授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理基礎概念訂閱"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-manage-keystone.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-manage-keystone.html">
+        管理基礎概念訂閱
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理節點型授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-manage-node-licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-manage-node-licenses.html">
+        管理節點型授權
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Volume與LUN管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Volume與LUN管理</div>-->
+         Volume與LUN管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-create-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-create-volumes.html">
+        建立磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理現有磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-manage-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-manage-volumes.html">
+        管理現有磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將非作用中資料分層至物件儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-tiering.html">
+        將非作用中資料分層至物件儲存設備
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將LUN連接至主機"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-connect-lun.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-connect-lun.html">
+        將LUN連接至主機
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="利用NetApp加速資料存取FlexCache"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-accelerate-data-access.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-accelerate-data-access.html">
+        利用NetApp加速資料存取FlexCache
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Aggregate管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Aggregate管理</div>-->
+         Aggregate管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立Aggregate"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-create-aggregates.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-create-aggregates.html">
+        建立Aggregate
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理現有的集合體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-manage-aggregates.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-manage-aggregates.html">
+        管理現有的集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理容量設定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-manage-capacity-settings.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-manage-capacity-settings.html">
+        管理容量設定
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存VM管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 儲存VM管理</div>-->
+         儲存VM管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在BlueXP中使用儲存VM"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-managing-svms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-managing-svms.html">
+        在BlueXP中使用儲存VM
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在Google Cloud中建立儲存VM"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-managing-svms-gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-managing-svms-gcp.html">
+        在Google Cloud中建立儲存VM
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 SVM 災難恢復"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-manage-svm-dr.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-manage-svm-dr.html">
+        設定 SVM 災難恢復
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安全性與資料加密"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 安全性與資料加密</div>-->
+         安全性與資料加密
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 NetApp 加密來加密磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-encrypting-volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-encrypting-volumes.html">
+        使用 NetApp 加密來加密磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="利用Google Cloud KMS管理金鑰"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-google-key-manager.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-google-key-manager.html">
+        利用Google Cloud KMS管理金鑰
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="改善勒索軟體保護"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-protecting-ransomware.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-protecting-ransomware.html">
+        改善勒索軟體保護
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 系統管理</div>-->
+         系統管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="升級Cloud Volumes ONTAP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-updating-ontap-cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-updating-ontap-cloud.html">
+        升級Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊隨用隨付系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-registering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-registering.html">
+        註冊隨用隨付系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="停止並啟動系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-managing-state.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-managing-state.html">
+        停止並啟動系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="同步系統時間"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-sync-time.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-sync-time.html">
+        同步系統時間
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="修改系統寫入速度"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-modify-write-speed.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-modify-write-speed.html">
+        修改系統寫入速度
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更系統密碼"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-change-password.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-change-password.html">
+        變更系統密碼
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增、移除或刪除系統"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 新增、移除或刪除系統</div>-->
+         新增、移除或刪除系統
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增現有系統"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-adding-systems.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/gcp/task-adding-systems.html">
+        新增現有系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="移除工作環境"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-removing.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/gcp/task-removing.html">
+        移除工作環境
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="刪除系統"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-deleting-working-env.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/gcp/task-deleting-working-env.html">
+        刪除系統
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Google Cloud管理"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Google Cloud管理</div>-->
+         Google Cloud管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="變更機器類型"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-change-gcp-machine.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/test/gcp/task-change-gcp-machine.html">
+        變更機器類型
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統管理員的系統管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-administer-advanced-view.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-administer-advanced-view.html">
+        系統管理員的系統管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="從CLI進行管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-connecting-to-otc.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-connecting-to-otc.html">
+        從CLI進行管理
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="系統健全狀況與事件"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 系統健全狀況與事件</div>-->
+         系統健全狀況與事件
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="驗AutoSupport 證此設定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-verify-autosupport.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-verify-autosupport.html">
+        驗AutoSupport 證此設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 EMS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-configure-ems.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/task-configure-ems.html">
+        設定 EMS
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="概念"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 概念</div>-->
+         概念
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="授權"
+      data-li-level="2#" 
+      class="  ie-sidebar-selected    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-licensing.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/concept-licensing.html">
+        授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存設備"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 儲存設備</div>-->
+         儲存設備
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="用戶端傳輸協定"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-client-protocols.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/concept-client-protocols.html">
+        用戶端傳輸協定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="磁碟與集合體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/concept-storage.html">
+        磁碟與集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="資料分層"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-data-tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/concept-data-tiering.html">
+        資料分層
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存管理"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-storage-management.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/concept-storage-management.html">
+        儲存管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="寫入速度"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-write-speed.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/concept-write-speed.html">
+        寫入速度
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Flash 快取"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-flash-cache.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/concept-flash-cache.html">
+        Flash 快取
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="WORM 儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-worm.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/concept-worm.html">
+        WORM 儲存設備
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="高可用度配對"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 高可用度配對</div>-->
+         高可用度配對
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="GCP 中的 HA 配對"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-ha-google-cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/concept-ha-google-cloud.html">
+        GCP 中的 HA 配對
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存設備接管期間的行動"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-degraded-ha-pair.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/test/gcp/concept-degraded-ha-pair.html">
+        儲存設備接管期間的行動
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安全性"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-security.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/concept-security.html">
+        安全性
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="效能"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-performance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/concept-performance.html">
+        效能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理節點型BYOL"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-license-management.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/concept-license-management.html">
+        管理節點型BYOL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AutoSupport 與 Active IQ Digital Advisor"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/concept-active-iq.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/concept-active-iq.html">
+        AutoSupport 與 Active IQ Digital Advisor
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="預設組態"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/reference-default-configs.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/reference-default-configs.html">
+        預設組態
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="知識與支援"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/test/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/test/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 知識與支援</div>-->
+         知識與支援
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊以取得支援"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-support-registration.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/task-support-registration.html">
+        註冊以取得支援
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="取得協助"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/task-get-help.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/test/gcp/task-get-help.html">
+        取得協助
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="法律聲明"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/concept-licensing.html" 
+      dale-entry-url="/legal-notices.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/test/gcp/legal-notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/zh-tw/test"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/zh-tw/test"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      <div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/zh-tw/test/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">提供授權Cloud Volumes ONTAP</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2023-09-13 15:07:13 +0000">09/13/2023</time>
+        
+    
+    
+        <span>貢獻者
+        </span>
+    
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/zh-tw/test/images/discuss-sm.svg" alt="" class="github-icon" />建議變更</span>
+        <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/zh-tw/test/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/test.zh-tw/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/zh-tw/test/concept-licensing.html&page-title=提供授權Cloud Volumes ONTAP" class="page-nav-contribute-link" role="button">請求文件變更</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/test/blob/main/concept-licensing.adoc" class="page-nav-contribute-link" role="button">編輯本頁</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >瞭解如何貢獻</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/zh-tw/test/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/zh-tw/test/pdfs/gcp/fullsite-sidebar/本文檔Cloud_Volumes_ONTAP.pdf" >
+                    <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>此文件 PDF 的網站</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/版本資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            版本資訊
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/Amazon_Web_Services入門.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Amazon Web Services入門
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/設定您的網路.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            設定您的網路
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/開始使用Microsoft_Azure.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用Microsoft Azure
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/開始使用Google_Cloud.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用Google Cloud
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/Google_Cloud_Platform映像驗證.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Google Cloud Platform映像驗證
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/影像簽名驗證.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            影像簽名驗證
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/使用Cloud_Volumes_ONTAP.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            使用Cloud Volumes ONTAP
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/授權管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            授權管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/Volume與LUN管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Volume與LUN管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/Aggregate管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Aggregate管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/儲存VM管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            儲存VM管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/安全性與資料加密.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            安全性與資料加密
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/系統管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            系統管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/新增_移除或刪除系統.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            新增、移除或刪除系統
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/AWS_管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            AWS 管理
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/Azure管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Azure管理
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/Google_Cloud管理.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Google Cloud管理
+          </a>
+          
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/系統健全狀況與事件.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            系統健全狀況與事件
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/概念.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            概念
+          </a>
+          
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/儲存設備.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            儲存設備
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/高可用度配對.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            高可用度配對
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/test/pdfs/gcp/sidebar/知識與支援.pdf" 
+            
+          >
+            <img src="/zh-tw/test/images/pdf-icon.png" alt="" width="16" height="16"/>
+            知識與支援
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/zh-tw/test/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>個別的 PDF 文件集合<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>有多種授權選項可供Cloud Volumes ONTAP 選擇。每個選項都能讓您選擇符合需求的消費模式。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="授權總覽">授權總覽</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下列授權選項適用於新客戶。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">容量型授權</dt>
+<dd>
+<p>根據Cloud Volumes ONTAP 資源配置的容量、在NetApp帳戶中支付多個支援系統的費用。包括購買附加雲端資料服務的能力。</p>
+</dd>
+<dt class="hdlist1">Keystone訂閱</dt>
+<dd>
+<p>以隨成長付費訂閱為基礎的服務、為HA配對提供無縫的混合雲體驗。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>先前的個別節點授權模式仍適用於已購買授權或正在訂閱市場的現有客戶。</p>
+</div>
+<div class="paragraph">
+<p>以下各節提供這些選項的詳細資訊。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/note.svg" alt="註">
+</td>
+<td class="content">
+若未取得授權、則無法使用授權功能。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="容量型授權">容量型授權</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>容量型授權套件可讓您針對Cloud Volumes ONTAP 每TiB的容量付費。授權與您的NetApp帳戶相關聯、只要授權有足夠的容量可用、您就能根據授權向多個系統收取費用。</p>
+</div>
+<div class="paragraph">
+<p>例如、您可以購買單一20 TiB授權、部署四Cloud Volumes ONTAP 個作業系統、然後將5個TiB磁碟區分配給每個系統、總共20 TiB。容量可用於Cloud Volumes ONTAP 該帳戶中部署的每個作業系統上的磁碟區。</p>
+</div>
+<div class="paragraph">
+<p>容量型授權的形式為_package_。當您部署Cloud Volumes ONTAP 一套解決方案時、您可以根據業務需求、從多個授權套件中進行選擇。</p>
+</div>
+<div class="sect2">
+<h3 id="套件">套件</h3>
+<div class="paragraph">
+<p>下列容量型套件可供Cloud Volumes ONTAP 使用。</p>
+</div>
+<div class="sect3">
+<h4 id="freemium">Freemium</h4>
+<div class="paragraph">
+<p>NetApp Cloud Volumes ONTAP 免費提供所有的支援功能（仍需支付雲端供應商費用）。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>不需要授權或合約。</p>
+</li>
+<li>
+<p>不包括NetApp的支援。</p>
+</li>
+<li>
+<p>每Cloud Volumes ONTAP 個系統的資源配置容量上限為500 GiB。</p>
+</li>
+<li>
+<p>您可以在Cloud Volumes ONTAP 任何雲端供應商中、使用最多10個包含每個NetApp帳戶的Freemium產品的NetApp系統。</p>
+</li>
+<li>
+<p>如果Cloud Volumes ONTAP 供應的資料系統容量超過500 GiB、則BlueXP會將系統轉換成Essentials套件。</p>
+<div class="paragraph">
+<p>一旦系統轉換成Essentials套件 <a href="#充電注意事項">最低收費</a> 適用。</p>
+</div>
+<div class="paragraph">
+<p>任何其他配置容量低於500 GiB的系統、都會留在Freemium上（只要使用Freemium產品進行部署）。</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="最佳化">最佳化</h4>
+<div class="paragraph">
+<p>單獨支付已配置的容量和I/O作業費用。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>單一節點或HA Cloud Volumes ONTAP</p>
+</li>
+<li>
+<p>充電是根據兩個成本元件：儲存與使用（I/O）</p>
+<div class="paragraph">
+<p>您將不需支付與資料複寫（SnapMirror）或NDMP相關的I/O費用。</p>
+</div>
+</li>
+<li>
+<p>可在Google Cloud Marketplace以隨用隨付方案或年度合約形式提供</p>
+</li>
+<li>
+<p>支援所選VM類型：</p>
+</li>
+<li>
+<p>Google Cloud：n2-Standard-4、n2-Standard/8</p>
+</li>
+<li>
+<p>以額外成本附加任何NetApp的雲端資料服務</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="基礎知識">基礎知識</h4>
+<div class="paragraph">
+<p>依容量付費Cloud Volumes ONTAP 、以供各種不同組態使用。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>選擇Cloud Volumes ONTAP 您的需求組態：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>單一節點或HA系統</p>
+</li>
+<li>
+<p>用於災難恢復（DR）的檔案與區塊儲存或次要資料</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>以額外成本附加任何NetApp的雲端資料服務</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="專業人員">專業人員</h4>
+<div class="paragraph">
+<p>以容量支付Cloud Volumes ONTAP 任何類型的不受限制的還原組態。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>提供Cloud Volumes ONTAP 任何功能組態的授權</p>
+<div class="paragraph">
+<p>單一節點或HA、以相同速率為主要和次要磁碟區充電</p>
+</div>
+</li>
+<li>
+<p>包括使用 BlueXP 備份與還原的不限數量的 Volume 備份、但僅適用於使用專業版套件的 Cloud Volumes ONTAP 系統</p>
+</li>
+<li>
+<p>以額外成本附加任何NetApp的雲端資料服務</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="邊際快取">邊際快取</h4>
+<div class="paragraph">
+<p>提供Cloud Volumes Edge Cache授權。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>與Professional套件相同的功能、可為分散式企業提供營運不中斷和資料保護</p>
+</li>
+<li>
+<p>智慧型邊緣快取功能、可透過每個位置佔用空間較小的Windows VM進行快取</p>
+</li>
+<li>
+<p>每購買3個Tib容量、就有一個邊緣節點</p>
+</li>
+<li>
+<p>可在Google Cloud Marketplace以隨用隨付方案或年度合約形式提供</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://cloud.netapp.com/cloud-volumes-edge-cache" target="_blank" rel="noopener">"深入瞭解Cloud Volumes Edge Cache如何協助您的企業發展"</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="消費模式">消費模式</h3>
+<div class="paragraph">
+<p>下列消費模式提供容量型授權套件：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>* BYOL*：向NetApp購買的授權、可用於在Cloud Volumes ONTAP 任何雲端供應商中部署</p>
+</li>
+<li>
+<p>* PAYGO*：每小時向雲端供應商的市場訂購一次。</p>
+</li>
+<li>
+<p><strong>年度</strong>：雲端供應商市場的年度合約。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>請注意下列事項：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果您向NetApp（BYOL）購買授權、也必須向雲端供應商的市場訂閱PAYGO產品。</p>
+<div class="paragraph">
+<p>您的授權一律會先收取費用、但在下列情況下、您將會從市場的每小時費率中收取費用：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果您超過授權容量</p>
+</li>
+<li>
+<p>如果授權期限已到期</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>如果您有市場的年度合約、Cloud Volumes ONTAP 您所部署的_all_系統將根據該合約付費。您無法與BYOL混搭一年一度的市場合約。</p>
+</li>
+<li>
+<p>中國地區僅支援具有BYOL的單一節點系統。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="變更套件">變更套件</h3>
+<div class="paragraph">
+<p>部署完成後、您可以變更Cloud Volumes ONTAP 使用容量型授權的一套功能、以利執行一套功能。例如、如果您部署Cloud Volumes ONTAP 的是含有Essentials套件的功能完善的系統、則當您的業務需求改變時、可以將其變更為Professional套件。</p>
+</div>
+<div class="paragraph">
+<p><a href="task-manage-capacity-licenses.html">"瞭解如何變更充電方法"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="定價">定價</h3>
+<div class="paragraph">
+<p>如需定價的詳細資訊、請前往 <a href="https://cloud.netapp.com/pricing?hsCtaTracking=4f8b7b77-8f63-4b73-b5af-ee09eab4fbd6%7C5fefbc99-396c-4084-99e6-f1e22dc8ffe7" target="_blank" rel="noopener">"NetApp BlueXP網站"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="免費試用">免費試用</h3>
+<div class="paragraph">
+<p>您可以在雲端供應商的市場中、透過隨用隨付訂閱取得30天的免費試用版。免費試用包括 Cloud Volumes ONTAP 和 BlueXP 備份與還原。試用版會在您訂閱市場上的產品項目時開始。</p>
+</div>
+<div class="paragraph">
+<p>沒有執行個體或容量限制。您可以任意部署Cloud Volumes ONTAP 多個不需付費的功能、並視需要配置多餘的容量、30天內即可免費部署。免費試用版會在30天後自動轉換為付費的每小時訂閱。</p>
+</div>
+<div class="paragraph">
+<p>雖然不收取Cloud Volumes ONTAP 每小時的軟體授權費用、但您的雲端供應商仍需支付基礎架構費用。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/test/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+您將會在BlueXP中收到一則通知、告知免費試用開始、剩餘7天、以及剩餘1天。例如：<br>
+<span class="image"><img src="./media/screenshot-free-trial-notification.png" alt="BlueXP介面中通知的螢幕快照顯示、免費試用期僅剩7天。"></span>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支援的組態">支援的組態</h3>
+<div class="paragraph">
+<p>以容量為基礎的授權套件可搭配Cloud Volumes ONTAP 使用於NetApp 9.7及更新版本。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="容量限制">容量限制</h3>
+<div class="paragraph">
+<p>有了這種授權模式、每Cloud Volumes ONTAP 個個別的支援系統都能透過磁碟和分層到物件儲存設備、支援最多2 PIB的容量。</p>
+</div>
+<div class="paragraph">
+<p>授權本身並無最大容量限制。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="最大系統數">最大系統數</h3>
+<div class="paragraph">
+<p>透過容量型授權、Cloud Volumes ONTAP 每個NetApp帳戶最多可有20個不限數量的不二元系統。_system_是Cloud Volumes ONTAP 一個EsireHA配對、Cloud Volumes ONTAP 一個僅供支援的節點系統、或是您所建立的任何其他儲存VM。預設的儲存VM不會計入限制。此限制適用於所有授權模式。</p>
+</div>
+<div class="paragraph">
+<p>例如、假設您有三種工作環境：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>單一節點Cloud Volumes ONTAP 的不完整系統、只需一個儲存VM（這是部署Cloud Volumes ONTAP 時建立的預設儲存VM）</p>
+<div class="paragraph">
+<p>這種工作環境是單一系統的重要關鍵。</p>
+</div>
+</li>
+<li>
+<p>單一節點Cloud Volumes ONTAP 的不完整系統、含兩個儲存VM（預設儲存VM、加上您所建立的一個額外儲存VM）</p>
+<div class="paragraph">
+<p>此工作環境可視為兩個系統：一個用於單一節點系統、另一個用於額外的儲存VM。</p>
+</div>
+</li>
+<li>
+<p>包含三個儲存VM（預設儲存VM、加上您所建立的兩個額外儲存VM）的支援功能Cloud Volumes ONTAP</p>
+<div class="paragraph">
+<p>此工作環境可算為三個系統：一個用於HA配對、兩個用於額外的儲存VM。</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>總共有六個系統。之後您的帳戶就有額外14個系統的空間。</p>
+</div>
+<div class="paragraph">
+<p>如果您的大型部署需要20個以上的系統、請聯絡您的客戶代表或銷售團隊。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/bluexp-setup-admin/concept-netapp-accounts.html" target="_blank" rel="noopener">"深入瞭解NetApp客戶"</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="充電注意事項">充電注意事項</h3>
+<div class="paragraph">
+<p>下列詳細資料可協助您瞭解充電方式如何搭配容量型授權使用。</p>
+</div>
+<div class="sect3">
+<h4 id="最低收費">最低收費</h4>
+<div class="paragraph">
+<p>每個資料服務儲存VM至少要有一個主要（讀寫）磁碟區、至少需支付4 TiB的最低費用。如果主要磁碟區的總和低於4 TiB、則BlueXP會將4 TiB最低收費套用至該儲存VM。</p>
+</div>
+<div class="paragraph">
+<p>如果您尚未配置任何磁碟區、則不適用最低收費。</p>
+</div>
+<div class="paragraph">
+<p>對於 Essentials 套件、 4 TiB 最低容量費用不適用於僅包含次要（資料保護）磁碟區的儲存 VM 。例如、如果您的儲存虛擬機器擁有1個二線資料的TiB、則只需支付1個TiB的資料費用。對於所有其他非 Essentials 套件類型（最佳化、專業版和邊緣快取）、無論磁碟區類型為何、都會套用 4 TiB 的最低容量充電。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="過度使用">過度使用</h4>
+<div class="paragraph">
+<p>如果您超過BYOL容量、或授權過期、系統會根據您的市場訂閱、按每小時費率收取超額費用。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="essentials套件">Essentials套件</h4>
+<div class="paragraph">
+<p>有了Essentials套件、您將依照部署類型（HA或單一節點）和Volume類型（主要或次要）收費。例如、_Essentials HHA與_Essentials次要HA的定價不同。</p>
+</div>
+<div class="paragraph">
+<p>如果您向 NetApp （ BYOL ）購買 Essentials 授權、且超過該部署和 Volume 類型的授權容量、則 BlueXP 數位錢包會因價格較高的 Essentials 授權（如果您有）而收取超額費用。這是因為我們會先使用您已購買的可用容量作為預付容量、然後再針對市場進行充電。向市場收取費用會增加每月帳單的成本。</p>
+</div>
+<div class="paragraph">
+<p>以下是範例。假設您擁有下列Essentials套件授權：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>500 TiB _Essentials二線HA授權、擁有500 TiB的承諾容量</p>
+</li>
+<li>
+<p>500 TiB _Essentials單一節點_授權、僅擁有100 TiB的已認可容量</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>另有50個TiB配置在與次要Volume的HA配對上。BlueXP 數位錢包不需向 PAYGO 收取 50 TiB 費用、而是根據 <em>Essentials Single Node</em> 授權收取 50 TiB 超額費用。該授權的價格高於_Essentials二線HA、但比PAYGO價格便宜。</p>
+</div>
+<div class="paragraph">
+<p>在 BlueXP 數位錢包中、 50 TiB 將根據 <em>Essentials Single Nodon</em> 授權收費。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="儲存vm">儲存VM</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>額外的資料服務儲存VM（SVM）無需額外授權成本、但每個資料服務SVM的最低容量費用為4 TiB。</p>
+</li>
+<li>
+<p>災難恢復SVM是根據已配置的容量來收費的。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ha-配對">HA 配對</h4>
+<div class="paragraph">
+<p>對於HA配對、您只需支付節點上已配置容量的費用。您不需支付同步鏡射至合作夥伴節點的資料費用。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="flexclone與flexcache-功能">FlexClone與FlexCache 功能</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>FlexClone磁碟區所使用的容量不需付費。</p>
+</li>
+<li>
+<p>來源FlexCache 和目的地的資料不只是主要資料、而且會根據已配置的空間進行收費。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="如何開始使用">如何開始使用</h3>
+<div class="paragraph">
+<p>瞭解如何開始使用容量型授權：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="task-set-up-licensing-google.html">"在Cloud Volumes ONTAP Google Cloud中設定適用於此技術的授權"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="keystone訂閱">Keystone訂閱</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以隨成長付費訂閱為基礎的服務、可為偏好營運成本使用模式的使用者、提供無縫的混合雲體驗、以供預先支付資本支出或租賃之用。</p>
+</div>
+<div class="paragraph">
+<p>充電是根據 Keystone 訂閱中一或多個 Cloud Volumes ONTAP HA 配對的承諾容量大小而定。</p>
+</div>
+<div class="paragraph">
+<p>系統會定期彙總每個 Volume 的已配置容量、並將其與 Keystone 訂閱上的已認可容量進行比較、而任何超額資料都會在 Keystone 訂閱上以暴增方式收費。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/keystone-staas/index.html" target="_blank" rel="noopener">"深入瞭解 NetApp Keystone"</a>。</p>
+</div>
+<div class="sect2">
+<h3 id="支援的組態-2">支援的組態</h3>
+<div class="paragraph">
+<p>HA 配對支援 Keystone 訂閱。目前單一節點系統不支援此授權選項。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="容量限制-2">容量限制</h3>
+<div class="paragraph">
+<p>每Cloud Volumes ONTAP 個個別的支援透過磁碟和分層至物件儲存設備、最多可支援2個PIB容量。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="如何開始使用-2">如何開始使用</h3>
+<div class="paragraph">
+<p>瞭解如何開始使用 Keystone 訂閱：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="task-set-up-licensing-google.html">"在Cloud Volumes ONTAP Google Cloud中設定適用於此技術的授權"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="節點型授權">節點型授權</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>節點型授權是前一代的授權模式、可讓您依Cloud Volumes ONTAP 節點授權使用。此授權模式不適用於新客戶、也不提供免費試用。副節點充電已由上述的副容量充電方法取代。</p>
+</div>
+<div class="paragraph">
+<p>現有客戶仍可使用節點型授權：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果您擁有有效授權、BYOL僅適用於授權續約。</p>
+</li>
+<li>
+<p>如果您有有效的市場訂閱、仍可透過該訂閱付費。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="授權轉換">授權轉換</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>不Cloud Volumes ONTAP 支援將現有的支援系統轉換成其他授權方法。目前的三種授權方法是容量型授權、基礎概念訂閱和節點型授權。例如、您無法將系統從節點型授權轉換成容量型授權（反之亦然）。</p>
+</div>
+<div class="paragraph">
+<p>如果您想要轉換至其他授權方法、可以購買授權、使用Cloud Volumes ONTAP 該授權部署新的一套作業系統、然後將資料複寫到新系統。</p>
+</div>
+<div class="paragraph">
+<p>請注意、不支援將系統從PAYGO節點授權轉換成BYOL節點授權（反之亦然）。您需要部署新系統、然後將資料複寫到該系統。 <a href="task-manage-node-licenses.html">"瞭解如何在PAYGO和BYOL之間切換"</a>。</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/zh-tw/test/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/zh-tw/test/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">在本頁</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2024 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">使用條款</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">隱私權政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie 政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie 設定</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">傳送有關本網頁的意見反應</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/test/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/test/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/test/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/test/js/ie-tabbed-blocks.js'></script>
+    <script src='/zh-tw/test/js/ie-sidebar.js'></script>
+  </body>
+
+</html>
