@@ -4,10 +4,11 @@ settings:
   harmony_integration: maestro
   platform: cloud
   internal:
-    pdf_enabled: true
+    pdf_enabled: false
   prod:
-    pdf_enabled: true
+    pdf_enabled: false
     harmony_enabled: false
+    lipi_enabled: false
   rss_page: whats-new.html
   versions:
   - name: Cloud Volumes ONTAP
