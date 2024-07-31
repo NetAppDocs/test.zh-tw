@@ -1,5 +1,4 @@
 ---
-jekyll: cookie-settings-check
 settings:
   name: Cloud Volumes ONTAP
   harmony_integration: maestro
