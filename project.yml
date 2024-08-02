@@ -1,5 +1,4 @@
 ---
-jekyll: bn-onetrust
 settings:
   name: Cloud Volumes ONTAP
   harmony_integration: maestro
